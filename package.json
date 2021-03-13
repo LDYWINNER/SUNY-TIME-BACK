@@ -1,0 +1,10 @@
+{
+  "name": "project1-code",
+  "version": "1.0.0",
+  "description": "SBU TIME",
+  "main": "index.js",
+  "author": "DongYoon Lee",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

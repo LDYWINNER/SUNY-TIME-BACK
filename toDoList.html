@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+</head>
+<body class="toDoList-body">
+  
+  <div class="all-container">
+    <header class="mainPage-header">
+      <div class="mainPage-logo">
+        <a href="mainPage.html">
+          <h1>SBU TIME</h1>
+        </a>
+      </div>
+      <nav class="mainPage-nav">
+        <ul class="mainPage-nav__ul">
+          <li class="mainPage-nav__ul-li"><a href="mainPage.html">Time Table</a></li>
+          <li class="mainPage-nav__ul-li"><a href="subPage.html">Course Guide</a></li>
+          <li class="mainPage-nav__ul-li"><a href="toDoList.html">To Do List</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="toDoList-main">
+      
+      <div class="js-clock">
+        <h1>00:00</h1>
+      </div>
+      
+      <form class="js-form form">
+        <input type="text" placeholder="What is your name?" />
+      </form>
+      
+      <h4 class="js-greetings greetings"></h4>
+      <form class="js-toDoForm">
+        <input type="text" placeholder="Write a to do list" />
+      </form>
+      <ul class="js-toDoList">
+      </ul>
+      
+      <span class="js-weather"></span>
+
+    </main>
+
+  </div>
+
+
+  <script src="js/clock.js"></script>
+  <script src="js/greeting.js"></script>
+  <script src="js/todo.js"></script>
+  <script src="js/bg.js"></script>
+  <script src="js/weather.js"></script>
+</body> 
+</html>

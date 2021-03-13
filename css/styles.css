@@ -1,0 +1,18 @@
+/* Font style */
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Mega&display=swap");
+
+/* Basic Css */
+@import "reset.css";
+@import "variables.css";
+@import "animations.css";
+
+/* components */
+@import "components/mainPage-header.css";
+
+/* screens */
+@import "screens/indexStyles.css";
+@import "screens/createAccountStyles.css";
+@import "screens/mainPage.css";
+@import "screens/subPage.css";
+@import "screens/univCertif.css";
+@import "screens/toDoList.css";

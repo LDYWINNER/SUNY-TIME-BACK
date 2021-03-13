@@ -1,0 +1,105 @@
+.main {
+  height: 900px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Stony_Brook_Seawolves_wordmark.svg/1200px-Stony_Brook_Seawolves_wordmark.svg.png");
+  background-repeat: no-repeat;
+  background-size: 650px 900px;
+  /* background-size: 650px; */
+  background-position: right top;
+  margin-top: 10px;
+  display: flex;
+}
+
+.timeTable {
+  width: 650px;
+}
+
+.tablehead tbody tr .tablehead-Mon {
+  padding-left: 140px;
+}
+
+.tablehead tbody tr td {
+  font-family: "Lexend Mega", sans-serif;
+  padding-left: 57px;
+}
+
+.times {
+  height: 900px;
+}
+
+.first-time,
+.time {
+  font-family: "Lexend Mega", sans-serif;
+  background-color: deeppink;
+  height: 20px;
+  width: 30px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.first-grids {
+  margin-left: 35px;
+}
+
+.first-grids,
+.grids {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  background-color: darkslateblue;
+  height: 60px;
+  width: 100px;
+  border: 1px solid black;
+}
+
+.tablebody {
+  display: flex;
+  width: 650px;
+}
+
+.first-time,
+.time {
+  text-align: center;
+}
+
+.major-select__form {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 900px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.major-select input {
+  font-family: "Lexend Mega", sans-serif;
+  padding: 20px;
+  border: 1px solid blue;
+  width: 90px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+@keyframes hideSplashScreen {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+#splash-screen {
+  position: absolute;
+  top: 0;
+  background-color: #b81137;
+  background-image: url("https://content.sportslogos.net/logos/34/858/full/8765_stony_brook_seawolves-alternate-2008.png");
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  background-position: center center;
+  animation: hideSplashScreen 1s ease-in-out forwards;
+}

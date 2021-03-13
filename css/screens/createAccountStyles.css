@@ -1,0 +1,118 @@
+.createAccount {
+  background-image: url("https://www.logolynx.com/images/logolynx/ab/abc41dfdef39a4832f8286a50c2ea7b5.png");
+  background-repeat: no-repeat;
+  background-position: 40% 20%;
+  font-family: "Lexend Mega", sans-serif;
+  animation: fadeIn 0.8s linear;
+}
+/* background-position: 150px -80px; */
+
+.createAccount input {
+  border-radius: 20px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.fontBlack {
+  color: black;
+}
+
+.join-header {
+  margin: 90px 0px 45px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.join-header__title {
+  font-size: 55px;
+  font-weight: 600;
+  margin-bottom: 45px;
+  color: aliceblue;
+  text-shadow: 5px -5px 3px var(--sbuBlue);
+}
+
+.join-header__information {
+  color: aliceblue;
+  font-size: 20px;
+  text-shadow: 2px -2px 3px var(--sbuBlue);
+  margin-bottom: 0px;
+}
+
+.join__sbuTime {
+  display: inline-block;
+  background-color: rgba(18, 95, 154, 0.7);
+  text-shadow: 5px -3px 2px darkred;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#join-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 450px;
+}
+
+#join-form input {
+  padding: 15px 0px;
+  font-size: 18px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease-in-out;
+  opacity: 0.85;
+}
+
+#join-form input:focus {
+  border-color: darkred;
+  border-width: 3px;
+}
+
+#join-form input[type="submit"] {
+  color: aliceblue;
+  background-color: rgba(18, 95, 154, 0.7);
+  cursor: pointer;
+}
+
+#join-form input::placeholder {
+  font-family: "Lexend Mega", sans-serif;
+  text-align: center;
+  color: var(--sbuBlue);
+}
+
+#join-form label {
+  font-size: 22px;
+  color: aliceblue;
+  background-color: rgba(18, 95, 154, 0.7);
+  border-radius: 20px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 5px 0px;
+}
+
+#join-form select {
+  font-family: "Lexend Mega", sans-serif;
+  padding: 5px;
+  background-color: aliceblue;
+  color: var(--sbuBlue);
+  border-radius: 20px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#join-form select:focus {
+  border-color: darkred;
+}
+
+#join-form input:hover,
+#join-form select:hover {
+  background-color: rgba(139, 0, 0, 0.384);
+  color: aliceblue;
+}
+
+#join-form input:hover::placeholder {
+  color: aliceblue;
+}
+
+#join-form select:hover {
+  cursor: pointer;
+}

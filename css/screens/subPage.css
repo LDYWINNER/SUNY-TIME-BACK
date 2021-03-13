@@ -1,0 +1,26 @@
+.subPage-main {
+  height: 900px;
+  background-image: url("https://i.pinimg.com/originals/36/3b/5e/363b5efcd6a8baf4708b2ab05b4f0926.png");
+  background-repeat: no-repeat;
+  background-position: right 100px;
+  display: flex;
+}
+
+.major-select__form {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 900px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.major-select input {
+  font-family: "Lexend Mega", sans-serif;
+  padding: 20px;
+  border: 1px solid blue;
+  width: 90px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}

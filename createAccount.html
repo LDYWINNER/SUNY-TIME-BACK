@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBU Time</title>
+</head>
+<body class="createAccount">
+
+  <header class="join-header">
+    <h1 class="join-header__title"><span class="fontBlack">Join </span><span class="join__sbuTime">SBU TIME</span></h1>
+    <p class="join-header__information"><span class="fontBlack">To join the </span>
+      <span class="join__sbuTime">SBU TIME</span>
+      , please insert the following personal information. 
+    </p>
+</header>
+
+  <form action="univCertif.html" id="join-form">
+    <input type="text" required placeholder="Input your ID" autocomplete="on" autofocus/>
+    <input type="password" required placeholder="Input your Password" autocomplete="off"/>
+    <input type="password" required placeholder="Confirm your Password (Input again)" autocomplete="off" />
+    <!--학번 선택할 수 있는 창-->
+    <label for="entrance-year">Entrance Year</label>
+    <select id="entrance-year">
+      <option value="20-fall">20FA</option>
+      <option value="20-spring">20SPR</option>
+      <option value="19-fall">19FA</option>
+      <option value="19-spring">19SPR</option>
+    </select>
+    <input type="email" required placeholder="Input your Stony Brook Email address" autocomplete="on"/>
+    <input type="text" required placeholder="Choose your Nickname" autocomplete="on"/>
+    <input type="submit" value="Create Account" />
+  </form>
+
+  
+</body>
+</html>
