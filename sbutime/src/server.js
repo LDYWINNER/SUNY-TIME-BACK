@@ -12,10 +12,10 @@ const corsOptions = {
     origin: "http://localhost:4000"
 };
 
+app.use(logger);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(helmet());
-app.use(logger);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
