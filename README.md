@@ -1,2 +1,2 @@
-# SBU-TIME
-Building SBU TIME
+# SUNY-TIME
+Building SUNY TIME
