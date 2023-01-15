@@ -1,3 +1,0 @@
-# SBU TIME
-
-SBU TIME
