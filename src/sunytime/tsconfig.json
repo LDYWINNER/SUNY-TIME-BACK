@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    
+    /* Modules */
+    "module": "ES2015",
+    "rootDir": "./src",
+
+    /* Emit */
+    "outDir": "./dist",
+    "removeComments": true,
+    "noEmitOnError": true,
+
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true ,
+    "noFallthroughCasesInSwitch": true ,
+    "noUncheckedIndexedAccess": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  }
+}
