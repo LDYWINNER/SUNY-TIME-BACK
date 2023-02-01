@@ -108,7 +108,11 @@ const navVariants = {
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useRouteMatch("/");
-  const tvMatch = useRouteMatch("/tv");
+  const infoMatch = useRouteMatch("/school-info");
+  const courseManagerMatch = useRouteMatch("/course-manager");
+  const scheduleManagerMatch = useRouteMatch("/schedule-manager");
+  const bulletinMatch = useRouteMatch("/bulletin-board");
+  const daangnMatch = useRouteMatch("/daangn");
   const inputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -152,8 +156,30 @@ function Header() {
             </Link>
           </Item>
           <Item>
-            <Link to="/tv">
-              Tv Shows {tvMatch && <Circle layoutId="circle" />}
+            <Link to="/school-info">
+              School Info {infoMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/course-manager">
+              Course Manager{" "}
+              {courseManagerMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/schedule-manager">
+              Schedule Manager{" "}
+              {scheduleManagerMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/bulletin-board">
+              Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/daangn">
+              Daangng {daangnMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
         </Items>
