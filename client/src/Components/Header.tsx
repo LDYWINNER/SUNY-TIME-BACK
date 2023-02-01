@@ -179,7 +179,7 @@ function Header() {
           </Item>
           <Item>
             <Link to="/daangn">
-              Daangng {daangnMatch && <Circle layoutId="circle" />}
+              Daangn {daangnMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
         </Items>
