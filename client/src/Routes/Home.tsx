@@ -16,14 +16,13 @@ const Wrapper = styled.div<{ bgImage: string }>`
 `;
 
 const Main = styled.div`
-  height: 100%;
-  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 300px;
-  padding-top: 100px;
+  margin: 300px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const Greeting = styled.div``;
