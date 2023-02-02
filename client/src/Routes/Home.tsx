@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import img from "../assets/final.svg";
 import { bgImages, quotes } from "../assets/assets";
+import { useQuery } from "react-query";
+import { getWeather, IGetWeatherResult } from "../api";
 
 const Wrapper = styled.div<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
@@ -76,6 +78,17 @@ function Home() {
   const [bgImage, setbgImage] = useState("");
   const [quote, setQuote] = useState<IQuote>();
   const [date, setDate] = useState("");
+  const [lat, setLat] = useState(0);
+  const [lon, setLon] = useState(0);
+  const fetchWeather = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLat(position.coords.latitude);
+      setLon(position.coords.longitude);
+      console.log(`${lat}, ${lon}`);
+    });
+    return getWeather(lat, lon);
+  };
+  const { data } = useQuery<IGetWeatherResult>("weather", fetchWeather);
   function getClock() {
     const date = new Date();
     const hours = String(date.getHours()).padStart(2, "0");
@@ -84,13 +97,15 @@ function Home() {
     setDate(`${hours}:${minutes}:${seconds}`);
   }
   useEffect(() => {
+    fetchWeather();
+    console.log(data);
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
     setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
     const clockId = setInterval(getClock, 1000);
     return function cleanup() {
       clearInterval(clockId);
     };
-  }, [bgImage]);
+  }, [bgImage, data]);
   return (
     <Wrapper bgImage={bgImage}>
       <Main>

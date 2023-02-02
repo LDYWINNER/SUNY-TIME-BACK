@@ -1,27 +1,59 @@
-const API_KEY = "10923b261ba94d897ac6b81148314a3f";
-const BASE_PATH = "https://api.themoviedb.org/3";
-
-interface IMovie {
-  id: number;
-  backdrop_path: string;
-  poster_path: string;
-  title: string;
-  overview: string;
-}
-
-export interface IGetMoviesResult {
-  dates: {
-    maximum: string;
-    minimum: string;
+export interface IGetWeatherResult {
+  coord: {
+    lon: number;
+    lat: number;
   };
-  page: number;
-  results: IMovie[];
-  total_pages: number;
-  total_results: number;
+  weather: [
+    {
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }
+  ];
+  base: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+    sea_level: number;
+    grnd_level: number;
+  };
+  visibility: number;
+  wind: {
+    speed: number;
+    deg: number;
+    gust: number;
+  };
+  rain: {
+    "1h": number;
+  };
+  clouds: {
+    all: number;
+  };
+  dt: number;
+  sys: {
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
 }
 
-export function getMovies() {
-  return fetch(`${BASE_PATH}/movie/now_playing?api_key=${API_KEY}`).then(
-    (response) => response.json()
+export async function getWeather(lat: number, lon: number) {
+  const response = await fetch(
+    `${process.env.REACT_APP_WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
   );
+  console.log(
+    `${process.env.REACT_APP_WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+  );
+  return await response.json();
 }
