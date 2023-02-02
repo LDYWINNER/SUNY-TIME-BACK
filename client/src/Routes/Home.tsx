@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import img from "../assets/final.svg";
-
-const bgImages = [
-  "https://www.studyinkorea.go.kr/file/imgpreview.do?filename=EI_DATA_FILE201603290529569960_B.jpg&fileStorePath=univStorePath",
-  "https://www.stonybrook.edu/commcms/studyabroad/_images/outgoing-banner-images/all-year-website-photos/korea/suny-korea-banner-1.png",
-];
+import { bgImages, quotes } from "../assets/assets";
 
 const Wrapper = styled.div<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
@@ -26,8 +22,24 @@ const Img = styled.img`
   height: 400px;
 `;
 
+const DateSpan = styled.span`
+  color: white;
+`;
+
+const QuoteDiv = styled.div``;
+
+const QuoteText = styled.span``;
+
+const Author = styled.span``;
+
+interface IQuote {
+  quote: string;
+  author: string;
+}
+
 function Home() {
   const [bgImage, setbgImage] = useState("");
+  const [quote, setQuote] = useState<IQuote>();
   const [date, setDate] = useState("");
   function getClock() {
     const date = new Date();
@@ -38,6 +50,7 @@ function Home() {
   }
   useEffect(() => {
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
     const clockId = setInterval(getClock, 1000);
     return function cleanup() {
       clearInterval(clockId);
@@ -47,7 +60,11 @@ function Home() {
     <Wrapper bgImage={bgImage}>
       <Main>
         <Img src={img}></Img>
-        <span>{date}</span>
+        <DateSpan>{date}</DateSpan>
+        <QuoteDiv>
+          <QuoteText>{quote?.quote}</QuoteText>
+          <Author>{quote?.author}</Author>
+        </QuoteDiv>
       </Main>
     </Wrapper>
   );
