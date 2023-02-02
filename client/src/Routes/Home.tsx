@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import img from "../assets/final.svg";
 
-const Wrapper = styled.div`
-  background-image: url("https://www.stonybrook.edu/commcms/studyabroad/_images/outgoing-banner-images/all-year-website-photos/korea/suny-korea-banner-1.png");
-  /* background-image: url("../assets/banner.png"); */
+const bgImages = [
+  "https://www.studyinkorea.go.kr/file/imgpreview.do?filename=EI_DATA_FILE201603290529569960_B.jpg&fileStorePath=univStorePath",
+  "https://www.stonybrook.edu/commcms/studyabroad/_images/outgoing-banner-images/all-year-website-photos/korea/suny-korea-banner-1.png",
+];
+
+const Wrapper = styled.div<{ bgImage: string }>`
+  background-image: url(${(props) => props.bgImage});
   background-size: cover;
   padding-bottom: 200px;
   height: 100%;
@@ -10,10 +16,9 @@ const Wrapper = styled.div`
   padding: 60px;
 `;
 
-const Logo = styled.div`
-  background-image: url("src/assets/TIME.png");
-  width: 400px;
-  height: 400px;
+const Main = styled.div`
+  height: 100%;
+  width: 80vh;
 `;
 
 const Img = styled.img`
@@ -22,10 +27,16 @@ const Img = styled.img`
 `;
 
 function Home() {
+  const [bgImage, setbgImage] = useState("");
+  useEffect(() => {
+    setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+    console.log(bgImage);
+  }, [bgImage]);
   return (
-    <Wrapper>
-      <Logo />
-      <Img src="/client/src/assets/TIME.png"></Img>
+    <Wrapper bgImage={bgImage}>
+      <Main>
+        <Img src={img}></Img>
+      </Main>
     </Wrapper>
   );
 }
