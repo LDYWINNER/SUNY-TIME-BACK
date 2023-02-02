@@ -7,14 +7,38 @@ const Wrapper = styled.div<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
   padding-bottom: 200px;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Main = styled.div`
   height: 100%;
-  width: 80vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 300px;
+  padding-top: 100px;
+`;
+
+const Greeting = styled.div``;
+
+const Welcome = styled.h1`
+  font-size: 80px;
+  font-weight: 500;
+`;
+
+const LogoDate = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding-right: 50px;
 `;
 
 const Img = styled.img`
@@ -24,11 +48,23 @@ const Img = styled.img`
 
 const DateSpan = styled.span`
   color: white;
+  font-size: 128px;
+  font-weight: 600;
+  width: 500px;
 `;
 
-const QuoteDiv = styled.div``;
+const QuoteDiv = styled.div`
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
-const QuoteText = styled.span``;
+const QuoteText = styled.span`
+  margin-bottom: 30px;
+`;
 
 const Author = styled.span``;
 
@@ -59,8 +95,13 @@ function Home() {
   return (
     <Wrapper bgImage={bgImage}>
       <Main>
-        <Img src={img}></Img>
-        <DateSpan>{date}</DateSpan>
+        <Greeting>
+          <Welcome>Hello Username, Welcome to SUNYTIME</Welcome>
+        </Greeting>
+        <LogoDate>
+          <Img src={img}></Img>
+          <DateSpan>{date}</DateSpan>
+        </LogoDate>
         <QuoteDiv>
           <QuoteText>{quote?.quote}</QuoteText>
           <Author>{quote?.author}</Author>
