@@ -40,8 +40,8 @@ function Clock() {
     setTime(`${hours}:${minutes}:${seconds}`);
   }
   useEffect(() => {
-    const clockId = setInterval(getClock, 1000);
-    const dateId = setInterval(getDate, 1000);
+    const clockId = setInterval(() => getClock(), 1000);
+    const dateId = setInterval(() => getDate(), 1000);
     return function cleanup() {
       clearInterval(clockId);
       clearInterval(dateId);

@@ -5,7 +5,7 @@ import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
 import Quotes from "../Components/Quotes";
 import Clock from "../Components/Clock";
-import Weather from "../Components/Weather";
+import { FakeWeather, Weather } from "../Components/Weather";
 
 const Wrapper = styled.div<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
@@ -15,6 +15,7 @@ const Wrapper = styled.div<{ bgImage: string }>`
   width: 100%;
   padding: 60px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -24,7 +25,7 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 300px;
+  margin: 200px 250px 50px 250px;
   padding: 30px;
   background-color: rgba(0, 0, 0, 0.3);
 `;
@@ -76,12 +77,12 @@ function Home() {
           <Clock />
         </LogoDate>
         <Quotes />
-        {typeof data?.main != "undefined" ? (
-          <Weather weatherData={data} />
-        ) : (
-          <div></div>
-        )}
       </Main>
+      {typeof data?.main != "undefined" ? (
+        <Weather weatherData={data} />
+      ) : (
+        <FakeWeather />
+      )}
     </Wrapper>
   );
 }
