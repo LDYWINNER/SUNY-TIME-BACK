@@ -1,7 +1,10 @@
-export const bgImages = [
-  "https://www.studyinkorea.go.kr/file/imgpreview.do?filename=EI_DATA_FILE201603290529569960_B.jpg&fileStorePath=univStorePath",
-  "https://www.stonybrook.edu/commcms/studyabroad/_images/outgoing-banner-images/all-year-website-photos/korea/suny-korea-banner-1.png",
-];
+import banner1 from "../assets/banner1.png";
+import banner2 from "../assets/banner2.jpeg";
+import banner3 from "../assets/banner3.jpeg";
+import banner4 from "../assets/banner4.jpeg";
+import banner5 from "../assets/banner5.jpeg";
+
+export const bgImages = [banner1, banner2, banner3, banner4, banner5];
 
 export const quotes = [
   {

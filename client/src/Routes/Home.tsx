@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import img from "../assets/final.svg";
+import logo from "../assets/final.svg";
 import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
 import Quotes from "../Components/Quotes";
@@ -72,7 +72,7 @@ function Home() {
           <Welcome>Hello Username, Welcome to SUNYTIME</Welcome>
         </Greeting>
         <LogoDate>
-          <Img src={img}></Img>
+          <Img src={logo}></Img>
           <span>Today date</span>
           <RealtimeDate />
         </LogoDate>
