@@ -51,8 +51,6 @@ const Img = styled.img`
 
 function Home() {
   const [bgImage, setbgImage] = useState("");
-  // const [lat, setLat] = useState(0);
-  // const [lon, setLon] = useState(0);
   const [data, setData] = useState<IGetWeatherResult>();
   const fetchWeather = () => {
     let lat = 0;
@@ -75,6 +73,7 @@ function Home() {
         </Greeting>
         <LogoDate>
           <Img src={img}></Img>
+          <span>Today date</span>
           <RealtimeDate />
         </LogoDate>
         <Quotes />
