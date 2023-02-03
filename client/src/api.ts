@@ -52,8 +52,8 @@ export async function getWeather(lat: number, lon: number) {
   const response = await fetch(
     `${process.env.REACT_APP_WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
   );
-  console.log(
-    `${process.env.REACT_APP_WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
-  );
+  // console.log(
+  //   `${process.env.REACT_APP_WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`
+  // );
   return await response.json();
 }

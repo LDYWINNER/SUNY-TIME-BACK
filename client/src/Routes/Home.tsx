@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import img from "../assets/final.svg";
-import { bgImages, quotes } from "../assets/assets";
-import { useQuery } from "react-query";
+import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
+import Quotes from "../Components/Quotes";
+import RealtimeDate from "../Components/Date";
+import Weather from "../Components/Weather";
 
 const Wrapper = styled.div<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
@@ -47,65 +49,24 @@ const Img = styled.img`
   height: 400px;
 `;
 
-const DateSpan = styled.span`
-  color: white;
-  font-size: 128px;
-  font-weight: 600;
-  width: 500px;
-`;
-
-const QuoteDiv = styled.div`
-  font-size: 24px;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const QuoteText = styled.span`
-  margin-bottom: 30px;
-`;
-
-const Author = styled.span``;
-
-interface IQuote {
-  quote: string;
-  author: string;
-}
-
 function Home() {
   const [bgImage, setbgImage] = useState("");
-  const [quote, setQuote] = useState<IQuote>();
-  const [date, setDate] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lon, setLon] = useState(0);
+  // const [lat, setLat] = useState(0);
+  // const [lon, setLon] = useState(0);
+  const [data, setData] = useState<IGetWeatherResult>();
   const fetchWeather = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setLat(position.coords.latitude);
-      setLon(position.coords.longitude);
-      console.log(`${lat}, ${lon}`);
+    let lat = 0;
+    let lon = 0;
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+      setData(await getWeather(lat, lon));
     });
-    return getWeather(lat, lon);
   };
-  const { data } = useQuery<IGetWeatherResult>("weather", fetchWeather);
-  function getClock() {
-    const date = new Date();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-    setDate(`${hours}:${minutes}:${seconds}`);
-  }
   useEffect(() => {
     fetchWeather();
-    console.log(data);
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-    const clockId = setInterval(getClock, 1000);
-    return function cleanup() {
-      clearInterval(clockId);
-    };
-  }, [bgImage, data]);
+  }, [bgImage]);
   return (
     <Wrapper bgImage={bgImage}>
       <Main>
@@ -114,12 +75,14 @@ function Home() {
         </Greeting>
         <LogoDate>
           <Img src={img}></Img>
-          <DateSpan>{date}</DateSpan>
+          <RealtimeDate />
         </LogoDate>
-        <QuoteDiv>
-          <QuoteText>{quote?.quote}</QuoteText>
-          <Author>{quote?.author}</Author>
-        </QuoteDiv>
+        <Quotes />
+        {typeof data?.main != "undefined" ? (
+          <Weather weatherData={data} />
+        ) : (
+          <div></div>
+        )}
       </Main>
     </Wrapper>
   );
