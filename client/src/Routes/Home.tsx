@@ -4,7 +4,7 @@ import logo from "../assets/final.svg";
 import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
 import Quotes from "../Components/Quotes";
-import RealtimeDate from "../Components/Date";
+import Clock from "../Components/Clock";
 import Weather from "../Components/Weather";
 
 const Wrapper = styled.div<{ bgImage: string }>`
@@ -73,8 +73,7 @@ function Home() {
         </Greeting>
         <LogoDate>
           <Img src={logo}></Img>
-          <span>Today date</span>
-          <RealtimeDate />
+          <Clock />
         </LogoDate>
         <Quotes />
         {typeof data?.main != "undefined" ? (
