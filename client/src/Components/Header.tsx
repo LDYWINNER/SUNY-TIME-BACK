@@ -13,7 +13,10 @@ const Nav = styled(motion.nav)`
   top: 0;
   font-size: 18px;
   font-weight: 400;
-  text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
+  text-shadow: -1px 0 ${(props) => props.theme.main.blue},
+    0 1px ${(props) => props.theme.main.blue},
+    1px 0 ${(props) => props.theme.main.blue},
+    0 -1px ${(props) => props.theme.main.blue};
   padding: 20px 60px;
   color: white;
 `;
