@@ -26,7 +26,7 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1vh auto 10vh auto;
+  margin: 4vh auto 10vh auto;
   padding: 30px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
