@@ -25,15 +25,16 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 200px 250px 50px 250px;
+  margin: 1vh auto 10vh auto;
   padding: 30px;
+  border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const Greeting = styled.div``;
 
 const Welcome = styled.h1`
-  font-size: 80px;
+  font-size: 6vh;
   font-weight: 500;
 `;
 
@@ -42,7 +43,7 @@ const LogoDate = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  padding-right: 50px;
+  margin-right: 4vw;
 `;
 
 const Img = styled.img`

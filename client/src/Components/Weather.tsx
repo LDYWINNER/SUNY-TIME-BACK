@@ -2,25 +2,30 @@ import styled from "styled-components";
 import { IGetWeatherResult } from "../api";
 
 const WeatherWrapper = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 15vw;
+  height: 22vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
   margin-bottom: 50px;
+  position: absolute;
+  bottom: 1vh;
 `;
 
 const City = styled.span`
-  font-size: 24px;
+  font-size: 2.5vh;
   font-weight: 400;
+  margin-bottom: 5px;
 `;
 
 const Info = styled.p`
-  font-size: 18px;
+  font-size: 2vh;
   font-weight: 300;
+  margin-bottom: 2px;
 `;
 
 export function Weather(props: { weatherData: IGetWeatherResult }) {

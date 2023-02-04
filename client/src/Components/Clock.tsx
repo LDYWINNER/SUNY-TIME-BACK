@@ -8,15 +8,17 @@ const ClockWrapper = styled.div`
 
 const DateSpan = styled.span`
   color: white;
-  font-size: 64px;
+  font-size: 5vh;
   font-weight: 600;
   width: 500px;
+  text-align: center;
 `;
 
 const ClockSpan = styled.span`
   color: white;
-  font-size: 128px;
+  font-size: 10vh;
   font-weight: 600;
+  text-align: center;
   width: 500px;
 `;
 
