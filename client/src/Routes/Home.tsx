@@ -35,7 +35,7 @@ const Main = styled.div`
 const Greeting = styled.div``;
 
 const Welcome = styled.h1`
-  font-size: 6vh;
+  font-size: 7vh;
   font-weight: 500;
 `;
 

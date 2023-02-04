@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { quotes } from "../assets/assets";
 
 const QuoteDiv = styled.div`
-  font-size: 2vh;
+  font-size: 3vh;
   font-weight: 500;
   display: flex;
   flex-direction: column;
