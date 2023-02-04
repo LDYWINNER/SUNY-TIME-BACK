@@ -163,15 +163,15 @@ function Header() {
             </Link>
           </Item>
           <Item>
-            <Link to="/course-manager">
-              Course Manager{" "}
-              {courseManagerMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-          <Item>
             <Link to="/schedule-manager">
               Schedule Manager{" "}
               {scheduleManagerMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/course-manager">
+              Course Manager{" "}
+              {courseManagerMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
           <Item>
