@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "normalize.css";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
