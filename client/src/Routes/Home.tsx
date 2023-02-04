@@ -21,6 +21,7 @@ const Wrapper = styled.div<{ bgImage: string }>`
 `;
 
 const Main = styled.div`
+  font-family: "Bebas Neue", cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +37,14 @@ const Greeting = styled.div``;
 const Welcome = styled.h1`
   font-size: 6vh;
   font-weight: 500;
+`;
+
+const Title = styled.span`
+  display: inline;
+  background-image: linear-gradient(to right, firebrick, darkorange);
+  background-size: 100% 10%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 `;
 
 const LogoDate = styled.div`
@@ -71,7 +80,9 @@ function Home() {
     <Wrapper bgImage={bgImage}>
       <Main>
         <Greeting>
-          <Welcome>Hello Username, Welcome to SUNYTIME</Welcome>
+          <Welcome>
+            Hello Username, Welcome to <Title>SUNYTIME</Title>
+          </Welcome>
         </Greeting>
         <LogoDate>
           <Img src={logo}></Img>
