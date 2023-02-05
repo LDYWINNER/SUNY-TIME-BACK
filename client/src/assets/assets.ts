@@ -68,4 +68,8 @@ export const quotes = [
       "불확실한 곳으로 가라. 불가능한 꿈을 꾸라. 이길 수 있는 판은 따로 있다.",
     author: "패스트트랙아시아 박지웅",
   },
+  {
+    quote: "It's nice to be important, but it's more important to be nice.",
+    author: "Dwayne Johnson",
+  },
 ];
