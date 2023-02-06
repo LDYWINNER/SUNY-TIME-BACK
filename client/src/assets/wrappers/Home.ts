@@ -15,6 +15,7 @@ const Wrapper = styled.div<{ bgImage: string }>`
 
 const Main = styled.div`
   font-family: "Bebas Neue", cursive;
+  max-width: 70vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
