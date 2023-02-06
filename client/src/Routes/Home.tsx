@@ -1,64 +1,17 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import logo from "../assets/final.svg";
 import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
-import Quotes from "../Components/Quotes";
-import Clock from "../Components/Clock";
-import { FakeWeather, Weather } from "../Components/Weather";
-
-const Wrapper = styled.div<{ bgImage: string }>`
-  background-image: url(${(props) => props.bgImage});
-  background-size: cover;
-  padding-bottom: 200px;
-  height: 100vh;
-  width: 100%;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Main = styled.div`
-  font-family: "Bebas Neue", cursive;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 4vh auto 10vh auto;
-  padding: 30px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
-`;
-
-const Greeting = styled.div``;
-
-const Welcome = styled.h1`
-  font-size: 7vh;
-  font-weight: 500;
-`;
-
-const Title = styled.span`
-  display: inline;
-  background-image: linear-gradient(to right, firebrick, darkorange);
-  background-size: 100% 10%;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-`;
-
-const LogoDate = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin-right: 4vw;
-`;
-
-const Img = styled.img`
-  width: 400px;
-  height: 400px;
-`;
+import { FakeWeather, Weather, Quotes, Clock } from "../Components";
+import {
+  Wrapper,
+  Main,
+  Greeting,
+  Welcome,
+  Title,
+  LogoDate,
+  Img,
+} from "../assets/wrappers/Home";
 
 function Home() {
   const [bgImage, setbgImage] = useState("");
