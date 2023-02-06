@@ -72,19 +72,6 @@ const Circle = styled(motion.span)`
   background-color: ${(props) => props.theme.red};
 `;
 
-const Input = styled(motion.input)`
-  transform-origin: right center;
-  position: absolute;
-  right: 0px;
-  padding: 5px 10px;
-  padding-left: 40px;
-  z-index: -1;
-  color: white;
-  font-size: 16px;
-  background-color: transparent;
-  border: 1px solid ${(props) => props.theme.white.lighter};
-`;
-
 const navVariants = {
   top: {
     backgroundColor: "rgba(0, 0, 0, 0)",
@@ -95,26 +82,15 @@ const navVariants = {
 };
 
 function Header() {
-  const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useRouteMatch("/");
   const infoMatch = useRouteMatch("/school-info");
   const courseManagerMatch = useRouteMatch("/course-manager");
   const scheduleManagerMatch = useRouteMatch("/schedule-manager");
   const bulletinMatch = useRouteMatch("/bulletin-board");
   const daangnMatch = useRouteMatch("/daangn");
-  const inputAnimation = useAnimation();
+  const registerMatch = useRouteMatch("/register");
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
-  const toggleSearch = () => {
-    if (searchOpen) {
-      inputAnimation.start({
-        scaleX: 0,
-      });
-    } else {
-      inputAnimation.start({ scaleX: 1 });
-    }
-    setSearchOpen((prev) => !prev);
-  };
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -164,28 +140,11 @@ function Header() {
         </Items>
       </Col>
       <Col>
-        <Search>
-          <motion.svg
-            onClick={toggleSearch}
-            animate={{ x: searchOpen ? -185 : 0 }}
-            transition={{ type: "linear" }}
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clipRule="evenodd"
-            ></path>
-          </motion.svg>
-          <Input
-            animate={inputAnimation}
-            initial={{ scaleX: 0 }}
-            transition={{ type: "linear" }}
-            placeholder="Search for movie or tv show..."
-          />
-        </Search>
+        <Item>
+          <Link to="/register">
+            Login / Register {registerMatch && <Circle layoutId="circle" />}
+          </Link>
+        </Item>
       </Col>
     </Nav>
   );

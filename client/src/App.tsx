@@ -1,17 +1,23 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./Components/Header";
-import Home from "./Routes/Home";
-import Info from "./Routes/Info";
-import CourseManager from "./Routes/CourseManager";
-import ScheduleManager from "./Routes/ScheduleManager";
-import Bulletin from "./Routes/Bulletin";
-import Daangn from "./Routes/Daangn";
+import { Header } from "./Components";
+import {
+  Info,
+  CourseManager,
+  ScheduleManager,
+  Bulletin,
+  Daangn,
+  Home,
+  Register,
+} from "./Routes";
 
 function App() {
   return (
     <Router>
       <Header />
       <Switch>
+        <Route path="/register">
+          <Register />
+        </Route>
         <Route path="/school-info">
           <Info />
         </Route>
