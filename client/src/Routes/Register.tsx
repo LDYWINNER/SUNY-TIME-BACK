@@ -1,4 +1,11 @@
+import { Header } from "../Components";
+
 function Register() {
-  return <h1>Register</h1>;
+  return (
+    <>
+      <Header />
+      <h1>Register</h1>
+    </>
+  );
 }
 export default Register;

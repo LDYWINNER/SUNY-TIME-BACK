@@ -1,4 +1,11 @@
+import { Header } from "../Components";
+
 function Daangn() {
-  return <h1>Daangn</h1>;
+  return (
+    <>
+      <Header />
+      <h1>Daangn</h1>
+    </>
+  );
 }
 export default Daangn;

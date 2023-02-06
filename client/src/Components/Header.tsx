@@ -2,7 +2,7 @@ import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
-import logo from "../assets/navbar_logo.svg";
+import logo from "../assets/images/navbar_logo.svg";
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -93,7 +93,9 @@ function Header() {
   return (
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
         <Items>
           <Item>
             <Link to="/">Home {homeMatch && <Circle layoutId="circle" />}</Link>

@@ -1,4 +1,11 @@
+import { Header } from "../Components";
+
 function Bulletin() {
-  return <h1>Bulletin</h1>;
+  return (
+    <>
+      <Header />
+      <h1>Bulletin</h1>
+    </>
+  );
 }
 export default Bulletin;

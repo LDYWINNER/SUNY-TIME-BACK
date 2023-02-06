@@ -1,4 +1,11 @@
+import { Header } from "../Components";
+
 function CourseManager() {
-  return <h1>CourseManager</h1>;
+  return (
+    <>
+      <Header />
+      <h1>CourseManager</h1>
+    </>
+  );
 }
 export default CourseManager;

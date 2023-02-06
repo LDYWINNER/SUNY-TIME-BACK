@@ -1,7 +1,7 @@
-import banner1 from "../assets/banner1.png";
-import banner3 from "../assets/banner3.jpeg";
-import banner4 from "../assets/banner4.jpeg";
-import banner5 from "../assets/banner5.jpeg";
+import banner1 from "../assets/images/banner1.png";
+import banner3 from "../assets/images/banner3.jpeg";
+import banner4 from "../assets/images/banner4.jpeg";
+import banner5 from "../assets/images/banner5.jpeg";
 
 export const bgImages = [banner1, banner3, banner4, banner5];
 

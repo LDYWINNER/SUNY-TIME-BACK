@@ -4,6 +4,7 @@ import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
+import "./assets/css/index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { theme } from "./theme";
 
