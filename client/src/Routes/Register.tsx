@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Header, FormRow } from "../Components";
+import { Header, FormRow, Alert } from "../Components";
 import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
@@ -9,6 +9,7 @@ const initialState = {
   email: "",
   password: "",
   isMember: true,
+  showAlert: true,
 };
 
 function Register() {
@@ -35,6 +36,7 @@ function Register() {
         <form className="form" onSubmit={onSubmit}>
           <Logo src={logo} alt="sunytime" className="logo" />
           <h3>Login</h3>
+          {values.showAlert && <Alert />}
           {/* email input */}
           <FormRow
             type="email"

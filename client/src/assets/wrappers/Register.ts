@@ -9,7 +9,7 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   .form {
     max-width: 400px;
     border-top: 10px solid ${(props) => props.theme.main.blue};
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   h3 {
@@ -17,6 +17,7 @@ export const Wrapper = styled.section<{ bgImage: string }>`
     color: ${(props) => props.theme.main.blue};
     font-size: 4.5vh;
     font-weight: 500;
+    margin-bottom: 1rem;
   }
   p {
     margin: 0;
