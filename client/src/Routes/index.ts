@@ -5,6 +5,7 @@ import ScheduleManager from "./ScheduleManager";
 import Bulletin from "./Bulletin";
 import Daangn from "./Daangn";
 import Register from "./Register";
+import Error from "./Error";
 
 export {
   Home,
@@ -14,4 +15,5 @@ export {
   Bulletin,
   Daangn,
   Register,
+  Error,
 };

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./Components";
 import {
   Info,
@@ -8,35 +8,23 @@ import {
   Daangn,
   Home,
   Register,
+  Error,
 } from "./Routes";
 
 function App() {
   return (
     <Router>
       <Header />
-      <Switch>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/school-info">
-          <Info />
-        </Route>
-        <Route path="/course-manager">
-          <CourseManager />
-        </Route>
-        <Route path="/schedule-manager">
-          <ScheduleManager />
-        </Route>
-        <Route path="/bulletin-board">
-          <Bulletin />
-        </Route>
-        <Route path="/daangn">
-          <Daangn />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/school-info" element={<Info />} />
+        <Route path="/course-manager" element={<CourseManager />} />
+        <Route path="/schedule-manager" element={<ScheduleManager />} />
+        <Route path="/bulletin-board" element={<Bulletin />} />
+        <Route path="/daangn" element={<Daangn />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </Router>
   );
 }

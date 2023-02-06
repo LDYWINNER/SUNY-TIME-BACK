@@ -1,7 +1,7 @@
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import logo from "../assets/navbar_logo.svg";
 
 const Nav = styled(motion.nav)`
@@ -50,16 +50,6 @@ const Item = styled.li`
   }
 `;
 
-const Search = styled.span`
-  color: white;
-  display: flex;
-  align-items: center;
-  position: relative;
-  svg {
-    height: 25px;
-  }
-`;
-
 const Circle = styled(motion.span)`
   position: absolute;
   width: 5px;
@@ -82,13 +72,13 @@ const navVariants = {
 };
 
 function Header() {
-  const homeMatch = useRouteMatch("/");
-  const infoMatch = useRouteMatch("/school-info");
-  const courseManagerMatch = useRouteMatch("/course-manager");
-  const scheduleManagerMatch = useRouteMatch("/schedule-manager");
-  const bulletinMatch = useRouteMatch("/bulletin-board");
-  const daangnMatch = useRouteMatch("/daangn");
-  const registerMatch = useRouteMatch("/register");
+  const homeMatch = useMatch("/");
+  const infoMatch = useMatch("/school-info");
+  const courseManagerMatch = useMatch("/course-manager");
+  const scheduleManagerMatch = useMatch("/schedule-manager");
+  const bulletinMatch = useMatch("/bulletin-board");
+  const daangnMatch = useMatch("/daangn");
+  const registerMatch = useMatch("/register");
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
   useEffect(() => {
@@ -106,9 +96,7 @@ function Header() {
         <Logo src={logo} />
         <Items>
           <Item>
-            <Link to="/">
-              Home {homeMatch?.isExact && <Circle layoutId="circle" />}
-            </Link>
+            <Link to="/">Home {homeMatch && <Circle layoutId="circle" />}</Link>
           </Item>
           <Item>
             <Link to="/school-info">
