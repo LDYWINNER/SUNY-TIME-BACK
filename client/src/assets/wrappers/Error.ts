@@ -11,7 +11,14 @@ const Wrapper = styled.main`
   align-items: center;
   justify-content: center;
   h3 {
+    font-size: 36px;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+  }
+  p,
+  a {
+    font-size: 24px;
+    font-weight: 300;
   }
   p {
     margin-top: 0;
