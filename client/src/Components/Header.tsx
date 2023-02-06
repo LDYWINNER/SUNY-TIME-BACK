@@ -94,7 +94,7 @@ function Header() {
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
         <Link to="/">
-          <Logo src={logo} />
+          <Logo src={logo} alt="sunytime" />
         </Link>
         <Items>
           <Item>
