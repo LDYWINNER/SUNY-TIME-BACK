@@ -7,7 +7,7 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   display: grid;
   align-items: center;
   .form {
-    max-width: 400px;
+    width: max(400px, 30vw);
     border-top: 10px solid ${(props) => props.theme.main.blue};
     background-color: rgba(255, 255, 255, 0.5);
   }
@@ -15,7 +15,7 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   h3 {
     text-align: center;
     color: ${(props) => props.theme.main.blue};
-    font-size: 4.5vh;
+    font-size: max(40px, 4.5vh);
     font-weight: 500;
     margin-bottom: 1rem;
   }
@@ -23,23 +23,27 @@ export const Wrapper = styled.section<{ bgImage: string }>`
     margin: 0;
     margin-top: 1rem;
     text-align: center;
+    font-size: max(20px, 2.3vh);
+    color: ${(props) => props.theme.black.lighter};
   }
   label {
-    font-size: 2.5vh;
+    font-size: max(24px, 2.5vh);
     color: ${(props) => props.theme.main.blue};
   }
   .btn {
     font-family: "Bebas Neue", cursive;
-    font-size: 2vh;
+    font-size: max(20px, 2.2vh);
     margin-top: 1rem;
     background-color: ${(props) => props.theme.main.blue};
   }
   .member-btn {
+    font-family: "Bebas Neue", cursive;
     background: transparent;
     border: transparent;
-    color: var(--primary-500);
+    color: ${(props) => props.theme.main.blue};
     cursor: pointer;
     letter-spacing: var(--letterSpacing);
+    font-size: max(20px, 2.3vh);
   }
 `;
 

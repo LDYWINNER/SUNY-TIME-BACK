@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.main`
   text-align: center;
   img {
-    max-width: 600px;
+    max-width: 50vw;
     display: block;
     margin-bottom: 2rem;
   }
