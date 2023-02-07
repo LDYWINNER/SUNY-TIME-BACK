@@ -19,6 +19,7 @@ const FormRow = ({
         {labelText || name}
       </label>
       <input
+        required
         type={type}
         value={value}
         name={name}

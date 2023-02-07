@@ -6,7 +6,7 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import "./assets/css/index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { theme } from "./theme";
+import { lightTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -80,7 +80,7 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <QueryClientProvider client={client}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           <GlobalStyle />
           <App />
         </ThemeProvider>
