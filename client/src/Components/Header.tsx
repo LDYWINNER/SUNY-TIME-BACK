@@ -1,16 +1,11 @@
 import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
-import {
-  motion,
-  useAnimation,
-  useMotionValueEvent,
-  useScroll,
-  useViewportScroll,
-} from "framer-motion";
+import { motion, useAnimation, useScroll } from "framer-motion";
 import { useEffect } from "react";
 import logo from "../assets/images/navbar_logo.svg";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { isDarkAtom } from "../atoms";
+import DarkModeToggleBtn from "react-dark-mode-toggle";
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -92,7 +87,7 @@ function Header() {
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
   //light dark theme toggle
-  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const [isDark, setDarkAtom] = useRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   useEffect(() => {
     scrollY.onChange(() => {
@@ -144,7 +139,11 @@ function Header() {
       </Col>
       <Col>
         <Item>
-          <button onClick={toggleDarkAtom}>Toggle mode</button>
+          <DarkModeToggleBtn
+            onChange={toggleDarkAtom}
+            checked={isDark}
+            size={60}
+          />
         </Item>
         <Item>
           <Link to="/register">
