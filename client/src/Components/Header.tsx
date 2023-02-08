@@ -1,8 +1,16 @@
 import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
-import { motion, useAnimation, useViewportScroll } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useMotionValueEvent,
+  useScroll,
+  useViewportScroll,
+} from "framer-motion";
 import { useEffect } from "react";
 import logo from "../assets/images/navbar_logo.svg";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -72,6 +80,7 @@ const navVariants = {
 };
 
 function Header() {
+  //route match
   const homeMatch = useMatch("/");
   const infoMatch = useMatch("/school-info");
   const courseManagerMatch = useMatch("/course-manager");
@@ -79,8 +88,12 @@ function Header() {
   const bulletinMatch = useMatch("/bulletin-board");
   const daangnMatch = useMatch("/daangn");
   const registerMatch = useMatch("/register");
+  //nav animation
   const navAnimation = useAnimation();
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
+  //light dark theme toggle
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -130,6 +143,9 @@ function Header() {
         </Items>
       </Col>
       <Col>
+        <Item>
+          <button onClick={toggleDarkAtom}>Toggle mode</button>
+        </Item>
         <Item>
           <Link to="/register">
             Login / Register {registerMatch && <Circle layoutId="circle" />}
