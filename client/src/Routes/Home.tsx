@@ -12,6 +12,7 @@ import {
   LogoDate,
   Img,
 } from "../assets/wrappers/Home";
+import { startInterval } from "../utils";
 
 function Home() {
   const [bgImage, setbgImage] = useState("");
@@ -26,8 +27,14 @@ function Home() {
     });
   };
   useEffect(() => {
-    fetchWeather();
+    let weatherId: NodeJS.Timer;
+    weatherId = startInterval(10, () => {
+      fetchWeather();
+    });
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+    return function cleanup() {
+      clearInterval(weatherId);
+    };
   }, [bgImage]);
   return (
     <>
