@@ -1,17 +1,36 @@
+import { UseFormRegister } from "react-hook-form";
+
+interface IForm {
+  username?: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+type FormType = "email" | "username" | "password" | "passwordConfirmation";
+
 interface IFormRowProps {
   type: string;
-  name: string;
-  value: string;
-  handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  name: FormType;
   labelText?: string;
+  placeholder: string;
+  validation?: {
+    [key: string]:
+      | { [key: string]: string | number | RegExp }
+      | RegExp
+      | string
+      | number;
+  };
+  register: UseFormRegister<IForm>;
 }
 
 const FormRow = ({
   type,
   name,
-  value,
-  handleChange,
   labelText,
+  validation,
+  placeholder,
+  register,
 }: IFormRowProps) => {
   return (
     <div className="form-row">
@@ -19,12 +38,10 @@ const FormRow = ({
         {labelText || name}
       </label>
       <input
-        required
         type={type}
-        value={value}
-        name={name}
-        onChange={handleChange}
         className="form-input"
+        {...register(name, { required: true, ...validation })}
+        placeholder={placeholder}
       ></input>
     </div>
   );
