@@ -6,6 +6,7 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import "./assets/css/index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { lightTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -83,6 +84,7 @@ ReactDOM.render(
         <ThemeProvider theme={lightTheme}>
           <GlobalStyle />
           <App />
+          <ReactQueryDevtools initialIsOpen={true} />
         </ThemeProvider>
       </QueryClientProvider>
     </RecoilRoot>
