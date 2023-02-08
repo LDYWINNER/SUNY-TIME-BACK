@@ -3,6 +3,8 @@ import { Header, FormRow, Alert } from "../Components";
 import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
+// import { useRecoilState } from "recoil";
+// import { globalCurrentState } from "../atoms";
 
 const initialState = {
   username: "",
@@ -10,12 +12,12 @@ const initialState = {
   password: "",
   passwordConf: "",
   isMember: true,
-  showAlert: true,
 };
 
 function Register() {
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(initialState);
+  // const [globalState, setGlobalState] = useRecoilState(globalCurrentState);
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
@@ -41,7 +43,7 @@ function Register() {
         <form className="form" onSubmit={onSubmit}>
           <Logo src={logo} alt="sunytime" className="logo" />
           <h3>{values.isMember ? "Login" : "Register"}</h3>
-          {values.showAlert && <Alert />}
+          {/* {globalState.showAlert && <Alert />} */}
 
           {!values.isMember && (
             <FormRow
