@@ -34,7 +34,7 @@ function Register() {
       !values.isMember &&
       data.passwordRegister !== data.passwordConfirmation
     ) {
-      setError(
+      return setError(
         "passwordConfirmation",
         { message: "Password Confirmation Failed" },
         { shouldFocus: true }
@@ -47,7 +47,7 @@ function Register() {
       data.passwordRegister &&
       data.passwordRegister.includes(data.username)
     ) {
-      setError(
+      return setError(
         "passwordRegister",
         { message: "Password can't include username" },
         { shouldFocus: true }
