@@ -13,14 +13,15 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
-
 //routers
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/bulletin", bulletinPostRouter);
+
 app.get("/", (req, res) => {
   res.send("welcome");
 });
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/bulletin", bulletinPostRouter);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 export default app;
