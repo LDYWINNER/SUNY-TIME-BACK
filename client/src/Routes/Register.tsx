@@ -61,6 +61,13 @@ function Register() {
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
+    reset({
+      username: "",
+      email: "",
+      passwordLogin: "",
+      passwordRegister: "",
+      passwordConfirmation: "",
+    });
   };
 
   useEffect(() => {
