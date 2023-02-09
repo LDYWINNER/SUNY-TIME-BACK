@@ -11,6 +11,8 @@ interface IForm {
   passwordLogin?: string;
   passwordRegister?: string;
   passwordConfirmation?: string;
+  school?: string;
+  major?: string;
 }
 
 const initialState = {
@@ -26,6 +28,7 @@ function Register() {
     formState: { errors, isSubmitSuccessful },
     setError,
     reset,
+    watch,
   } = useForm<IForm>();
 
   const onValid: SubmitHandler<IForm> = (data) => {
@@ -106,6 +109,48 @@ function Register() {
           )}
 
           {/* School and Major Input */}
+          {!values.isMember && (
+            <select
+              {...register("school", { required: true })}
+              defaultValue="-1"
+            >
+              <option value="-1" disabled>
+                Select School
+              </option>
+              <option value="1">SBU</option>
+              <option value="2">FIT</option>
+            </select>
+          )}
+          {errors?.school?.message && <Alert message={errors.school.message} />}
+          {!values.isMember && (
+            <select
+              {...register("major", { required: true })}
+              defaultValue="-2"
+            >
+              {watch("school") === "1" ? (
+                <>
+                  <option value="-2" disabled>
+                    Select Major
+                  </option>
+                  <option value="1">AMS</option>
+                  <option value="2">BM</option>
+                  <option value="3">CS</option>
+                  <option value="4">ECE</option>
+                  <option value="5">MEC</option>
+                  <option value="6">TSM</option>
+                </>
+              ) : (
+                <>
+                  <option value="-2" disabled>
+                    Select Major
+                  </option>
+                  <option value="7">FBM</option>
+                  <option value="8">FD</option>
+                </>
+              )}
+            </select>
+          )}
+          {errors?.major?.message && <Alert message={errors.major.message} />}
 
           {/* email input */}
           <FormRow
