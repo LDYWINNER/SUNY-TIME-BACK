@@ -8,8 +8,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 interface IForm {
   username?: string;
   email: string;
-  password: string;
-  passwordConfirmation: string;
+  passwordLogin?: string;
+  passwordRegister?: string;
+  passwordConfirmation?: string;
 }
 
 const initialState = {
@@ -20,12 +21,39 @@ function Register() {
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(initialState);
   const {
-    handleSubmit,
-    formState: { errors },
     register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    setError,
+    reset,
   } = useForm<IForm>();
 
   const onValid: SubmitHandler<IForm> = (data) => {
+    //If password !== passwordConfirmation (register)
+    if (
+      !values.isMember &&
+      data.passwordRegister !== data.passwordConfirmation
+    ) {
+      setError(
+        "passwordConfirmation",
+        { message: "Password Confirmation Failed" },
+        { shouldFocus: true }
+      );
+    }
+    //If password includes username (register)
+    if (
+      !values.isMember &&
+      data.username &&
+      data.passwordRegister &&
+      data.passwordRegister.includes(data.username)
+    ) {
+      setError(
+        "passwordRegister",
+        { message: "Password can't include username" },
+        { shouldFocus: true }
+      );
+    }
+
     console.log("Data Success");
     console.log(data);
   };
@@ -37,7 +65,16 @@ function Register() {
 
   useEffect(() => {
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-  }, [bgImage]);
+    if (isSubmitSuccessful) {
+      reset({
+        username: "",
+        email: "",
+        passwordLogin: "",
+        passwordRegister: "",
+        passwordConfirmation: "",
+      });
+    }
+  }, [bgImage, reset, isSubmitSuccessful]);
 
   return (
     <>
@@ -52,7 +89,8 @@ function Register() {
             <FormRow
               type="text"
               name="username"
-              placeholder="username"
+              labelText="username (nickname)"
+              placeholder="USERNAME"
               register={register}
             />
           )}
@@ -60,11 +98,14 @@ function Register() {
             <Alert message={errors.username.message} />
           )}
 
+          {/* School and Major Input */}
+
           {/* email input */}
           <FormRow
             type="email"
             name="email"
-            placeholder="email"
+            labelText="email (@stonybrook/@fitnyc only)"
+            placeholder="EMAIL"
             register={register}
             validation={{
               pattern: {
@@ -76,21 +117,40 @@ function Register() {
           <span>{errors?.email?.message}</span>
           {errors?.email?.message && <Alert message={errors?.email?.message} />}
 
-          {/* password input */}
-          <FormRow
-            type="password"
-            name="password"
-            placeholder="password"
-            validation={{
-              minLength: {
-                value: 2,
-                message: "Your password is too short",
-              },
-            }}
-            register={register}
-          />
-          {errors?.password?.message && (
-            <Alert message={errors.password.message} />
+          {/* password input for login */}
+          {values.isMember && (
+            <FormRow
+              type="password"
+              name="passwordLogin"
+              placeholder="PASSWORD"
+              labelText="password"
+              register={register}
+            />
+          )}
+          {errors?.passwordLogin?.message && (
+            <Alert message={errors.passwordLogin.message} />
+          )}
+
+          {/* password input for Register */}
+          {!values.isMember && (
+            <FormRow
+              type="password"
+              name="passwordRegister"
+              placeholder="PASSWORD"
+              labelText="password"
+              register={register}
+              validation={{
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  message:
+                    "Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character",
+                },
+              }}
+            />
+          )}
+          {errors?.passwordRegister?.message && (
+            <Alert message={errors.passwordRegister.message} />
           )}
 
           {/* password confirmation */}
@@ -98,8 +158,9 @@ function Register() {
             <FormRow
               type="password"
               name="passwordConfirmation"
+              labelText="password confirmation"
               register={register}
-              placeholder="password"
+              placeholder="PASSWORD CONFIRMATION"
             />
           )}
           {errors?.passwordConfirmation?.message && (
