@@ -30,6 +30,16 @@ export const Wrapper = styled.section<{ bgImage: string }>`
     font-size: max(24px, 2.5vh);
     color: ${(props) => props.theme.main.blue};
   }
+  select {
+    width: 50%;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--borderRadius);
+    background: var(--backgroundColor);
+    border: 1px solid var(--grey-200);
+    margin-bottom: 1rem;
+    height: 35px;
+    color: var(--grey-400);
+  }
   .btn {
     font-family: "Bebas Neue", cursive;
     font-size: max(20px, 2.2vh);

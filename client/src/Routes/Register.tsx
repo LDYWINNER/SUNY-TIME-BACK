@@ -110,18 +110,22 @@ function Register() {
 
           {/* School and Major Input */}
           {!values.isMember && (
-            <select
-              {...register("school", { required: true })}
-              defaultValue="-1"
-            >
-              <option value="-1" disabled>
-                Select School
-              </option>
-              <option value="1">SBU</option>
-              <option value="2">FIT</option>
-            </select>
+            <>
+              <label htmlFor="school" className="form-label">
+                School & Major
+              </label>
+              <select
+                {...register("school", { required: true })}
+                defaultValue="-1"
+              >
+                <option value="-1" disabled>
+                  SELECT SCHOOL
+                </option>
+                <option value="1">SBU</option>
+                <option value="2">FIT</option>
+              </select>
+            </>
           )}
-          {errors?.school?.message && <Alert message={errors.school.message} />}
           {!values.isMember && (
             <select
               {...register("major", { required: true })}
@@ -130,7 +134,7 @@ function Register() {
               {watch("school") === "1" ? (
                 <>
                   <option value="-2" disabled>
-                    Select Major
+                    SELECT MAJOR
                   </option>
                   <option value="1">AMS</option>
                   <option value="2">BM</option>
@@ -142,7 +146,7 @@ function Register() {
               ) : (
                 <>
                   <option value="-2" disabled>
-                    Select Major
+                    SELECT MAJOR
                   </option>
                   <option value="7">FBM</option>
                   <option value="8">FD</option>
@@ -150,6 +154,7 @@ function Register() {
               )}
             </select>
           )}
+          {errors?.school?.message && <Alert message={errors.school.message} />}
           {errors?.major?.message && <Alert message={errors.major.message} />}
 
           {/* email input */}
