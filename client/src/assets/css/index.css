@@ -109,7 +109,7 @@
   border-radius: var(--borderRadius);
   text-align: center;
   letter-spacing: var(--letterSpacing);
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
 .alert-danger {

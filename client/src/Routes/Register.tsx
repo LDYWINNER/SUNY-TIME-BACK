@@ -114,7 +114,6 @@ function Register() {
               },
             }}
           />
-          <span>{errors?.email?.message}</span>
           {errors?.email?.message && <Alert message={errors?.email?.message} />}
 
           {/* password input for login */}
