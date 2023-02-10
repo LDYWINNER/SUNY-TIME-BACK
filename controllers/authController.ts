@@ -3,7 +3,11 @@ import User from "../models/User";
 import { StatusCodes } from "http-status-codes";
 
 const register = async (req: Request, res: Response) => {
-  const user = await User.create(req.body);
+  const { username, email, password, school, major } = req.body;
+  if (!username || !email || !password || !school || !major) {
+    throw new Error("Please check if you provided all values");
+  }
+  const user = await User.create({ username, email, password, school, major });
   res.status(StatusCodes.CREATED).json({ user });
 };
 
