@@ -6,14 +6,27 @@ class CustomAPIError extends Error {
   statusCode: StatusCodes;
   constructor(message: string) {
     super(message);
+  }
+}
+
+class BadRequestError extends CustomAPIError {
+  constructor(message: string) {
+    super(message);
     this.statusCode = StatusCodes.BAD_REQUEST;
+  }
+}
+
+class NotFoundError extends CustomAPIError {
+  constructor(message: string) {
+    super(message);
+    this.statusCode = StatusCodes.NOT_FOUND;
   }
 }
 
 const register = async (req: Request, res: Response) => {
   const { username, email, password, school, major } = req.body;
   if (!username || !email || !password || !school || !major) {
-    throw new CustomAPIError("Please check if you provided all values");
+    throw new BadRequestError("Please check if you provided all values");
   }
   const user = await User.create({ username, email, password, school, major });
   res.status(StatusCodes.CREATED).json({ user });
