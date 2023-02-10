@@ -15,7 +15,7 @@ const errorHandlerMiddleware = (
 ) => {
   console.log(err);
   const defaultError = {
-    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || "Something went wrong, try again later",
   };
   //missing field error
