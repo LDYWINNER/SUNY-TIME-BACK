@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import User from "../models/User";
+import { StatusCodes } from "http-status-codes";
 
 const register = async (req: Request, res: Response) => {
   const user = await User.create(req.body);
-  res.status(201).json({ user });
+  res.status(StatusCodes.CREATED).json({ user });
 };
 
 const login = async (req: Request, res: Response) => {
