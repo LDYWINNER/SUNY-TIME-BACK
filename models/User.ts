@@ -11,10 +11,9 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide email"],
     unique: true,
   },
-  passwordRegister: {
+  password: {
     type: String,
     required: [true, "Please provide password"],
-
     minlength: 8,
   },
   school: {

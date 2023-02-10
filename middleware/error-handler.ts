@@ -7,7 +7,7 @@ const errorHandlerMiddleware = (
   next: NextFunction
 ) => {
   console.log(err);
-  res.status(500).json({ msg: "There was an error" });
+  res.status(500).json({ msg: err });
 };
 
 export default errorHandlerMiddleware;
