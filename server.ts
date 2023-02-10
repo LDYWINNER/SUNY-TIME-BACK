@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import morgan from "morgan";
+import "express-async-errors";
 import errorHandlerMiddleware from "./middleware/error-handler";
 import notFoundMiddleware from "./middleware/not-found";
 import authRouter from "./routers/authRouter";

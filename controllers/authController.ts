@@ -1,13 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import User from "../models/User";
 
-const register = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const user = await User.create(req.body);
-    res.status(201).json({ user });
-  } catch (error) {
-    next(error);
-  }
+const register = async (req: Request, res: Response) => {
+  const user = await User.create(req.body);
+  res.status(201).json({ user });
 };
 
 const login = async (req: Request, res: Response) => {
