@@ -1,7 +1,21 @@
-import mongoose from "mongoose";
+import { Model, Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 
-const UserSchema = new mongoose.Schema({
+interface IUser {
+  username: string;
+  email: string;
+  password: string;
+  school: string;
+  major: string;
+}
+
+interface IUserMethods {
+  createJWT(): void;
+}
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
   username: {
     type: String,
     required: [true, "Please provide name"],
@@ -32,4 +46,8 @@ UserSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-export default mongoose.model("User", UserSchema);
+UserSchema.methods.createJWT = function () {
+  console.log(this);
+};
+
+export default model<IUser, UserModel>("User", UserSchema);
