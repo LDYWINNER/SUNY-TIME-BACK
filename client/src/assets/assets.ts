@@ -72,4 +72,8 @@ export const quotes = [
     quote: "It's nice to be important, but it's more important to be nice.",
     author: "Dwayne Johnson",
   },
+  {
+    quote: "성공한 자의 과거는 비참할수록 아름답다.",
+    author: "?",
+  },
 ];
