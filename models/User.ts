@@ -31,6 +31,7 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
     type: String,
     required: [true, "Please provide password"],
     minlength: 8,
+    select: false,
   },
   school: {
     type: String,
