@@ -1,5 +1,6 @@
 import { Model, Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 interface IUser {
   username: string;
@@ -47,7 +48,7 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createJWT = function () {
-  console.log(this);
+  return jwt.sign({ userId: this._id }, "jwtSecret", { expiresIn: "1d" });
 };
 
 export default model<IUser, UserModel>("User", UserSchema);
