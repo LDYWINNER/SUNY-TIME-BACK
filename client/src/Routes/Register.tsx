@@ -4,6 +4,7 @@ import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { registerUser } from "../utils";
 
 interface IForm {
   username?: string;
@@ -25,7 +26,7 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful, isLoading },
     setError,
     reset,
     watch,
@@ -56,17 +57,30 @@ function Register() {
         { shouldFocus: true }
       );
     }
-
-    console.log("Data Success");
+    console.log("data here");
     console.log(data);
+
+    const currentUser = {
+      username: data.username,
+      email: data.email,
+      school: data.school,
+      major: data.major,
+      passwordRegister: data.passwordRegister,
+    };
+    if (values.isMember) {
+      console.log("already a member");
+    } else {
+      registerUser(currentUser);
+    }
   };
-  console.log(errors);
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
     reset({
       username: "",
       email: "",
+      school: "-1",
+      major: "-2",
       passwordLogin: "",
       passwordRegister: "",
       passwordConfirmation: "",
@@ -79,6 +93,8 @@ function Register() {
       reset({
         username: "",
         email: "",
+        school: "-1",
+        major: "-2",
         passwordLogin: "",
         passwordRegister: "",
         passwordConfirmation: "",
@@ -223,7 +239,7 @@ function Register() {
             <Alert message={errors.passwordConfirmation.message} />
           )}
 
-          <button type="submit" className="btn btn-block">
+          <button type="submit" className="btn btn-block" disabled={isLoading}>
             submit
           </button>
           <p>
