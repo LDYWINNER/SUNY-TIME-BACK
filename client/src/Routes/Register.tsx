@@ -4,25 +4,30 @@ import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { registerUser } from "../utils";
+import axios from "axios";
+import { useSetRecoilState } from "recoil";
+import { globalCurrentState } from "../atoms";
 
 interface IForm {
-  username?: string;
+  username: string;
   email: string;
-  passwordLogin?: string;
-  passwordRegister?: string;
-  passwordConfirmation?: string;
-  school?: string;
-  major?: string;
+  passwordLogin: string;
+  passwordRegister: string;
+  passwordConfirmation: string;
+  school: string;
+  major: string;
 }
 
-const initialState = {
+const registerState = {
   isMember: true,
+  formSuccess: false,
+  errorMessage: "",
 };
 
 function Register() {
   const [bgImage, setbgImage] = useState("");
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState(registerState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -32,7 +37,7 @@ function Register() {
     watch,
   } = useForm<IForm>();
 
-  const onValid: SubmitHandler<IForm> = (data) => {
+  const onValid: SubmitHandler<IForm> = async (data) => {
     //If password !== passwordConfirmation (register)
     if (
       !values.isMember &&
@@ -67,10 +72,31 @@ function Register() {
       major: data.major,
       passwordRegister: data.passwordRegister,
     };
+
     if (values.isMember) {
       console.log("already a member");
     } else {
-      registerUser(currentUser);
+      //register user
+      try {
+        const response = await axios.post("/api/v1/auth/register", currentUser);
+        console.log(response);
+        const { user, token } = response.data;
+        setGlobalCurrentState((currentState) => {
+          return {
+            ...currentState,
+            token,
+            user,
+          };
+        });
+        setValues({ ...values, formSuccess: true });
+      } catch (error: any) {
+        console.log(error.response);
+        setValues({
+          ...values,
+          formSuccess: false,
+          errorMessage: error.response.data.msg,
+        });
+      }
     }
   };
 
@@ -109,6 +135,11 @@ function Register() {
         <form className="form" onSubmit={handleSubmit(onValid)}>
           <Logo src={logo} alt="sunytime" className="logo" />
           <h3>{values.isMember ? "Login" : "Register"}</h3>
+          {values.formSuccess ? (
+            <Alert message="User created! Redirecting..." ifSuccess={true} />
+          ) : (
+            <Alert message={values.errorMessage} />
+          )}
 
           {/* username input - only if register */}
           {!values.isMember && (

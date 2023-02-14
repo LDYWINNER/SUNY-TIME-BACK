@@ -1,11 +1,13 @@
 import { UseFormRegister } from "react-hook-form";
 
 interface IForm {
-  username?: string;
+  username: string;
   email: string;
-  passwordLogin?: string;
-  passwordRegister?: string;
-  passwordConfirmation?: string;
+  passwordLogin: string;
+  passwordRegister: string;
+  passwordConfirmation: string;
+  school: string;
+  major: string;
 }
 
 type FormType =

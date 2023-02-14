@@ -8,12 +8,7 @@ export const isDarkAtom = atom({
 export const globalCurrentState = atom({
   key: "initialState",
   default: {
-    isLoading: false,
-    showAlert: false,
-    alertText: "",
-    alertType: "",
     user: null,
     token: null,
-    userLocation: "",
   },
 });

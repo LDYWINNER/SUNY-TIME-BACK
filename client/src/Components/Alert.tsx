@@ -1,10 +1,15 @@
 interface IAlertProps {
   message: string;
+  ifSuccess?: boolean;
 }
 
-const Alert = ({ message }: IAlertProps) => {
+const Alert = ({ message, ifSuccess }: IAlertProps) => {
   console.log(message);
-  return <div className="alert alert-danger">{message}</div>;
+  return (
+    <div className={ifSuccess ? "alert alert-success" : "alert alert-danger"}>
+      {message}
+    </div>
+  );
 };
 
 export default Alert;
