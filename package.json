@@ -8,10 +8,9 @@
     "setup-production": "npm run install-client && npm run build-client && npm install",
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
-    "build": "npx tsc",
-    "server": "nodemon --exec node --loader ts-node/esm init.ts --ignore client",
     "client": "npm start --prefix client",
-    "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/init.js\"",
+    "start": "concurrently --kill-others-on-fail \" npm run dev\" \" npm run client\""
   },
   "repository": {
     "type": "git",
