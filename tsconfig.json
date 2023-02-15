@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6", "ES2018"],
-    "target": "es5",
+    "target": "es2016",
+    "jsx": "preserve",
     "module": "commonjs",
-    "moduleResolution": "node",
+    "allowJs": true,
     "outDir": "./dist",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noEmitOnError": true,
-    "noUnusedLocals": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "client",
+    "dist",
+    "node_modules"
+  ]
 }

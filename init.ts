@@ -9,7 +9,7 @@ const handleListening = () =>
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URL);
+    await connectDB(process.env.MONGO_URL as string);
     app.listen(port, handleListening);
   } catch (error) {
     console.log(error);

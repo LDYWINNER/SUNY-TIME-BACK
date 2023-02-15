@@ -1,14 +1,40 @@
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 
-interface IItem {
+interface IMessage {
+  msg: {
+    errors: IError;
+  };
+  _message: string;
+  name: string;
+  message: string;
+}
+
+interface IError {
   [key: string]: {
-    [key: string]: string | {};
+    name: string;
+    message: string;
+    properties: {
+      message: string;
+      type: string;
+      path: string;
+    };
+    kind: string;
+    path: string;
   };
 }
 
+type IItem = [{ [key: string]: string }];
+
 const errorHandlerMiddleware = (
-  err,
+  err: {
+    statusCode: any;
+    message: any;
+    name: string;
+    errors: IError;
+    code: number;
+    keyValue: {};
+  },
   req: Request,
   res: Response,
   next: NextFunction
@@ -23,7 +49,7 @@ const errorHandlerMiddleware = (
     defaultError.statusCode = StatusCodes.BAD_REQUEST;
     // defaultError.msg = err.message;
     defaultError.msg = Object.values(err.errors)
-      .map((item: IItem) => item.message)
+      .map((item) => item.message)
       .join(", ");
   }
   //unique field error
