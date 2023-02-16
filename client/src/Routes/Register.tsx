@@ -37,7 +37,7 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isLoading },
+    formState: { errors, isSubmitSuccessful },
     setError,
     reset,
     watch,
@@ -277,7 +277,7 @@ function Register() {
             <Alert message={errors.passwordConfirmation.message} />
           )}
 
-          <button type="submit" className="btn btn-block" disabled={isLoading}>
+          <button type="submit" className="btn btn-block">
             submit
           </button>
           <p>
