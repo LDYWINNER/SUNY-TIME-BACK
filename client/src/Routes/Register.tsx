@@ -78,10 +78,7 @@ function Register() {
     } else {
       //register user
       try {
-        const response = await axios.post(
-          "http://localhost:8080/api/v1/auth/register",
-          currentUser
-        );
+        const response = await axios.post("/api/v1/auth/register", currentUser);
         console.log(response);
         const { user, token } = response.data;
         setGlobalCurrentState((currentState) => {
@@ -272,8 +269,8 @@ function Register() {
           {errors?.passwordConfirmation?.message && (
             <Alert message={errors.passwordConfirmation.message} />
           )}
-          {/* disabled={isLoading} */}
-          <button type="submit" className="btn btn-block">
+
+          <button type="submit" className="btn btn-block" disabled={isLoading}>
             submit
           </button>
           <p>

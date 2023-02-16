@@ -5,12 +5,6 @@ import { BadRequestError } from "../errors";
 
 const register = async (req: Request, res: Response) => {
   const { username, email, passwordRegister, school, major } = req.body;
-  console.log(username);
-  console.log(email);
-  console.log(passwordRegister);
-  console.log(school);
-  console.log(major);
-
   if (!username || !email || !passwordRegister || !school || !major) {
     throw new BadRequestError("Please check if you provided all values");
   }

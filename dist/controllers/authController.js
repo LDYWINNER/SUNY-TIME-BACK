@@ -18,11 +18,6 @@ const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, passwordRegister, school, major } = req.body;
-    console.log(username);
-    console.log(email);
-    console.log(passwordRegister);
-    console.log(school);
-    console.log(major);
     if (!username || !email || !passwordRegister || !school || !major) {
         throw new errors_1.BadRequestError("Please check if you provided all values");
     }
