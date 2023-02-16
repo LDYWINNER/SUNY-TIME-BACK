@@ -17,8 +17,13 @@ const User_1 = __importDefault(require("../models/User"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, email, password, school, major } = req.body;
-    if (!username || !email || !password || !school || !major) {
+    const { username, email, passwordRegister, school, major } = req.body;
+    console.log(username);
+    console.log(email);
+    console.log(passwordRegister);
+    console.log(school);
+    console.log(major);
+    if (!username || !email || !passwordRegister || !school || !major) {
         throw new errors_1.BadRequestError("Please check if you provided all values");
     }
     //duplicate email checking
@@ -26,7 +31,13 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (userAlreadyExists) {
         throw new errors_1.BadRequestError("Email already in use");
     }
-    const user = yield User_1.default.create({ username, email, password, school, major });
+    const user = yield User_1.default.create({
+        username,
+        email,
+        passwordRegister,
+        school,
+        major,
+    });
     const token = user.createJWT();
     res.status(http_status_codes_1.StatusCodes.CREATED).json({
         user: {

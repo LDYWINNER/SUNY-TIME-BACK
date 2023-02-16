@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import morgan from "morgan";
+import cors from "cors";
 import "express-async-errors";
 import errorHandlerMiddleware from "./middleware/error-handler";
 import notFoundMiddleware from "./middleware/not-found";
@@ -13,6 +14,7 @@ const logger = morgan("dev");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //routers
 app.use("/api/v1/auth", authRouter);

@@ -26,7 +26,7 @@ const UserSchema = new mongoose_1.Schema({
         required: [true, "Please provide email"],
         unique: true,
     },
-    password: {
+    passwordRegister: {
         type: String,
         required: [true, "Please provide password"],
         minlength: 8,
@@ -44,7 +44,7 @@ const UserSchema = new mongoose_1.Schema({
 UserSchema.pre("save", function () {
     return __awaiter(this, void 0, void 0, function* () {
         const salt = yield bcrypt_1.default.genSalt(10);
-        this.password = yield bcrypt_1.default.hash(this.password, salt);
+        this.passwordRegister = yield bcrypt_1.default.hash(this.passwordRegister, salt);
     });
 });
 UserSchema.methods.createJWT = function () {

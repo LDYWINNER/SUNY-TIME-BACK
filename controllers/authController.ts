@@ -4,8 +4,14 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError } from "../errors";
 
 const register = async (req: Request, res: Response) => {
-  const { username, email, password, school, major } = req.body;
-  if (!username || !email || !password || !school || !major) {
+  const { username, email, passwordRegister, school, major } = req.body;
+  console.log(username);
+  console.log(email);
+  console.log(passwordRegister);
+  console.log(school);
+  console.log(major);
+
+  if (!username || !email || !passwordRegister || !school || !major) {
     throw new BadRequestError("Please check if you provided all values");
   }
   //duplicate email checking
@@ -13,7 +19,13 @@ const register = async (req: Request, res: Response) => {
   if (userAlreadyExists) {
     throw new BadRequestError("Email already in use");
   }
-  const user = await User.create({ username, email, password, school, major });
+  const user = await User.create({
+    username,
+    email,
+    passwordRegister,
+    school,
+    major,
+  });
   const token = user.createJWT();
   res.status(StatusCodes.CREATED).json({
     user: {

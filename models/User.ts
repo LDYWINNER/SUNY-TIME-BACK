@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 interface IUser {
   username: string;
   email: string;
-  password: string;
+  passwordRegister: string;
   school: string;
   major: string;
 }
@@ -27,7 +27,7 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
     required: [true, "Please provide email"],
     unique: true,
   },
-  password: {
+  passwordRegister: {
     type: String,
     required: [true, "Please provide password"],
     minlength: 8,
@@ -45,7 +45,7 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
 
 UserSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
 });
 
 UserSchema.methods.createJWT = function () {
