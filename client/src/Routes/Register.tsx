@@ -18,9 +18,15 @@ interface IForm {
   major: string;
 }
 
-const registerState = {
+interface IRegisterState {
+  isMember: Boolean;
+  formSuccess: Boolean | null;
+  errorMessage: string;
+}
+
+const registerState: IRegisterState = {
   isMember: true,
-  formSuccess: false,
+  formSuccess: null,
   errorMessage: "",
 };
 
@@ -135,9 +141,10 @@ function Register() {
         <form className="form" onSubmit={handleSubmit(onValid)}>
           <Logo src={logo} alt="sunytime" className="logo" />
           <h3>{values.isMember ? "Login" : "Register"}</h3>
-          {values.formSuccess ? (
+          {values.formSuccess === true && (
             <Alert message="User created! Redirecting..." ifSuccess={true} />
-          ) : (
+          )}
+          {values.formSuccess === false && (
             <Alert message={values.errorMessage} />
           )}
 
