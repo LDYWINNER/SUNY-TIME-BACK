@@ -6,8 +6,9 @@ import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
+import { addUserToLocalStorage } from "../utils";
 
 interface IForm {
   username: string;
@@ -97,6 +98,8 @@ function Register() {
             user,
           };
         });
+        //adding user to local storage
+        addUserToLocalStorage({ user, token });
         setValues({ ...values, formSuccess: true });
       } catch (error: any) {
         console.log(error.response);
