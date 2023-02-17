@@ -5,7 +5,8 @@ import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-import { useSetRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
 
 interface IForm {
@@ -31,9 +32,11 @@ const registerState: IRegisterState = {
 };
 
 function Register() {
+  const navigate = useNavigate();
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(registerState);
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -132,7 +135,13 @@ function Register() {
         passwordConfirmation: "",
       });
     }
-  }, [bgImage, reset, isSubmitSuccessful]);
+
+    if (globalState.user) {
+      setTimeout(() => {
+        navigate(-1);
+      }, 2500);
+    }
+  }, [bgImage, reset, isSubmitSuccessful, globalState.user, navigate]);
 
   return (
     <>
