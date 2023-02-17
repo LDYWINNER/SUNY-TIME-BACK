@@ -101,6 +101,12 @@ function Register() {
         //adding user to local storage
         addUserToLocalStorage({ user, token });
         setValues({ ...values, formSuccess: true });
+        //navigate back to previous page
+        if (globalState.user) {
+          setTimeout(() => {
+            navigate(-1);
+          }, 2500);
+        }
       } catch (error: any) {
         console.log(error.response);
         setValues({
@@ -138,13 +144,7 @@ function Register() {
         passwordConfirmation: "",
       });
     }
-
-    if (globalState.user) {
-      setTimeout(() => {
-        navigate(-1);
-      }, 2500);
-    }
-  }, [bgImage, reset, isSubmitSuccessful, globalState.user, navigate]);
+  }, [bgImage, reset, isSubmitSuccessful]);
 
   return (
     <>
