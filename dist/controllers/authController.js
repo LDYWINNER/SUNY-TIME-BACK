@@ -46,7 +46,29 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("login user");
+    const { email, passwordLogin } = req.body;
+    if (!email || !passwordLogin) {
+        throw new errors_1.BadRequestError("Please provide all values");
+    }
+    const user = yield User_1.default.findOne({ email }).select("+passwordRegister");
+    if (!user) {
+        throw new errors_1.UnAuthenticatedError("Login failed");
+    }
+    // console.log(user);
+    const isPasswordCorrect = yield user.comparePassword(passwordLogin);
+    if (!isPasswordCorrect) {
+        throw new errors_1.UnAuthenticatedError("Login failed");
+    }
+    const token = user.createJWT();
+    res.status(http_status_codes_1.StatusCodes.OK).json({
+        user: {
+            username: user.username,
+            email: user.email,
+            school: user.school,
+            major: user.major,
+        },
+        token,
+    });
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

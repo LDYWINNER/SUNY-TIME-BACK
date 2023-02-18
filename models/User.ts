@@ -12,6 +12,7 @@ interface IUser {
 
 interface IUserMethods {
   createJWT(): void;
+  comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
 type UserModel = Model<IUser, {}, IUserMethods>;

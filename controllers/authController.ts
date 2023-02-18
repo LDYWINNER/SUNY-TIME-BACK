@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/User";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError } from "../errors";
+import { BadRequestError, UnAuthenticatedError } from "../errors";
 
 const register = async (req: Request, res: Response) => {
   const { username, email, passwordRegister, school, major } = req.body;
@@ -33,7 +33,31 @@ const register = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-  res.send("login user");
+  const { email, passwordLogin } = req.body;
+  if (!email || !passwordLogin) {
+    throw new BadRequestError("Please provide all values");
+  }
+  const user = await User.findOne({ email }).select("+passwordRegister");
+  if (!user) {
+    throw new UnAuthenticatedError("Login failed");
+  }
+  // console.log(user);
+
+  const isPasswordCorrect = await user.comparePassword(passwordLogin);
+  if (!isPasswordCorrect) {
+    throw new UnAuthenticatedError("Login failed");
+  }
+  const token = user.createJWT();
+
+  res.status(StatusCodes.OK).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      school: user.school,
+      major: user.major,
+    },
+    token,
+  });
 };
 
 const updateUser = async (req: Request, res: Response) => {
