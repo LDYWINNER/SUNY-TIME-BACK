@@ -83,14 +83,45 @@ function Register() {
       passwordRegister: data.passwordRegister,
     };
 
+    const loginUser = {
+      email: data.email,
+      passwordLogin: data.passwordLogin,
+    };
+
     if (values.isMember) {
-      console.log("already a member");
+      //login user
+      try {
+        const { data } = await axios.post("/api/v1/auth/login", loginUser);
+        const { user, token } = data;
+        setGlobalCurrentState((currentState) => {
+          return {
+            ...currentState,
+            token,
+            user,
+          };
+        });
+        //adding user to local storage
+        addUserToLocalStorage({ user, token });
+        setValues({ ...values, formSuccess: true });
+        //navigate back to previous page
+        if (globalState.user) {
+          setTimeout(() => {
+            navigate(-1);
+          }, 2500);
+        }
+      } catch (error: any) {
+        console.log(error.response);
+        setValues({
+          ...values,
+          formSuccess: false,
+          errorMessage: error.response.data.msg,
+        });
+      }
     } else {
       //register user
       try {
-        const response = await axios.post("/api/v1/auth/register", currentUser);
-        console.log(response);
-        const { user, token } = response.data;
+        const { data } = await axios.post("/api/v1/auth/register", currentUser);
+        const { user, token } = data;
         setGlobalCurrentState((currentState) => {
           return {
             ...currentState,
@@ -153,7 +184,13 @@ function Register() {
         <form className="form" onSubmit={handleSubmit(onValid)}>
           <Logo src={logo} alt="sunytime" className="logo" />
           <h3>{values.isMember ? "Login" : "Register"}</h3>
-          {values.formSuccess === true && (
+          {values.isMember && values.formSuccess === true && (
+            <Alert
+              message="Login Successful! Redirecting..."
+              ifSuccess={true}
+            />
+          )}
+          {!values.isMember && values.formSuccess === true && (
             <Alert message="User created! Redirecting..." ifSuccess={true} />
           )}
           {values.formSuccess === false && (
