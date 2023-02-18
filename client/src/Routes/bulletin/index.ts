@@ -1,5 +1,5 @@
-import AllBulletin from "./allBulletin";
-import BulletinHome from "./bulletinHome";
-import SharedLayout from "./SharedLayout";
+import AllBulletin from "./AllBulletin";
+import BulletinHome from "./BulletinHome";
+import BulletinSharedLayout from "./BulletinSharedLayout";
 
-export { AllBulletin, BulletinHome, SharedLayout };
+export { AllBulletin, BulletinHome, BulletinSharedLayout };

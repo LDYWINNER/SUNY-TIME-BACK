@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/BulletinSharedLayout";
 import { Header } from "../../Components";
 
-const SharedLayout = () => {
+const bulletinSharedLayout = () => {
   return (
     <Wrapper>
       <main className="bulletin">
@@ -19,4 +19,4 @@ const SharedLayout = () => {
   );
 };
 
-export default SharedLayout;
+export default bulletinSharedLayout;

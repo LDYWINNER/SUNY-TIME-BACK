@@ -5,6 +5,7 @@ import ScheduleManager from "./ScheduleManager";
 import Bulletin from "./Bulletin";
 import Daangn from "./Daangn";
 import Register from "./Register";
+import ProtectedRoute from "./ProtectedRoute";
 import Error from "./Error";
 
 export {
@@ -15,5 +16,6 @@ export {
   Bulletin,
   Daangn,
   Register,
+  ProtectedRoute,
   Error,
 };

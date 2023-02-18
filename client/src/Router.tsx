@@ -6,12 +6,13 @@ import {
   Daangn,
   Home,
   Register,
+  ProtectedRoute,
   Error,
 } from "./Routes";
 import {
   AllBulletin,
   BulletinHome,
-  SharedLayout,
+  BulletinSharedLayout,
 } from "./Routes/bulletin/index";
 
 function Router() {
@@ -21,15 +22,37 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/schedule-manager" element={<ScheduleManager />} />
-        <Route path="/daangn" element={<Daangn />} />
 
         <Route path="/school-info" element={<Info />} />
-        <Route path="/course-manager" element={<CourseManager />} />
+        <Route
+          path="/course-manager"
+          element={
+            <ProtectedRoute>
+              <CourseManager />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/bulletin" element={<SharedLayout />}>
+        <Route
+          path="/bulletin"
+          element={
+            <ProtectedRoute>
+              <BulletinSharedLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<BulletinHome />} />
           <Route path="all" element={<AllBulletin />} />
         </Route>
+
+        <Route
+          path="/daangn"
+          element={
+            <ProtectedRoute>
+              <Daangn />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="*" element={<Error />} />
       </Routes>
