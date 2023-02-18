@@ -3,12 +3,16 @@ import {
   Info,
   CourseManager,
   ScheduleManager,
-  Bulletin,
   Daangn,
   Home,
   Register,
   Error,
 } from "./Routes";
+import {
+  AllBulletin,
+  BulletinHome,
+  SharedLayout,
+} from "./Routes/bulletin/index";
 
 function Router() {
   return (
@@ -16,11 +20,17 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/schedule-manager" element={<ScheduleManager />} />
+        <Route path="/daangn" element={<Daangn />} />
+
         <Route path="/school-info" element={<Info />} />
         <Route path="/course-manager" element={<CourseManager />} />
-        <Route path="/schedule-manager" element={<ScheduleManager />} />
-        <Route path="/bulletin-board" element={<Bulletin />} />
-        <Route path="/daangn" element={<Daangn />} />
+
+        <Route path="/bulletin" element={<SharedLayout />}>
+          <Route index element={<BulletinHome />} />
+          <Route path="all" element={<AllBulletin />} />
+        </Route>
+
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
