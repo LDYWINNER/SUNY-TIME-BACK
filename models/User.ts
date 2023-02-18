@@ -54,4 +54,14 @@ UserSchema.methods.createJWT = function () {
   });
 };
 
+UserSchema.methods.comparePassword = async function (
+  candidatePassword: string
+) {
+  const isMatch = await bcrypt.compare(
+    candidatePassword,
+    this.passwordRegister
+  );
+  return isMatch;
+};
+
 export default model<IUser, UserModel>("User", UserSchema);

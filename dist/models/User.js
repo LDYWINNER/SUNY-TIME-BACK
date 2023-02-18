@@ -52,4 +52,10 @@ UserSchema.methods.createJWT = function () {
         expiresIn: process.env.JWT_LIFETIME,
     });
 };
+UserSchema.methods.comparePassword = function (candidatePassword) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const isMatch = yield bcrypt_1.default.compare(candidatePassword, this.passwordRegister);
+        return isMatch;
+    });
+};
 exports.default = (0, mongoose_1.model)("User", UserSchema);
