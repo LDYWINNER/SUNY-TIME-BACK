@@ -11,7 +11,9 @@ const app: Application = express();
 const logger = morgan("dev");
 
 //middlewares
-app.use(logger);
+if (process.env.NODE_ENV !== "production") {
+  app.use(logger);
+}
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

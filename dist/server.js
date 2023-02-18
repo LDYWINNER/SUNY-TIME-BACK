@@ -14,7 +14,9 @@ const bulletinPostRouter_1 = __importDefault(require("./routers/bulletinPostRout
 const app = (0, express_1.default)();
 const logger = (0, morgan_1.default)("dev");
 //middlewares
-app.use(logger);
+if (process.env.NODE_ENV !== "production") {
+    app.use(logger);
+}
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
