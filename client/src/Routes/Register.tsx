@@ -107,7 +107,7 @@ function Register() {
         if (globalState.user) {
           setTimeout(() => {
             navigate(-1);
-          }, 2500);
+          }, 2000);
         }
       } catch (error: any) {
         console.log(error.response);
@@ -136,7 +136,7 @@ function Register() {
         if (globalState.user) {
           setTimeout(() => {
             navigate(-1);
-          }, 2500);
+          }, 2000);
         }
       } catch (error: any) {
         console.log(error.response);
