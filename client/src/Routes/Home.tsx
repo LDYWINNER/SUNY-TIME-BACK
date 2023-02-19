@@ -26,6 +26,7 @@ function Home() {
       setData(await getWeather(lat, lon));
     });
   };
+
   useEffect(() => {
     let weatherId: NodeJS.Timer;
     weatherId = startInterval(10, () => {
@@ -36,6 +37,7 @@ function Home() {
       clearInterval(weatherId);
     };
   }, [bgImage]);
+
   return (
     <>
       <Header />
