@@ -3,7 +3,6 @@ import {
   Info,
   CourseManager,
   ScheduleManager,
-  Daangn,
   Home,
   Register,
   ProtectedRoute,
@@ -44,15 +43,6 @@ function Router() {
           <Route index element={<BulletinHome />} />
           <Route path="all" element={<AllBulletin />} />
         </Route>
-
-        <Route
-          path="/daangn"
-          element={
-            <ProtectedRoute>
-              <Daangn />
-            </ProtectedRoute>
-          }
-        />
 
         <Route path="*" element={<Error />} />
       </Routes>

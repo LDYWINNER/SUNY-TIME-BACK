@@ -26,7 +26,6 @@ function Header() {
   const courseManagerMatch = useMatch("/course-manager");
   const scheduleManagerMatch = useMatch("/schedule-manager");
   const bulletinMatch = useMatch("/bulletin");
-  const daangnMatch = useMatch("/daangn");
   const registerMatch = useMatch("/register");
   //nav animation
   const navAnimation = useAnimation();
@@ -94,11 +93,6 @@ function Header() {
             <Item>
               <Link to="/bulletin">
                 Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
-              </Link>
-            </Item>
-            <Item>
-              <Link to="/daangn">
-                Daangn {daangnMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
           </Items>
