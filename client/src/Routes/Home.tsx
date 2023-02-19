@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "../assets/images/final.svg";
 import { bgImages } from "../assets/assets";
 import { getWeather, IGetWeatherResult } from "../api";
-import { FakeWeather, Weather, Quotes, Clock, Header } from "../Components";
+import { FakeWeather, Weather, Quotes, Clock } from "../Components";
 import {
   Wrapper,
   Main,
@@ -39,28 +39,25 @@ function Home() {
   }, [bgImage]);
 
   return (
-    <>
-      <Header />
-      <Wrapper bgImage={bgImage}>
-        <Main>
-          <Greeting>
-            <Welcome>
-              Hello Username, Welcome to <Title>SUNYTIME</Title>
-            </Welcome>
-          </Greeting>
-          <LogoDate>
-            <Img src={logo}></Img>
-            <Clock />
-          </LogoDate>
-          <Quotes />
-        </Main>
-        {typeof data?.main != "undefined" ? (
-          <Weather weatherData={data} />
-        ) : (
-          <FakeWeather />
-        )}
-      </Wrapper>
-    </>
+    <Wrapper bgImage={bgImage}>
+      <Main>
+        <Greeting>
+          <Welcome>
+            Hello Username, Welcome to <Title>SUNYTIME</Title>
+          </Welcome>
+        </Greeting>
+        <LogoDate>
+          <Img src={logo}></Img>
+          <Clock />
+        </LogoDate>
+        <Quotes />
+      </Main>
+      {typeof data?.main != "undefined" ? (
+        <Weather weatherData={data} />
+      ) : (
+        <FakeWeather />
+      )}
+    </Wrapper>
   );
 }
 export default Home;
