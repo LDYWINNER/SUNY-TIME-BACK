@@ -1,17 +1,19 @@
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { Header } from "../Components";
-
-const Wrapper = styled.div`
-  height: 200vh;
-  background-color: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor};
-`;
+import Wrapper from "../assets/wrappers/Info";
+import { bgImages } from "../assets/assets";
 
 function Info() {
+  const [bgImage, setbgImage] = useState("");
+
+  useEffect(() => {
+    setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+  }, [bgImage]);
+
   return (
     <>
       <Header />
-      <Wrapper>Info</Wrapper>
+      <Wrapper bgImage={bgImage}>Info</Wrapper>
     </>
   );
 }
