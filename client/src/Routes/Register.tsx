@@ -6,7 +6,7 @@ import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
 import { addUserToLocalStorage } from "../utils";
 
@@ -36,8 +36,7 @@ function Register() {
   const navigate = useNavigate();
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(registerState);
-  const [globalState, setGlobalCurrentState] =
-    useRecoilState(globalCurrentState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
