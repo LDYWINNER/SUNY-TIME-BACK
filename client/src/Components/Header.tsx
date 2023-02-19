@@ -14,9 +14,10 @@ import {
   Circle,
   navVariants,
 } from "../assets/wrappers/Header";
-import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
+import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { removeUserFromLocalStorage } from "../utils";
 import { Show, Hide } from "@chakra-ui/react";
+import SmallSidebar from "./SmallNavbar";
 
 function Header() {
   //route match
@@ -48,15 +49,6 @@ function Header() {
     });
     removeUserFromLocalStorage();
     window.location.reload();
-  };
-  //toggle sidebar
-  const toggleSidebar = () => {
-    setGlobalCurrentState((currentState) => {
-      return {
-        ...currentState,
-        showSidebar: !currentState.showSidebar,
-      };
-    });
   };
 
   useEffect(() => {
@@ -112,9 +104,7 @@ function Header() {
           </Items>
         </Show>
         <Hide breakpoint="(min-width: 1300px)">
-          <button type="button" className="toggle-btn" onClick={toggleSidebar}>
-            <FaAlignLeft />
-          </button>
+          <SmallSidebar />
         </Hide>
       </Col>
       <Hide breakpoint="(min-width: 1300px)">
