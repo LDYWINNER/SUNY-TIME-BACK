@@ -5,7 +5,7 @@ import { Weather, FakeWeather } from "./Weather";
 import FormRow from "./FormRow";
 import Alert from "./Alert";
 import BigSidebar from "./BigSidebar";
-import SmallSidebar from "./SmallNavbar";
+import SmallNavbar from "./SmallNavbar";
 
 export {
   Clock,
@@ -16,5 +16,5 @@ export {
   FormRow,
   Alert,
   BigSidebar,
-  SmallSidebar,
+  SmallNavbar,
 };
