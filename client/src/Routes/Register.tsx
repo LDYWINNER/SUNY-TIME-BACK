@@ -46,6 +46,7 @@ function Register() {
     reset,
     watch,
   } = useForm<IForm>();
+  let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     //If password !== passwordConfirmation (register)
@@ -104,10 +105,11 @@ function Register() {
         addUserToLocalStorage({ user, token });
         setValues({ ...values, formSuccess: true });
         //navigate back to previous page
-        if (globalState.user) {
+        navigateBackOrNot = true;
+        if (navigateBackOrNot) {
           setTimeout(() => {
             navigate(-1);
-          }, 2000);
+          }, 2500);
         }
       } catch (error: any) {
         console.log(error.response);
@@ -133,10 +135,11 @@ function Register() {
         addUserToLocalStorage({ user, token });
         setValues({ ...values, formSuccess: true });
         //navigate back to previous page
-        if (globalState.user) {
+        navigateBackOrNot = true;
+        if (navigateBackOrNot) {
           setTimeout(() => {
             navigate(-1);
-          }, 2000);
+          }, 2500);
         }
       } catch (error: any) {
         console.log(error.response);
