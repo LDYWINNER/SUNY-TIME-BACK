@@ -13,5 +13,6 @@ export const globalCurrentState = atom({
   default: {
     user: user ? JSON.parse(user) : null,
     token: token,
+    showSidebar: false,
   },
 });
