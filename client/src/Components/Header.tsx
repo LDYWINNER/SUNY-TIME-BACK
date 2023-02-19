@@ -1,11 +1,12 @@
 import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/images/navbar_logo.svg";
-import { useRecoilState } from "recoil";
-import { isDarkAtom } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { globalCurrentState, isDarkAtom } from "../atoms";
 import DarkModeToggleBtn from "react-dark-mode-toggle";
+import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -22,6 +23,41 @@ const Nav = styled(motion.nav)`
     0 -1.5px ${(props) => props.theme.main.blue};
   padding: 20px 60px;
   color: white;
+  .btn-container {
+    position: relative;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 0.5rem;
+    position: relative;
+    box-shadow: var(--shadow-2);
+    background-color: ${(props) => props.theme.main.blue};
+  }
+  .dropdown {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background: ${(props) => props.theme.main.blue};
+    box-shadow: var(--shadow-2);
+    padding: 0.5rem;
+    text-align: center;
+    visibility: hidden;
+    border-radius: var(--borderRadius);
+  }
+  .show-dropdown {
+    visibility: visible;
+  }
+  .dropdown-btn {
+    background: transparent;
+    border-color: transparent;
+    color: ${(props) => props.theme.white.lighter};
+    letter-spacing: var(--letterSpacing);
+    text-transform: capitalize;
+    cursor: pointer;
+  }
 `;
 
 const Col = styled.div`
@@ -86,9 +122,14 @@ function Header() {
   //nav animation
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
+  //user checking
+  const { user } = useRecoilValue(globalCurrentState);
+  //logout toggle
+  const [showLogout, setShowLogout] = useState(false);
   //light dark theme toggle
   const [isDark, setDarkAtom] = useRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -98,6 +139,7 @@ function Header() {
       }
     });
   }, [scrollY, navAnimation]);
+
   return (
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
@@ -145,11 +187,41 @@ function Header() {
             size={60}
           />
         </Item>
-        <Item>
-          <Link to="/register">
-            Login / Register {registerMatch && <Circle layoutId="circle" />}
-          </Link>
-        </Item>
+        {user ? (
+          <div className="btn-container">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setShowLogout(!showLogout)}
+            >
+              <FaUserCircle />
+              {user?.username}
+              <FaCaretDown />
+            </button>
+            <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
+              <button
+                type="button"
+                className="dropdown-btn"
+                onClick={() => "your profile page"}
+              >
+                My Profile
+              </button>
+              <button
+                type="button"
+                className="dropdown-btn"
+                onClick={() => "logout"}
+              >
+                logout
+              </button>
+            </div>
+          </div>
+        ) : (
+          <Item>
+            <Link to="/register">
+              Login / Register {registerMatch && <Circle layoutId="circle" />}
+            </Link>
+          </Item>
+        )}
       </Col>
     </Nav>
   );
