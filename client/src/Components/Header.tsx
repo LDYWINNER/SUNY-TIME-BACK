@@ -124,50 +124,65 @@ function Header() {
           </Link>
         </Col>
       </Hide>
-      <Col>
-        <Item>
-          <DarkModeToggleBtn
-            onChange={toggleDarkAtom}
-            checked={isDark}
-            size={60}
-          />
-        </Item>
-        {globalState.user ? (
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => setShowLogout(!showLogout)}
-            >
-              <FaUserCircle />
-              {globalState.user?.username}
-              <FaCaretDown />
-            </button>
-            <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
-              <button
-                type="button"
-                className="dropdown-btn"
-                onClick={() => "your profile page"}
-              >
-                My Profile
-              </button>
-              <button
-                type="button"
-                className="dropdown-btn"
-                onClick={logoutUser}
-              >
-                logout
-              </button>
-            </div>
-          </div>
-        ) : (
+      <Show breakpoint="(min-width: 1300px)">
+        <Col>
           <Item>
-            <Link to="/register">
-              Login / Register {registerMatch && <Circle layoutId="circle" />}
-            </Link>
+            <DarkModeToggleBtn
+              onChange={toggleDarkAtom}
+              checked={isDark}
+              size={60}
+            />
           </Item>
-        )}
-      </Col>
+          {globalState.user ? (
+            <div className="btn-container">
+              <button
+                type="button"
+                className="btn"
+                onClick={() => setShowLogout(!showLogout)}
+              >
+                <FaUserCircle />
+                {globalState.user?.username}
+                <FaCaretDown />
+              </button>
+              <div
+                className={showLogout ? "dropdown show-dropdown" : "dropdown"}
+              >
+                <button
+                  type="button"
+                  className="dropdown-btn"
+                  onClick={() => "your profile page"}
+                >
+                  My Profile
+                </button>
+                <button
+                  type="button"
+                  className="dropdown-btn"
+                  onClick={logoutUser}
+                >
+                  logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Item>
+              <Link to="/register">
+                Login / Register {registerMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+          )}
+        </Col>
+      </Show>
+      <Hide breakpoint="(min-width: 1300px)">
+        <Col>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => "send to update user page"}
+          >
+            <FaUserCircle />
+          </button>
+        </Col>
+      </Hide>
     </Nav>
   );
 }
