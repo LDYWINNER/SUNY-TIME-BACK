@@ -2,7 +2,7 @@ import { Link, useMatch } from "react-router-dom";
 import { useAnimation, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "../assets/images/navbar_logo.svg";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { globalCurrentState, isDarkAtom } from "../atoms";
 import DarkModeToggleBtn from "react-dark-mode-toggle";
 import {
@@ -15,6 +15,7 @@ import {
   navVariants,
 } from "../assets/wrappers/Header";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
+import { removeUserFromLocalStorage } from "../utils";
 
 function Header() {
   //route match
@@ -28,13 +29,25 @@ function Header() {
   //nav animation
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
-  //user checking
-  const { user } = useRecoilValue(globalCurrentState);
   //logout toggle
   const [showLogout, setShowLogout] = useState(false);
   //light dark theme toggle
   const [isDark, setDarkAtom] = useRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+  //logout user
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
+  const logoutUser = () => {
+    setGlobalCurrentState((currentState) => {
+      return {
+        ...currentState,
+        user: null,
+        token: null,
+      };
+    });
+    removeUserFromLocalStorage();
+    window.location.reload();
+  };
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -93,7 +106,7 @@ function Header() {
             size={60}
           />
         </Item>
-        {user ? (
+        {globalState.user ? (
           <div className="btn-container">
             <button
               type="button"
@@ -101,7 +114,7 @@ function Header() {
               onClick={() => setShowLogout(!showLogout)}
             >
               <FaUserCircle />
-              {user?.username}
+              {globalState.user?.username}
               <FaCaretDown />
             </button>
             <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
@@ -115,7 +128,7 @@ function Header() {
               <button
                 type="button"
                 className="dropdown-btn"
-                onClick={() => "logout"}
+                onClick={logoutUser}
               >
                 logout
               </button>
