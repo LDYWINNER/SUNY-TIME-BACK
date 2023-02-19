@@ -51,6 +51,15 @@ const Nav = styled(motion.nav)`
     text-transform: capitalize;
     cursor: pointer;
   }
+  .toggle-btn {
+    background: transparent;
+    border-color: transparent;
+    font-size: 1.75rem;
+    color: ${(props) => props.theme.main.blue};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const Col = styled.div`

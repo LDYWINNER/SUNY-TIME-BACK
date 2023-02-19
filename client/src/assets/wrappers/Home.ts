@@ -11,6 +11,7 @@ const Wrapper = styled.div<{ bgImage: string }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${(props) => props.theme.white.lighter};
 `;
 
 const Main = styled.div`

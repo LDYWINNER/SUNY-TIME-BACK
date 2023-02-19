@@ -14,8 +14,9 @@ import {
   Circle,
   navVariants,
 } from "../assets/wrappers/Header";
-import { FaUserCircle, FaCaretDown } from "react-icons/fa";
+import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { removeUserFromLocalStorage } from "../utils";
+import { Show, Hide } from "@chakra-ui/react";
 
 function Header() {
   //route match
@@ -48,6 +49,15 @@ function Header() {
     removeUserFromLocalStorage();
     window.location.reload();
   };
+  //toggle sidebar
+  const toggleSidebar = () => {
+    setGlobalCurrentState((currentState) => {
+      return {
+        ...currentState,
+        showSidebar: !currentState.showSidebar,
+      };
+    });
+  };
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -62,42 +72,58 @@ function Header() {
   return (
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
-        <Link to="/">
-          <Logo src={logo} alt="sunytime" />
-        </Link>
-        <Items>
-          <Item>
-            <Link to="/">Home {homeMatch && <Circle layoutId="circle" />}</Link>
-          </Item>
-          <Item>
-            <Link to="/school-info">
-              School Info {infoMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-          <Item>
-            <Link to="/schedule-manager">
-              Schedule Manager{" "}
-              {scheduleManagerMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-          <Item>
-            <Link to="/course-manager">
-              Course Manager{" "}
-              {courseManagerMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-          <Item>
-            <Link to="/bulletin">
-              Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-          <Item>
-            <Link to="/daangn">
-              Daangn {daangnMatch && <Circle layoutId="circle" />}
-            </Link>
-          </Item>
-        </Items>
+        <Show breakpoint="(min-width: 1300px)">
+          <Link to="/">
+            <Logo src={logo} alt="sunytime" />
+          </Link>
+          <Items>
+            <Item>
+              <Link to="/">
+                Home {homeMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+            <Item>
+              <Link to="/school-info">
+                School Info {infoMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+            <Item>
+              <Link to="/schedule-manager">
+                Schedule Manager{" "}
+                {scheduleManagerMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+            <Item>
+              <Link to="/course-manager">
+                Course Manager{" "}
+                {courseManagerMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+            <Item>
+              <Link to="/bulletin">
+                Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+            <Item>
+              <Link to="/daangn">
+                Daangn {daangnMatch && <Circle layoutId="circle" />}
+              </Link>
+            </Item>
+          </Items>
+        </Show>
+        <Hide breakpoint="(min-width: 1300px)">
+          <button type="button" className="toggle-btn" onClick={toggleSidebar}>
+            <FaAlignLeft />
+          </button>
+        </Hide>
       </Col>
+      <Hide breakpoint="(min-width: 1300px)">
+        <Col>
+          <Link to="/">
+            <Logo src={logo} alt="sunytime" />
+          </Link>
+        </Col>
+      </Hide>
       <Col>
         <Item>
           <DarkModeToggleBtn
