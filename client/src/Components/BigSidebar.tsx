@@ -7,10 +7,19 @@ import {
   DrawerContent,
   useDisclosure,
 } from "@chakra-ui/react";
-import links from "../utils/bulletinLinks";
 import { NavLink } from "react-router-dom";
 
-function BigSidebar() {
+interface ILink {
+  id: number;
+  text: string;
+  path: string;
+}
+
+interface IBigSidebar {
+  links: ILink[];
+}
+
+function BigSidebar({ links }: IBigSidebar) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

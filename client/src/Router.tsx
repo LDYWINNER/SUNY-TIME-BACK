@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./Components";
 import {
   Info,
-  CourseManager,
   ScheduleManager,
   Home,
   Register,
@@ -14,6 +13,11 @@ import {
   BulletinHome,
   BulletinSharedLayout,
 } from "./Routes/bulletin/index";
+import {
+  CMSharedLayout,
+  CMHome,
+  AllCourses,
+} from "./Routes/courseManager/index";
 
 function Router() {
   return (
@@ -25,14 +29,18 @@ function Router() {
         <Route path="/schedule-manager" element={<ScheduleManager />} />
 
         <Route path="/school-info" element={<Info />} />
+
         <Route
           path="/course-manager"
           element={
             <ProtectedRoute>
-              <CourseManager />
+              <CMSharedLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<CMHome />} />
+          <Route path="all" element={<AllCourses />} />
+        </Route>
 
         <Route
           path="/bulletin"
