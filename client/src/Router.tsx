@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./Components";
 import {
-  Info,
   ScheduleManager,
   Home,
   Register,
@@ -18,6 +17,13 @@ import {
   CMHome,
   AllCourses,
 } from "./Routes/courseManager/index";
+import {
+  SchoolInfoSharedLayout,
+  SchoolInfoHome,
+  SchoolContact,
+  CampusLife,
+  Academics,
+} from "./Routes/schoolInfo/index";
 
 function Router() {
   return (
@@ -28,7 +34,19 @@ function Router() {
         <Route path="/register" element={<Register />} />
         <Route path="/schedule-manager" element={<ScheduleManager />} />
 
-        <Route path="/school-info" element={<Info />} />
+        <Route
+          path="/school-info"
+          element={
+            <ProtectedRoute>
+              <SchoolInfoSharedLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<SchoolInfoHome />} />
+          <Route path="contact" element={<SchoolContact />} />
+          <Route path="campus-life" element={<CampusLife />} />
+          <Route path="academics" element={<Academics />} />
+        </Route>
 
         <Route
           path="/course-manager"
