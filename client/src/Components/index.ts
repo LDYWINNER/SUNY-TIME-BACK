@@ -6,6 +6,8 @@ import FormRow from "./FormRow";
 import Alert from "./Alert";
 import BigSidebar from "./BigSidebar";
 import SmallNavbar from "./SmallNavbar";
+import ToDo from "./ToDo";
+import SMCalendar from "./SMCalendar";
 
 export {
   Clock,
@@ -17,4 +19,6 @@ export {
   Alert,
   BigSidebar,
   SmallNavbar,
+  ToDo,
+  SMCalendar,
 };
