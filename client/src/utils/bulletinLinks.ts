@@ -10,12 +10,7 @@ interface ILink {
 }
 
 const links: ILink[] = [
-  {
-    id: 1,
-    text: "bulletin home",
-    path: "/bulletin",
-    icon: AiOutlineForm,
-  },
+  { id: 1, text: "bulletin home", path: "/bulletin", icon: AiOutlineForm },
   { id: 2, text: "all bulletin boards", path: "all", icon: FaWpforms },
 ];
 
