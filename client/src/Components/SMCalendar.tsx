@@ -1,7 +1,12 @@
+import { useState } from "react";
+import Calendar from "react-calendar";
+
 function SMCalendar() {
+  const [calendarDate, setCalendarDate] = useState(new Date());
+
   return (
     <>
-      <h1>Calendar for Schedule Manager</h1>
+      <Calendar onChange={setCalendarDate} value={calendarDate} />
     </>
   );
 }
