@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 const user = localStorage.getItem("user");
 const token = localStorage.getItem("token");
@@ -27,9 +30,6 @@ interface IToDoState {
 
 export const toDoState = atom<IToDoState>({
   key: "toDo",
-  default: {
-    "To Do": [],
-    Doing: [],
-    Done: [],
-  },
+  default: {},
+  effects_UNSTABLE: [persistAtom],
 });
