@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section<{ bgImage: string }>`
+export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
   height: 100vh;
@@ -8,4 +8,3 @@ const Wrapper = styled.section<{ bgImage: string }>`
   display: flex;
   align-items: center;
 `;
-export default Wrapper;
