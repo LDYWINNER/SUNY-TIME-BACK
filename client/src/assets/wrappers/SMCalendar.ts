@@ -59,6 +59,12 @@ export const Wrapper = styled.section`
       text-align: center;
     }
 
+    //day tile when focus or hover over
+    .react-calendar__tile:enabled:hover,
+    .react-calendar__tile:enabled:focus {
+      background-color: ${(props) => props.theme.main.lightBlue};
+    }
+
     .react-calendar__tile--range {
       box-shadow: 0 0 3px 1px black;
     }
