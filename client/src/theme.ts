@@ -13,9 +13,17 @@ export const lightTheme: DefaultTheme = {
   },
   main: {
     blue: "#004B93",
+    lightBlue: "#0078F0",
   },
-  bgColor: "#fff",
-  textColor: "#181818",
+  bgColor: {
+    lighter: "#fff",
+    darker: "#e5e5e5",
+  },
+  textColor: {
+    veryDark: "#141414",
+    darker: "#181818",
+    lighter: "#2F2F2F",
+  },
 };
 
 export const darkTheme: DefaultTheme = {
@@ -31,7 +39,15 @@ export const darkTheme: DefaultTheme = {
   },
   main: {
     blue: "#004B93",
+    lightBlue: "#0078F0",
   },
-  bgColor: "#181818",
-  textColor: "#fff",
+  bgColor: {
+    veryDark: "#141414",
+    darker: "#181818",
+    lighter: "#2F2F2F",
+  },
+  textColor: {
+    lighter: "#fff",
+    darker: "#e5e5e5",
+  },
 };

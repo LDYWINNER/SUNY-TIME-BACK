@@ -14,8 +14,21 @@ declare module "styled-components" {
     };
     main: {
       blue: string;
+      lightBlue: string;
     };
-    bgColor: string;
-    textColor: string;
+    bgColor:
+      | {
+          veryDark: string;
+          darker: string;
+          lighter: string;
+        }
+      | { darker: string; lighter: string };
+    textColor:
+      | {
+          veryDark: string;
+          darker: string;
+          lighter: string;
+        }
+      | { darker: string; lighter: string };
   }
 }

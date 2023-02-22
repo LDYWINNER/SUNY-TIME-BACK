@@ -14,5 +14,4 @@ export const Main = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 200px;
 `;
