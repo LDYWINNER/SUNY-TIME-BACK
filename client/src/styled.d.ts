@@ -30,5 +30,7 @@ declare module "styled-components" {
           lighter: string;
         }
       | { darker: string; lighter: string };
+    todoBoardColor: string;
+    todoCardColor: string;
   }
 }

@@ -24,6 +24,8 @@ export const lightTheme: DefaultTheme = {
     darker: "#181818",
     lighter: "#2F2F2F",
   },
+  todoBoardColor: "#DADFE9",
+  todoCardColor: "white",
 };
 
 export const darkTheme: DefaultTheme = {
@@ -50,4 +52,6 @@ export const darkTheme: DefaultTheme = {
     lighter: "#fff",
     darker: "#e5e5e5",
   },
+  todoBoardColor: "#DADFE9",
+  todoCardColor: "white",
 };
