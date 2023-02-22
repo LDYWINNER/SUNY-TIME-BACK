@@ -23,7 +23,7 @@ function SmallSidebar() {
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
+          <DrawerHeader>SUNYTIME</DrawerHeader>
           <DrawerCloseButton />
           <DrawerBody>
             <Wrapper>
