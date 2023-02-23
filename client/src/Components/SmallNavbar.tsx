@@ -20,7 +20,12 @@ function SmallSidebar() {
       <button type="button" className="toggle-btn" onClick={onOpen}>
         <FaAlignLeft />
       </button>
-      <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
+      <Drawer
+        placement="top"
+        onClose={onClose}
+        isOpen={isOpen}
+        closeOnOverlayClick
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>SUNYTIME</DrawerHeader>
@@ -34,7 +39,7 @@ function SmallSidebar() {
                     <NavLink
                       to={path}
                       key={id}
-                      onClick={onOpen}
+                      onClick={onClose}
                       className={({ isActive }) =>
                         isActive ? "nav-link active" : "nav-link"
                       }
