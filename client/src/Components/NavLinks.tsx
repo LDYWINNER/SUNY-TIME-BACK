@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useDisclosure } from "@chakra-ui/react";
 
 interface ILink {
   id: number;
@@ -9,11 +8,10 @@ interface ILink {
 
 interface INavLinks {
   links: ILink[];
+  onClick: () => void;
 }
 
-const NavLinks = ({ links }: INavLinks) => {
-  const { onClose } = useDisclosure();
-
+const NavLinks = ({ links, onClick }: INavLinks) => {
   return (
     <div className="nav-links">
       {links.map((link) => {
@@ -22,7 +20,7 @@ const NavLinks = ({ links }: INavLinks) => {
           <NavLink
             to={path}
             key={id}
-            onClick={onClose}
+            onClick={onClick}
             className={({ isActive }) =>
               isActive ? "nav-link active" : "nav-link"
             }

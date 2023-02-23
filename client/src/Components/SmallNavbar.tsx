@@ -32,7 +32,7 @@ function SmallSidebar() {
           <DrawerCloseButton />
           <DrawerBody>
             <Wrapper>
-              <NavLinks links={links} />
+              <NavLinks links={links} onClick={onClose} />
             </Wrapper>
           </DrawerBody>
         </DrawerContent>
