@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Wrapper from "../../assets/wrappers/BulletinSharedLayout";
 import { BigSidebar } from "../../Components";
+import Wrapper from "../../assets/wrappers/BulletinSharedLayout";
 import { bgImages } from "../../assets/assets";
 import { FaAlignLeft } from "react-icons/fa";
 import links from "../../utils/bulletinLinks";
@@ -20,11 +20,11 @@ const BulletinSharedLayout = () => {
 
   return (
     <Wrapper bgImage={bgImage}>
-      <main>
+      <main className="bulletin-main">
+        <div className="big-sidebar">
+          <BigSidebar links={links} showSidebar={showSidebar} />
+        </div>
         <div className="bulletin">
-          <div className="big-sidebar">
-            <BigSidebar links={links} showSidebar={showSidebar} />
-          </div>
           <div className="bulletin-page">
             <button
               type="button"

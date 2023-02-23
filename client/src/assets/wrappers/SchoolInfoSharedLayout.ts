@@ -7,5 +7,29 @@ const Wrapper = styled.section<{ bgImage: string }>`
   width: 100%;
   display: flex;
   align-items: center;
+  .bulletin-main {
+    margin-top: 200px;
+    display: flex;
+  }
+  .bulletin {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .bulletin-page {
+    width: 90vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  .toggle-btn {
+    background-color: ${(props) => props.theme.main.blue};
+    padding: 5px;
+    border-radius: 0px 5px 5px 0px;
+    font-size: 1.5rem;
+    color: #f8efba;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
 `;
+
 export default Wrapper;

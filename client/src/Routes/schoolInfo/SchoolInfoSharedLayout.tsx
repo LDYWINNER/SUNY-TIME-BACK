@@ -20,11 +20,11 @@ const SchoolInfoSharedLayout = () => {
 
   return (
     <Wrapper bgImage={bgImage}>
-      <main>
+      <main className="bulletin-main">
+        <div className="big-sidebar">
+          <BigSidebar links={links} showSidebar={showSidebar} />
+        </div>
         <div className="bulletin">
-          <div className="big-sidebar">
-            <BigSidebar links={links} showSidebar={showSidebar} />
-          </div>
           <div className="bulletin-page">
             <button
               type="button"
