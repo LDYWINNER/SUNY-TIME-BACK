@@ -11,7 +11,6 @@ const SchoolInfoSharedLayout = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleSidebar = () => {
-    console.log(showSidebar);
     setShowSidebar((prev) => !prev);
   };
 
