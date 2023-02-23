@@ -1,13 +1,5 @@
 import Wrapper from "../assets/wrappers/BigSidebar";
-import { FaAlignLeft } from "react-icons/fa";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerContent,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import NavLinks from "./NavLinks";
 
 interface ILink {
   id: number;
@@ -17,49 +9,23 @@ interface ILink {
 
 interface IBigSidebar {
   links: ILink[];
+  showSidebar: boolean;
 }
 
-function BigSidebar({ links }: IBigSidebar) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+const BigSidebar = ({ links, showSidebar }: IBigSidebar) => {
   return (
-    <>
-      <button type="button" className="toggle-btn" onClick={onOpen}>
-        <FaAlignLeft />
-      </button>
-      <Drawer
-        placement="left"
-        onClose={onClose}
-        isOpen={isOpen}
-        isFullHeight={false}
+    <Wrapper>
+      <div
+        className={
+          showSidebar ? "sidebar-container " : "sidebar-container show-sidebar"
+        }
       >
-        <DrawerContent marginTop="100px" w="15">
-          <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
-          <DrawerBody>
-            <Wrapper>
-              <div className="nav-links">
-                {links.map((link) => {
-                  const { text, path, id } = link;
-                  return (
-                    <NavLink
-                      to={path}
-                      key={id}
-                      onClick={onOpen}
-                      className={({ isActive }) =>
-                        isActive ? "nav-link active" : "nav-link"
-                      }
-                      end
-                    >
-                      {text}
-                    </NavLink>
-                  );
-                })}
-              </div>
-            </Wrapper>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </>
+        <div className="content">
+          <NavLinks links={links} />
+        </div>
+      </div>
+    </Wrapper>
   );
-}
+};
+
 export default BigSidebar;

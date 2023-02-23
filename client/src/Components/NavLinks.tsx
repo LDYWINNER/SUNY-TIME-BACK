@@ -8,7 +8,7 @@ interface ILink {
 
 interface INavLinks {
   links: ILink[];
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const NavLinks = ({ links, onClick }: INavLinks) => {
