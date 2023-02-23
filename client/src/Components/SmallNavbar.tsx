@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import links from "../utils/baseLinks";
-import { NavLink } from "react-router-dom";
+import NavLinks from "./NavLinks";
 
 function SmallSidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -32,24 +32,7 @@ function SmallSidebar() {
           <DrawerCloseButton />
           <DrawerBody>
             <Wrapper>
-              <div className="nav-links">
-                {links.map((link) => {
-                  const { text, path, id } = link;
-                  return (
-                    <NavLink
-                      to={path}
-                      key={id}
-                      onClick={onClose}
-                      className={({ isActive }) =>
-                        isActive ? "nav-link active" : "nav-link"
-                      }
-                      end
-                    >
-                      {text}
-                    </NavLink>
-                  );
-                })}
-              </div>
+              <NavLinks links={links} />
             </Wrapper>
           </DrawerBody>
         </DrawerContent>
