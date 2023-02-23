@@ -3,12 +3,15 @@ import styled from "styled-components";
 const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   .bulletin-main {
-    margin-top: 200px;
+    height: 100%;
+    width: 100%;
+    border: 2px solid tomato;
+    margin-top: 100px;
     display: flex;
   }
   .bulletin {
@@ -16,7 +19,6 @@ const Wrapper = styled.section<{ bgImage: string }>`
     grid-template-columns: 1fr;
   }
   .bulletin-page {
-    width: 90vw;
     margin: 0 auto;
     padding: 2rem 0;
   }

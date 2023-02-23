@@ -4,8 +4,7 @@ const Wrapper = styled.aside`
   box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
   .sidebar-container {
     background: var(--white);
-    min-height: 100vh;
-    height: 100%;
+    height: 100vh;
     width: 250px;
     margin-left: -250px;
     transition: var(--transition);
@@ -16,12 +15,6 @@ const Wrapper = styled.aside`
   }
   .show-sidebar {
     margin-left: 0;
-  }
-  header {
-    height: 6rem;
-    display: flex;
-    align-items: center;
-    padding-left: 2.5rem;
   }
   .nav-links {
     padding-top: 2rem;
@@ -40,13 +33,12 @@ const Wrapper = styled.aside`
   .nav-link:hover {
     background: var(--grey-50);
     padding-left: 3rem;
-    color: var(--grey-900);
+    color: ${(props) => props.theme.main.blue};
+    font-weight: 500;
   }
   .active {
-    color: var(--grey-900);
-  }
-  .active .icon {
-    color: var(--primary-500);
+    color: ${(props) => props.theme.main.blue};
+    font-weight: 500;
   }
 `;
 export default Wrapper;

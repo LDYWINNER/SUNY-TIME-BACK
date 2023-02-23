@@ -7,6 +7,7 @@ const Nav = styled(motion.nav)`
   align-items: center;
   position: fixed;
   width: 100%;
+  height: 100px;
   top: 0;
   font-size: 18px;
   font-weight: 400;
