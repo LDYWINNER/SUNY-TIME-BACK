@@ -10,7 +10,6 @@ const Wrapper = styled.section<{ bgImage: string }>`
   .bulletin-main {
     height: 100%;
     width: 100%;
-    border: 2px solid tomato;
     margin-top: 100px;
     display: flex;
   }
