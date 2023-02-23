@@ -19,5 +19,9 @@ const Wrapper = styled.aside`
   .nav-link:hover .icon {
     color: var(--primary-500);
   }
+  .active {
+    color: ${(props) => props.theme.main.blue};
+    font-weight: 500;
+  }
 `;
 export default Wrapper;
