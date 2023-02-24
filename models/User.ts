@@ -2,7 +2,7 @@ import { Model, Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-interface IUser {
+export interface IUser {
   username: string;
   email: string;
   passwordRegister: string;
@@ -10,7 +10,7 @@ interface IUser {
   major: string;
 }
 
-interface IUserMethods {
+export interface IUserMethods {
   createJWT(): void;
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
@@ -45,8 +45,8 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
 });
 
 UserSchema.pre("save", async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
 });
 
 UserSchema.methods.createJWT = function () {

@@ -43,8 +43,8 @@ const UserSchema = new mongoose_1.Schema({
 });
 UserSchema.pre("save", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const salt = yield bcrypt_1.default.genSalt(10);
-        this.passwordRegister = yield bcrypt_1.default.hash(this.passwordRegister, salt);
+        // const salt = await bcrypt.genSalt(10);
+        // this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
     });
 });
 UserSchema.methods.createJWT = function () {

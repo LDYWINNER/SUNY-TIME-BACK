@@ -72,7 +72,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.user);
-    res.send("update user");
+    var _a;
+    const { username, school, major } = req.body;
+    if (!username || !school || !major) {
+        throw new errors_1.BadRequestError("Please check if you provided all values");
+    }
+    const user = yield User_1.default.findOne({ _id: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId });
+    user.username = username;
+    user.school = school;
+    user.major = major;
+    yield (user === null || user === void 0 ? void 0 : user.save());
+    const token = user === null || user === void 0 ? void 0 : user.createJWT();
+    res.status(http_status_codes_1.StatusCodes.OK).json({ user, token });
 });
 exports.updateUser = updateUser;
