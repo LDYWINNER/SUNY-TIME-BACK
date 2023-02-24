@@ -4,6 +4,7 @@ import cors from "cors";
 import "express-async-errors";
 import errorHandlerMiddleware from "./middleware/error-handler";
 import notFoundMiddleware from "./middleware/not-found";
+import authenticateUser from "./middleware/auth";
 import authRouter from "./routers/authRouter";
 import bulletinPostRouter from "./routers/bulletinPostRouter";
 
@@ -20,7 +21,7 @@ app.use(cors());
 
 //routers
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/bulletin", bulletinPostRouter);
+app.use("/api/v1/bulletin", authenticateUser, bulletinPostRouter);
 
 app.get("/", (req, res) => {
   res.send("welcome");
