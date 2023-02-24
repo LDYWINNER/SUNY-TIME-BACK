@@ -72,6 +72,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.user);
     res.send("update user");
 });
 exports.updateUser = updateUser;
