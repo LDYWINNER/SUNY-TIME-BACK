@@ -9,8 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const errors_1 = require("../errors");
 const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("authenticate user");
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        throw new errors_1.UnAuthenticatedError("Authentication Invalid");
+    }
     next();
 });
 exports.default = auth;
