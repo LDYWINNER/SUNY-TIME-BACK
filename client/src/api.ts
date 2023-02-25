@@ -1,3 +1,7 @@
+import axios from "axios";
+import { globalCurrentState } from "./atoms";
+import { getRecoilExternalLoadable } from "./RecoilExternalStatePortal";
+
 export interface IGetWeatherResult {
   coord: {
     lon: number;
@@ -57,3 +61,35 @@ export async function getWeather(lat: number, lon: number) {
   // );
   return await response.json();
 }
+
+//axios custom instance
+export const authFetch = axios.create({
+  baseURL: "/api/v1",
+});
+
+//axios interceptors
+//request
+authFetch.interceptors.request.use(
+  (config) => {
+    const globalState =
+      getRecoilExternalLoadable(globalCurrentState).getValue();
+    config.headers["Authorization"] = `Bearer ${globalState.token}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+//response
+authFetch.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    console.log(error.response);
+    if (error.response.status === 401) {
+      console.log("AUTH ERROR");
+    }
+    return Promise.reject(error);
+  }
+);

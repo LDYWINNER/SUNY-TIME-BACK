@@ -12,10 +12,10 @@ import { Alert } from "../Components";
 import { Wrapper, Logo, Button } from "../assets/wrappers/UpdateUserModal";
 import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
 import { addUserToLocalStorage } from "../utils";
+import { authFetch } from "../api";
 
 interface IUpdateUserModal {
   isOpen: boolean;
@@ -58,7 +58,9 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
     console.log(newUser);
 
     try {
-      const { data } = await axios.patch("/api/v1/auth/updateUser", newUser);
+      const { data } = await authFetch.patch("/auth/updateUser", newUser);
+      console.log(data);
+
       const { user, token } = data;
       setGlobalCurrentState((currentState) => {
         return {
