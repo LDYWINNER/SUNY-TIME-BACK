@@ -12,6 +12,10 @@ import { Alert } from "../Components";
 import { Wrapper, Logo, Button } from "../assets/wrappers/UpdateUserModal";
 import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import { useSetRecoilState } from "recoil";
+import { globalCurrentState } from "../atoms";
+import { addUserToLocalStorage } from "../utils";
 
 interface IUpdateUserModal {
   isOpen: boolean;
@@ -36,6 +40,7 @@ const registerState: IRegisterState = {
 
 function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
   const [values, setValues] = useState(registerState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -44,7 +49,35 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
     watch,
   } = useForm<IForm>();
 
-  const onValid: SubmitHandler<IForm> = async (data) => {};
+  const onValid: SubmitHandler<IForm> = async (data) => {
+    const newUser = {
+      username: data.username,
+      school: data.school,
+      major: data.major,
+    };
+
+    try {
+      const { data } = await axios.post("/api/v1/auth/updateUser", newUser);
+      const { user, token } = data;
+      setGlobalCurrentState((currentState) => {
+        return {
+          ...currentState,
+          token,
+          user,
+        };
+      });
+      //adding user to local storage
+      addUserToLocalStorage({ user, token });
+      setValues({ ...values, formSuccess: true });
+    } catch (error: any) {
+      console.log(error.response);
+      setValues({
+        ...values,
+        formSuccess: false,
+        errorMessage: error.response.data.msg,
+      });
+    }
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -67,12 +100,12 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
         <ModalOverlay />
         <ModalContent>
           <Wrapper>
-            <ModalHeader>My Profile</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Logo src={logo} alt="sunytime" className="logo" />
+            <form onSubmit={handleSubmit(onValid)}>
+              <ModalHeader>My Profile</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Logo src={logo} alt="sunytime" className="logo" />
 
-              <form onSubmit={handleSubmit(onValid)}>
                 {values.formSuccess === true && (
                   <Alert message="My Profile Updated!" ifSuccess={true} />
                 )}
@@ -137,12 +170,12 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
                     </>
                   )}
                 </select>
-              </form>
-            </ModalBody>
+              </ModalBody>
 
-            <ModalFooter>
-              <Button type="submit">Save</Button>
-            </ModalFooter>
+              <ModalFooter>
+                <Button type="submit">Save</Button>
+              </ModalFooter>
+            </form>
           </Wrapper>
         </ModalContent>
       </Modal>
