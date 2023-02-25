@@ -72,6 +72,14 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
       //adding user to local storage
       addUserToLocalStorage({ user, token });
       setValues({ ...values, formSuccess: true });
+      setTimeout(() => {
+        //clear alert
+        setValues({
+          ...values,
+          formSuccess: null,
+          errorMessage: "",
+        });
+      }, 5000);
     } catch (error: any) {
       console.log(error.response);
       setValues({
@@ -79,6 +87,14 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
         formSuccess: false,
         errorMessage: error.response.data.msg,
       });
+      //clear alert
+      setTimeout(() => {
+        setValues({
+          ...values,
+          formSuccess: null,
+          errorMessage: "",
+        });
+      }, 5000);
     }
   };
 
