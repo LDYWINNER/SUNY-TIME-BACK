@@ -16,8 +16,9 @@ import {
 } from "../assets/wrappers/Header";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { removeUserFromLocalStorage } from "../utils";
-import { Show, Hide } from "@chakra-ui/react";
+import { Show, Hide, useDisclosure } from "@chakra-ui/react";
 import SmallSidebar from "./SmallNavbar";
+import UpdateUserModal from "./UpdateUserModal";
 
 function Header() {
   //route match
@@ -49,6 +50,8 @@ function Header() {
     removeUserFromLocalStorage();
     window.location.reload();
   };
+  //update user modal
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -131,13 +134,11 @@ function Header() {
               <div
                 className={showLogout ? "dropdown show-dropdown" : "dropdown"}
               >
-                <button
-                  type="button"
-                  className="dropdown-btn"
-                  onClick={() => "your profile page"}
-                >
+                <button type="button" className="dropdown-btn" onClick={onOpen}>
                   My Profile
                 </button>
+                <UpdateUserModal isOpen={isOpen} onClose={onClose} />
+
                 <button
                   type="button"
                   className="dropdown-btn"
