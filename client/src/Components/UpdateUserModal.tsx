@@ -55,9 +55,10 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
       school: data.school,
       major: data.major,
     };
+    console.log(newUser);
 
     try {
-      const { data } = await axios.post("/api/v1/auth/updateUser", newUser);
+      const { data } = await axios.patch("/api/v1/auth/updateUser", newUser);
       const { user, token } = data;
       setGlobalCurrentState((currentState) => {
         return {
@@ -93,6 +94,7 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
     <>
       <Modal
         blockScrollOnMount={false}
+        closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={onClose}
         isCentered
