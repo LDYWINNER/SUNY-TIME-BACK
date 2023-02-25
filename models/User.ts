@@ -45,8 +45,10 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
 });
 
 UserSchema.pre("save", async function () {
-  // const salt = await bcrypt.genSalt(10);
-  // this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
+  // console.log(this.modifiedPaths());
+  if (!this.isModified("passwordRegister")) return;
+  const salt = await bcrypt.genSalt(10);
+  this.passwordRegister = await bcrypt.hash(this.passwordRegister, salt);
 });
 
 UserSchema.methods.createJWT = function () {
