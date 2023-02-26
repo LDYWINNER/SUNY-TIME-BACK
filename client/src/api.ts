@@ -1,6 +1,10 @@
 import axios from "axios";
 import { globalCurrentState } from "./atoms";
-import { getRecoilExternalLoadable } from "./RecoilExternalStatePortal";
+import {
+  getRecoilExternalLoadable,
+  setRecoilExternalState,
+} from "./RecoilExternalStatePortal";
+import { removeUserFromLocalStorage } from "./utils";
 
 export interface IGetWeatherResult {
   coord: {
@@ -88,7 +92,16 @@ authFetch.interceptors.response.use(
   (error) => {
     console.log(error.response);
     if (error.response.status === 401) {
-      console.log("AUTH ERROR");
+      //force the user to logout
+      setRecoilExternalState(globalCurrentState, (currentState) => {
+        return {
+          ...currentState,
+          user: null,
+          token: null,
+        };
+      });
+      removeUserFromLocalStorage();
+      window.location.reload();
     }
     return Promise.reject(error);
   }
