@@ -83,11 +83,13 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
       }, 5000);
     } catch (error: any) {
       console.log(error.response);
-      setValues({
-        ...values,
-        formSuccess: false,
-        errorMessage: error.response.data.msg,
-      });
+      if (error.response.status !== 401) {
+        setValues({
+          ...values,
+          formSuccess: false,
+          errorMessage: error.response.data.msg,
+        });
+      }
       //clear alert
       setTimeout(() => {
         setValues({
