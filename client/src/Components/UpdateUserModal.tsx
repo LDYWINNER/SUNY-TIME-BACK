@@ -12,7 +12,7 @@ import { Alert } from "../Components";
 import { Wrapper, Logo, Button } from "../assets/wrappers/UpdateUserModal";
 import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
 import { addUserToLocalStorage } from "../utils";
 import { authFetch } from "../api";
@@ -40,8 +40,7 @@ const registerState: IRegisterState = {
 
 function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
   const [values, setValues] = useState(registerState);
-  const [globalState, setGlobalCurrentState] =
-    useRecoilState(globalCurrentState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -146,7 +145,6 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
                     className="form-input"
                     {...register("username", { required: true })}
                     placeholder="USERNAME"
-                    value={globalState.user.username}
                   ></input>
                 </div>
 
