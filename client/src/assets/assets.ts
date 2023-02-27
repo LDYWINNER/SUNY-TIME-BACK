@@ -134,4 +134,8 @@ export const quotes = [
       "뛰어나고 훌륭하게 시작할 필요는 없다. 그러나 훌륭하기 위해서는 시작해야 한다.",
     author: "지그 지글러",
   },
+  {
+    quote: "Life is like this.",
+    author: "Antonino Mione",
+  },
 ];
