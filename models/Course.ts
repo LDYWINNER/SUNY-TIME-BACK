@@ -37,7 +37,7 @@ const CourseSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  days: {
+  day: {
     type: String,
     enum: ["M", "TU", "W", "TH", "F"],
     required: true,
