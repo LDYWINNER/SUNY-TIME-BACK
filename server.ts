@@ -29,12 +29,8 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/bulletin", authenticateUser, bulletinPostRouter);
 
 //using frontend routes from build folder
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
-
 app.get("/", (req, res) => {
-  res.send("welcome");
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 app.use(notFoundMiddleware);
