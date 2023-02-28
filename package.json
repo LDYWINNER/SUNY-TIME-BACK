@@ -10,7 +10,8 @@
     "build-client": "cd client && npm run build",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/init.js\"",
-    "start": "concurrently --kill-others-on-fail \" npm run dev\" \" npm run client\""
+    "start": "concurrently --kill-others-on-fail \" npm run dev\" \" npm run client\"",
+    "server": "node dist/init.js"
   },
   "repository": {
     "type": "git",

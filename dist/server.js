@@ -30,9 +30,6 @@ app.use("/api/v1/bulletin", auth_1.default, bulletinPostRouter_1.default);
 app.get("*", (req, res) => {
     res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
 });
-app.get("/", (req, res) => {
-    res.send("welcome");
-});
 app.use(not_found_1.default);
 app.use(error_handler_1.default);
 exports.default = app;
