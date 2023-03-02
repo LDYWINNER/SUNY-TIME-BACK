@@ -7,6 +7,9 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 require("express-async-errors");
+const helmet_1 = __importDefault(require("helmet"));
+const xss_clean_1 = __importDefault(require("xss-clean"));
+const express_mongo_sanitize_1 = __importDefault(require("express-mongo-sanitize"));
 const path_1 = __importDefault(require("path"));
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
@@ -23,6 +26,9 @@ app.use(express_1.default.static(path_1.default.resolve(__dirname, "./client/bui
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
+app.use((0, helmet_1.default)());
+app.use((0, xss_clean_1.default)());
+app.use((0, express_mongo_sanitize_1.default)());
 //routers
 app.use("/api/v1/auth", authRouter_1.default);
 app.use("/api/v1/bulletin", auth_1.default, bulletinPostRouter_1.default);

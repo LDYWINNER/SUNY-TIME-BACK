@@ -2,6 +2,9 @@ import express, { Application } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import "express-async-errors";
+import helmet from "helmet";
+import xss from "xss-clean";
+import mongoSanitize from "express-mongo-sanitize";
 
 import path from "path";
 
@@ -23,6 +26,9 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
 
 //routers
 app.use("/api/v1/auth", authRouter);
