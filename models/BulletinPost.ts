@@ -1,5 +1,30 @@
 import mongoose from "mongoose";
 
+const BulletinPostComment = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: [true, "Please provide content"],
+    },
+    likes: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    dislikes: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provide user"],
+    },
+  },
+  { timestamps: true }
+);
+
 const BulletinPostSchema = new mongoose.Schema(
   {
     title: {
@@ -16,9 +41,20 @@ const BulletinPostSchema = new mongoose.Schema(
       default: "free",
       required: [true, "Please select a board"],
     },
-    stars: {
+    likes: {
       type: Number,
+      required: true,
       default: 0,
+    },
+    dislikes: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    comments: {
+      type: [BulletinPostComment],
+      required: true,
+      default: [],
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

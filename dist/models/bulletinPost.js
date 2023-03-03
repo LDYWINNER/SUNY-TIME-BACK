@@ -4,6 +4,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const BulletinPostComment = new mongoose_1.default.Schema({
+    content: {
+        type: String,
+        required: [true, "Please provide content"],
+    },
+    likes: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    dislikes: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    createdBy: {
+        type: mongoose_1.default.Types.ObjectId,
+        ref: "User",
+        required: [true, "Please provide user"],
+    },
+}, { timestamps: true });
 const BulletinPostSchema = new mongoose_1.default.Schema({
     title: {
         type: String,
@@ -19,9 +40,20 @@ const BulletinPostSchema = new mongoose_1.default.Schema({
         default: "free",
         required: [true, "Please select a board"],
     },
-    stars: {
+    likes: {
         type: Number,
+        required: true,
         default: 0,
+    },
+    dislikes: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    comments: {
+        type: [BulletinPostComment],
+        required: true,
+        default: [],
     },
     createdBy: {
         type: mongoose_1.default.Types.ObjectId,
