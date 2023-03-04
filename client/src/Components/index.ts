@@ -8,6 +8,7 @@ import BigSidebar from "./BigSidebar";
 import SmallNavbar from "./SmallNavbar";
 import ToDo from "./ToDo";
 import SMCalendar from "./SMCalendar";
+import BulletinPostPopOverContent from "./BulletinPostPopOverContent";
 
 export {
   Clock,
@@ -21,4 +22,5 @@ export {
   SmallNavbar,
   ToDo,
   SMCalendar,
+  BulletinPostPopOverContent,
 };

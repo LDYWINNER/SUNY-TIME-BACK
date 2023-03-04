@@ -1,4 +1,3 @@
-import { BsPencilSquare } from "react-icons/bs";
 import {
   Wrapper,
   FilterRow,
@@ -6,6 +5,9 @@ import {
   Title,
   BulletinPostBtn,
 } from "../../assets/wrappers/BulletinHome";
+import { BsPencilSquare } from "react-icons/bs";
+import { BulletinPostPopOverContent } from "../../Components";
+import { Popover, PopoverTrigger } from "@chakra-ui/react";
 
 function BulletinHome() {
   return (
@@ -15,13 +17,14 @@ function BulletinHome() {
       </FilterRow>
       <TitleRow>
         <Title>Board</Title>
-        <BulletinPostBtn
-          type="button"
-          className="btn"
-          onClick={() => "send to update user page"}
-        >
-          <BsPencilSquare />
-        </BulletinPostBtn>
+        <Popover>
+          <PopoverTrigger>
+            <BulletinPostBtn type="button" className="btn">
+              <BsPencilSquare />
+            </BulletinPostBtn>
+          </PopoverTrigger>
+          <BulletinPostPopOverContent />
+        </Popover>
       </TitleRow>
     </Wrapper>
   );
