@@ -7,7 +7,6 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
 } from "@chakra-ui/react";
 import { Alert } from "../Components";
 import {
@@ -41,7 +40,6 @@ function BulletinPostPopOverContent() {
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
-    watch,
   } = useForm<IForm>();
 
   const onValid: SubmitHandler<IForm> = async (data) => {};
@@ -62,77 +60,81 @@ function BulletinPostPopOverContent() {
     <>
       <PopoverContent width={450}>
         <Wrapper>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverHeader>Bulletin Post</PopoverHeader>
-          <PopoverBody>
-            {values.formSuccess === true && (
-              <Alert message="My Profile Updated!" ifSuccess={true} />
-            )}
+          <form onSubmit={handleSubmit(onValid)}>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Bulletin Post</PopoverHeader>
+            <PopoverBody>
+              {values.formSuccess === true && (
+                <Alert message="My Profile Updated!" ifSuccess={true} />
+              )}
 
-            {values.formSuccess === false && (
-              <Alert message={values.errorMessage} />
-            )}
+              {values.formSuccess === false && (
+                <Alert message={values.errorMessage} />
+              )}
 
-            <div className="form-row">
-              <label htmlFor="title" className="form-label">
-                Title
-              </label>
-              <input
-                type="text"
-                className="form-input"
-                {...register("title", { required: true })}
-                placeholder="TITLE"
-              ></input>
-            </div>
-            {errors?.title?.message && <Alert message={errors.title.message} />}
-
-            <div className="form-row">
-              <label htmlFor="content" className="form-label">
-                Content
-              </label>
-              <textarea
-                cols={30}
-                className="form-input"
-                {...register("content", { required: true })}
-                placeholder=""
-              ></textarea>
-            </div>
-            {errors?.content?.message && (
-              <Alert message={errors.content.message} />
-            )}
-
-            <label htmlFor="existingBoard" className="form-label">
-              SELECT BOARD
-            </label>
-            <Row>
-              <select
-                {...register("existingBoard", { required: true })}
-                defaultValue="-1"
-              >
-                <option value="-1" disabled>
-                  SELECT BOARD
-                </option>
-                <option value="Free">Free</option>
-                <option value="Secret">Secret</option>
-              </select>
-
-              <div className="form-row new-board">
+              <div className="form-row">
+                <label htmlFor="title" className="form-label">
+                  Title
+                </label>
                 <input
                   type="text"
                   className="form-input"
-                  {...register("newBoard", { required: true })}
-                  placeholder="NEW BOARD"
+                  {...register("title", { required: true })}
+                  placeholder="TITLE"
                 ></input>
               </div>
-            </Row>
-            {errors?.newBoard?.message && (
-              <Alert message={errors.newBoard.message} />
-            )}
-          </PopoverBody>
-          <PopoverFooter>
-            <Button type="submit">Save</Button>
-          </PopoverFooter>
+              {errors?.title?.message && (
+                <Alert message={errors.title.message} />
+              )}
+
+              <div className="form-row">
+                <label htmlFor="content" className="form-label">
+                  Content
+                </label>
+                <textarea
+                  cols={30}
+                  className="form-input"
+                  {...register("content", { required: true })}
+                  placeholder=""
+                ></textarea>
+              </div>
+              {errors?.content?.message && (
+                <Alert message={errors.content.message} />
+              )}
+
+              <label htmlFor="existingBoard" className="form-label">
+                SELECT BOARD
+              </label>
+              <Row>
+                <select
+                  {...register("existingBoard", { required: true })}
+                  defaultValue="-1"
+                >
+                  <option value="-1" disabled>
+                    SELECT BOARD
+                  </option>
+                  <option value="Free">Free</option>
+                  <option value="Secret">Secret</option>
+                </select>
+
+                <div className="form-row new-board">
+                  <input
+                    type="text"
+                    className="form-input"
+                    {...register("newBoard", { required: true })}
+                    placeholder="NEW BOARD"
+                  ></input>
+                </div>
+              </Row>
+              {errors?.newBoard?.message && (
+                <Alert message={errors.newBoard.message} />
+              )}
+            </PopoverBody>
+            <PopoverFooter>
+              <Button type="submit">Save</Button>
+            </PopoverFooter>
+          </form>
         </Wrapper>
       </PopoverContent>
     </>
