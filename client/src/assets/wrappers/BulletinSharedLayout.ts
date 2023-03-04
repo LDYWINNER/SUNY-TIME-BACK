@@ -15,7 +15,6 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   }
   .bulletin {
     width: 100%;
-    background-color: blue;
   }
   .toggle-btn {
     background-color: ${(props) => props.theme.main.blue};
@@ -42,15 +41,12 @@ export const Main = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  background-color: black;
 `;
 
 export const MainContent = styled.div`
   width: 100%;
-  background-color: teal;
 `;
 
 export const SubContent = styled.div`
   width: 100%;
-  background-color: tomato;
 `;
