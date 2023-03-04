@@ -13,9 +13,19 @@ export const FilterRow = styled.div`
 
 export const TitleRow = styled.div`
   height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
 `;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  font-size: 5vh;
+  font-weight: 600;
+  color: ${(props) => props.theme.main.blue};
+  font-family: "Bebas Neue", cursive;
+`;
 
 export const BulletinPostBtn = styled.button`
   background-color: ${(props) => props.theme.main.blue};

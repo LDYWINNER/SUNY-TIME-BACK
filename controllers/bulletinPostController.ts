@@ -4,9 +4,9 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors";
 
 const createBulletinPost = async (req: Request, res: Response) => {
-  const { title, content, board, anonymity } = req.body;
+  const { title, content, existingBoard, newBoard, anonymity } = req.body;
 
-  if (!title || !content || !board || !anonymity) {
+  if (!title || !content || !anonymity || (!existingBoard && !newBoard)) {
     throw new BadRequestError("Please provide all values");
   }
 

@@ -17,7 +17,7 @@ function BulletinHome() {
       </FilterRow>
       <TitleRow>
         <Title>Board</Title>
-        <Popover>
+        <Popover closeOnBlur={false} closeOnEsc={false}>
           <PopoverTrigger>
             <BulletinPostBtn type="button" className="btn">
               <BsPencilSquare />
