@@ -40,7 +40,7 @@ export const Main = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 5fr 2fr;
 `;
 
 export const MainContent = styled.div`
