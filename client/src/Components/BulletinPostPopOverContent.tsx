@@ -66,7 +66,7 @@ function BulletinPostPopOverContent() {
             <PopoverHeader>Bulletin Post</PopoverHeader>
             <PopoverBody>
               {values.formSuccess === true && (
-                <Alert message="My Profile Updated!" ifSuccess={true} />
+                <Alert message="Bulletin Posted!" ifSuccess={true} />
               )}
 
               {values.formSuccess === false && (
