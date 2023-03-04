@@ -41,6 +41,7 @@ export const Main = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 5fr 2fr;
+  background-color: ${(props) => props.theme.bgColor.darker};
 `;
 
 export const MainContent = styled.div`
