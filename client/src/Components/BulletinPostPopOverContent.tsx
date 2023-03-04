@@ -7,6 +7,7 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
+  Tooltip,
 } from "@chakra-ui/react";
 import { Alert } from "../Components";
 import {
@@ -14,6 +15,7 @@ import {
   Button,
   Row,
 } from "../assets/wrappers/BulletinPostPopOverContent";
+import { BsQuestionCircleFill } from "react-icons/bs";
 
 interface IForm {
   title: string;
@@ -89,14 +91,49 @@ function BulletinPostPopOverContent() {
               )}
 
               <div className="form-row">
-                <label htmlFor="content" className="form-label">
-                  Content
-                </label>
+                <Row>
+                  <label htmlFor="content" className="form-label">
+                    Content
+                  </label>
+                  <Tooltip
+                    hasArrow
+                    label={
+                      <>
+                        <p>
+                          Below is an summary of key content for using the
+                          bulletin board feature.
+                        </p>
+                        <br />
+                        <p>
+                          - In the case of posting illegaly filmed material, etc
+                        </p>
+                        <p>
+                          - Acts that infringe on the rights of others or cause
+                          discomfort
+                        </p>
+                        <p>
+                          - Acts that violate law, such as criminal or illegal
+                          acts
+                        </p>
+                        <p>
+                          - Acts of writing posts including content related to
+                          profanity, demeaning, discrimination, hatred, suicide,
+                          and violence
+                        </p>
+                        <p>- Pornography, acts that cause sexual shame</p>
+                      </>
+                    }
+                  >
+                    <span className="tooltip-icon">
+                      <BsQuestionCircleFill />
+                    </span>
+                  </Tooltip>
+                </Row>
                 <textarea
                   cols={30}
                   className="form-input"
                   {...register("content", { required: true })}
-                  placeholder=""
+                  placeholder="SUNYTIME established rules to operate the community where anyone can use without any discomfort.&#13;&#10; Violations may result in postings being deleted and use of the service being permanently restricted."
                 ></textarea>
               </div>
               {errors?.content?.message && (

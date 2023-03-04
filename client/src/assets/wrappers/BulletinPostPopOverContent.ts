@@ -36,6 +36,9 @@ export const Wrapper = styled.div`
   .new-board {
     width: 50%;
   }
+  .tooltip-icon {
+    color: ${(props) => props.theme.main.blue};
+  }
 `;
 
 export const Button = styled.button`
@@ -50,4 +53,6 @@ export const Button = styled.button`
 
 export const Row = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
