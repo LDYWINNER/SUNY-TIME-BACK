@@ -16,6 +16,14 @@ export const globalCurrentState = atom({
   default: {
     user: user ? JSON.parse(user) : null,
     token: token,
+    //for the features
+    isEditing: false,
+    editPostId: "",
+    postTitle: "",
+    postContent: "",
+    postBoard: "",
+    bulletinBoardOptions: ["free"],
+    bulletinBoardType: "free",
   },
 });
 
