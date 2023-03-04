@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   font-weight: 500;
   font-family: "Bebas Neue", cursive;
   font-size: max(16px, 1.8vh);
+  margin: 10px;
   header {
     text-align: center;
     color: ${(props) => props.theme.main.blue};
@@ -28,6 +29,10 @@ export const Wrapper = styled.div`
     color: var(--grey-400);
   }
 
+  textarea {
+    height: 100px;
+  }
+
   .new-board {
     width: 50%;
   }
@@ -40,6 +45,7 @@ export const Button = styled.button`
   width: 4rem;
   height: 2rem;
   font-size: max(20px, 2.3vh);
+  float: right;
 `;
 
 export const Row = styled.div`

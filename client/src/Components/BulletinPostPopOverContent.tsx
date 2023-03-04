@@ -91,12 +91,12 @@ function BulletinPostPopOverContent() {
               <label htmlFor="content" className="form-label">
                 Content
               </label>
-              <input
-                type="text"
+              <textarea
+                cols={30}
                 className="form-input"
                 {...register("content", { required: true })}
-                placeholder="CONTENT"
-              ></input>
+                placeholder=""
+              ></textarea>
             </div>
             {errors?.content?.message && (
               <Alert message={errors.content.message} />
