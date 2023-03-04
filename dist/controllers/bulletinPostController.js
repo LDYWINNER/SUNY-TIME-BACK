@@ -18,8 +18,8 @@ const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const { title, content, board } = req.body;
-    if (!title || !content || !board) {
+    const { title, content, board, anonymity } = req.body;
+    if (!title || !content || !board || !anonymity) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;

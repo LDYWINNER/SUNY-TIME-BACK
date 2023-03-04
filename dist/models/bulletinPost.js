@@ -40,6 +40,11 @@ const BulletinPostSchema = new mongoose_1.default.Schema({
         default: "free",
         required: [true, "Please select a board"],
     },
+    anonymity: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
     likes: {
         type: Number,
         required: true,
