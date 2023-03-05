@@ -19,10 +19,7 @@ export const globalCurrentState = atom({
     //for the features
     isEditing: false,
     editPostId: "",
-    postTitle: "",
-    postContent: "",
-    postBoard: "",
-    bulletinBoardOptions: ["free"],
+    bulletinBoardOptions: ["free", "secret"],
     bulletinBoardType: "free",
   },
 });
