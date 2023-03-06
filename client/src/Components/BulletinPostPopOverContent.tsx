@@ -44,7 +44,16 @@ function BulletinPostPopOverContent() {
     reset,
   } = useForm<IForm>();
 
-  const onValid: SubmitHandler<IForm> = async (data) => {};
+  const onValid: SubmitHandler<IForm> = async (data) => {
+    const newPost = {
+      title: data.title,
+      content: data.content,
+      existingBoard: data.existingBoard,
+      newBoard: data.newBoard,
+      anonymity: data.anonymity,
+    };
+    console.log(newPost);
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
