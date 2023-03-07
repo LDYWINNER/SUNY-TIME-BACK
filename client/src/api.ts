@@ -90,6 +90,8 @@ authFetch.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.log(error);
+
     console.log(error.response);
     if (error.response.status === 401) {
       //force the user to logout

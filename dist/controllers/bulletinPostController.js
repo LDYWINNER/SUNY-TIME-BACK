@@ -19,7 +19,7 @@ const errors_1 = require("../errors");
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { title, content, existingBoard, newBoard, anonymity } = req.body;
-    if (!title || !content || !anonymity || (!existingBoard && !newBoard)) {
+    if (!title || !content || (!existingBoard && !newBoard)) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;

@@ -35,10 +35,13 @@ const BulletinPostSchema = new mongoose_1.default.Schema({
         type: String,
         required: [true, "Please provide content"],
     },
-    board: {
+    existingBoard: {
         type: String,
-        default: "free",
-        required: [true, "Please select a board"],
+        default: "Free",
+    },
+    newBoard: {
+        type: String,
+        default: "",
     },
     anonymity: {
         type: Boolean,

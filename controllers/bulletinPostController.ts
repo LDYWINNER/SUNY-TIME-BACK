@@ -6,7 +6,7 @@ import { BadRequestError, UnAuthenticatedError } from "../errors";
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, existingBoard, newBoard, anonymity } = req.body;
 
-  if (!title || !content || !anonymity || (!existingBoard && !newBoard)) {
+  if (!title || !content || (!existingBoard && !newBoard)) {
     throw new BadRequestError("Please provide all values");
   }
 

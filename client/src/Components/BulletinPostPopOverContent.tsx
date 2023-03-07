@@ -16,6 +16,7 @@ import {
   Row,
 } from "../assets/wrappers/BulletinPostPopOverContent";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { authFetch } from "../api";
 
 interface IForm {
   title: string;
@@ -53,6 +54,38 @@ function BulletinPostPopOverContent() {
       anonymity: data.anonymity,
     };
     console.log(newPost);
+
+    try {
+      const { data } = await authFetch.post("/bulletin", newPost);
+      console.log(data);
+
+      setValues({ ...values, formSuccess: true });
+      setTimeout(() => {
+        //clear alert
+        setValues({
+          ...values,
+          formSuccess: null,
+          errorMessage: "",
+        });
+      }, 5000);
+    } catch (error: any) {
+      console.log(error.response);
+      if (error.response.status !== 401) {
+        setValues({
+          ...values,
+          formSuccess: false,
+          errorMessage: error.response.data.msg,
+        });
+      }
+      //clear alert
+      setTimeout(() => {
+        setValues({
+          ...values,
+          formSuccess: null,
+          errorMessage: "",
+        });
+      }, 5000);
+    }
   };
 
   useEffect(() => {
