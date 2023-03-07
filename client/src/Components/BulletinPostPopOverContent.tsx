@@ -175,8 +175,15 @@ function BulletinPostPopOverContent() {
               )}
             </PopoverBody>
             <PopoverFooter>
-              <input type="checkbox" {...register("anonymity")} />
-              <label htmlFor="anonymity">Anonymity</label>
+              <div className="checkbox-div">
+                <input
+                  type="checkbox"
+                  {...register("anonymity")}
+                  id="anonymity"
+                  className="anonymity-checkbox"
+                />
+                <label htmlFor="anonymity">Anonymity</label>
+              </div>
               <Button type="submit">Save</Button>
             </PopoverFooter>
           </form>

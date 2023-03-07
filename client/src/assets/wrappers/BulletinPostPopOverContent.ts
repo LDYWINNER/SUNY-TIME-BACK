@@ -39,6 +39,14 @@ export const Wrapper = styled.div`
   .tooltip-icon {
     color: ${(props) => props.theme.main.blue};
   }
+  .checkbox-div {
+    display: inline-block;
+  }
+  #anonymity {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.2rem;
+  }
 `;
 
 export const Button = styled.button`
