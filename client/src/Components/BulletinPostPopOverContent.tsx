@@ -60,7 +60,7 @@ function BulletinPostPopOverContent() {
       reset({
         title: "",
         content: "",
-        existingBoard: "free",
+        existingBoard: "-1",
         newBoard: "",
         anonymity: false,
       });
@@ -153,10 +153,7 @@ function BulletinPostPopOverContent() {
                 SELECT BOARD
               </label>
               <Row>
-                <select
-                  {...register("existingBoard", { required: true })}
-                  defaultValue="-1"
-                >
+                <select {...register("existingBoard")} defaultValue="-1">
                   <option value="-1" disabled>
                     SELECT BOARD
                   </option>
@@ -168,7 +165,7 @@ function BulletinPostPopOverContent() {
                   <input
                     type="text"
                     className="form-input"
-                    {...register("newBoard", { required: true })}
+                    {...register("newBoard")}
                     placeholder="NEW BOARD"
                   ></input>
                 </div>
@@ -178,10 +175,7 @@ function BulletinPostPopOverContent() {
               )}
             </PopoverBody>
             <PopoverFooter>
-              <input
-                type="checkbox"
-                {...register("anonymity", { required: true })}
-              />
+              <input type="checkbox" {...register("anonymity")} />
               <label htmlFor="anonymity">Anonymity</label>
               <Button type="submit">Save</Button>
             </PopoverFooter>
