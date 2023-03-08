@@ -4,14 +4,10 @@ import {
   ScheduleManager,
   Home,
   Register,
+  Bulletin,
   ProtectedRoute,
   Error,
 } from "./Routes";
-import {
-  AllBulletin,
-  BulletinHome,
-  BulletinSharedLayout,
-} from "./Routes/bulletin/index";
 import {
   CMSharedLayout,
   CMHome,
@@ -33,6 +29,15 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/schedule-manager" element={<ScheduleManager />} />
+
+        <Route
+          path="/bulletin"
+          element={
+            <ProtectedRoute>
+              <Bulletin />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/school-info"
@@ -58,18 +63,6 @@ function Router() {
         >
           <Route index element={<CMHome />} />
           <Route path="all" element={<AllCourses />} />
-        </Route>
-
-        <Route
-          path="/bulletin"
-          element={
-            <ProtectedRoute>
-              <BulletinSharedLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<BulletinHome />} />
-          <Route path="all" element={<AllBulletin />} />
         </Route>
 
         <Route path="*" element={<Error />} />
