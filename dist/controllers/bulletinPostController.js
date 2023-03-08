@@ -28,10 +28,12 @@ const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.createBulletinPost = createBulletinPost;
 const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const allPosts = yield BulletinPost_1.default.find();
-    res
-        .status(http_status_codes_1.StatusCodes.OK)
-        .json({ allPosts, totalPosts: allPosts.length, numOfPages: 1 });
+    const bulletinAllPosts = yield BulletinPost_1.default.find();
+    res.status(http_status_codes_1.StatusCodes.OK).json({
+        bulletinAllPosts,
+        bulletinTotalPosts: bulletinAllPosts.length,
+        bulletinNumOfPages: 1,
+    });
 });
 exports.getAllBulletinPosts = getAllBulletinPosts;
 const updateBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

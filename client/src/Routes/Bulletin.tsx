@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Wrapper,
   Main,
@@ -13,13 +13,51 @@ import { bgImages } from "../assets/assets";
 import { BsPencilSquare } from "react-icons/bs";
 import { BulletinPostPopOverContent } from "../Components";
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
+import { authFetch } from "../api";
+import { useRecoilState } from "recoil";
+import { globalCurrentState } from "../atoms";
+import { removeUserFromLocalStorage } from "../utils";
 
 const Bulletin = () => {
   const [bgImage, setbgImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
+
+  const logoutUser = useCallback(() => {
+    setGlobalCurrentState((currentState) => {
+      return {
+        ...currentState,
+        user: null,
+        token: null,
+      };
+    });
+    removeUserFromLocalStorage();
+    window.location.reload();
+  }, [setGlobalCurrentState]);
+
+  //getting the posts
+  const getPost = useCallback(async () => {
+    let url = `bulletin`;
+
+    setIsLoading(true);
+    try {
+      const { data } = await authFetch(url);
+      const { bulletinAllPosts, bulletinTotalPosts, bulletinNumOfPages } = data;
+      console.log(data);
+
+      setIsLoading(false);
+    } catch (error: any) {
+      console.log(error.response);
+      //log user out
+      logoutUser();
+    }
+  }, [logoutUser]);
 
   useEffect(() => {
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-  }, [bgImage]);
+    getPost();
+  }, [bgImage, getPost]);
 
   return (
     <Wrapper bgImage={bgImage}>
@@ -39,6 +77,7 @@ const Bulletin = () => {
               <BulletinPostPopOverContent />
             </Popover>
           </TitleRow>
+          <div></div>
         </MainContent>
         <SubContent></SubContent>
       </Main>

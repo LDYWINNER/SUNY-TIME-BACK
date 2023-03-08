@@ -16,6 +16,10 @@ export const globalCurrentState = atom({
   default: {
     user: user ? JSON.parse(user) : null,
     token: token,
+    // bulletinAllPosts: [],
+    // bulletinTotalPosts: 0,
+    // bulletinNumOfPages: 1,
+    // bulletinPage: 1,
   },
 });
 
