@@ -16,7 +16,10 @@ const createBulletinPost = async (req: Request, res: Response) => {
 };
 
 const getAllBulletinPosts = async (req: Request, res: Response) => {
-  res.send("getAllBulletinPosts");
+  const allPosts = await BulletinPost.find();
+  res
+    .status(StatusCodes.OK)
+    .json({ allPosts, totalPosts: allPosts.length, numOfPages: 1 });
 };
 
 const updateBulletinPost = async (req: Request, res: Response) => {
