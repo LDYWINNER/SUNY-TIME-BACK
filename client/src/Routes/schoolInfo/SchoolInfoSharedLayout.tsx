@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Wrapper from "../../assets/wrappers/SchoolInfoSharedLayout";
 import { BigSidebar } from "../../Components";
 import { bgImages } from "../../assets/assets";
 import { FaAlignLeft } from "react-icons/fa";
 import links from "../../utils/schoolInfoLinks";
+import {
+  Wrapper,
+  Main,
+  MainContent,
+  SubContent,
+} from "../../assets/wrappers/SchoolInfoSharedLayout";
 
 const SchoolInfoSharedLayout = () => {
   const [bgImage, setbgImage] = useState("");
@@ -23,18 +28,23 @@ const SchoolInfoSharedLayout = () => {
       <main className="bulletin-main">
         <div className="big-sidebar">
           <BigSidebar links={links} showSidebar={showSidebar} />
+          <button
+            type="button"
+            className={
+              showSidebar ? "toggle-btn toggle-btn-hide" : "toggle-btn "
+            }
+            onClick={toggleSidebar}
+          >
+            <FaAlignLeft />
+          </button>
         </div>
         <div className="bulletin">
-          <div className="bulletin-page">
-            <button
-              type="button"
-              className="toggle-btn"
-              onClick={toggleSidebar}
-            >
-              <FaAlignLeft />
-            </button>
-            <Outlet />
-          </div>
+          <Main>
+            <MainContent>
+              <Outlet />
+            </MainContent>
+            <SubContent></SubContent>
+          </Main>
         </div>
       </main>
     </Wrapper>

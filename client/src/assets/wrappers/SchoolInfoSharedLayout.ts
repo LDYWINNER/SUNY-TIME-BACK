@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section<{ bgImage: string }>`
+export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
   height: 100%;
@@ -14,12 +14,7 @@ const Wrapper = styled.section<{ bgImage: string }>`
     display: flex;
   }
   .bulletin {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  .bulletin-page {
-    margin: 0 auto;
-    padding: 2rem 0;
+    width: 100%;
   }
   .toggle-btn {
     background-color: ${(props) => props.theme.main.blue};
@@ -30,7 +25,29 @@ const Wrapper = styled.section<{ bgImage: string }>`
     cursor: pointer;
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 150px;
+    left: 250px;
+    transition: var(--transition);
+  }
+  .toggle-btn-hide {
+    top: 150px;
+    left: 0px;
   }
 `;
 
-export default Wrapper;
+export const Main = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  background-color: ${(props) => props.theme.bgColor.darker};
+`;
+
+export const MainContent = styled.div`
+  width: 100%;
+`;
+
+export const SubContent = styled.div`
+  width: 100%;
+`;
