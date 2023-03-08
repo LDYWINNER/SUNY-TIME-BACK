@@ -4,7 +4,7 @@ import { BigSidebar } from "../../Components";
 import { bgImages } from "../../assets/assets";
 import { FaAlignLeft } from "react-icons/fa";
 import links from "../../utils/cmLinks";
-import Wrapper from "../../assets/wrappers/CMSharedLayout";
+import { Wrapper, Main, Col } from "../../assets/wrappers/CMSharedLayout";
 
 const CMSharedLayout = () => {
   const [bgImage, setbgImage] = useState("");
@@ -23,18 +23,23 @@ const CMSharedLayout = () => {
       <main className="bulletin-main">
         <div className="big-sidebar">
           <BigSidebar links={links} showSidebar={showSidebar} />
+          <button
+            type="button"
+            className={
+              showSidebar ? "toggle-btn toggle-btn-hide" : "toggle-btn "
+            }
+            onClick={toggleSidebar}
+          >
+            <FaAlignLeft />
+          </button>
         </div>
         <div className="bulletin">
-          <div className="bulletin-page">
-            <button
-              type="button"
-              className="toggle-btn"
-              onClick={toggleSidebar}
-            >
-              <FaAlignLeft />
-            </button>
-            <Outlet />
-          </div>
+          <Main>
+            <Col>
+              <Outlet />
+            </Col>
+            <Col></Col>
+          </Main>
         </div>
       </main>
     </Wrapper>
