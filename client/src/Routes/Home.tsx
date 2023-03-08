@@ -13,6 +13,8 @@ import {
   Img,
 } from "../assets/wrappers/Home";
 import { startInterval } from "../utils";
+import { useRecoilValue } from "recoil";
+import { globalCurrentState } from "../atoms";
 
 function Home() {
   const [bgImage, setbgImage] = useState("");
@@ -26,6 +28,7 @@ function Home() {
       setData(await getWeather(lat, lon));
     });
   };
+  const globalState = useRecoilValue(globalCurrentState);
 
   useEffect(() => {
     let weatherId: NodeJS.Timer;
@@ -43,7 +46,8 @@ function Home() {
       <Main>
         <Greeting>
           <Welcome>
-            Hello Username, Welcome to <Title>SUNYTIME</Title>
+            Hello {globalState.user?.username}, Welcome to{" "}
+            <Title>SUNYTIME</Title>
           </Welcome>
         </Greeting>
         <LogoDate>
