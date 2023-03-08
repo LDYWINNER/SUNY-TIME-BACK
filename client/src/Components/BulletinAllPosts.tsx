@@ -7,9 +7,16 @@ import Loading from "./Loading";
 import BulletinSinglePost from "./BulletinSinglePost";
 import Wrapper from "../assets/wrappers/BulletinAllPosts";
 
-interface IPost {
-  comments: any;
+interface IPostComment {
+  content: string;
+  likes: number;
+  dislikes: number;
+  createdBy: string;
+  updatedAt: string;
+}
 
+interface IPost {
+  comments: [IPostComment];
   anonymity: Boolean;
   board: string;
   content: string;
@@ -66,7 +73,7 @@ const BulletinAllPosts = () => {
       // log user out
       logoutUser();
     }
-  }, [logoutUser]);
+  }, [logoutUser, setGlobalCurrentState]);
 
   useEffect(() => {
     getPost();
