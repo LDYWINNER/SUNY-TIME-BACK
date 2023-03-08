@@ -3,6 +3,9 @@ import { useRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
+import Loading from "./Loading";
+import BulletinSinglePost from "./BulletinSinglePost";
+import Wrapper from "../assets/wrappers/BulletinAllPosts";
 
 const BulletinAllPosts = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +46,11 @@ const BulletinAllPosts = () => {
     getPost();
   }, [getPost]);
 
-  return <h1>Bulletin All Posts</h1>;
+  return (
+    <div>
+      <Loading center />
+    </div>
+  );
 };
 
 export default BulletinAllPosts;
