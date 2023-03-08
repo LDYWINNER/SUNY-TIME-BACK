@@ -23,9 +23,9 @@ import UpdateUserModal from "./UpdateUserModal";
 function Header() {
   //route match
   const homeMatch = useMatch("/");
-  const infoMatch = useMatch("/school-info");
-  const courseManagerMatch = useMatch("/course-manager");
-  const scheduleManagerMatch = useMatch("/schedule-manager");
+  const infoMatch = useMatch("/school-info/*");
+  const courseManagerMatch = useMatch("/course-manager/*");
+  const scheduleManagerMatch = useMatch("/schedule-manager/*");
   const bulletinMatch = useMatch("/bulletin");
   const registerMatch = useMatch("/register");
   //nav animation
