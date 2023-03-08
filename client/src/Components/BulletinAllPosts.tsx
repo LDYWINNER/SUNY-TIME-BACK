@@ -7,6 +7,24 @@ import Loading from "./Loading";
 import BulletinSinglePost from "./BulletinSinglePost";
 import Wrapper from "../assets/wrappers/BulletinAllPosts";
 
+interface IPost {
+  comments: any;
+
+  anonymity: Boolean;
+  board: string;
+  content: string;
+  createdAt: string;
+  createdBy: string;
+  dislikes: number;
+  existingBoard: string;
+  likes: number;
+  newBoard: string;
+  title: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
+
 const BulletinAllPosts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [globalState, setGlobalCurrentState] =
@@ -32,13 +50,21 @@ const BulletinAllPosts = () => {
     try {
       const { data } = await authFetch(url);
       const { bulletinAllPosts, bulletinTotalPosts, bulletinNumOfPages } = data;
+      setGlobalCurrentState((currentState) => {
+        return {
+          ...currentState,
+          bulletinAllPosts,
+          bulletinTotalPosts,
+          bulletinNumOfPages,
+        };
+      });
       console.log(data);
 
       setIsLoading(false);
     } catch (error: any) {
       console.log(error.response);
-      //log user out
-      // logoutUser();
+      // log user out
+      logoutUser();
     }
   }, [logoutUser]);
 
@@ -46,10 +72,25 @@ const BulletinAllPosts = () => {
     getPost();
   }, [getPost]);
 
+  if (isLoading) {
+    return <Loading center />;
+  }
+  if (globalState.bulletinAllPosts.length === 0) {
+    return (
+      <Wrapper>
+        <h2>No posts to display...</h2>
+      </Wrapper>
+    );
+  }
   return (
-    <div>
-      <Loading center />
-    </div>
+    <Wrapper>
+      <div className="posts">
+        {globalState.bulletinAllPosts.map((post: IPost) => {
+          return <BulletinSinglePost key={post._id} {...post} />;
+        })}
+      </div>
+      {/* pagination button */}
+    </Wrapper>
   );
 };
 

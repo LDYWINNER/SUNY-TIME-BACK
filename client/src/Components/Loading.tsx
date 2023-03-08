@@ -1,5 +1,5 @@
 interface ILoading {
-  center: Boolean;
+  center?: Boolean;
 }
 
 const Loading = ({ center }: ILoading) => {
