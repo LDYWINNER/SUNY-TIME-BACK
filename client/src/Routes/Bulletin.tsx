@@ -23,27 +23,25 @@ const Bulletin = () => {
 
   return (
     <Wrapper bgImage={bgImage}>
-      <main className="bulletin-main">
-        <Main>
-          <MainContent>
-            <FilterRow>
-              <h1>filters</h1>
-            </FilterRow>
-            <TitleRow>
-              <Title>Board</Title>
-              <Popover closeOnBlur={false} closeOnEsc={false}>
-                <PopoverTrigger>
-                  <BulletinPostBtn type="button" className="btn">
-                    <BsPencilSquare />
-                  </BulletinPostBtn>
-                </PopoverTrigger>
-                <BulletinPostPopOverContent />
-              </Popover>
-            </TitleRow>
-          </MainContent>
-          <SubContent></SubContent>
-        </Main>
-      </main>
+      <Main>
+        <MainContent>
+          <FilterRow>
+            <h1>filters</h1>
+          </FilterRow>
+          <TitleRow>
+            <Title>Board</Title>
+            <Popover closeOnBlur={false} closeOnEsc={false}>
+              <PopoverTrigger>
+                <BulletinPostBtn type="button" className="btn">
+                  <BsPencilSquare />
+                </BulletinPostBtn>
+              </PopoverTrigger>
+              <BulletinPostPopOverContent />
+            </Popover>
+          </TitleRow>
+        </MainContent>
+        <SubContent></SubContent>
+      </Main>
     </Wrapper>
   );
 };

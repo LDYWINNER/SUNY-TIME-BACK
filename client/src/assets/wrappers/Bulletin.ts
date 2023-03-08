@@ -3,21 +3,16 @@ import styled from "styled-components";
 export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
-  .bulletin-main {
-    height: 100%;
-    width: 100%;
-    margin-top: 100px;
-    display: flex;
-  }
 `;
 
 export const Main = styled.div`
   width: 100%;
   height: 100%;
+  margin-top: 200px;
   display: grid;
   grid-template-columns: 5fr 2fr;
   background-color: ${(props) => props.theme.bgColor.darker};
