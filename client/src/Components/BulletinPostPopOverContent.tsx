@@ -67,7 +67,8 @@ function BulletinPostPopOverContent() {
           formSuccess: null,
           errorMessage: "",
         });
-      }, 5000);
+      }, 3000);
+      window.location.reload();
     } catch (error: any) {
       console.log(error.response);
       if (error.response.status !== 401) {
@@ -84,7 +85,7 @@ function BulletinPostPopOverContent() {
           formSuccess: null,
           errorMessage: "",
         });
-      }, 5000);
+      }, 4000);
     }
   };
 

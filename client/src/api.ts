@@ -75,9 +75,11 @@ export const authFetch = axios.create({
 //request
 authFetch.interceptors.request.use(
   (config) => {
-    const globalState =
-      getRecoilExternalLoadable(globalCurrentState).getValue();
-    config.headers["Authorization"] = `Bearer ${globalState.token}`;
+    // const globalState =
+    //   getRecoilExternalLoadable(globalCurrentState).getValue();
+    // config.headers["Authorization"] = `Bearer ${globalState.token}`;
+    const token = localStorage.getItem("token");
+    config.headers["Authorization"] = `Bearer ${token}`;
     return config;
   },
   (error) => {
