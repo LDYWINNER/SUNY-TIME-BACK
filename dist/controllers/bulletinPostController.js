@@ -23,6 +23,8 @@ const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
+    const user = JSON.parse(localStorage.getItem("user"));
+    req.body.createdByUsername = user.username;
     const post = yield BulletinPost_1.default.create(req.body);
     res.status(http_status_codes_1.StatusCodes.CREATED).json({ post });
 });

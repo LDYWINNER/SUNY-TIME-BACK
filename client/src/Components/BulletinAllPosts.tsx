@@ -23,6 +23,7 @@ interface IPost {
   content: string;
   createdAt: string;
   createdBy: string;
+  createdByUsername: string;
   dislikes: number;
   existingBoard: string;
   likes: number;
@@ -98,7 +99,7 @@ const BulletinAllPosts = () => {
             <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
               <Row>
                 <h2>{post.title}</h2>
-                <h5>{post.anonymity ? "익명" : post.createdBy}</h5>
+                <h5>{post.anonymity ? "익명" : post.createdByUsername}</h5>
               </Row>
               <h5>{post.content}</h5>
               <Row>

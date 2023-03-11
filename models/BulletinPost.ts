@@ -69,6 +69,10 @@ const BulletinPostSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Please provide user"],
     },
+    createdByUsername: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

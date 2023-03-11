@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import BulletinPost from "../models/BulletinPost";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError, UnAuthenticatedError } from "../errors";
+import { BadRequestError } from "../errors";
+import User from "../models/User";
 
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, existingBoard, newBoard, anonymity } = req.body;
@@ -11,6 +12,9 @@ const createBulletinPost = async (req: Request, res: Response) => {
   }
 
   req.body.createdBy = req.user?.userId;
+  const user = JSON.parse(localStorage.getItem("user") as string);
+  req.body.createdByUsername = user.username;
+
   const post = await BulletinPost.create(req.body);
   res.status(StatusCodes.CREATED).json({ post });
 };
