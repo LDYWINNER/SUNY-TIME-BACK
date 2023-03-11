@@ -1,9 +1,6 @@
 import axios from "axios";
 import { globalCurrentState } from "./atoms";
-import {
-  getRecoilExternalLoadable,
-  setRecoilExternalState,
-} from "./RecoilExternalStatePortal";
+import { setRecoilExternalState } from "./RecoilExternalStatePortal";
 import { removeUserFromLocalStorage } from "./utils";
 
 export interface IGetWeatherResult {
