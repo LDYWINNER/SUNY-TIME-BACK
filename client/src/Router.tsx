@@ -7,6 +7,7 @@ import {
   Bulletin,
   ProtectedRoute,
   Error,
+  SinglePost,
 } from "./Routes";
 import {
   CMSharedLayout,
@@ -35,6 +36,14 @@ function Router() {
           element={
             <ProtectedRoute>
               <Bulletin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/bulletin/:postId"
+          element={
+            <ProtectedRoute>
+              <SinglePost />
             </ProtectedRoute>
           }
         />

@@ -4,8 +4,9 @@ import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import Loading from "./Loading";
-import BulletinSinglePost from "./BulletinSinglePost";
-import Wrapper from "../assets/wrappers/BulletinAllPosts";
+import { Wrapper, Post } from "../assets/wrappers/BulletinAllPosts";
+import { Link } from "react-router-dom";
+import moment from "moment";
 
 interface IPostComment {
   content: string;
@@ -93,7 +94,14 @@ const BulletinAllPosts = () => {
     <Wrapper>
       <div className="posts">
         {globalState.bulletinAllPosts.map((post: IPost) => {
-          return <BulletinSinglePost key={post._id} {...post} />;
+          return (
+            <Post key={post._id}>
+              <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
+                <h1>{post.content}</h1>
+                <h2>{moment(post.createdAt).format("MMM Do, YYYY")}</h2>
+              </Link>
+            </Post>
+          );
         })}
       </div>
       {/* pagination button */}

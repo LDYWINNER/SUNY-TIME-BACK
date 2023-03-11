@@ -11,7 +11,6 @@ import SMCalendar from "./SMCalendar";
 import BulletinPostPopOverContent from "./BulletinPostPopOverContent";
 import BulletinAllPosts from "./BulletinAllPosts";
 import BulletinSearch from "./BulletinSearch";
-import BulletinSinglePost from "./BulletinSinglePost";
 import PostInfo from "./PostInfo";
 
 export {
@@ -29,6 +28,5 @@ export {
   BulletinPostPopOverContent,
   BulletinAllPosts,
   BulletinSearch,
-  BulletinSinglePost,
   PostInfo,
 };
