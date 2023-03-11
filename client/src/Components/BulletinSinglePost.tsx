@@ -1,3 +1,5 @@
+import moment from "moment";
+
 interface IPostComment {
   content: string;
   likes: number;
@@ -23,8 +25,14 @@ interface IPost {
   _id: string;
 }
 
-const BulletinSinglePost = ({ content }: IPost) => {
-  return <h1>{content}</h1>;
+const BulletinSinglePost = ({ content, createdAt }: IPost) => {
+  const date = moment(createdAt).format("MMM Do, YYYY");
+  return (
+    <div>
+      <h1>{content}</h1>
+      <h2>{date}</h2>
+    </div>
+  );
 };
 
 export default BulletinSinglePost;
