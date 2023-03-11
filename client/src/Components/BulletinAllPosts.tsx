@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import { Wrapper, Post, Row, Icon } from "../assets/wrappers/BulletinAllPosts";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 
 interface IPostComment {
   content: string;
@@ -105,8 +106,14 @@ const BulletinAllPosts = () => {
               <Row>
                 <h5>{moment(post.createdAt).format("MMM Do, YYYY")}</h5>
                 <Icon>
-                  <h5>{post.likes}</h5>
-                  <h5>{post.dislikes}</h5>
+                  <Row style={{ color: "red" }}>
+                    <AiOutlineLike />
+                    {post.likes}
+                  </Row>
+                  <Row style={{ color: "blue" }}>
+                    <AiOutlineDislike />
+                    {post.dislikes}
+                  </Row>
                 </Icon>
               </Row>
             </Link>
