@@ -1,24 +1,28 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  margin-top: 4rem;
   h2 {
     text-transform: none;
   }
   & > h5 {
     font-weight: 700;
   }
-  .posts {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
-  }
   @media (min-width: 992px) {
-    .posts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
   }
 `;
-export const Post = styled.div``;
+
+export const Post = styled.div`
+  color: ${(props) => props.theme.textColor.lighter};
+  border: 2px solid ${(props) => props.theme.textColor.lighter};
+  background-color: ${(props) => props.theme.bgColor.lighter};
+  padding: 1.5rem 1rem;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Icon = styled.div`
+  display: flex;
+`;

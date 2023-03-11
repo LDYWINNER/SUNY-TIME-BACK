@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
-  height: 100vh;
+  height: 200vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -15,11 +15,12 @@ export const Main = styled.div`
   margin-top: 200px;
   display: grid;
   grid-template-columns: 5fr 2fr;
-  background-color: ${(props) => props.theme.bgColor.darker};
 `;
 
 export const MainContent = styled.div`
   width: 100%;
+  margin-left: 5rem;
+  margin-right: 5rem;
 `;
 
 export const SubContent = styled.div`
@@ -27,16 +28,14 @@ export const SubContent = styled.div`
 `;
 
 export const FilterRow = styled.div`
-  height: 10%;
+  height: 5rem;
 `;
 
 export const TitleRow = styled.div`
-  height: 10%;
+  height: 10rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 30px;
-  margin-right: 30px;
 `;
 
 export const Title = styled.span`

@@ -4,7 +4,7 @@ import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import Loading from "./Loading";
-import { Wrapper, Post } from "../assets/wrappers/BulletinAllPosts";
+import { Wrapper, Post, Row, Icon } from "../assets/wrappers/BulletinAllPosts";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -92,18 +92,26 @@ const BulletinAllPosts = () => {
   }
   return (
     <Wrapper>
-      <div className="posts">
-        {globalState.bulletinAllPosts.map((post: IPost) => {
-          return (
-            <Post key={post._id}>
-              <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
-                <h1>{post.content}</h1>
-                <h2>{moment(post.createdAt).format("MMM Do, YYYY")}</h2>
-              </Link>
-            </Post>
-          );
-        })}
-      </div>
+      {globalState.bulletinAllPosts.map((post: IPost) => {
+        return (
+          <Post key={post._id}>
+            <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
+              <Row>
+                <h2>{post.title}</h2>
+                <h5>{post.anonymity ? "익명" : post.createdBy}</h5>
+              </Row>
+              <h5>{post.content}</h5>
+              <Row>
+                <h5>{moment(post.createdAt).format("MMM Do, YYYY")}</h5>
+                <Icon>
+                  <h5>{post.likes}</h5>
+                  <h5>{post.dislikes}</h5>
+                </Icon>
+              </Row>
+            </Link>
+          </Post>
+        );
+      })}
       {/* pagination button */}
     </Wrapper>
   );

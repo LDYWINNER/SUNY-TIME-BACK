@@ -68,5 +68,9 @@ const BulletinPostSchema = new mongoose_1.default.Schema({
         ref: "User",
         required: [true, "Please provide user"],
     },
+    createdByUsername: {
+        type: String,
+        required: true,
+    },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("BulletinPost", BulletinPostSchema);
