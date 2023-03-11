@@ -8,8 +8,5 @@ const bulletinPostController_1 = require("../controllers/bulletinPostController"
 const bulletinPostRouter = express_1.default.Router();
 bulletinPostRouter.route("/").post(bulletinPostController_1.createBulletinPost).get(bulletinPostController_1.getAllBulletinPosts);
 bulletinPostRouter.route("/stats").get(bulletinPostController_1.showStats);
-bulletinPostRouter
-    .route("/:id")
-    .delete(bulletinPostController_1.deleteBulletinPost)
-    .patch(bulletinPostController_1.updateBulletinPost);
+bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost);
 exports.default = bulletinPostRouter;

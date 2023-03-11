@@ -28,10 +28,6 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
   });
 };
 
-const updateBulletinPost = async (req: Request, res: Response) => {
-  res.send("updateBulletinPost");
-};
-
 const deleteBulletinPost = async (req: Request, res: Response) => {
   res.send("deleteBulletinPost");
 };
@@ -44,6 +40,5 @@ export {
   createBulletinPost,
   deleteBulletinPost,
   getAllBulletinPosts,
-  updateBulletinPost,
   showStats,
 };
