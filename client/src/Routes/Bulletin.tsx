@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   Wrapper,
   Main,
@@ -17,13 +17,15 @@ import {
   BulletinSearch,
 } from "../Components";
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
+import { useRecoilState } from "recoil";
+import { bulletinBgImageState } from "../atoms";
 
 const Bulletin = () => {
-  const [bgImage, setbgImage] = useState("");
+  const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
 
   useEffect(() => {
-    setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-  }, [bgImage]);
+    setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+  }, [bgImage, setBgImage]);
 
   return (
     <Wrapper bgImage={bgImage}>

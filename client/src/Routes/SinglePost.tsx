@@ -1,4 +1,7 @@
 import { useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { Wrapper } from "../assets/wrappers/SinglePost";
+import { bulletinBgImageState } from "../atoms";
 
 interface IPostComment {
   content: string;
@@ -26,13 +29,17 @@ interface RouteState {
 }
 
 function SinglePost() {
+  const bgImage = useRecoilValue(bulletinBgImageState);
   const location = useLocation();
   const state = location.state as RouteState;
 
   return (
-    <div>
+    <Wrapper bgImage={bgImage}>
       <h1>{state.title}</h1>
-    </div>
+      <button type="button" className="btn delete-btn" onClick={() => "delete"}>
+        DELETE
+      </button>
+    </Wrapper>
   );
 }
 

@@ -37,3 +37,8 @@ export const toDoState = atom<IToDoState>({
   default: {},
   effects_UNSTABLE: [persistAtom],
 });
+
+export const bulletinBgImageState = atom({
+  key: "bulletinBgImage",
+  default: "",
+});
