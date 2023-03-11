@@ -8,3 +8,17 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   display: flex;
   align-items: center;
 `;
+
+export const TitleRow = styled.div`
+  height: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Title = styled.span`
+  font-size: 5vh;
+  font-weight: 600;
+  color: ${(props) => props.theme.main.blue};
+  font-family: "Bebas Neue", cursive;
+`;
