@@ -13,14 +13,14 @@ export const Main = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 200px;
+  margin-left: 4.5rem;
+  margin-right: 4.5rem;
   display: grid;
   grid-template-columns: 5fr 2fr;
 `;
 
 export const MainContent = styled.div`
   width: 100%;
-  margin-left: 5rem;
-  margin-right: 5rem;
 `;
 
 export const SubContent = styled.div`
