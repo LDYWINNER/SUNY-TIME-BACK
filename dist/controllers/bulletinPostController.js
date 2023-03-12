@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.showStats = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
+exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
 const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
@@ -47,7 +47,3 @@ const deleteBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.send("deleteBulletinPost");
 });
 exports.deleteBulletinPost = deleteBulletinPost;
-const showStats = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("showStats");
-});
-exports.showStats = showStats;

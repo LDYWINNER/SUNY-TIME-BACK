@@ -37,13 +37,4 @@ const deleteBulletinPost = async (req: Request, res: Response) => {
   res.send("deleteBulletinPost");
 };
 
-const showStats = async (req: Request, res: Response) => {
-  res.send("showStats");
-};
-
-export {
-  createBulletinPost,
-  deleteBulletinPost,
-  getAllBulletinPosts,
-  showStats,
-};
+export { createBulletinPost, deleteBulletinPost, getAllBulletinPosts };
