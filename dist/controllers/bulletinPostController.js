@@ -16,15 +16,20 @@ exports.showStats = exports.getAllBulletinPosts = exports.deleteBulletinPost = e
 const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
+const User_1 = __importDefault(require("../models/User"));
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     const { title, content, existingBoard, newBoard, anonymity } = req.body;
     if (!title || !content || (!existingBoard && !newBoard)) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
-    const user = JSON.parse(localStorage.getItem("user"));
-    req.body.createdByUsername = user.username;
+    req.body.anonymity = anonymity;
+    const fetchUsername = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+        return User_1.default.findOne({ _id: userId }).then((user) => user === null || user === void 0 ? void 0 : user.username);
+    });
+    let username = yield fetchUsername((_b = req.user) === null || _b === void 0 ? void 0 : _b.userId);
+    req.body.createdByUsername = username;
     const post = yield BulletinPost_1.default.create(req.body);
     res.status(http_status_codes_1.StatusCodes.CREATED).json({ post });
 });
