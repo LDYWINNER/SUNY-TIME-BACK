@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import BulletinPost from "../models/BulletinPost";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError } from "../errors";
-import User from "../models/User";
 
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, existingBoard, newBoard, anonymity } = req.body;

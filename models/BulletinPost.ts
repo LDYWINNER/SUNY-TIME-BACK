@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Model, Schema, model, Types } from "mongoose";
 
-const BulletinPostComment = new mongoose.Schema(
+const BulletinPostComment = new Schema(
   {
     content: {
       type: String,
@@ -17,7 +17,7 @@ const BulletinPostComment = new mongoose.Schema(
       default: 0,
     },
     createdBy: {
-      type: mongoose.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "User",
       required: [true, "Please provide user"],
     },
@@ -25,7 +25,7 @@ const BulletinPostComment = new mongoose.Schema(
   { timestamps: true }
 );
 
-const BulletinPostSchema = new mongoose.Schema(
+const BulletinPostSchema = new Schema(
   {
     title: {
       type: String,
@@ -65,7 +65,7 @@ const BulletinPostSchema = new mongoose.Schema(
       default: [],
     },
     createdBy: {
-      type: mongoose.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "User",
       required: [true, "Please provide user"],
     },
@@ -77,4 +77,4 @@ const BulletinPostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("BulletinPost", BulletinPostSchema);
+export default model("BulletinPost", BulletinPostSchema);
