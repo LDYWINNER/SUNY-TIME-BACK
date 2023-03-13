@@ -4,7 +4,14 @@ import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import Loading from "./Loading";
-import { Wrapper, Post, Row, Icon } from "../assets/wrappers/BulletinAllPosts";
+import {
+  Wrapper,
+  Post,
+  Row,
+  Container,
+  User,
+  Icon,
+} from "../assets/wrappers/BulletinAllPosts";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
@@ -98,13 +105,17 @@ const BulletinAllPosts = () => {
         return (
           <Post key={post._id}>
             <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
+              <Container>
+                <Row>
+                  <h2>{post.title}</h2>
+                  <User>
+                    {post.anonymity ? "익명" : post.createdByUsername}
+                  </User>
+                </Row>
+                <h4>{post.content}</h4>
+              </Container>
               <Row>
-                <h2>{post.title}</h2>
-                <h5>{post.anonymity ? "익명" : post.createdByUsername}</h5>
-              </Row>
-              <h5>{post.content}</h5>
-              <Row>
-                <h5>{moment(post.createdAt).format("MMM Do, YYYY")}</h5>
+                <h5>{moment(post.createdAt).format("MMMM Do, h:mm a")}</h5>
                 <Icon>
                   <Row style={{ color: "red" }}>
                     <AiOutlineLike />
