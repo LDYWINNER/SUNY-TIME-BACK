@@ -6,7 +6,16 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   height: 100vh;
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
+`;
+
+export const Container = styled.div`
+  margin-top: 200px;
+  width: 70%;
+  height: 100%;
+  background-color: ${(props) => props.theme.bgColor.lighter};
+  padding: 0.5rem 3rem;
 `;
 
 export const TitleRow = styled.div`

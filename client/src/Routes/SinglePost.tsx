@@ -1,6 +1,13 @@
+import { stat } from "fs";
+import moment from "moment";
 import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { Wrapper, TitleRow, Title } from "../assets/wrappers/SinglePost";
+import {
+  Wrapper,
+  Container,
+  TitleRow,
+  Title,
+} from "../assets/wrappers/SinglePost";
 import { bulletinBgImageState } from "../atoms";
 
 interface IPostComment {
@@ -14,10 +21,10 @@ interface IPostComment {
 interface RouteState {
   comments: [IPostComment];
   anonymity: Boolean;
-  board: string;
   content: string;
   createdAt: string;
   createdBy: string;
+  createdByUsername: string;
   dislikes: number;
   existingBoard: string;
   likes: number;
@@ -35,13 +42,26 @@ function SinglePost() {
 
   return (
     <Wrapper bgImage={bgImage}>
-      <TitleRow>
-        <Title>Board</Title>
-      </TitleRow>
-      <h1>{state.title}</h1>
-      <button type="button" className="btn delete-btn" onClick={() => "delete"}>
-        DELETE
-      </button>
+      <Container>
+        <div>back buttton</div>
+        <TitleRow>
+          <Title>{state.newBoard ? state.newBoard : state.existingBoard}</Title>
+        </TitleRow>
+        <h1>{state.title}</h1>
+        <h4>{state.anonymity ? "익명" : state.createdByUsername}</h4>
+        <h4>{state.content}</h4>
+        <h4>{moment(state.createdAt).format("MMMM Do, h:mm a")}</h4>
+        <h4>{state.likes}</h4>
+        <h4>{state.dislikes}</h4>
+        <div>comments</div>
+        <button
+          type="button"
+          className="btn delete-btn"
+          onClick={() => "delete"}
+        >
+          DELETE
+        </button>
+      </Container>
     </Wrapper>
   );
 }
