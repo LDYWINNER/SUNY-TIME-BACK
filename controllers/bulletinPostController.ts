@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import BulletinPost from "../models/BulletinPost";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError } from "../errors";
+import { BadRequestError, NotFoundError } from "../errors";
 import User from "../models/User";
+import checkPermissions from "../utils/checkPermissions";
 
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, existingBoard, newBoard, anonymity } = req.body;
@@ -34,7 +35,23 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
 };
 
 const deleteBulletinPost = async (req: Request, res: Response) => {
-  res.send("deleteBulletinPost");
+  const { id: postId } = req.params;
+
+  const post = await BulletinPost.findOne({ _id: postId });
+
+  if (!post) {
+    throw new NotFoundError(`No post with id: ${postId}`);
+  }
+
+  checkPermissions(
+    req.user as {
+      userId: string;
+    },
+    post.createdBy
+  );
+
+  await post.remove();
+  res.status(StatusCodes.OK).json({ msg: "Success! Post removed" });
 };
 
 export { createBulletinPost, deleteBulletinPost, getAllBulletinPosts };

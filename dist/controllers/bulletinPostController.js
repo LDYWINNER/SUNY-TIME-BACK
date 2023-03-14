@@ -17,6 +17,7 @@ const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const User_1 = __importDefault(require("../models/User"));
+const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const { title, content, existingBoard, newBoard, anonymity } = req.body;
@@ -44,6 +45,13 @@ const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, func
 });
 exports.getAllBulletinPosts = getAllBulletinPosts;
 const deleteBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("deleteBulletinPost");
+    const { id: postId } = req.params;
+    const post = yield BulletinPost_1.default.findOne({ _id: postId });
+    if (!post) {
+        throw new errors_1.NotFoundError(`No post with id: ${postId}`);
+    }
+    (0, checkPermissions_1.default)(req.user, post.createdBy);
+    yield post.remove();
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Success! Post removed" });
 });
 exports.deleteBulletinPost = deleteBulletinPost;
