@@ -38,7 +38,7 @@ const BulletinPostSchema = new Schema(
     },
     board: {
       type: String,
-      default: "Free",
+      required: [true, "Please select a board"],
     },
     anonymity: {
       type: Boolean,

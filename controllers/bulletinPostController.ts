@@ -6,9 +6,9 @@ import User from "../models/User";
 import checkPermissions from "../utils/checkPermissions";
 
 const createBulletinPost = async (req: Request, res: Response) => {
-  const { title, content, existingBoard, newBoard, anonymity } = req.body;
+  const { title, content, board, anonymity } = req.body;
 
-  if (!title || !content || (!existingBoard && !newBoard)) {
+  if (!title || !content || !board) {
     throw new BadRequestError("Please provide all values");
   }
 

@@ -20,8 +20,8 @@ const User_1 = __importDefault(require("../models/User"));
 const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
-    const { title, content, existingBoard, newBoard, anonymity } = req.body;
-    if (!title || !content || (!existingBoard && !newBoard)) {
+    const { title, content, board, anonymity } = req.body;
+    if (!title || !content || !board) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;

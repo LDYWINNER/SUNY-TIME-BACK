@@ -34,7 +34,7 @@ const BulletinPostSchema = new mongoose_1.Schema({
     },
     board: {
         type: String,
-        default: "Free",
+        required: [true, "Please select a board"],
     },
     anonymity: {
         type: Boolean,
