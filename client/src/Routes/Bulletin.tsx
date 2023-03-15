@@ -32,7 +32,6 @@ const Bulletin = () => {
       <Main>
         <MainContent>
           <FilterRow>
-            <h1>filters</h1>
             <BulletinSearch />
           </FilterRow>
           <TitleRow>

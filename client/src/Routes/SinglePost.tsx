@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -56,8 +56,7 @@ function SinglePost() {
   const bgImage = useRecoilValue(bulletinBgImageState);
   const location = useLocation();
   const state = location.state as RouteState;
-  const [globalState, setGlobalCurrentState] =
-    useRecoilState(globalCurrentState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
 
