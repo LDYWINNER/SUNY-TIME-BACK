@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { useRecoilState } from "recoil";
-import { globalCurrentState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { bulletinSearchState, globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import Loading from "./Loading";
@@ -46,6 +46,7 @@ const BulletinAllPosts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
+  const { boardFilter, searchKeyword } = useRecoilValue(bulletinSearchState);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -61,7 +62,11 @@ const BulletinAllPosts = () => {
 
   //getting the posts
   const getPost = useCallback(async () => {
-    let url = `bulletin`;
+    let url = `bulletin?board=${boardFilter}`;
+
+    if (searchKeyword) {
+      url = url + `&search=${searchKeyword}`;
+    }
 
     setIsLoading(true);
     try {
@@ -83,11 +88,11 @@ const BulletinAllPosts = () => {
       // log user out
       logoutUser();
     }
-  }, [logoutUser, setGlobalCurrentState]);
+  }, [boardFilter, logoutUser, searchKeyword, setGlobalCurrentState]);
 
   useEffect(() => {
     getPost();
-  }, [getPost]);
+  }, [getPost, boardFilter, searchKeyword]);
 
   if (isLoading) {
     return <Loading center />;

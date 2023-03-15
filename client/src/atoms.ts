@@ -42,3 +42,11 @@ export const bulletinBgImageState = atom({
   key: "bulletinBgImage",
   default: "",
 });
+
+export const bulletinSearchState = atom({
+  key: "bulletinSearch",
+  default: {
+    searchKeyword: "",
+    boardFilter: "Free",
+  },
+});
