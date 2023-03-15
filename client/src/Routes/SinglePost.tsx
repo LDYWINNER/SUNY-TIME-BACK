@@ -8,9 +8,20 @@ import {
   TitleRow,
   Title,
 } from "../assets/wrappers/SinglePost";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
+  Button,
+} from "@chakra-ui/react";
 import { bulletinBgImageState, globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 interface IPostComment {
   content: string;
@@ -44,6 +55,8 @@ function SinglePost() {
   const state = location.state as RouteState;
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef(null);
 
   const logoutUser = () => {
     setGlobalCurrentState((currentState) => {
@@ -74,6 +87,41 @@ function SinglePost() {
         <div>back buttton</div>
         <TitleRow>
           <Title>{state.newBoard ? state.newBoard : state.existingBoard}</Title>
+
+          <button type="button" className="btn delete-btn" onClick={onOpen}>
+            DELETE
+          </button>
+          <AlertDialog
+            isOpen={isOpen}
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+            isCentered
+          >
+            <AlertDialogOverlay>
+              <AlertDialogContent>
+                <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                  Delete Post
+                </AlertDialogHeader>
+
+                <AlertDialogBody>
+                  Are you sure? You can't undo this action afterwards.
+                </AlertDialogBody>
+
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => deletePost(state._id)}
+                    ml={3}
+                  >
+                    Delete
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialogOverlay>
+          </AlertDialog>
         </TitleRow>
         <h1>{state.title}</h1>
         <h4>{state.anonymity ? "익명" : state.createdByUsername}</h4>
@@ -82,13 +130,6 @@ function SinglePost() {
         <h4>{state.likes}</h4>
         <h4>{state.dislikes}</h4>
         <div>comments</div>
-        <button
-          type="button"
-          className="btn delete-btn"
-          onClick={() => deletePost(state._id)}
-        >
-          DELETE
-        </button>
       </Container>
     </Wrapper>
   );
