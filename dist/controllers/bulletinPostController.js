@@ -21,7 +21,7 @@ const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"))
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const { title, content, board, anonymity } = req.body;
-    if (!title || !content || !board) {
+    if (!title || !content || board === "-1") {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;

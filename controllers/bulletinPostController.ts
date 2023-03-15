@@ -8,7 +8,7 @@ import checkPermissions from "../utils/checkPermissions";
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, board, anonymity } = req.body;
 
-  if (!title || !content || !board) {
+  if (!title || !content || board === "-1") {
     throw new BadRequestError("Please provide all values");
   }
 

@@ -49,7 +49,7 @@ function BulletinPostPopOverContent() {
     const newPost = {
       title: data.title,
       content: data.content,
-      board: data.existingBoard ? data.existingBoard : data.newBoard,
+      board: data.existingBoard,
       anonymity: data.anonymity,
     };
     console.log(newPost);
@@ -193,19 +193,7 @@ function BulletinPostPopOverContent() {
                   <option value="Free">Free</option>
                   <option value="Secret">Secret</option>
                 </select>
-
-                <div className="form-row new-board">
-                  <input
-                    type="text"
-                    className="form-input"
-                    {...register("newBoard")}
-                    placeholder="NEW BOARD"
-                  ></input>
-                </div>
               </Row>
-              {errors?.newBoard?.message && (
-                <Alert message={errors.newBoard.message} />
-              )}
             </PopoverBody>
             <PopoverFooter>
               <div className="checkbox-div">

@@ -33,9 +33,6 @@ export const Wrapper = styled.div`
     height: 100px;
   }
 
-  .new-board {
-    width: 50%;
-  }
   .tooltip-icon {
     color: ${(props) => props.theme.main.blue};
   }
