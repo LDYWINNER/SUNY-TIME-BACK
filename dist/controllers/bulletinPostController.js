@@ -36,7 +36,26 @@ const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.createBulletinPost = createBulletinPost;
 const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const bulletinAllPosts = yield BulletinPost_1.default.find();
+    const { search, board } = req.query;
+    let queryObject = {
+        board,
+    };
+    // content?: any; title?: any; board: any
+    if (search) {
+        queryObject = {
+            $and: [
+                {
+                    $or: [
+                        { content: { $regex: search, $options: "i" } },
+                        { title: { $regex: search, $options: "i" } },
+                    ],
+                },
+                { board },
+            ],
+        };
+    }
+    let result = BulletinPost_1.default.find(queryObject);
+    const bulletinAllPosts = yield result;
     res.status(http_status_codes_1.StatusCodes.OK).json({
         bulletinAllPosts,
         bulletinTotalPosts: bulletinAllPosts.length,

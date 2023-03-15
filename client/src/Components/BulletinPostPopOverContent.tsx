@@ -49,8 +49,7 @@ function BulletinPostPopOverContent() {
     const newPost = {
       title: data.title,
       content: data.content,
-      existingBoard: data.existingBoard,
-      newBoard: data.newBoard,
+      board: data.existingBoard ? data.existingBoard : data.newBoard,
       anonymity: data.anonymity,
     };
     console.log(newPost);

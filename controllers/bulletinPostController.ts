@@ -25,8 +25,42 @@ const createBulletinPost = async (req: Request, res: Response) => {
   res.status(StatusCodes.CREATED).json({ post });
 };
 
+interface IQueryObject {
+  [x: string]: any;
+  $and?: (
+    | {
+        $or: any;
+      }
+    | {
+        board: any;
+      }
+  )[];
+}
 const getAllBulletinPosts = async (req: Request, res: Response) => {
-  const bulletinAllPosts = await BulletinPost.find();
+  const { search, board } = req.query;
+
+  let queryObject: IQueryObject = {
+    board,
+  };
+  // content?: any; title?: any; board: any
+  if (search) {
+    queryObject = {
+      $and: [
+        {
+          $or: [
+            { content: { $regex: search, $options: "i" } },
+            { title: { $regex: search, $options: "i" } },
+          ],
+        },
+        { board },
+      ],
+    };
+  }
+
+  let result = BulletinPost.find(queryObject);
+
+  const bulletinAllPosts = await result;
+
   res.status(StatusCodes.OK).json({
     bulletinAllPosts,
     bulletinTotalPosts: bulletinAllPosts.length,
