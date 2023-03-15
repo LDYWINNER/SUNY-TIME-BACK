@@ -15,6 +15,10 @@ export const Container = styled.div`
   width: 70%;
   height: 100%;
   background-color: ${(props) => props.theme.bgColor.lighter};
+  padding: 10px;
+`;
+
+export const Main = styled.div`
   padding: 0.5rem 3rem;
 `;
 
