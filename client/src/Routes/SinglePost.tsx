@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -10,6 +10,7 @@ import {
   Title,
   Row,
 } from "../assets/wrappers/SinglePost";
+import { bgImages } from "../assets/assets";
 import {
   AlertDialog,
   AlertDialogBody,
@@ -57,7 +58,7 @@ interface IPost {
 function SinglePost() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const bgImage = useRecoilValue(bulletinBgImageState);
+  const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
   const location = useLocation();
   const { id } = location.state;
   const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
@@ -151,8 +152,9 @@ function SinglePost() {
   };
 
   useEffect(() => {
+    setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
     getSinglePost();
-  }, [getSinglePost]);
+  }, [getSinglePost, setBgImage, bgImage]);
 
   if (isLoading) {
     return <Loading center />;
