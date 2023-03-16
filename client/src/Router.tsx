@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./Components";
 import {
-  ScheduleManager,
   Home,
   Register,
   Bulletin,
@@ -29,7 +28,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/schedule-manager" element={<ScheduleManager />} />
+        {/* <Route path="/schedule-manager" element={<ScheduleManager />} /> */}
 
         <Route
           path="/bulletin"

@@ -25,7 +25,7 @@ function Header() {
   const homeMatch = useMatch("/");
   const infoMatch = useMatch("/school-info/*");
   const courseManagerMatch = useMatch("/course-manager/*");
-  const scheduleManagerMatch = useMatch("/schedule-manager/*");
+  // const scheduleManagerMatch = useMatch("/schedule-manager/*");
   const bulletinMatch = useMatch("/bulletin");
   const registerMatch = useMatch("/register");
   //nav animation
@@ -81,12 +81,12 @@ function Header() {
                 School Info {infoMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
-            <Item>
+            {/* <Item>
               <Link to="/schedule-manager">
                 Schedule Manager{" "}
                 {scheduleManagerMatch && <Circle layoutId="circle" />}
               </Link>
-            </Item>
+            </Item> */}
             <Item>
               <Link to="/course-manager">
                 Course Manager{" "}
