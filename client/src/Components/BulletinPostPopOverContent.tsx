@@ -202,6 +202,7 @@ function BulletinPostPopOverContent() {
                   {...register("anonymity")}
                   id="anonymity"
                   className="anonymity-checkbox"
+                  checked
                 />
                 <label htmlFor="anonymity">Anonymity</label>
               </div>
