@@ -136,6 +136,7 @@ function SinglePost() {
       setLike((prev) => !prev);
       console.log(like);
       await authFetch.patch(`/bulletin?id=${id}&like=${like}`);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -146,6 +147,7 @@ function SinglePost() {
       setDislike((prev) => !prev);
       console.log(dislike);
       await authFetch.patch(`/bulletin?id=${id}&dislike=${dislike}`);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
