@@ -98,7 +98,7 @@ const BulletinAllPosts = () => {
 
   useEffect(() => {
     getPost();
-  }, [getPost, boardFilter, searchKeyword]);
+  }, [getPost, boardFilter, searchKeyword, globalState.bulletinPage]);
 
   if (isLoading) {
     return <Loading center />;
