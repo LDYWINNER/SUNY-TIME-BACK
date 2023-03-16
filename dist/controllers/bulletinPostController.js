@@ -55,11 +55,18 @@ const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, func
         };
     }
     let result = BulletinPost_1.default.find(queryObject);
+    //setup pagination
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 7;
+    const skip = (page - 1) * limit;
+    result = result.skip(skip).limit(limit);
     const bulletinAllPosts = yield result;
+    const bulletinTotalPosts = yield BulletinPost_1.default.countDocuments(queryObject);
+    const bulletinNumOfPages = Math.ceil(bulletinTotalPosts / limit);
     res.status(http_status_codes_1.StatusCodes.OK).json({
         bulletinAllPosts,
-        bulletinTotalPosts: bulletinAllPosts.length,
-        bulletinNumOfPages: 1,
+        bulletinTotalPosts,
+        bulletinNumOfPages,
     });
 });
 exports.getAllBulletinPosts = getAllBulletinPosts;

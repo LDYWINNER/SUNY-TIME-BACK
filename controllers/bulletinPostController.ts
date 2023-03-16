@@ -59,12 +59,22 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
 
   let result = BulletinPost.find(queryObject);
 
+  //setup pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 7;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
   const bulletinAllPosts = await result;
+
+  const bulletinTotalPosts = await BulletinPost.countDocuments(queryObject);
+  const bulletinNumOfPages = Math.ceil(bulletinTotalPosts / limit);
 
   res.status(StatusCodes.OK).json({
     bulletinAllPosts,
-    bulletinTotalPosts: bulletinAllPosts.length,
-    bulletinNumOfPages: 1,
+    bulletinTotalPosts,
+    bulletinNumOfPages,
   });
 };
 
