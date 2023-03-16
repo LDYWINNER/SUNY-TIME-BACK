@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -24,7 +24,7 @@ import {
 import { bulletinBgImageState, globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import {
   AiFillLike,
@@ -32,6 +32,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
 } from "react-icons/ai";
+import Loading from "../Components/Loading";
 
 interface IPostComment {
   content: string;
@@ -41,36 +42,32 @@ interface IPostComment {
   updatedAt: string;
 }
 
-interface RouteState {
+interface IPost {
   comments: [IPostComment];
   anonymity: Boolean;
+  board: string;
   content: string;
   createdAt: string;
-  createdBy: string;
   createdByUsername: string;
   dislikes: number;
-  existingBoard: string;
   likes: number;
-  newBoard: string;
   title: string;
-  updatedAt: string;
-  __v: number;
-  _id: string;
 }
 
 function SinglePost() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const bgImage = useRecoilValue(bulletinBgImageState);
   const location = useLocation();
-  const state = location.state as RouteState;
-  const [globalState, setGlobalCurrentState] =
-    useRecoilState(globalCurrentState);
+  const { id } = location.state;
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
   const [like, setLike] = useState(true);
   const [dislike, setDislike] = useState(true);
+  const [post, setPost] = useState<IPost>();
 
-  const logoutUser = () => {
+  const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
       return {
         ...currentState,
@@ -80,7 +77,47 @@ function SinglePost() {
     });
     removeUserFromLocalStorage();
     window.location.reload();
-  };
+  }, [setGlobalCurrentState]);
+
+  //getting the posts
+  const getSinglePost = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await authFetch(`bulletin/${id}`);
+      const {
+        post: {
+          comments,
+          anonymity,
+          board,
+          content,
+          createdAt,
+          createdByUsername,
+          likes,
+          dislikes,
+          title,
+        },
+      } = data;
+      setPost({
+        comments,
+        anonymity,
+        board,
+        content,
+        createdAt,
+        createdByUsername,
+        likes,
+        dislikes,
+        title,
+      });
+      console.log(data);
+      console.log(content);
+
+      setIsLoading(false);
+    } catch (error: any) {
+      console.log(error.response);
+      // log user out
+      logoutUser();
+    }
+  }, [id, logoutUser]);
 
   const deletePost = async (id: string) => {
     try {
@@ -113,6 +150,13 @@ function SinglePost() {
     }
   };
 
+  useEffect(() => {
+    getSinglePost();
+  }, [getSinglePost]);
+
+  if (isLoading) {
+    return <Loading center />;
+  }
   return (
     <Wrapper bgImage={bgImage}>
       <Container>
@@ -125,9 +169,7 @@ function SinglePost() {
         />
         <Main>
           <TitleRow>
-            <Title>
-              {state.newBoard ? state.newBoard : state.existingBoard}
-            </Title>
+            <Title>{post?.board}</Title>
             <button type="button" className="btn delete-btn" onClick={onOpen}>
               DELETE
             </button>
@@ -153,7 +195,7 @@ function SinglePost() {
                     </Button>
                     <Button
                       colorScheme="red"
-                      onClick={() => deletePost(state._id)}
+                      onClick={() => deletePost(id)}
                       ml={3}
                     >
                       Delete
@@ -163,23 +205,23 @@ function SinglePost() {
               </AlertDialogOverlay>
             </AlertDialog>
           </TitleRow>
-          <h1>{state.title}</h1>
-          <h4>{state.anonymity ? "익명" : state.createdByUsername}</h4>
-          <h4>{state.content}</h4>
-          <h4>{moment(state.createdAt).format("MMMM Do, h:mm a")}</h4>
+          <h1>{post?.title}</h1>
+          <h4>{post?.anonymity ? "익명" : post?.createdByUsername}</h4>
+          <h4>{post?.content}</h4>
+          <h4>{moment(post?.createdAt).format("MMMM Do, h:mm a")}</h4>
           <Row>
             <IconButton
-              aria-label="Like this post"
+              aria-label="Like this post?"
               icon={like ? <AiOutlineLike /> : <AiFillLike />}
-              onClick={() => handleLike(state._id)}
+              onClick={() => handleLike(id)}
             />
-            <h4>{state.likes}</h4>
+            <h4>{post?.likes}</h4>
             <IconButton
-              aria-label="Dislike this post"
-              onClick={() => handleDislike(state._id)}
+              aria-label="Dislike this post?"
+              onClick={() => handleDislike(id)}
               icon={dislike ? <AiOutlineDislike /> : <AiFillDislike />}
             />
-            <h4>{state.dislikes}</h4>
+            <h4>{post?.dislikes}</h4>
           </Row>
           <div>comments</div>
         </Main>

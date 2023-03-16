@@ -11,5 +11,5 @@ bulletinPostRouter
     .post(bulletinPostController_1.createBulletinPost)
     .get(bulletinPostController_1.getAllBulletinPosts)
     .patch(bulletinPostController_1.likeOrDislikeBulletinPost);
-bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost);
+bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost).get(bulletinPostController_1.getSinglePost);
 exports.default = bulletinPostRouter;

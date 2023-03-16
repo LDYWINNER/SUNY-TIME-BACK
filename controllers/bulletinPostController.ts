@@ -78,6 +78,18 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
   });
 };
 
+const getSinglePost = async (req: Request, res: Response) => {
+  const { id: postId } = req.params;
+
+  const post = await BulletinPost.findOne({ _id: postId });
+
+  if (!post) {
+    throw new NotFoundError(`No post with id: ${postId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ post });
+};
+
 const deleteBulletinPost = async (req: Request, res: Response) => {
   const { id: postId } = req.params;
 
@@ -143,5 +155,6 @@ export {
   createBulletinPost,
   deleteBulletinPost,
   getAllBulletinPosts,
+  getSinglePost,
   likeOrDislikeBulletinPost,
 };

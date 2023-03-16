@@ -27,15 +27,13 @@ interface IPostComment {
 interface IPost {
   comments: [IPostComment];
   anonymity: Boolean;
-  board: string;
   content: string;
   createdAt: string;
   createdBy: string;
   createdByUsername: string;
   dislikes: number;
-  existingBoard: string;
   likes: number;
-  newBoard: string;
+  board: string;
   title: string;
   updatedAt: string;
   __v: number;
@@ -115,7 +113,7 @@ const BulletinAllPosts = () => {
       {globalState.bulletinAllPosts.map((post: IPost) => {
         return (
           <Post key={post._id}>
-            <Link to={`/bulletin/${post._id}`} state={{ ...post }}>
+            <Link to={`/bulletin/${post._id}`} state={{ id: post._id }}>
               <Container>
                 <Row>
                   <h2>{post.title}</h2>

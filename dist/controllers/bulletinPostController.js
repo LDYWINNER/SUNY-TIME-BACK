@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.likeOrDislikeBulletinPost = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
+exports.likeOrDislikeBulletinPost = exports.getSinglePost = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
 const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
@@ -70,6 +70,15 @@ const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, func
     });
 });
 exports.getAllBulletinPosts = getAllBulletinPosts;
+const getSinglePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id: postId } = req.params;
+    const post = yield BulletinPost_1.default.findOne({ _id: postId });
+    if (!post) {
+        throw new errors_1.NotFoundError(`No post with id: ${postId}`);
+    }
+    res.status(http_status_codes_1.StatusCodes.OK).json({ post });
+});
+exports.getSinglePost = getSinglePost;
 const deleteBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id: postId } = req.params;
     const post = yield BulletinPost_1.default.findOne({ _id: postId });

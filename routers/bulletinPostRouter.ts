@@ -3,6 +3,7 @@ import {
   createBulletinPost,
   deleteBulletinPost,
   getAllBulletinPosts,
+  getSinglePost,
   likeOrDislikeBulletinPost,
 } from "../controllers/bulletinPostController";
 
@@ -13,6 +14,6 @@ bulletinPostRouter
   .post(createBulletinPost)
   .get(getAllBulletinPosts)
   .patch(likeOrDislikeBulletinPost);
-bulletinPostRouter.route("/:id").delete(deleteBulletinPost);
+bulletinPostRouter.route("/:id").delete(deleteBulletinPost).get(getSinglePost);
 
 export default bulletinPostRouter;
