@@ -62,7 +62,7 @@ const BulletinAllPosts = () => {
 
   //getting the posts
   const getPost = useCallback(async () => {
-    let url = `bulletin?board=${boardFilter}`;
+    let url = `bulletin?page=${globalState.bulletinPage}&board=${boardFilter}`;
 
     if (searchKeyword) {
       url = url + `&search=${searchKeyword}`;
@@ -88,7 +88,13 @@ const BulletinAllPosts = () => {
       // log user out
       logoutUser();
     }
-  }, [boardFilter, logoutUser, searchKeyword, setGlobalCurrentState]);
+  }, [
+    globalState.bulletinPage,
+    boardFilter,
+    logoutUser,
+    searchKeyword,
+    setGlobalCurrentState,
+  ]);
 
   useEffect(() => {
     getPost();

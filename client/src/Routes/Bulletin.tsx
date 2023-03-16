@@ -17,11 +17,18 @@ import {
   BulletinSearch,
 } from "../Components";
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
-import { useRecoilState } from "recoil";
-import { bulletinBgImageState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  bulletinBgImageState,
+  bulletinSearchState,
+  globalCurrentState,
+} from "../atoms";
+import { BulletinPagination } from "../Components";
 
 const Bulletin = () => {
   const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
+  const { bulletinNumOfPages } = useRecoilValue(globalCurrentState);
+  const { boardFilter } = useRecoilValue(bulletinSearchState);
 
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
@@ -35,7 +42,7 @@ const Bulletin = () => {
             <BulletinSearch />
           </FilterRow>
           <TitleRow>
-            <Title>Board</Title>
+            <Title>{boardFilter} Board</Title>
             <Popover closeOnBlur={false} closeOnEsc={false}>
               <PopoverTrigger>
                 <BulletinPostBtn type="button" className="btn">
@@ -46,6 +53,7 @@ const Bulletin = () => {
             </Popover>
           </TitleRow>
           <BulletinAllPosts />
+          {bulletinNumOfPages > 1 && <BulletinPagination />}
         </MainContent>
         <SubContent></SubContent>
       </Main>

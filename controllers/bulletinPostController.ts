@@ -37,7 +37,7 @@ interface IQueryObject {
   )[];
 }
 const getAllBulletinPosts = async (req: Request, res: Response) => {
-  const { search, board } = req.query;
+  const { page, search, board } = req.query;
 
   let queryObject: IQueryObject = {
     board,
@@ -60,9 +60,9 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
   let result = BulletinPost.find(queryObject);
 
   //setup pagination
-  const page = Number(req.query.page) || 1;
+  const finalPage = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 7;
-  const skip = (page - 1) * limit;
+  const skip = (finalPage - 1) * limit;
 
   result = result.skip(skip).limit(limit);
 
