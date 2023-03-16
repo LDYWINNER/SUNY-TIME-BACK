@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bulletinPostController_1 = require("../controllers/bulletinPostController");
 const bulletinPostRouter = express_1.default.Router();
-bulletinPostRouter.route("/").post(bulletinPostController_1.createBulletinPost).get(bulletinPostController_1.getAllBulletinPosts);
+bulletinPostRouter
+    .route("/")
+    .post(bulletinPostController_1.createBulletinPost)
+    .get(bulletinPostController_1.getAllBulletinPosts)
+    .patch(bulletinPostController_1.likeOrDislikeBulletinPost);
 bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost);
 exports.default = bulletinPostRouter;

@@ -128,11 +128,11 @@ const BulletinAllPosts = () => {
               <Row>
                 <h5>{moment(post.createdAt).format("MMMM Do, h:mm a")}</h5>
                 <Icon>
-                  <Row style={{ color: "red" }}>
+                  <Row style={{ color: "blue" }}>
                     <AiOutlineLike />
                     {post.likes}
                   </Row>
-                  <Row style={{ color: "blue" }}>
+                  <Row style={{ color: "red" }}>
                     <AiOutlineDislike />
                     {post.dislikes}
                   </Row>

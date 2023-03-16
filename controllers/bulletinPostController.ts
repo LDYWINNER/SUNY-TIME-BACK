@@ -37,7 +37,7 @@ interface IQueryObject {
   )[];
 }
 const getAllBulletinPosts = async (req: Request, res: Response) => {
-  const { page, search, board } = req.query;
+  const { search, board } = req.query;
 
   let queryObject: IQueryObject = {
     board,
@@ -98,4 +98,50 @@ const deleteBulletinPost = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Post removed" });
 };
 
-export { createBulletinPost, deleteBulletinPost, getAllBulletinPosts };
+const likeOrDislikeBulletinPost = async (req: Request, res: Response) => {
+  const { id: postId, like, dislike } = req.query;
+  console.log(postId, like, dislike);
+
+  const post = await BulletinPost.findOne({ _id: postId });
+
+  if (!post) {
+    throw new NotFoundError(`No post with id: ${postId}`);
+  }
+
+  if (like) {
+    let currentLike = post.likes;
+    if (like === "true") {
+      console.log("like is true");
+      currentLike++;
+    } else if (like === "false") {
+      console.log("like is false");
+      currentLike--;
+    }
+    const updatedPost = await BulletinPost.findOneAndUpdate(
+      { _id: postId },
+      { likes: currentLike }
+    );
+    res.status(StatusCodes.OK).json({ updatedPost });
+  } else if (dislike) {
+    let currentDislike = post.dislikes;
+    if (dislike === "true") {
+      console.log("dislike is true");
+      currentDislike++;
+    } else if (dislike === "false") {
+      console.log("dislike is false");
+      currentDislike--;
+    }
+    const updatedPost = await BulletinPost.findOneAndUpdate(
+      { _id: postId },
+      { dislikes: currentDislike }
+    );
+    res.status(StatusCodes.OK).json({ updatedPost });
+  }
+};
+
+export {
+  createBulletinPost,
+  deleteBulletinPost,
+  getAllBulletinPosts,
+  likeOrDislikeBulletinPost,
+};

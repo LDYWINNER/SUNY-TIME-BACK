@@ -35,3 +35,7 @@ export const Title = styled.span`
   color: ${(props) => props.theme.main.blue};
   font-family: "Bebas Neue", cursive;
 `;
+
+export const Row = styled.div`
+  display: flex;
+`;

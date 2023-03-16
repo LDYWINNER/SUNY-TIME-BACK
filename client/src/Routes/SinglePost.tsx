@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -8,6 +8,7 @@ import {
   Main,
   TitleRow,
   Title,
+  Row,
 } from "../assets/wrappers/SinglePost";
 import {
   AlertDialog,
@@ -23,8 +24,14 @@ import {
 import { bulletinBgImageState, globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
+import {
+  AiFillLike,
+  AiFillDislike,
+  AiOutlineLike,
+  AiOutlineDislike,
+} from "react-icons/ai";
 
 interface IPostComment {
   content: string;
@@ -56,9 +63,12 @@ function SinglePost() {
   const bgImage = useRecoilValue(bulletinBgImageState);
   const location = useLocation();
   const state = location.state as RouteState;
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
+  const [like, setLike] = useState(true);
+  const [dislike, setDislike] = useState(true);
 
   const logoutUser = () => {
     setGlobalCurrentState((currentState) => {
@@ -80,6 +90,26 @@ function SinglePost() {
       console.log(error);
       // log user out
       logoutUser();
+    }
+  };
+
+  const handleLike = async (id: string) => {
+    try {
+      setLike((prev) => !prev);
+      console.log(like);
+      await authFetch.patch(`/bulletin?id=${id}&like=${like}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDislike = async (id: string) => {
+    try {
+      setDislike((prev) => !prev);
+      console.log(dislike);
+      await authFetch.patch(`/bulletin?id=${id}&dislike=${dislike}`);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -137,8 +167,20 @@ function SinglePost() {
           <h4>{state.anonymity ? "익명" : state.createdByUsername}</h4>
           <h4>{state.content}</h4>
           <h4>{moment(state.createdAt).format("MMMM Do, h:mm a")}</h4>
-          <h4>{state.likes}</h4>
-          <h4>{state.dislikes}</h4>
+          <Row>
+            <IconButton
+              aria-label="Like this post"
+              icon={like ? <AiOutlineLike /> : <AiFillLike />}
+              onClick={() => handleLike(state._id)}
+            />
+            <h4>{state.likes}</h4>
+            <IconButton
+              aria-label="Dislike this post"
+              onClick={() => handleDislike(state._id)}
+              icon={dislike ? <AiOutlineDislike /> : <AiFillDislike />}
+            />
+            <h4>{state.dislikes}</h4>
+          </Row>
           <div>comments</div>
         </Main>
       </Container>

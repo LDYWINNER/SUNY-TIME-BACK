@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
+exports.likeOrDislikeBulletinPost = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
 const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
@@ -36,7 +36,7 @@ const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.createBulletinPost = createBulletinPost;
 const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { page, search, board } = req.query;
+    const { search, board } = req.query;
     let queryObject = {
         board,
     };
@@ -81,3 +81,38 @@ const deleteBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
     res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Success! Post removed" });
 });
 exports.deleteBulletinPost = deleteBulletinPost;
+const likeOrDislikeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id: postId, like, dislike } = req.query;
+    console.log(postId, like, dislike);
+    const post = yield BulletinPost_1.default.findOne({ _id: postId });
+    if (!post) {
+        throw new errors_1.NotFoundError(`No post with id: ${postId}`);
+    }
+    if (like) {
+        let currentLike = post.likes;
+        if (like === "true") {
+            console.log("like is true");
+            currentLike++;
+        }
+        else if (like === "false") {
+            console.log("like is false");
+            currentLike--;
+        }
+        const updatedPost = yield BulletinPost_1.default.findOneAndUpdate({ _id: postId }, { likes: currentLike });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedPost });
+    }
+    else if (dislike) {
+        let currentDislike = post.dislikes;
+        if (dislike === "true") {
+            console.log("dislike is true");
+            currentDislike++;
+        }
+        else if (dislike === "false") {
+            console.log("dislike is false");
+            currentDislike--;
+        }
+        const updatedPost = yield BulletinPost_1.default.findOneAndUpdate({ _id: postId }, { dislikes: currentDislike });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedPost });
+    }
+});
+exports.likeOrDislikeBulletinPost = likeOrDislikeBulletinPost;
