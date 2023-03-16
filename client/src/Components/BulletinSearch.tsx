@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IconButton } from "@chakra-ui/react";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Row } from "../assets/wrappers/BulletinSearch";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { bulletinSearchState, globalCurrentState } from "../atoms";
 
 interface IForm {
@@ -12,7 +12,8 @@ interface IForm {
 
 const BulletinSearch = () => {
   const { register, handleSubmit, reset } = useForm<IForm>({});
-  const setBulletinSearch = useSetRecoilState(bulletinSearchState);
+  const [bulletinSearch, setBulletinSearch] =
+    useRecoilState(bulletinSearchState);
   const setGlobalState = useSetRecoilState(globalCurrentState);
 
   const onValid: SubmitHandler<IForm> = () => {
@@ -78,6 +79,7 @@ const BulletinSearch = () => {
           name="radio"
           value="Free"
           id="Free"
+          checked={bulletinSearch.boardFilter === "Free"}
         />{" "}
         Free
       </label>
@@ -88,6 +90,7 @@ const BulletinSearch = () => {
           name="radio"
           value="Secret"
           id="Secret"
+          checked={bulletinSearch.boardFilter === "Secret"}
         />{" "}
         Secret
       </label>
