@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IconButton } from "@chakra-ui/react";
 import { RiArrowGoBackFill } from "react-icons/ri";
@@ -12,8 +11,6 @@ interface IForm {
 }
 
 const BulletinSearch = () => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [boardRadio, setBoardRadio] = useState("Free");
   const { register, handleSubmit, reset } = useForm<IForm>({});
   const setBulletinSearch = useSetRecoilState(bulletinSearchState);
 
@@ -33,8 +30,6 @@ const BulletinSearch = () => {
           {...register("searchKeyword", {
             required: true,
             onChange: (e) => {
-              setSearchKeyword(e.target.value);
-              console.log(searchKeyword);
               setBulletinSearch((currentState) => {
                 return {
                   ...currentState,
@@ -56,8 +51,6 @@ const BulletinSearch = () => {
           {...register("radio", {
             required: true,
             onChange: (e) => {
-              setBoardRadio(e.target.value);
-              console.log(boardRadio);
               setBulletinSearch((currentState) => {
                 return {
                   ...currentState,
