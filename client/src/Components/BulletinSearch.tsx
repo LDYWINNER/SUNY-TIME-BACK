@@ -4,6 +4,7 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 import { Row } from "../assets/wrappers/BulletinSearch";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { bulletinSearchState, globalCurrentState } from "../atoms";
+import { useState, useMemo } from "react";
 
 interface IForm {
   searchKeyword?: string;
@@ -15,13 +16,32 @@ const BulletinSearch = () => {
   const [bulletinSearch, setBulletinSearch] =
     useRecoilState(bulletinSearchState);
   const setGlobalState = useSetRecoilState(globalCurrentState);
+  const [localSearch, setLocalSearch] = useState("");
 
   const onValid: SubmitHandler<IForm> = () => {
     //clear search
+    setLocalSearch("");
     reset({
       searchKeyword: "",
     });
   };
+
+  const debounce = () => {
+    let timeoutID: number | NodeJS.Timeout | undefined;
+    return (e: any) => {
+      setLocalSearch(e.target.value);
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(() => {
+        setBulletinSearch((currentState) => {
+          return {
+            ...currentState,
+            searchKeyword: e.target.value,
+          };
+        });
+      }, 500);
+    };
+  };
+  const optimizedDebounce = useMemo(() => debounce(), []);
 
   return (
     <form onSubmit={handleSubmit(onValid)}>
@@ -31,6 +51,7 @@ const BulletinSearch = () => {
           className="form-input"
           {...register("searchKeyword", {
             required: true,
+            value: localSearch,
             onChange: (e) => {
               //set page to 1
               setGlobalState((currentState) => {
@@ -39,12 +60,7 @@ const BulletinSearch = () => {
                   bulletinPage: 1,
                 };
               });
-              setBulletinSearch((currentState) => {
-                return {
-                  ...currentState,
-                  searchKeyword: e.target.value,
-                };
-              });
+              optimizedDebounce(e);
             },
           })}
           placeholder="SEARCH"
