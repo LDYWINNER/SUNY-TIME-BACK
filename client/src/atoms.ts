@@ -9,6 +9,7 @@ const token = localStorage.getItem("token");
 export const isDarkAtom = atom({
   key: "isDark",
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const globalCurrentState = atom({
