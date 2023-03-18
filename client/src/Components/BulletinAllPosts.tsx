@@ -14,7 +14,7 @@ import {
 } from "../assets/wrappers/BulletinAllPosts";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
 
 interface IPostComment {
   content: string;
@@ -31,7 +31,6 @@ interface IPost {
   createdAt: string;
   createdBy: string;
   createdByUsername: string;
-  dislikes: number;
   likes: number;
   board: string;
   title: string;
@@ -129,10 +128,6 @@ const BulletinAllPosts = () => {
                   <Row style={{ color: "blue" }}>
                     <AiOutlineLike />
                     {post.likes}
-                  </Row>
-                  <Row style={{ color: "red" }}>
-                    <AiOutlineDislike />
-                    {post.dislikes}
                   </Row>
                 </Icon>
               </Row>

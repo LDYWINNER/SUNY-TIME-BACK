@@ -10,6 +10,6 @@ bulletinPostRouter
     .route("/")
     .post(bulletinPostController_1.createBulletinPost)
     .get(bulletinPostController_1.getAllBulletinPosts)
-    .patch(bulletinPostController_1.likeOrDislikeBulletinPost);
+    .patch(bulletinPostController_1.likeBulletinPost);
 bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost).get(bulletinPostController_1.getSinglePost);
 exports.default = bulletinPostRouter;

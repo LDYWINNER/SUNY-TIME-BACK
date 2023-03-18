@@ -11,11 +11,6 @@ const BulletinPostComment = new Schema(
       required: true,
       default: 0,
     },
-    dislikes: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     createdBy: {
       type: Types.ObjectId,
       ref: "User",

@@ -11,11 +11,6 @@ const BulletinPostComment = new mongoose_1.Schema({
         required: true,
         default: 0,
     },
-    dislikes: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
     createdBy: {
         type: mongoose_1.Types.ObjectId,
         ref: "User",

@@ -27,12 +27,7 @@ import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import {
-  AiFillLike,
-  AiFillDislike,
-  AiOutlineLike,
-  AiOutlineDislike,
-} from "react-icons/ai";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import Loading from "../Components/Loading";
 
 interface IPostComment {
@@ -65,7 +60,6 @@ function SinglePost() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
   const [like, setLike] = useState(true);
-  const [dislike, setDislike] = useState(true);
   const [post, setPost] = useState<IPost>();
 
   const logoutUser = useCallback(() => {
@@ -142,17 +136,6 @@ function SinglePost() {
     }
   };
 
-  const handleDislike = async (id: string) => {
-    try {
-      setDislike((prev) => !prev);
-      console.log(dislike);
-      await authFetch.patch(`/bulletin?id=${id}&dislike=${dislike}`);
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
     getSinglePost();
@@ -220,12 +203,6 @@ function SinglePost() {
               onClick={() => handleLike(id)}
             />
             <h4>{post?.likes}</h4>
-            <IconButton
-              aria-label="Dislike this post?"
-              onClick={() => handleDislike(id)}
-              icon={dislike ? <AiOutlineDislike /> : <AiFillDislike />}
-            />
-            <h4>{post?.dislikes}</h4>
           </Row>
           <div>comments</div>
         </Main>

@@ -110,9 +110,9 @@ const deleteBulletinPost = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Post removed" });
 };
 
-const likeOrDislikeBulletinPost = async (req: Request, res: Response) => {
-  const { id: postId, like, dislike } = req.query;
-  console.log(postId, like, dislike);
+const likeBulletinPost = async (req: Request, res: Response) => {
+  const { id: postId, like } = req.query;
+  console.log(postId, like);
 
   const post = await BulletinPost.findOne({ _id: postId });
 
@@ -134,20 +134,6 @@ const likeOrDislikeBulletinPost = async (req: Request, res: Response) => {
       { likes: currentLike }
     );
     res.status(StatusCodes.OK).json({ updatedPost });
-  } else if (dislike) {
-    let currentDislike = post.dislikes;
-    if (dislike === "true") {
-      console.log("dislike is true");
-      currentDislike++;
-    } else if (dislike === "false") {
-      console.log("dislike is false");
-      currentDislike--;
-    }
-    const updatedPost = await BulletinPost.findOneAndUpdate(
-      { _id: postId },
-      { dislikes: currentDislike }
-    );
-    res.status(StatusCodes.OK).json({ updatedPost });
   }
 };
 
@@ -156,5 +142,5 @@ export {
   deleteBulletinPost,
   getAllBulletinPosts,
   getSinglePost,
-  likeOrDislikeBulletinPost,
+  likeBulletinPost,
 };
