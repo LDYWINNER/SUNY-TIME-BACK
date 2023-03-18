@@ -136,7 +136,7 @@ function SinglePost() {
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
     getSinglePost();
-  }, [getSinglePost]);
+  }, []);
 
   if (isLoading) {
     return <Loading center />;
