@@ -43,7 +43,15 @@ function BulletinPostPopOverContent() {
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
-  } = useForm<IForm>();
+  } = useForm<IForm>({
+    defaultValues: {
+      title: "",
+      content: "",
+      anonymity: true,
+      existingBoard: "-1",
+      newBoard: "",
+    },
+  });
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newPost = {
@@ -202,7 +210,6 @@ function BulletinPostPopOverContent() {
                   {...register("anonymity")}
                   id="anonymity"
                   className="anonymity-checkbox"
-                  checked
                 />
                 <label htmlFor="anonymity">Anonymity</label>
               </div>
