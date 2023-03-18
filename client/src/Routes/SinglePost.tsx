@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
