@@ -55,6 +55,7 @@ const getAllBulletinPosts = (req, res) => __awaiter(void 0, void 0, void 0, func
         };
     }
     let result = BulletinPost_1.default.find(queryObject);
+    result = result.sort("-createdAt");
     //setup pagination
     const finalPage = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 7;

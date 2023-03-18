@@ -59,6 +59,7 @@ const getAllBulletinPosts = async (req: Request, res: Response) => {
   }
 
   let result = BulletinPost.find(queryObject);
+  result = result.sort("-createdAt");
 
   //setup pagination
   const finalPage = Number(req.query.page) || 1;
