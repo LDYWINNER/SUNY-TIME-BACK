@@ -39,12 +39,7 @@ const BulletinPostSchema = new mongoose_1.Schema({
     likes: {
         type: Number,
         required: true,
-        default: 0,
-    },
-    dislikes: {
-        type: Number,
-        required: true,
-        default: 0,
+        default: [],
     },
     comments: {
         type: [BulletinPostComment],

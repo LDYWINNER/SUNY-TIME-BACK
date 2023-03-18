@@ -1,4 +1,4 @@
-import { Model, Schema, model, Types } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const BulletinPostComment = new Schema(
   {
@@ -41,14 +41,9 @@ const BulletinPostSchema = new Schema(
       default: true,
     },
     likes: {
-      type: Number,
+      type: [Types.ObjectId],
       required: true,
-      default: 0,
-    },
-    dislikes: {
-      type: Number,
-      required: true,
-      default: 0,
+      default: [],
     },
     comments: {
       type: [BulletinPostComment],
