@@ -55,6 +55,7 @@ const login = async (req: Request, res: Response) => {
       email: user.email,
       school: user.school,
       major: user.major,
+      _id: user._id,
     },
     token,
   });

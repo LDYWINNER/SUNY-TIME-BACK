@@ -22,6 +22,7 @@ const createBulletinPost = async (req: Request, res: Response) => {
   req.body.createdByUsername = username;
 
   const post = await BulletinPost.create(req.body);
+
   res.status(StatusCodes.CREATED).json({ post });
 };
 
@@ -121,19 +122,22 @@ const likeBulletinPost = async (req: Request, res: Response) => {
   }
 
   if (like) {
-    let currentLike = post.likes;
-    if (like === "true") {
-      console.log("like is true");
-      currentLike++;
-    } else if (like === "false") {
-      console.log("like is false");
-      currentLike--;
+    if (post.likes.includes(req.user?.userId as string)) {
+      const index = post.likes.indexOf(req.user?.userId as string);
+      post.likes.splice(index, 1);
+      const updatedPost = await BulletinPost.findOneAndUpdate(
+        { _id: postId },
+        { likes: post.likes }
+      );
+      res.status(StatusCodes.OK).json({ updatedPost });
+    } else {
+      post.likes.push(req.user?.userId as string);
+      const updatedPost = await BulletinPost.findOneAndUpdate(
+        { _id: postId },
+        { likes: post.likes }
+      );
+      res.status(StatusCodes.OK).json({ updatedPost });
     }
-    const updatedPost = await BulletinPost.findOneAndUpdate(
-      { _id: postId },
-      { likes: currentLike }
-    );
-    res.status(StatusCodes.OK).json({ updatedPost });
   }
 };
 

@@ -45,8 +45,7 @@ interface IPost {
   content: string;
   createdAt: string;
   createdByUsername: string;
-  dislikes: number;
-  likes: number;
+  likes: [string];
   title: string;
 }
 
@@ -56,7 +55,8 @@ function SinglePost() {
   const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
   const location = useLocation();
   const { id } = location.state;
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
   const [like, setLike] = useState(true);
@@ -88,7 +88,6 @@ function SinglePost() {
           createdAt,
           createdByUsername,
           likes,
-          dislikes,
           title,
         },
       } = data;
@@ -100,11 +99,9 @@ function SinglePost() {
         createdAt,
         createdByUsername,
         likes,
-        dislikes,
         title,
       });
       console.log(data);
-      console.log(content);
 
       setIsLoading(false);
     } catch (error: any) {
@@ -139,7 +136,7 @@ function SinglePost() {
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
     getSinglePost();
-  }, [getSinglePost, setBgImage, bgImage]);
+  }, [getSinglePost]);
 
   if (isLoading) {
     return <Loading center />;
@@ -199,10 +196,16 @@ function SinglePost() {
           <Row>
             <IconButton
               aria-label="Like this post?"
-              icon={like ? <AiOutlineLike /> : <AiFillLike />}
+              icon={
+                post?.likes.includes(globalState.user._id) ? (
+                  <AiFillLike />
+                ) : (
+                  <AiOutlineLike />
+                )
+              }
               onClick={() => handleLike(id)}
             />
-            <h4>{post?.likes}</h4>
+            <h4>{post?.likes.length}</h4>
           </Row>
           <div>comments</div>
         </Main>

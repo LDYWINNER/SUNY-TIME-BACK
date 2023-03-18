@@ -91,6 +91,7 @@ const deleteBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.deleteBulletinPost = deleteBulletinPost;
 const likeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c, _d, _e;
     const { id: postId, like } = req.query;
     console.log(postId, like);
     const post = yield BulletinPost_1.default.findOne({ _id: postId });
@@ -98,17 +99,17 @@ const likeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, functio
         throw new errors_1.NotFoundError(`No post with id: ${postId}`);
     }
     if (like) {
-        let currentLike = post.likes;
-        if (like === "true") {
-            console.log("like is true");
-            currentLike++;
+        if (post.likes.includes((_c = req.user) === null || _c === void 0 ? void 0 : _c.userId)) {
+            const index = post.likes.indexOf((_d = req.user) === null || _d === void 0 ? void 0 : _d.userId);
+            post.likes.splice(index, 1);
+            const updatedPost = yield BulletinPost_1.default.findOneAndUpdate({ _id: postId }, { likes: post.likes });
+            res.status(http_status_codes_1.StatusCodes.OK).json({ updatedPost });
         }
-        else if (like === "false") {
-            console.log("like is false");
-            currentLike--;
+        else {
+            post.likes.push((_e = req.user) === null || _e === void 0 ? void 0 : _e.userId);
+            const updatedPost = yield BulletinPost_1.default.findOneAndUpdate({ _id: postId }, { likes: post.likes });
+            res.status(http_status_codes_1.StatusCodes.OK).json({ updatedPost });
         }
-        const updatedPost = yield BulletinPost_1.default.findOneAndUpdate({ _id: postId }, { likes: currentLike });
-        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedPost });
     }
 });
 exports.likeBulletinPost = likeBulletinPost;

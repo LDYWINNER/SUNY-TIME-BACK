@@ -31,7 +31,7 @@ interface IPost {
   createdAt: string;
   createdBy: string;
   createdByUsername: string;
-  likes: number;
+  likes: [string];
   board: string;
   title: string;
   updatedAt: string;
@@ -127,7 +127,7 @@ const BulletinAllPosts = () => {
                 <Icon>
                   <Row style={{ color: "blue" }}>
                     <AiOutlineLike />
-                    {post.likes}
+                    {post.likes.length}
                   </Row>
                 </Icon>
               </Row>

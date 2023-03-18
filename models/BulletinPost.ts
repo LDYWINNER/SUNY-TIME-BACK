@@ -41,7 +41,7 @@ const BulletinPostSchema = new Schema(
       default: true,
     },
     likes: {
-      type: [Types.ObjectId],
+      type: [String],
       required: true,
       default: [],
     },

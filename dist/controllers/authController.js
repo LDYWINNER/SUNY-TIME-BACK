@@ -66,6 +66,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             email: user.email,
             school: user.school,
             major: user.major,
+            _id: user._id,
         },
         token,
     });

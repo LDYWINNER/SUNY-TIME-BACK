@@ -37,7 +37,7 @@ const BulletinPostSchema = new mongoose_1.Schema({
         default: true,
     },
     likes: {
-        type: Number,
+        type: [String],
         required: true,
         default: [],
     },
