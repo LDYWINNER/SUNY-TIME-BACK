@@ -7,9 +7,9 @@ const BulletinPostComment = new mongoose_1.Schema({
         required: [true, "Please provide content"],
     },
     likes: {
-        type: Number,
+        type: [String],
         required: true,
-        default: 0,
+        default: [],
     },
     createdBy: {
         type: mongoose_1.Types.ObjectId,

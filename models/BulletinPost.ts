@@ -7,9 +7,9 @@ const BulletinPostComment = new Schema(
       required: [true, "Please provide content"],
     },
     likes: {
-      type: Number,
+      type: [String],
       required: true,
-      default: 0,
+      default: [],
     },
     createdBy: {
       type: Types.ObjectId,

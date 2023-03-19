@@ -34,10 +34,9 @@ import { BulletinAllComments, BulletinCommentPost } from "../Components";
 
 interface IPostComment {
   content: string;
-  likes: number;
-  dislikes: number;
+  likes: [string];
   createdBy: string;
-  updatedAt: string;
+  createdAt: string;
 }
 
 interface IPost {
@@ -211,7 +210,7 @@ function SinglePost() {
           </Row>
           <Comments>
             <BulletinCommentPost />
-            <BulletinAllComments />
+            <BulletinAllComments comments={post?.comments as [IPostComment]} />
           </Comments>
         </Main>
       </Container>

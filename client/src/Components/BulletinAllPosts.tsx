@@ -18,10 +18,9 @@ import { AiOutlineLike } from "react-icons/ai";
 
 interface IPostComment {
   content: string;
-  likes: number;
-  dislikes: number;
+  likes: [string];
   createdBy: string;
-  updatedAt: string;
+  createdAt: string;
 }
 
 interface IPost {
