@@ -1,5 +1,11 @@
 import { Wrapper, Comment } from "../assets/wrappers/BulletinAllComments";
-import { IPostComment } from "../interfaces";
+
+interface IPostComment {
+  content: string;
+  likes: [string];
+  createdBy: string;
+  createdAt: string;
+}
 
 interface IBulletinAllComments {
   comments: [IPostComment];
