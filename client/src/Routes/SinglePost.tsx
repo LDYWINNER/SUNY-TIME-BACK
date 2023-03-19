@@ -29,7 +29,24 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import Loading from "../Components/Loading";
-import { IPost, IPostComment } from "../interfaces";
+
+interface IPostComment {
+  content: string;
+  likes: [string];
+  createdBy: string;
+  createdAt: string;
+}
+
+interface IPost {
+  comments: [IPostComment];
+  anonymity: Boolean;
+  board: string;
+  content: string;
+  createdAt: string;
+  createdByUsername: string;
+  likes: [string];
+  title: string;
+}
 
 function SinglePost() {
   const navigate = useNavigate();
@@ -61,8 +78,27 @@ function SinglePost() {
     setIsLoading(true);
     try {
       const { data } = await authFetch(`bulletin/${id}`);
+      const {
+        post: {
+          comments,
+          anonymity,
+          board,
+          content,
+          createdAt,
+          createdByUsername,
+          likes,
+          title,
+        },
+      } = data;
       setPost({
-        ...data,
+        comments,
+        anonymity,
+        board,
+        content,
+        createdAt,
+        createdByUsername,
+        likes,
+        title,
       });
       console.log(data);
 
