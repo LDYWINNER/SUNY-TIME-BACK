@@ -12,8 +12,6 @@ import BulletinPostPopOverContent from "./BulletinPostPopOverContent";
 import BulletinAllPosts from "./BulletinAllPosts";
 import BulletinSearch from "./BulletinSearch";
 import BulletinPagination from "./BulletinPagination";
-import BulletinCommentPost from "./BulletinCommentPost";
-import BulletinAllComments from "./BulletinAllComments";
 
 export {
   Clock,
@@ -31,6 +29,4 @@ export {
   BulletinAllPosts,
   BulletinSearch,
   BulletinPagination,
-  BulletinCommentPost,
-  BulletinAllComments,
 };
