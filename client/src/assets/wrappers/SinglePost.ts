@@ -39,3 +39,5 @@ export const Title = styled.span`
 export const Row = styled.div`
   display: flex;
 `;
+
+export const Comments = styled.div``;

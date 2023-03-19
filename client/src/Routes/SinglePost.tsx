@@ -9,6 +9,7 @@ import {
   TitleRow,
   Title,
   Row,
+  Comments,
 } from "../assets/wrappers/SinglePost";
 import { bgImages } from "../assets/assets";
 import {
@@ -29,6 +30,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import Loading from "../Components/Loading";
+import { BulletinAllComments, BulletinCommentPost } from "../Components";
 
 interface IPostComment {
   content: string;
@@ -207,7 +209,10 @@ function SinglePost() {
             />
             <h4>{post?.likes.length}</h4>
           </Row>
-          <div>comments</div>
+          <Comments>
+            <BulletinCommentPost />
+            <BulletinAllComments />
+          </Comments>
         </Main>
       </Container>
     </Wrapper>
