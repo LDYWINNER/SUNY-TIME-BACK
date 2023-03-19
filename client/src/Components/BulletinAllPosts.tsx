@@ -113,7 +113,6 @@ const BulletinAllPosts = () => {
           </Post>
         );
       })}
-      {/* pagination button */}
     </Wrapper>
   );
 };
