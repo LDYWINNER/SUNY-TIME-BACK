@@ -15,28 +15,7 @@ import {
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { AiOutlineLike } from "react-icons/ai";
-
-interface IPostComment {
-  content: string;
-  likes: [string];
-  createdBy: string;
-  createdAt: string;
-}
-
-interface IPost {
-  comments: [IPostComment];
-  anonymity: Boolean;
-  content: string;
-  createdAt: string;
-  createdBy: string;
-  createdByUsername: string;
-  likes: [string];
-  board: string;
-  title: string;
-  updatedAt: string;
-  __v: number;
-  _id: string;
-}
+import { IPost } from "../interfaces";
 
 const BulletinAllPosts = () => {
   const [isLoading, setIsLoading] = useState(false);
