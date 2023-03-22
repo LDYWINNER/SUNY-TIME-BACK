@@ -210,7 +210,7 @@ function SinglePost() {
             <h4>{post?.likes.length}</h4>
           </Row>
           <Comments>
-            <BulletinCommentPost />
+            <BulletinCommentPost id={id} />
             <BulletinAllComments comments={post?.comments as [IPostComment]} />
           </Comments>
         </Main>

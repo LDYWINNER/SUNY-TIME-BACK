@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const BulletinPostCommentSchema = new mongoose_1.Schema({
-    content: {
+    text: {
         type: String,
-        required: [true, "Please provide content"],
+        required: [true, "Please provide text"],
     },
     likes: {
         type: [String],

@@ -117,7 +117,7 @@ const likeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.likeBulletinPost = likeBulletinPost;
 const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _f;
-    const { query: { id: postId }, body: { text }, } = req;
+    const { params: { id: postId }, body: { text }, } = req;
     const bulletinPost = yield BulletinPost_1.default.findById(postId);
     if (!bulletinPost) {
         throw new errors_1.NotFoundError(`No post with id: ${postId}`);

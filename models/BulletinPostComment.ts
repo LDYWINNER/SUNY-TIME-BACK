@@ -2,9 +2,9 @@ import { Schema, model, Types } from "mongoose";
 
 const BulletinPostCommentSchema = new Schema(
   {
-    content: {
+    text: {
       type: String,
-      required: [true, "Please provide content"],
+      required: [true, "Please provide text"],
     },
     likes: {
       type: [String],
