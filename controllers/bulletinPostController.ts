@@ -4,6 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors";
 import User from "../models/User";
 import checkPermissions from "../utils/checkPermissions";
+import BulletinPostComment from "../models/BulletinPostComment";
 
 const createBulletinPost = async (req: Request, res: Response) => {
   const { title, content, board, anonymity } = req.body;
@@ -142,10 +143,81 @@ const likeBulletinPost = async (req: Request, res: Response) => {
   }
 };
 
+const createComment = async (req: Request, res: Response) => {
+  const {
+    query: { id: postId },
+    body: { text },
+  } = req;
+  const bulletinPost = await BulletinPost.findById(postId);
+
+  if (!bulletinPost) {
+    throw new NotFoundError(`No post with id: ${postId}`);
+  }
+
+  if (!text) {
+    throw new BadRequestError("Please provide all values");
+  }
+
+  req.body.createdBy = req.user?.userId;
+  req.body.bulletin = postId;
+
+  const comment = await BulletinPostComment.create(req.body);
+  bulletinPost.comments.push(comment._id);
+  bulletinPost.save();
+
+  res.status(StatusCodes.CREATED).json({ comment });
+};
+
+const likeComment = async (req: Request, res: Response) => {
+  const { id: commentId } = req.query;
+
+  const comment = await BulletinPostComment.findOne({ _id: commentId });
+
+  if (!comment) {
+    throw new NotFoundError(`No Comment with id: ${commentId}`);
+  }
+
+  if (comment.likes.includes(req.user?.userId as string)) {
+    const index = comment.likes.indexOf(req.user?.userId as string);
+    comment.likes.splice(index, 1);
+    const updatedComment = await BulletinPostComment.findOneAndUpdate(
+      { _id: commentId },
+      { likes: comment.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedComment });
+  } else {
+    comment.likes.push(req.user?.userId as string);
+    const updatedComment = await BulletinPostComment.findOneAndUpdate(
+      { _id: commentId },
+      { likes: comment.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedComment });
+  }
+};
+
+const deleteComment = async (req: Request, res: Response) => {
+  const { commentId } = req.params;
+
+  const comment = await BulletinPostComment.findOne({ _id: commentId });
+
+  if (!comment) {
+    throw new NotFoundError(`No post with id: ${commentId}`);
+  }
+
+  checkPermissions(req.user as { userId: string }, comment.createdBy);
+
+  await comment.remove();
+
+  res.status(StatusCodes.OK).json({ msg: "Comment removed successfully" });
+};
+
 export {
   createBulletinPost,
   deleteBulletinPost,
   getAllBulletinPosts,
   getSinglePost,
   likeBulletinPost,
+  createComment,
+  likeComment,
+  deleteComment,
 };

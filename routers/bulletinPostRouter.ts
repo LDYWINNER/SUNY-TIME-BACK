@@ -5,6 +5,9 @@ import {
   getAllBulletinPosts,
   getSinglePost,
   likeBulletinPost,
+  createComment,
+  likeComment,
+  deleteComment,
 } from "../controllers/bulletinPostController";
 
 const bulletinPostRouter = express.Router();
@@ -14,6 +17,14 @@ bulletinPostRouter
   .post(createBulletinPost)
   .get(getAllBulletinPosts)
   .patch(likeBulletinPost);
-bulletinPostRouter.route("/:id").delete(deleteBulletinPost).get(getSinglePost);
+bulletinPostRouter
+  .route("/:id")
+  .delete(deleteBulletinPost)
+  .get(getSinglePost)
+  .post(createComment);
+bulletinPostRouter
+  .route("/:commentId")
+  .patch(likeComment)
+  .delete(deleteComment);
 
 export default bulletinPostRouter;

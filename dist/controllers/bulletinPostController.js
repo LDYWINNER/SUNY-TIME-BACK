@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.likeBulletinPost = exports.getSinglePost = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
+exports.deleteComment = exports.likeComment = exports.createComment = exports.likeBulletinPost = exports.getSinglePost = exports.getAllBulletinPosts = exports.deleteBulletinPost = exports.createBulletinPost = void 0;
 const BulletinPost_1 = __importDefault(require("../models/BulletinPost"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const User_1 = __importDefault(require("../models/User"));
 const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
+const BulletinPostComment_1 = __importDefault(require("../models/BulletinPostComment"));
 const createBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const { title, content, board, anonymity } = req.body;
@@ -114,3 +115,52 @@ const likeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.likeBulletinPost = likeBulletinPost;
+const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _f;
+    const { query: { id: postId }, body: { text }, } = req;
+    const bulletinPost = yield BulletinPost_1.default.findById(postId);
+    if (!bulletinPost) {
+        throw new errors_1.NotFoundError(`No post with id: ${postId}`);
+    }
+    if (!text) {
+        throw new errors_1.BadRequestError("Please provide all values");
+    }
+    req.body.createdBy = (_f = req.user) === null || _f === void 0 ? void 0 : _f.userId;
+    req.body.bulletin = postId;
+    const comment = yield BulletinPostComment_1.default.create(req.body);
+    bulletinPost.comments.push(comment._id);
+    bulletinPost.save();
+    res.status(http_status_codes_1.StatusCodes.CREATED).json({ comment });
+});
+exports.createComment = createComment;
+const likeComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _g, _h, _j;
+    const { id: commentId } = req.query;
+    const comment = yield BulletinPostComment_1.default.findOne({ _id: commentId });
+    if (!comment) {
+        throw new errors_1.NotFoundError(`No Comment with id: ${commentId}`);
+    }
+    if (comment.likes.includes((_g = req.user) === null || _g === void 0 ? void 0 : _g.userId)) {
+        const index = comment.likes.indexOf((_h = req.user) === null || _h === void 0 ? void 0 : _h.userId);
+        comment.likes.splice(index, 1);
+        const updatedComment = yield BulletinPostComment_1.default.findOneAndUpdate({ _id: commentId }, { likes: comment.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedComment });
+    }
+    else {
+        comment.likes.push((_j = req.user) === null || _j === void 0 ? void 0 : _j.userId);
+        const updatedComment = yield BulletinPostComment_1.default.findOneAndUpdate({ _id: commentId }, { likes: comment.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedComment });
+    }
+});
+exports.likeComment = likeComment;
+const deleteComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { commentId } = req.params;
+    const comment = yield BulletinPostComment_1.default.findOne({ _id: commentId });
+    if (!comment) {
+        throw new errors_1.NotFoundError(`No post with id: ${commentId}`);
+    }
+    (0, checkPermissions_1.default)(req.user, comment.createdBy);
+    yield comment.remove();
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Comment removed successfully" });
+});
+exports.deleteComment = deleteComment;

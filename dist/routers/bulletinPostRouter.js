@@ -11,5 +11,13 @@ bulletinPostRouter
     .post(bulletinPostController_1.createBulletinPost)
     .get(bulletinPostController_1.getAllBulletinPosts)
     .patch(bulletinPostController_1.likeBulletinPost);
-bulletinPostRouter.route("/:id").delete(bulletinPostController_1.deleteBulletinPost).get(bulletinPostController_1.getSinglePost);
+bulletinPostRouter
+    .route("/:id")
+    .delete(bulletinPostController_1.deleteBulletinPost)
+    .get(bulletinPostController_1.getSinglePost)
+    .post(bulletinPostController_1.createComment);
+bulletinPostRouter
+    .route("/:commentId")
+    .patch(bulletinPostController_1.likeComment)
+    .delete(bulletinPostController_1.deleteComment);
 exports.default = bulletinPostRouter;
