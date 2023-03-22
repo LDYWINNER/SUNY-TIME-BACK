@@ -1,25 +1,5 @@
 import { Schema, model, Types } from "mongoose";
 
-const BulletinPostComment = new Schema(
-  {
-    content: {
-      type: String,
-      required: [true, "Please provide content"],
-    },
-    likes: {
-      type: [String],
-      required: true,
-      default: [],
-    },
-    createdBy: {
-      type: Types.ObjectId,
-      ref: "User",
-      required: [true, "Please provide user"],
-    },
-  },
-  { timestamps: true }
-);
-
 const BulletinPostSchema = new Schema(
   {
     title: {
@@ -45,11 +25,13 @@ const BulletinPostSchema = new Schema(
       required: true,
       default: [],
     },
-    comments: {
-      type: [BulletinPostComment],
-      required: true,
-      default: [],
-    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: "BulletinPostComment",
+      },
+    ],
     createdBy: {
       type: Types.ObjectId,
       ref: "User",

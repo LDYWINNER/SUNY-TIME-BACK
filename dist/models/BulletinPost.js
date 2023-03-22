@@ -1,22 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const BulletinPostComment = new mongoose_1.Schema({
-    content: {
-        type: String,
-        required: [true, "Please provide content"],
-    },
-    likes: {
-        type: [String],
-        required: true,
-        default: [],
-    },
-    createdBy: {
-        type: mongoose_1.Types.ObjectId,
-        ref: "User",
-        required: [true, "Please provide user"],
-    },
-}, { timestamps: true });
 const BulletinPostSchema = new mongoose_1.Schema({
     title: {
         type: String,
@@ -41,11 +25,13 @@ const BulletinPostSchema = new mongoose_1.Schema({
         required: true,
         default: [],
     },
-    comments: {
-        type: [BulletinPostComment],
-        required: true,
-        default: [],
-    },
+    comments: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            required: true,
+            ref: "BulletinPostComment",
+        },
+    ],
     createdBy: {
         type: mongoose_1.Types.ObjectId,
         ref: "User",
