@@ -37,6 +37,7 @@ interface IPostComment {
   likes: [string];
   createdBy: string;
   createdAt: string;
+  _id: string;
 }
 
 interface IPost {

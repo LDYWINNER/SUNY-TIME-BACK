@@ -17,7 +17,7 @@ bulletinPostRouter
     .get(bulletinPostController_1.getSinglePost)
     .post(bulletinPostController_1.createComment);
 bulletinPostRouter
-    .route("/:commentId")
+    .route("/comment/:commentId")
     .patch(bulletinPostController_1.likeComment)
     .delete(bulletinPostController_1.deleteComment);
 exports.default = bulletinPostRouter;

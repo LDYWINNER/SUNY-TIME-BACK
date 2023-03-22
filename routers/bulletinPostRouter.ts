@@ -23,7 +23,7 @@ bulletinPostRouter
   .get(getSinglePost)
   .post(createComment);
 bulletinPostRouter
-  .route("/:commentId")
+  .route("/comment/:commentId")
   .patch(likeComment)
   .delete(deleteComment);
 
