@@ -30,7 +30,7 @@ const Main = styled.div`
 const Greeting = styled.div``;
 
 const Welcome = styled.h1`
-  font-size: max(60px, 7vh);
+  font-size: 4vw;
   font-weight: 500;
 `;
 
@@ -51,8 +51,8 @@ const LogoDate = styled.div`
 `;
 
 const Img = styled.img`
-  width: 400px;
-  height: 400px;
+  width: 50%;
+  height: 100%;
 `;
 
 export { Wrapper, Main, Greeting, Welcome, Title, LogoDate, Img };
