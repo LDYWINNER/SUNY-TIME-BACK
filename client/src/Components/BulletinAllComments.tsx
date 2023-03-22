@@ -1,10 +1,12 @@
 import { IconButton } from "@chakra-ui/react";
-import { useState } from "react";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../api";
 import { Wrapper, Comment, Row } from "../assets/wrappers/BulletinAllComments";
 import { globalCurrentState } from "../atoms";
+import { removeUserFromLocalStorage } from "../utils";
+import { AiFillLike, AiOutlineLike, AiTwotoneDelete } from "react-icons/ai";
 
 interface IPostComment {
   content: string;
@@ -19,9 +21,33 @@ interface IBulletinAllComments {
 }
 
 function BulletinAllComments({ comments }: IBulletinAllComments) {
+  const navigate = useNavigate();
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
   const [like, setLike] = useState(true);
+
+  const logoutUser = useCallback(() => {
+    setGlobalCurrentState((currentState) => {
+      return {
+        ...currentState,
+        user: null,
+        token: null,
+      };
+    });
+    removeUserFromLocalStorage();
+    window.location.reload();
+  }, [setGlobalCurrentState]);
+
+  const deleteComment = async (id: string) => {
+    try {
+      await authFetch.delete(`/bulletin/comment/${id}`);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+      // log user out
+      logoutUser();
+    }
+  };
 
   const handleLike = async (id: string) => {
     try {
@@ -47,7 +73,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
             <h4>{comment.createdAt}</h4>
             <Row>
               <IconButton
-                aria-label="Like this post?"
+                aria-label="Like this comment?"
                 icon={
                   comment?.likes.includes(globalState.user._id) ? (
                     <AiFillLike />
@@ -59,6 +85,11 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
               />
               <h4>{comment?.likes.length}</h4>
             </Row>
+            <IconButton
+              aria-label="Delete this comment?"
+              icon={<AiTwotoneDelete />}
+              onClick={() => deleteComment(comment._id)}
+            />
           </Comment>
         );
       })}
