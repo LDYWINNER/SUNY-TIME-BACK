@@ -4,22 +4,20 @@ import styled from "styled-components";
 const ClockWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const DateSpan = styled.span`
   color: white;
-  font-size: 6vh;
+  font-size: 3vw;
   font-weight: 600;
-  width: 500px;
   text-align: center;
 `;
 
 const ClockSpan = styled.span`
   color: white;
-  font-size: 12vh;
+  font-size: 6vw;
   font-weight: 600;
   text-align: center;
-  width: 500px;
 `;
 
 function Clock() {
