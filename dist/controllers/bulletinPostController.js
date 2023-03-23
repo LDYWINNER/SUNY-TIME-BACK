@@ -78,6 +78,7 @@ const getSinglePost = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     if (!post) {
         throw new errors_1.NotFoundError(`No post with id: ${postId}`);
     }
+    post.comments = yield BulletinPostComment_1.default.find({ bulletin: postId });
     res.status(http_status_codes_1.StatusCodes.OK).json({ post });
 });
 exports.getSinglePost = getSinglePost;

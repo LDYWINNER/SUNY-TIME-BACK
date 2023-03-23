@@ -33,7 +33,7 @@ import Loading from "../Components/Loading";
 import { BulletinCommentPost, BulletinAllComments } from "../Components";
 
 interface IPostComment {
-  content: string;
+  text: string;
   likes: [string];
   createdBy: string;
   createdAt: string;

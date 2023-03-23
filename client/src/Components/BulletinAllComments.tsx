@@ -1,6 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../api";
 import { Wrapper, Comment, Row } from "../assets/wrappers/BulletinAllComments";
@@ -9,7 +8,7 @@ import { removeUserFromLocalStorage } from "../utils";
 import { AiFillLike, AiOutlineLike, AiTwotoneDelete } from "react-icons/ai";
 
 interface IPostComment {
-  content: string;
+  text: string;
   likes: [string];
   createdBy: string;
   createdAt: string;
@@ -21,7 +20,6 @@ interface IBulletinAllComments {
 }
 
 function BulletinAllComments({ comments }: IBulletinAllComments) {
-  const navigate = useNavigate();
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
   const [like, setLike] = useState(true);
@@ -67,8 +65,8 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
     <Wrapper>
       {comments.map((comment: IPostComment) => {
         return (
-          <Comment>
-            <h4>{comment.content}</h4>
+          <Comment key={comment._id}>
+            <h4>{comment.text}</h4>
             <h4>{comment.createdBy}</h4>
             <h4>{comment.createdAt}</h4>
             <Row>

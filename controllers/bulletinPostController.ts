@@ -90,6 +90,8 @@ const getSinglePost = async (req: Request, res: Response) => {
     throw new NotFoundError(`No post with id: ${postId}`);
   }
 
+  post.comments = await BulletinPostComment.find({ bulletin: postId });
+
   res.status(StatusCodes.OK).json({ post });
 };
 
