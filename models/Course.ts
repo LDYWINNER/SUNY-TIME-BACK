@@ -1,29 +1,4 @@
-import mongoose from "mongoose";
-
-const CourseComment = new mongoose.Schema(
-  {
-    content: {
-      type: String,
-      required: [true, "Please provide content"],
-    },
-    likes: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    dislikes: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-      required: [true, "Please provide user"],
-    },
-  },
-  { timestamps: true }
-);
+import mongoose, { Schema } from "mongoose";
 
 const CourseSchema = new mongoose.Schema({
   semester: {
@@ -88,16 +63,12 @@ const CourseSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  dislikes: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  comments: {
-    type: [CourseComment],
-    required: true,
-    default: [],
-  },
+  courseReviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "CourseReview",
+    },
+  ],
 });
 
 export default mongoose.model("Course", CourseSchema);

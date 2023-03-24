@@ -24,74 +24,43 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const CourseSchema = new mongoose_1.default.Schema({
+const CourseReviewSchema = new mongoose_1.default.Schema({
+    course: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "Course",
+    },
     semester: {
-        type: [String],
-        required: true,
+        type: String,
+        required: [true, "Please provide which semester you took this course"],
     },
-    classNbr: {
+    homeworkQuantity: {
+        type: String,
+        enum: ["many", "soso", "few"],
+        required: [true, "Please provide homework quantity"],
+    },
+    teamProjectPresence: {
+        type: Boolean,
+        required: [true, "Please provide team project presence"],
+    },
+    difficulty: {
+        type: String,
+        enum: ["difficult", "soso", "easy"],
+    },
+    testQuantity: {
         type: Number,
-        required: true,
+        required: [true, "Please provide test quantity"],
     },
-    subj: {
-        type: String,
-        required: true,
+    quizPresence: {
+        type: Boolean,
+        required: [true, "Please provide quiz presence"],
     },
-    crs: {
+    overallGrade: {
         type: Number,
-        requred: true,
+        enum: [1, 2, 3, 4, 5],
+        required: [true, "Please select overall grade of the course"],
     },
-    courseTitle: {
+    overallEvaluation: {
         type: String,
-        required: true,
     },
-    sbc: {
-        type: String,
-        requred: true,
-    },
-    cmp: {
-        type: String,
-        requred: true,
-    },
-    sctn: {
-        type: String,
-        requred: true,
-    },
-    credits: {
-        type: Number,
-        required: true,
-    },
-    day: {
-        type: String,
-        enum: ["M", "TU", "W", "TH", "F"],
-        required: true,
-    },
-    startTime: {
-        type: Date,
-        required: true,
-    },
-    endTime: {
-        type: Date,
-        required: true,
-    },
-    room: {
-        type: String,
-        required: true,
-    },
-    instructor: {
-        type: String,
-        required: true,
-    },
-    likes: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    courseReviews: [
-        {
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: "CourseReview",
-        },
-    ],
 });
-exports.default = mongoose_1.default.model("Course", CourseSchema);
+exports.default = mongoose_1.default.model("CourseReview", CourseReviewSchema);
