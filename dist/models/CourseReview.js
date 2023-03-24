@@ -62,5 +62,10 @@ const CourseReviewSchema = new mongoose_1.default.Schema({
     overallEvaluation: {
         type: String,
     },
+    likes: {
+        type: [String],
+        required: true,
+        default: [],
+    },
 });
 exports.default = mongoose_1.default.model("CourseReview", CourseReviewSchema);

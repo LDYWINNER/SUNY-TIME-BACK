@@ -91,7 +91,30 @@ const createReview = async (req: Request, res: Response) => {
 };
 
 const likeReview = async (req: Request, res: Response) => {
-  res.send("likeReview");
+  const { reviewId } = req.params;
+
+  const review = await CourseReview.findOne({ _id: reviewId });
+
+  if (!review) {
+    throw new NotFoundError(`No review with id: ${reviewId}`);
+  }
+
+  if (review.likes.includes(req.user?.userId as string)) {
+    const index = review.likes.indexOf(req.user?.userId as string);
+    review.likes.splice(index, 1);
+    const updatedReview = await CourseReview.findOneAndUpdate(
+      { _id: reviewId },
+      { likes: review.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedReview });
+  } else {
+    review.likes.push(req.user?.userId as string);
+    const updatedReview = await CourseReview.findOneAndUpdate(
+      { _id: reviewId },
+      { likes: review.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedReview });
+  }
 };
 
 const deleteReview = async (req: Request, res: Response) => {

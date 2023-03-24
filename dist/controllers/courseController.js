@@ -74,7 +74,23 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.createReview = createReview;
 const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("likeReview");
+    var _d, _e, _f;
+    const { reviewId } = req.params;
+    const review = yield CourseReview_1.default.findOne({ _id: reviewId });
+    if (!review) {
+        throw new errors_1.NotFoundError(`No review with id: ${reviewId}`);
+    }
+    if (review.likes.includes((_d = req.user) === null || _d === void 0 ? void 0 : _d.userId)) {
+        const index = review.likes.indexOf((_e = req.user) === null || _e === void 0 ? void 0 : _e.userId);
+        review.likes.splice(index, 1);
+        const updatedReview = yield CourseReview_1.default.findOneAndUpdate({ _id: reviewId }, { likes: review.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedReview });
+    }
+    else {
+        review.likes.push((_f = req.user) === null || _f === void 0 ? void 0 : _f.userId);
+        const updatedReview = yield CourseReview_1.default.findOneAndUpdate({ _id: reviewId }, { likes: review.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedReview });
+    }
 });
 exports.likeReview = likeReview;
 const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
