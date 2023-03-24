@@ -8,8 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteReview = exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
+const http_status_codes_1 = require("http-status-codes");
+const errors_1 = require("../errors");
+const Course_1 = __importDefault(require("../models/Course"));
+const CourseReview_1 = __importDefault(require("../models/CourseReview"));
 const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("getAllCourses");
 });
@@ -19,7 +26,13 @@ const likeCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.likeCourse = likeCourse;
 const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("getSingleCourse");
+    const { id: courseId } = req.params;
+    const course = yield Course_1.default.findOne({ _id: courseId });
+    if (!course) {
+        throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
+    }
+    course.reviews = yield CourseReview_1.default.find({ course: courseId });
+    res.status(http_status_codes_1.StatusCodes.OK).json({ course });
 });
 exports.getSingleCourse = getSingleCourse;
 const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
