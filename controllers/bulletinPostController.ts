@@ -148,7 +148,7 @@ const likeBulletinPost = async (req: Request, res: Response) => {
 const createComment = async (req: Request, res: Response) => {
   const {
     params: { id: postId },
-    body: { text },
+    body: { text, anonymity },
   } = req;
 
   const bulletinPost = await BulletinPost.findById(postId);
@@ -163,6 +163,12 @@ const createComment = async (req: Request, res: Response) => {
 
   req.body.createdBy = req.user?.userId;
   req.body.bulletin = postId;
+
+  const fetchUsername = async (userId: string) => {
+    return User.findOne({ _id: userId }).then((user) => user?.username);
+  };
+  let username = await fetchUsername(req.user?.userId as string);
+  req.body.createdByUsername = username;
 
   const comment = await BulletinPostComment.create(req.body);
   bulletinPost.comments.push(comment._id);

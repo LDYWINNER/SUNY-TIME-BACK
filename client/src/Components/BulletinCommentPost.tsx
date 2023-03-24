@@ -10,6 +10,7 @@ interface IBulletinCommentPost {
 
 interface IForm {
   text: string;
+  anonymity: boolean;
 }
 
 interface IBCPState {
@@ -32,12 +33,14 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
   } = useForm<IForm>({
     defaultValues: {
       text: "",
+      anonymity: true,
     },
   });
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newComment = {
       text: data.text,
+      anonymity: data.anonymity,
     };
     console.log(newComment);
 
@@ -79,6 +82,7 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
     if (isSubmitSuccessful) {
       reset({
         text: "",
+        anonymity: true,
       });
     }
   }, [reset, isSubmitSuccessful]);
@@ -101,6 +105,15 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
       </div>
       {errors?.text?.message && <Alert message={errors.text.message} />}
 
+      <div className="checkbox-div">
+        <input
+          type="checkbox"
+          {...register("anonymity")}
+          id="anonymity"
+          className="anonymity-checkbox"
+        />
+        <label htmlFor="anonymity">Anonymity</label>
+      </div>
       <Button type="submit">Save</Button>
     </form>
   );

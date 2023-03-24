@@ -11,6 +11,8 @@ interface IPostComment {
   text: string;
   likes: [string];
   createdBy: string;
+  createdByUsername: string;
+  anonymity: boolean;
   createdAt: string;
   _id: string;
 }
@@ -67,7 +69,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
         return (
           <Comment key={comment._id}>
             <h4>{comment.text}</h4>
-            <h4>{comment.createdBy}</h4>
+            <h4>{comment.anonymity ? "익명" : comment.createdByUsername}</h4>
             <h4>{comment.createdAt}</h4>
             <Row>
               <IconButton

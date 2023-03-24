@@ -17,10 +17,13 @@ import moment from "moment";
 import { AiOutlineLike } from "react-icons/ai";
 
 interface IPostComment {
-  content: string;
+  text: string;
   likes: [string];
   createdBy: string;
+  createdByUsername: string;
+  anonymity: boolean;
   createdAt: string;
+  _id: string;
 }
 
 interface IPost {

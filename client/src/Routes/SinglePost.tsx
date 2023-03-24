@@ -36,6 +36,8 @@ interface IPostComment {
   text: string;
   likes: [string];
   createdBy: string;
+  createdByUsername: string;
+  anonymity: boolean;
   createdAt: string;
   _id: string;
 }

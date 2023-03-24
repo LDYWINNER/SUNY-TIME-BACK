@@ -21,6 +21,15 @@ const BulletinPostCommentSchema = new Schema(
       required: true,
       ref: "BulletinPost",
     },
+    createdByUsername: {
+      type: String,
+      required: true,
+    },
+    anonymity: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
   },
   { timestamps: true }
 );

@@ -117,8 +117,8 @@ const likeBulletinPost = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.likeBulletinPost = likeBulletinPost;
 const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _f;
-    const { params: { id: postId }, body: { text }, } = req;
+    var _f, _g;
+    const { params: { id: postId }, body: { text, anonymity }, } = req;
     const bulletinPost = yield BulletinPost_1.default.findById(postId);
     if (!bulletinPost) {
         throw new errors_1.NotFoundError(`No post with id: ${postId}`);
@@ -128,6 +128,11 @@ const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     req.body.createdBy = (_f = req.user) === null || _f === void 0 ? void 0 : _f.userId;
     req.body.bulletin = postId;
+    const fetchUsername = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+        return User_1.default.findOne({ _id: userId }).then((user) => user === null || user === void 0 ? void 0 : user.username);
+    });
+    let username = yield fetchUsername((_g = req.user) === null || _g === void 0 ? void 0 : _g.userId);
+    req.body.createdByUsername = username;
     const comment = yield BulletinPostComment_1.default.create(req.body);
     bulletinPost.comments.push(comment._id);
     bulletinPost.save();
@@ -135,20 +140,20 @@ const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.createComment = createComment;
 const likeComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _g, _h, _j;
+    var _h, _j, _k;
     const { id: commentId } = req.query;
     const comment = yield BulletinPostComment_1.default.findOne({ _id: commentId });
     if (!comment) {
         throw new errors_1.NotFoundError(`No Comment with id: ${commentId}`);
     }
-    if (comment.likes.includes((_g = req.user) === null || _g === void 0 ? void 0 : _g.userId)) {
-        const index = comment.likes.indexOf((_h = req.user) === null || _h === void 0 ? void 0 : _h.userId);
+    if (comment.likes.includes((_h = req.user) === null || _h === void 0 ? void 0 : _h.userId)) {
+        const index = comment.likes.indexOf((_j = req.user) === null || _j === void 0 ? void 0 : _j.userId);
         comment.likes.splice(index, 1);
         const updatedComment = yield BulletinPostComment_1.default.findOneAndUpdate({ _id: commentId }, { likes: comment.likes });
         res.status(http_status_codes_1.StatusCodes.OK).json({ updatedComment });
     }
     else {
-        comment.likes.push((_j = req.user) === null || _j === void 0 ? void 0 : _j.userId);
+        comment.likes.push((_k = req.user) === null || _k === void 0 ? void 0 : _k.userId);
         const updatedComment = yield BulletinPostComment_1.default.findOneAndUpdate({ _id: commentId }, { likes: comment.likes });
         res.status(http_status_codes_1.StatusCodes.OK).json({ updatedComment });
     }
