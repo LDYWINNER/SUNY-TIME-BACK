@@ -6,8 +6,60 @@ import CourseReview from "../models/CourseReview";
 import User from "../models/User";
 import checkPermissions from "../utils/checkPermissions";
 
+interface IQueryObject {
+  [x: string]: any;
+  $and?: (
+    | {
+        $or: any;
+      }
+    | {
+        subj: any;
+      }
+    | {
+        instructor: any;
+      }
+  )[];
+}
+
 const getAllCourses = async (req: Request, res: Response) => {
-  res.send("getAllCourses");
+  const { search, subj } = req.query;
+
+  let queryObject: IQueryObject = {
+    subj,
+  };
+
+  if (search) {
+    queryObject = {
+      $and: [
+        {
+          $or: [
+            { crs: { $regex: search, $options: "i" } },
+            { courseTitle: { $regex: search, $options: "i" } },
+          ],
+        },
+        { subj },
+      ],
+    };
+  }
+
+  let result = Course.find(queryObject);
+
+  //setup pagination
+  const finalPage = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 16;
+  const skip = (finalPage - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
+  const allCourses = await result;
+  const totalCourses = await Course.countDocuments(queryObject);
+  const courseNumOfPages = Math.ceil(totalCourses / limit);
+
+  res.status(StatusCodes.OK).json({
+    allCourses,
+    totalCourses,
+    courseNumOfPages,
+  });
 };
 
 const likeCourse = async (req: Request, res: Response) => {

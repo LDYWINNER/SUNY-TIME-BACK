@@ -20,7 +20,37 @@ const CourseReview_1 = __importDefault(require("../models/CourseReview"));
 const User_1 = __importDefault(require("../models/User"));
 const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
 const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("getAllCourses");
+    const { search, subj } = req.query;
+    let queryObject = {
+        subj,
+    };
+    if (search) {
+        queryObject = {
+            $and: [
+                {
+                    $or: [
+                        { crs: { $regex: search, $options: "i" } },
+                        { courseTitle: { $regex: search, $options: "i" } },
+                    ],
+                },
+                { subj },
+            ],
+        };
+    }
+    let result = Course_1.default.find(queryObject);
+    //setup pagination
+    const finalPage = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 16;
+    const skip = (finalPage - 1) * limit;
+    result = result.skip(skip).limit(limit);
+    const allCourses = yield result;
+    const totalCourses = yield Course_1.default.countDocuments(queryObject);
+    const courseNumOfPages = Math.ceil(totalCourses / limit);
+    res.status(http_status_codes_1.StatusCodes.OK).json({
+        allCourses,
+        totalCourses,
+        courseNumOfPages,
+    });
 });
 exports.getAllCourses = getAllCourses;
 const likeCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
