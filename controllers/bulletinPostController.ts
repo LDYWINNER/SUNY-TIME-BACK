@@ -148,7 +148,7 @@ const likeBulletinPost = async (req: Request, res: Response) => {
 const createComment = async (req: Request, res: Response) => {
   const {
     params: { id: postId },
-    body: { text, anonymity },
+    body: { text },
   } = req;
 
   const bulletinPost = await BulletinPost.findById(postId);
