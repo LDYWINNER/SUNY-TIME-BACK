@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const LoadingWrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;

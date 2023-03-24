@@ -10,6 +10,7 @@ import {
   Title,
   Row,
   Comments,
+  LoadingWrapper,
 } from "../assets/wrappers/SinglePost";
 import { bgImages } from "../assets/assets";
 import {
@@ -143,7 +144,11 @@ function SinglePost() {
   }, []);
 
   if (isLoading) {
-    return <Loading center />;
+    return (
+      <LoadingWrapper>
+        <Loading center />
+      </LoadingWrapper>
+    );
   }
   return (
     <Wrapper bgImage={bgImage}>
