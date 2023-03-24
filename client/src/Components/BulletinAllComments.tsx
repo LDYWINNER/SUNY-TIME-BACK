@@ -1,10 +1,20 @@
-import { IconButton } from "@chakra-ui/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../api";
 import { Wrapper, Comment, Row } from "../assets/wrappers/BulletinAllComments";
 import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
+  Button,
+  IconButton,
+} from "@chakra-ui/react";
 import { AiFillLike, AiOutlineLike, AiTwotoneDelete } from "react-icons/ai";
 
 interface IPostComment {
@@ -25,6 +35,8 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
   const [like, setLike] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef(null);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -88,8 +100,39 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
             <IconButton
               aria-label="Delete this comment?"
               icon={<AiTwotoneDelete />}
-              onClick={() => deleteComment(comment._id)}
+              onClick={onOpen}
             />
+            <AlertDialog
+              isOpen={isOpen}
+              leastDestructiveRef={cancelRef}
+              onClose={onClose}
+              isCentered
+            >
+              <AlertDialogOverlay>
+                <AlertDialogContent>
+                  <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                    Delete Comment
+                  </AlertDialogHeader>
+
+                  <AlertDialogBody>
+                    Are you sure? You can't undo this action afterwards.
+                  </AlertDialogBody>
+
+                  <AlertDialogFooter>
+                    <Button ref={cancelRef} onClick={onClose}>
+                      Cancel
+                    </Button>
+                    <Button
+                      colorScheme="red"
+                      onClick={() => deleteComment(comment._id)}
+                      ml={3}
+                    >
+                      Delete
+                    </Button>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialogOverlay>
+            </AlertDialog>
           </Comment>
         );
       })}
