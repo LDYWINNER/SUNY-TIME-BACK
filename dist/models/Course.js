@@ -83,9 +83,9 @@ const CourseSchema = new mongoose_1.default.Schema({
         required: true,
     },
     likes: {
-        type: Number,
+        type: [String],
         required: true,
-        default: 0,
+        default: [],
     },
     courseReviews: [
         {
