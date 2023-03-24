@@ -22,12 +22,28 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.getAllCourses = getAllCourses;
 const likeCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("likeCourse");
+    var _a, _b, _c;
+    const { id: courseId } = req.query;
+    const course = yield Course_1.default.findOne({ classNbr: courseId });
+    if (!course) {
+        throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
+    }
+    if (course.likes.includes((_a = req.user) === null || _a === void 0 ? void 0 : _a.userId)) {
+        const index = course.likes.indexOf((_b = req.user) === null || _b === void 0 ? void 0 : _b.userId);
+        course.likes.splice(index, 1);
+        const updatedCourse = yield Course_1.default.findOneAndUpdate({ classNbr: courseId }, { likes: course.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedCourse });
+    }
+    else {
+        course.likes.push((_c = req.user) === null || _c === void 0 ? void 0 : _c.userId);
+        const updatedCourse = yield Course_1.default.findOneAndUpdate({ classNbr: courseId }, { likes: course.likes });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ updatedCourse });
+    }
 });
 exports.likeCourse = likeCourse;
 const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id: courseId } = req.params;
-    const course = yield Course_1.default.findOne({ _id: courseId });
+    const course = yield Course_1.default.findOne({ classNbr: courseId });
     if (!course) {
         throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
     }

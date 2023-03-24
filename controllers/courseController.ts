@@ -9,13 +9,36 @@ const getAllCourses = async (req: Request, res: Response) => {
 };
 
 const likeCourse = async (req: Request, res: Response) => {
-  res.send("likeCourse");
+  const { id: courseId } = req.query;
+
+  const course = await Course.findOne({ classNbr: courseId });
+
+  if (!course) {
+    throw new NotFoundError(`No course with id: ${courseId}`);
+  }
+
+  if (course.likes.includes(req.user?.userId as string)) {
+    const index = course.likes.indexOf(req.user?.userId as string);
+    course.likes.splice(index, 1);
+    const updatedCourse = await Course.findOneAndUpdate(
+      { classNbr: courseId },
+      { likes: course.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedCourse });
+  } else {
+    course.likes.push(req.user?.userId as string);
+    const updatedCourse = await Course.findOneAndUpdate(
+      { classNbr: courseId },
+      { likes: course.likes }
+    );
+    res.status(StatusCodes.OK).json({ updatedCourse });
+  }
 };
 
 const getSingleCourse = async (req: Request, res: Response) => {
   const { id: courseId } = req.params;
 
-  const course = await Course.findOne({ _id: courseId });
+  const course = await Course.findOne({ classNbr: courseId });
 
   if (!course) {
     throw new NotFoundError(`No course with id: ${courseId}`);
