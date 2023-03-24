@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 
-const CourseReviewSchema = new mongoose.Schema({
+const CourseReviewSchema = new Schema({
   course: {
     type: Schema.Types.ObjectId,
     ref: "Course",
@@ -38,6 +38,20 @@ const CourseReviewSchema = new mongoose.Schema({
   overallEvaluation: {
     type: String,
   },
+  createdBy: {
+    type: Types.ObjectId,
+    ref: "User",
+    required: [true, "Please provide user"],
+  },
+  createdByUsername: {
+    type: String,
+    required: true,
+  },
+  anonymity: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
   likes: {
     type: [String],
     required: true,
@@ -45,4 +59,4 @@ const CourseReviewSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("CourseReview", CourseReviewSchema);
+export default model("CourseReview", CourseReviewSchema);

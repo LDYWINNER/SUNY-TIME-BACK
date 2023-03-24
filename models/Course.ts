@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
-const CourseSchema = new mongoose.Schema({
+const CourseSchema = new Schema({
   semester: {
     type: [String],
     required: true,
@@ -71,4 +71,4 @@ const CourseSchema = new mongoose.Schema({
   ],
 });
 
-export default mongoose.model("Course", CourseSchema);
+export default model("Course", CourseSchema);

@@ -17,6 +17,8 @@ const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const Course_1 = __importDefault(require("../models/Course"));
 const CourseReview_1 = __importDefault(require("../models/CourseReview"));
+const User_1 = __importDefault(require("../models/User"));
+const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
 const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("getAllCourses");
 });
@@ -52,6 +54,7 @@ const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.getSingleCourse = getSingleCourse;
 const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _d, _e;
     const { params: { id: courseId }, body: { semester, homeworkQuantity, teamProjectPresence, difficulty, testQuantity, quizPresence, overallGrade, }, } = req;
     const course = yield Course_1.default.findOne({ classNbr: courseId });
     if (!course) {
@@ -66,7 +69,13 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         !overallGrade) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
+    req.body.createdBy = (_d = req.user) === null || _d === void 0 ? void 0 : _d.userId;
     req.body.course = courseId;
+    const fetchUsername = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+        return User_1.default.findOne({ _id: userId }).then((user) => user === null || user === void 0 ? void 0 : user.username);
+    });
+    let username = yield fetchUsername((_e = req.user) === null || _e === void 0 ? void 0 : _e.userId);
+    req.body.createdByUsername = username;
     const courseReview = yield CourseReview_1.default.create(req.body);
     course.reviews.push(courseReview._id);
     course.save();
@@ -74,26 +83,33 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.createReview = createReview;
 const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _d, _e, _f;
+    var _f, _g, _h;
     const { reviewId } = req.params;
     const review = yield CourseReview_1.default.findOne({ _id: reviewId });
     if (!review) {
         throw new errors_1.NotFoundError(`No review with id: ${reviewId}`);
     }
-    if (review.likes.includes((_d = req.user) === null || _d === void 0 ? void 0 : _d.userId)) {
-        const index = review.likes.indexOf((_e = req.user) === null || _e === void 0 ? void 0 : _e.userId);
+    if (review.likes.includes((_f = req.user) === null || _f === void 0 ? void 0 : _f.userId)) {
+        const index = review.likes.indexOf((_g = req.user) === null || _g === void 0 ? void 0 : _g.userId);
         review.likes.splice(index, 1);
         const updatedReview = yield CourseReview_1.default.findOneAndUpdate({ _id: reviewId }, { likes: review.likes });
         res.status(http_status_codes_1.StatusCodes.OK).json({ updatedReview });
     }
     else {
-        review.likes.push((_f = req.user) === null || _f === void 0 ? void 0 : _f.userId);
+        review.likes.push((_h = req.user) === null || _h === void 0 ? void 0 : _h.userId);
         const updatedReview = yield CourseReview_1.default.findOneAndUpdate({ _id: reviewId }, { likes: review.likes });
         res.status(http_status_codes_1.StatusCodes.OK).json({ updatedReview });
     }
 });
 exports.likeReview = likeReview;
 const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("deleteReview");
+    const { reviewId } = req.params;
+    const review = yield CourseReview_1.default.findOne({ _id: reviewId });
+    if (!review) {
+        throw new errors_1.NotFoundError(`No review with id: ${reviewId}`);
+    }
+    (0, checkPermissions_1.default)(req.user, review.createdBy);
+    yield review.remove();
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Review removed successfully" });
 });
 exports.deleteReview = deleteReview;

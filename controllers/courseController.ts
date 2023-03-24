@@ -3,6 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors";
 import Course from "../models/Course";
 import CourseReview from "../models/CourseReview";
+import User from "../models/User";
+import checkPermissions from "../utils/checkPermissions";
 
 const getAllCourses = async (req: Request, res: Response) => {
   res.send("getAllCourses");
@@ -81,7 +83,14 @@ const createReview = async (req: Request, res: Response) => {
     throw new BadRequestError("Please provide all values");
   }
 
+  req.body.createdBy = req.user?.userId;
   req.body.course = courseId;
+
+  const fetchUsername = async (userId: string) => {
+    return User.findOne({ _id: userId }).then((user) => user?.username);
+  };
+  let username = await fetchUsername(req.user?.userId as string);
+  req.body.createdByUsername = username;
 
   const courseReview = await CourseReview.create(req.body);
   course.reviews.push(courseReview._id);
@@ -118,7 +127,19 @@ const likeReview = async (req: Request, res: Response) => {
 };
 
 const deleteReview = async (req: Request, res: Response) => {
-  res.send("deleteReview");
+  const { reviewId } = req.params;
+
+  const review = await CourseReview.findOne({ _id: reviewId });
+
+  if (!review) {
+    throw new NotFoundError(`No review with id: ${reviewId}`);
+  }
+
+  checkPermissions(req.user as { userId: string }, review.createdBy);
+
+  await review.remove();
+
+  res.status(StatusCodes.OK).json({ msg: "Review removed successfully" });
 };
 
 export {
