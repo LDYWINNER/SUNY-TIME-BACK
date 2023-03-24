@@ -4,8 +4,31 @@ const getAllCourses = async (req: Request, res: Response) => {
   res.send("getAllCourses");
 };
 
-const updateCourse = async (req: Request, res: Response) => {
-  res.send("updateCourse");
+const likeCourse = async (req: Request, res: Response) => {
+  res.send("likeCourse");
 };
 
-export { getAllCourses, updateCourse };
+const getSingleCourse = async (req: Request, res: Response) => {
+  res.send("getSingleCourse");
+};
+
+const createReview = async (req: Request, res: Response) => {
+  res.send("createReview");
+};
+
+const likeReview = async (req: Request, res: Response) => {
+  res.send("likeReview");
+};
+
+const deleteReview = async (req: Request, res: Response) => {
+  res.send("deleteReview");
+};
+
+export {
+  getAllCourses,
+  likeCourse,
+  getSingleCourse,
+  createReview,
+  likeReview,
+  deleteReview,
+};

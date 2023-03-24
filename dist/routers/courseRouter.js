@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const courseController_1 = require("../controllers/courseController");
-const bulletinPostRouter = express_1.default.Router();
-bulletinPostRouter.route("/").get(courseController_1.getAllCourses);
-bulletinPostRouter.route("/:id").patch(courseController_1.updateCourse);
-exports.default = bulletinPostRouter;
+const courseRouter = express_1.default.Router();
+courseRouter.route("/").get(courseController_1.getAllCourses).patch(courseController_1.likeCourse);
+courseRouter.route("/:id").get(courseController_1.getSingleCourse).post(courseController_1.createReview);
+courseRouter.route("/review/:reviewId").patch(courseController_1.likeReview).delete(courseController_1.deleteReview);
+exports.default = courseRouter;

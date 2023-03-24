@@ -9,12 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCourse = exports.getAllCourses = void 0;
+exports.deleteReview = exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
 const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("getAllCourses");
 });
 exports.getAllCourses = getAllCourses;
-const updateCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("updateCourse");
+const likeCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send("likeCourse");
 });
-exports.updateCourse = updateCourse;
+exports.likeCourse = likeCourse;
+const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send("getSingleCourse");
+});
+exports.getSingleCourse = getSingleCourse;
+const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send("createReview");
+});
+exports.createReview = createReview;
+const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send("likeReview");
+});
+exports.likeReview = likeReview;
+const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send("deleteReview");
+});
+exports.deleteReview = deleteReview;
