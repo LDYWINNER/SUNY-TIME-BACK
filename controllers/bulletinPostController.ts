@@ -178,7 +178,7 @@ const createComment = async (req: Request, res: Response) => {
 };
 
 const likeComment = async (req: Request, res: Response) => {
-  const { id: commentId } = req.query;
+  const { commentId } = req.params;
 
   const comment = await BulletinPostComment.findOne({ _id: commentId });
 

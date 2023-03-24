@@ -141,7 +141,7 @@ const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createComment = createComment;
 const likeComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _h, _j, _k;
-    const { id: commentId } = req.query;
+    const { commentId } = req.params;
     const comment = yield BulletinPostComment_1.default.findOne({ _id: commentId });
     if (!comment) {
         throw new errors_1.NotFoundError(`No Comment with id: ${commentId}`);

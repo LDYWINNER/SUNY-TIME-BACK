@@ -49,11 +49,11 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
     }
   };
 
-  const handleLike = async (id: string) => {
+  const handleLike = async (id: any) => {
     try {
       setLike((prev) => !prev);
       console.log(like);
-      await authFetch.patch(`/bulletin/comment/?id=${id}`);
+      await authFetch.patch(`/bulletin/comment/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);
