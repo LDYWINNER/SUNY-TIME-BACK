@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { NotFoundError } from "../errors";
+import { BadRequestError, NotFoundError } from "../errors";
 import Course from "../models/Course";
 import CourseReview from "../models/CourseReview";
 
@@ -50,7 +50,44 @@ const getSingleCourse = async (req: Request, res: Response) => {
 };
 
 const createReview = async (req: Request, res: Response) => {
-  res.send("createReview");
+  const {
+    params: { id: courseId },
+    body: {
+      semester,
+      homeworkQuantity,
+      teamProjectPresence,
+      difficulty,
+      testQuantity,
+      quizPresence,
+      overallGrade,
+    },
+  } = req;
+
+  const course = await Course.findOne({ classNbr: courseId });
+
+  if (!course) {
+    throw new NotFoundError(`No course with id: ${courseId}`);
+  }
+
+  if (
+    !semester ||
+    !homeworkQuantity ||
+    !teamProjectPresence ||
+    !difficulty ||
+    !testQuantity ||
+    !quizPresence ||
+    !overallGrade
+  ) {
+    throw new BadRequestError("Please provide all values");
+  }
+
+  req.body.course = courseId;
+
+  const courseReview = await CourseReview.create(req.body);
+  course.reviews.push(courseReview._id);
+  course.save();
+
+  res.status(StatusCodes.CREATED).json({ courseReview });
 };
 
 const likeReview = async (req: Request, res: Response) => {

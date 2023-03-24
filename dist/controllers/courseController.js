@@ -52,7 +52,25 @@ const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.getSingleCourse = getSingleCourse;
 const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("createReview");
+    const { params: { id: courseId }, body: { semester, homeworkQuantity, teamProjectPresence, difficulty, testQuantity, quizPresence, overallGrade, }, } = req;
+    const course = yield Course_1.default.findOne({ classNbr: courseId });
+    if (!course) {
+        throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
+    }
+    if (!semester ||
+        !homeworkQuantity ||
+        !teamProjectPresence ||
+        !difficulty ||
+        !testQuantity ||
+        !quizPresence ||
+        !overallGrade) {
+        throw new errors_1.BadRequestError("Please provide all values");
+    }
+    req.body.course = courseId;
+    const courseReview = yield CourseReview_1.default.create(req.body);
+    course.reviews.push(courseReview._id);
+    course.save();
+    res.status(http_status_codes_1.StatusCodes.CREATED).json({ courseReview });
 });
 exports.createReview = createReview;
 const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
