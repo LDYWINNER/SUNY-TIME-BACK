@@ -49,7 +49,10 @@ function CMHome() {
   return (
     <Wrapper>
       <Col>
-        <Timetable events={events} style={{ height: "500px" }} />
+        <Timetable
+          events={events}
+          style={{ height: "40rem", width: "30rem" }}
+        />
       </Col>
       <Col></Col>
     </Wrapper>
