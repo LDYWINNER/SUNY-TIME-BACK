@@ -24,6 +24,7 @@ const BulletinSearch = () => {
     reset({
       searchKeyword: "",
     });
+    window.location.reload();
   };
 
   const debounce = () => {
@@ -101,7 +102,24 @@ const BulletinSearch = () => {
       </label>
       <label htmlFor="Secret">
         <input
-          {...register("radio", { required: true })}
+          {...register("radio", {
+            required: true,
+            onChange: (e) => {
+              //set page to 1
+              setGlobalState((currentState) => {
+                return {
+                  ...currentState,
+                  bulletinPage: 1,
+                };
+              });
+              setBulletinSearch((currentState) => {
+                return {
+                  ...currentState,
+                  boardFilter: e.target.value,
+                };
+              });
+            },
+          })}
           type="radio"
           name="radio"
           value="Secret"

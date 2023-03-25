@@ -23,7 +23,7 @@ const AllCourses = () => {
             <CourseSearch />
           </FilterRow>
           <TitleRow>
-            <Title>{courseSubjFilter}</Title>
+            <Title>{courseSubjFilter} Courses</Title>
           </TitleRow>
           <h1>All Courses</h1>
           {courseNumOfPages > 1 && <CoursePagination />}
