@@ -1,4 +1,5 @@
 import Timetable from "react-timetable-events";
+import { Wrapper, Col } from "../../assets/wrappers/CMHome";
 
 interface Event {
   id: number | string;
@@ -46,9 +47,12 @@ const events: Events = {
 
 function CMHome() {
   return (
-    <>
-      <Timetable events={events} style={{ height: "500px" }} />
-    </>
+    <Wrapper>
+      <Col>
+        <Timetable events={events} style={{ height: "500px" }} />
+      </Col>
+      <Col></Col>
+    </Wrapper>
   );
 }
 export default CMHome;

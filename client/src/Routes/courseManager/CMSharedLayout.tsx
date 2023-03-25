@@ -4,7 +4,7 @@ import { BigSidebar } from "../../Components";
 import { bgImages } from "../../assets/assets";
 import { FaAlignLeft } from "react-icons/fa";
 import links from "../../utils/cmLinks";
-import { Wrapper, Main, Col } from "../../assets/wrappers/CMSharedLayout";
+import { Wrapper, Main } from "../../assets/wrappers/CMSharedLayout";
 
 const CMSharedLayout = () => {
   const [bgImage, setbgImage] = useState("");
@@ -35,10 +35,7 @@ const CMSharedLayout = () => {
         </div>
         <div className="bulletin">
           <Main>
-            <Col>
-              <Outlet />
-            </Col>
-            <Col></Col>
+            <Outlet />
           </Main>
         </div>
       </main>
