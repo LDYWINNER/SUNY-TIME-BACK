@@ -16,6 +16,7 @@ import BulletinCommentPost from "./BulletinCommentPost";
 import BulletinAllComments from "./BulletinAllComments";
 import CourseSearch from "./CourseSearch";
 import CoursePagination from "./CoursePagination";
+import Loading from "./Loading";
 
 export {
   Clock,
@@ -37,4 +38,5 @@ export {
   BulletinAllComments,
   CourseSearch,
   CoursePagination,
+  Loading,
 };

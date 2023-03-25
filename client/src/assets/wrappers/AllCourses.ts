@@ -38,3 +38,11 @@ export const Title = styled.span`
   color: ${(props) => props.theme.main.blue};
   font-family: "Bebas Neue", cursive;
 `;
+
+export const Courses = styled.div``;
+
+export const Course = styled.div``;
+
+export const Container = styled.div`
+  margin-bottom: 2rem;
+`;

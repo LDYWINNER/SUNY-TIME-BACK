@@ -16,6 +16,7 @@ const not_found_1 = __importDefault(require("./middleware/not-found"));
 const auth_1 = __importDefault(require("./middleware/auth"));
 const authRouter_1 = __importDefault(require("./routers/authRouter"));
 const bulletinPostRouter_1 = __importDefault(require("./routers/bulletinPostRouter"));
+const courseRouter_1 = __importDefault(require("./routers/courseRouter"));
 const app = (0, express_1.default)();
 const logger = (0, morgan_1.default)("dev");
 //middlewares
@@ -32,6 +33,7 @@ app.use((0, express_mongo_sanitize_1.default)());
 //routers
 app.use("/api/v1/auth", authRouter_1.default);
 app.use("/api/v1/bulletin", auth_1.default, bulletinPostRouter_1.default);
+app.use("/api/v1/course", auth_1.default, courseRouter_1.default);
 //using frontend routes from build folder
 app.get("*", (req, res) => {
     res.sendFile(path_1.default.resolve(__dirname, "./client/build", "index.html"));
