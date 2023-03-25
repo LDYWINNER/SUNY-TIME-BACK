@@ -21,6 +21,31 @@ export const globalCurrentState = atom({
     bulletinTotalPosts: 0,
     bulletinNumOfPages: 1,
     bulletinPage: 1,
+    allCourses: [],
+    totalCourses: 0,
+    courseNumOfPages: 1,
+    coursePage: 1,
+  },
+});
+
+export const singlePageBgImageState = atom({
+  key: "singlePageBgImage",
+  default: "",
+});
+
+export const bulletinSearchState = atom({
+  key: "bulletinSearch",
+  default: {
+    searchKeyword: "",
+    boardFilter: "Free",
+  },
+});
+
+export const courseSearchState = atom({
+  key: "courseSearch",
+  default: {
+    searchKeyword: "",
+    boardFilter: "AMS",
   },
 });
 
@@ -37,17 +62,4 @@ export const toDoState = atom<IToDoState>({
   key: "toDo",
   default: {},
   effects_UNSTABLE: [persistAtom],
-});
-
-export const bulletinBgImageState = atom({
-  key: "bulletinBgImage",
-  default: "",
-});
-
-export const bulletinSearchState = atom({
-  key: "bulletinSearch",
-  default: {
-    searchKeyword: "",
-    boardFilter: "Free",
-  },
 });

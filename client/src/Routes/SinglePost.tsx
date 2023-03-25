@@ -24,7 +24,7 @@ import {
   Button,
   IconButton,
 } from "@chakra-ui/react";
-import { bulletinBgImageState, globalCurrentState } from "../atoms";
+import { singlePageBgImageState, globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -57,7 +57,7 @@ interface IPost {
 function SinglePost() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
+  const [bgImage, setBgImage] = useRecoilState(singlePageBgImageState);
   const location = useLocation();
   const { id } = location.state;
   const [globalState, setGlobalCurrentState] =

@@ -19,14 +19,14 @@ import {
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  bulletinBgImageState,
+  singlePageBgImageState,
   bulletinSearchState,
   globalCurrentState,
 } from "../atoms";
 import { BulletinPagination } from "../Components";
 
 const Bulletin = () => {
-  const [bgImage, setBgImage] = useRecoilState(bulletinBgImageState);
+  const [bgImage, setBgImage] = useRecoilState(singlePageBgImageState);
   const { bulletinNumOfPages } = useRecoilValue(globalCurrentState);
   const { boardFilter } = useRecoilValue(bulletinSearchState);
 
