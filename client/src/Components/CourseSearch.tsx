@@ -263,7 +263,10 @@ const CourseSearch = () => {
           name="radio"
           value="Faculty of Sciences and Humanities"
           id="SHCourse"
-          checked={courseSearch.courseSubjFilter === "SHCourse"}
+          checked={
+            courseSearch.courseSubjFilter ===
+            "Faculty of Sciences and Humanities"
+          }
         />{" "}
         Faculty of Sciences and Humanities Courses
       </label>
