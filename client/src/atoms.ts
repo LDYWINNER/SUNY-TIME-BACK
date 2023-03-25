@@ -45,7 +45,7 @@ export const courseSearchState = atom({
   key: "courseSearch",
   default: {
     searchKeyword: "",
-    boardFilter: "AMS",
+    courseSubjFilter: "AMS",
   },
 });
 
