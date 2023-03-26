@@ -39,7 +39,10 @@ export const Title = styled.span`
   font-family: "Bebas Neue", cursive;
 `;
 
-export const Courses = styled.div``;
+export const Courses = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
 
 export const Course = styled.div``;
 

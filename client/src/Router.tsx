@@ -13,6 +13,7 @@ import {
   CMHome,
   AllCourses,
 } from "./Routes/courseManager/index";
+import SingleCourse from "./Routes/courseManager/SingleCourse";
 import {
   SchoolInfoSharedLayout,
   SchoolInfoHome,
@@ -71,6 +72,7 @@ function Router() {
         >
           <Route index element={<CMHome />} />
           <Route path="all" element={<AllCourses />} />
+          <Route path=":courseId" element={<SingleCourse />} />
         </Route>
 
         <Route path="*" element={<Error />} />

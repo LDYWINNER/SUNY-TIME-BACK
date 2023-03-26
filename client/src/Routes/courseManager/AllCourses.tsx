@@ -12,6 +12,7 @@ import {
   Title,
   Courses,
   Course,
+  Container,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState } from "../../atoms";
 import { CourseSearch, CoursePagination } from "../../Components";
@@ -133,8 +134,13 @@ const AllCourses = () => {
             {globalState.allCourses.map((course: ICourse) => {
               return (
                 <Course key={course._id}>
-                  <Link to={`/course/${course._id}`} state={{ id: course._id }}>
-                    <h4>{course.courseTitle}</h4>
+                  <Link
+                    to={`/course-manager/${course._id}`}
+                    state={{ id: course._id }}
+                  >
+                    <Container>
+                      <h4>{course.courseTitle}</h4>
+                    </Container>
                   </Link>
                 </Course>
               );
