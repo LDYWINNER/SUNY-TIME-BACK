@@ -44,8 +44,21 @@ export const Courses = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-export const Course = styled.div``;
+export const Course = styled.div`
+  color: ${(props) => props.theme.textColor.lighter};
+  border: 2px solid ${(props) => props.theme.textColor.lighter};
+  background-color: ${(props) => props.theme.bgColor.lighter};
+`;
 
 export const Container = styled.div`
   margin-bottom: 2rem;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Icon = styled.div`
+  display: flex;
 `;

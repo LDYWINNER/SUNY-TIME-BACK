@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { AiOutlineLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authFetch } from "../../api";
@@ -13,6 +14,8 @@ import {
   Courses,
   Course,
   Container,
+  Row,
+  Icon,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState } from "../../atoms";
 import { CourseSearch, CoursePagination } from "../../Components";
@@ -139,7 +142,16 @@ const AllCourses = () => {
                     state={{ id: course._id }}
                   >
                     <Container>
-                      <h4>{course.courseTitle}</h4>
+                      <h4>
+                        {course.subj}
+                        {course.crs} : {course.courseTitle}
+                      </h4>
+                      <Icon>
+                        <Row style={{ color: "blue" }}>
+                          <AiOutlineLike />
+                          {course.likes.length}
+                        </Row>
+                      </Icon>
                     </Container>
                   </Link>
                 </Course>
