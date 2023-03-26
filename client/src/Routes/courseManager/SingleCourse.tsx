@@ -16,7 +16,6 @@ interface ICourseReview {
 
 interface ICourse {
   _id: string;
-  semester: [string];
   classNbr: number;
   subj: string;
   crs: number;
@@ -25,11 +24,11 @@ interface ICourse {
   cmp: string;
   sctn: string;
   credits: number;
-  day: string;
-  startTime: Date;
-  endTime: Date;
-  room: string;
-  instructor: string;
+  day: [{ any: string }];
+  startTime: [{ any: string }];
+  endTime: [{ any: string }];
+  room: [{ any: string }];
+  instructor: [{ any: string }];
   likes: [string];
   reviews: [ICourseReview];
 }
