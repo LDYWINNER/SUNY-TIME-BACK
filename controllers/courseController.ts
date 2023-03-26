@@ -40,6 +40,21 @@ const getAllCourses = async (req: Request, res: Response) => {
     };
   }
 
+  if (subj === "SHCourse") {
+    queryObject = {
+      $nor: [
+        { subj: "AMS" },
+        { subj: "ACC" },
+        { subj: "BUS" },
+        { subj: "CSE" },
+        { subj: "ESE" },
+        { subj: "EST" },
+        { subj: "EMP" },
+        { subj: "MEC" },
+      ],
+    };
+  }
+
   if (search) {
     queryObject = {
       $and: [

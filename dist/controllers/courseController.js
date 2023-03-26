@@ -34,6 +34,20 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             $or: [{ subj: "EST" }, { subj: "EMP" }],
         };
     }
+    if (subj === "SHCourse") {
+        queryObject = {
+            $nor: [
+                { subj: "AMS" },
+                { subj: "ACC" },
+                { subj: "BUS" },
+                { subj: "CSE" },
+                { subj: "ESE" },
+                { subj: "EST" },
+                { subj: "EMP" },
+                { subj: "MEC" },
+            ],
+        };
+    }
     if (search) {
         queryObject = {
             $and: [

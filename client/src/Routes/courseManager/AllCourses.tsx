@@ -121,7 +121,12 @@ const AllCourses = () => {
             <CourseSearch />
           </FilterRow>
           <TitleRow>
-            <Title>{courseSubjFilter} Courses</Title>
+            <Title>
+              {courseSubjFilter === "SHCourse"
+                ? "Faculty of Sciences and Humanities Courses"
+                : courseSubjFilter}{" "}
+              Courses
+            </Title>
           </TitleRow>
           {isLoading && <Loading center />}
           <Courses>

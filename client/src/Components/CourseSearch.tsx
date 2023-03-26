@@ -261,12 +261,9 @@ const CourseSearch = () => {
           })}
           type="radio"
           name="radio"
-          value="Faculty of Sciences and Humanities"
+          value="SHCourse"
           id="SHCourse"
-          checked={
-            courseSearch.courseSubjFilter ===
-            "Faculty of Sciences and Humanities"
-          }
+          checked={courseSearch.courseSubjFilter === "SHCourse"}
         />{" "}
         Faculty of Sciences and Humanities Courses
       </label>
