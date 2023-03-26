@@ -28,6 +28,18 @@ const getAllCourses = async (req: Request, res: Response) => {
     subj,
   };
 
+  if (subj === "ACC/BUS") {
+    queryObject = {
+      $or: [{ subj: "ACC" }, { subj: "BUS" }],
+    };
+  }
+
+  if (subj === "EST/EMP") {
+    queryObject = {
+      $or: [{ subj: "EST" }, { subj: "EMP" }],
+    };
+  }
+
   if (search) {
     queryObject = {
       $and: [

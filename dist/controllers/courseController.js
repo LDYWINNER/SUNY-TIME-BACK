@@ -24,6 +24,16 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     let queryObject = {
         subj,
     };
+    if (subj === "ACC/BUS") {
+        queryObject = {
+            $or: [{ subj: "ACC" }, { subj: "BUS" }],
+        };
+    }
+    if (subj === "EST/EMP") {
+        queryObject = {
+            $or: [{ subj: "EST" }, { subj: "EMP" }],
+        };
+    }
     if (search) {
         queryObject = {
             $and: [
