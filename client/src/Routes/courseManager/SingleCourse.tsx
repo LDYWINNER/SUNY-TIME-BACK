@@ -1,5 +1,7 @@
+import { IconButton } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../../api";
 import {
@@ -49,6 +51,7 @@ interface ICourse {
 }
 
 const SingleCourse = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
@@ -146,6 +149,13 @@ const SingleCourse = () => {
   }
   return (
     <Wrapper>
+      <IconButton
+        onClick={() => {
+          navigate("/course-manager/all");
+        }}
+        aria-label="Go back"
+        icon={<BiArrowBack />}
+      />
       <Info>
         <Title>
           {course?.subj}
