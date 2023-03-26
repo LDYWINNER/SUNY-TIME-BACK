@@ -18,6 +18,12 @@ export const Wrapper = styled.section`
   }
 `;
 
+export const Container = styled.div`
+  width: 60%;
+  height: 100%;
+  padding: 10px;
+`;
+
 export const Info = styled.div``;
 
 export const Title = styled.span`

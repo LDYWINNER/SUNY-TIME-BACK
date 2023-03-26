@@ -2,12 +2,13 @@ import { IconButton } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../../api";
 import {
   LoadingWrapper,
   Wrapper,
+  Container,
   Info,
   Title,
   Row,
@@ -57,7 +58,7 @@ const SingleCourse = () => {
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
   const location = useLocation();
-  const { id }: { id: string } = location.state;
+  const { id } = location.state;
   const [like, setLike] = useState(true);
   const [course, setCourse] = useState<ICourse>();
 
@@ -150,55 +151,57 @@ const SingleCourse = () => {
   }
   return (
     <Wrapper>
-      <IconButton
-        onClick={() => {
-          navigate("/course-manager/all");
-        }}
-        aria-label="Go back"
-        icon={<BiArrowBack />}
-      />
-      <Info>
-        <Title>
-          {course?.subj}
-          {course?.crs} : {course?.courseTitle}
-        </Title>
-        <Row>
-          <h4>sbc: {course?.sbc}</h4>
-          <h4>credits: {course?.credits}</h4>
-        </Row>
-        <h4>
-          day: 2022 fall - {course?.day[0]["2022_fall"]} & 2023 spring -{" "}
-          {course?.day[1]["2023_spring"]}
-        </h4>
-        <h4>
-          time: 2022 fall - {course?.startTime[0]["2022_fall"]} ~{" "}
-          {course?.endTime[0]["2022_fall"]} & 2023 spring -{" "}
-          {course?.startTime[1]["2023_spring"]} ~{" "}
-          {course?.endTime[1]["2023_spring"]}
-        </h4>
-        <h4>
-          room: 2022 fall - {course?.room[0]["2022_fall"]} & 2023 spring -{" "}
-          {course?.room[1]["2023_spring"]}
-        </h4>
-        <h4>
-          instructor: 2022 fall - {course?.instructor[0]["2022_fall"]} & 2023
-          spring - {course?.instructor[1]["2023_spring"]}
-        </h4>
-      </Info>
-      <Row>
+      <Container>
         <IconButton
-          aria-label="Like this course?"
-          icon={
-            course?.likes.includes(globalState.user._id) ? (
-              <AiFillLike />
-            ) : (
-              <AiOutlineLike />
-            )
-          }
-          onClick={() => handleLike(id)}
+          onClick={() => {
+            navigate("/course-manager/all");
+          }}
+          aria-label="Go back"
+          icon={<BiArrowBack />}
         />
-        <h4>{course?.likes.length}</h4>
-      </Row>
+        <Info>
+          <Title>
+            {course?.subj}
+            {course?.crs} : {course?.courseTitle}
+          </Title>
+          <Row>
+            <h4>sbc: {course?.sbc}</h4>
+            <h4>credits: {course?.credits}</h4>
+          </Row>
+          <h4>
+            day: 2022 fall - {course?.day[0]["2022_fall"]} & 2023 spring -{" "}
+            {course?.day[1]["2023_spring"]}
+          </h4>
+          <h4>
+            time: 2022 fall - {course?.startTime[0]["2022_fall"]} ~{" "}
+            {course?.endTime[0]["2022_fall"]} & 2023 spring -{" "}
+            {course?.startTime[1]["2023_spring"]} ~{" "}
+            {course?.endTime[1]["2023_spring"]}
+          </h4>
+          <h4>
+            room: 2022 fall - {course?.room[0]["2022_fall"]} & 2023 spring -{" "}
+            {course?.room[1]["2023_spring"]}
+          </h4>
+          <h4>
+            instructor: 2022 fall - {course?.instructor[0]["2022_fall"]} & 2023
+            spring - {course?.instructor[1]["2023_spring"]}
+          </h4>
+        </Info>
+        <Row>
+          <IconButton
+            aria-label="Like this course?"
+            icon={
+              course?.likes.includes(globalState.user._id) ? (
+                <AiFillLike />
+              ) : (
+                <AiOutlineLike />
+              )
+            }
+            onClick={() => handleLike(id)}
+          />
+          <h4>{course?.likes.length}</h4>
+        </Row>
+      </Container>
     </Wrapper>
   );
 };
