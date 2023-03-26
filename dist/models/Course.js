@@ -2,10 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const CourseSchema = new mongoose_1.Schema({
-    semester: {
-        type: [String],
-        required: true,
-    },
     classNbr: {
         type: Number,
         required: true,
@@ -39,24 +35,43 @@ const CourseSchema = new mongoose_1.Schema({
         required: true,
     },
     day: {
-        type: String,
-        enum: ["M", "TU", "W", "TH", "F"],
+        type: [
+            {
+                any: String,
+            },
+        ],
         required: true,
     },
     startTime: {
-        type: Date,
+        type: [
+            {
+                any: String,
+            },
+        ],
         required: true,
     },
     endTime: {
-        type: Date,
+        type: [
+            {
+                any: String,
+            },
+        ],
         required: true,
     },
     room: {
-        type: String,
+        type: [
+            {
+                any: String,
+            },
+        ],
         required: true,
     },
     instructor: {
-        type: String,
+        type: [
+            {
+                any: String,
+            },
+        ],
         required: true,
     },
     likes: {

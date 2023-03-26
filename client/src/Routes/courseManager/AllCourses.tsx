@@ -41,7 +41,6 @@ interface ICourseReview {
 
 interface ICourse {
   _id: string;
-  semester: [string];
   classNbr: number;
   subj: string;
   crs: number;
