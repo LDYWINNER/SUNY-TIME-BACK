@@ -27,7 +27,7 @@ export const Container = styled.div`
 export const Info = styled.div``;
 
 export const Title = styled.span`
-  font-size: 5vh;
+  font-size: 50px;
   font-weight: 600;
   color: ${(props) => props.theme.main.blue};
   font-family: "Bebas Neue", cursive;
