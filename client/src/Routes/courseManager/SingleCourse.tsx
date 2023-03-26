@@ -1,5 +1,6 @@
 import { IconButton } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -184,6 +185,20 @@ const SingleCourse = () => {
           spring - {course?.instructor[1]["2023_spring"]}
         </h4>
       </Info>
+      <Row>
+        <IconButton
+          aria-label="Like this course?"
+          icon={
+            course?.likes.includes(globalState.user._id) ? (
+              <AiFillLike />
+            ) : (
+              <AiOutlineLike />
+            )
+          }
+          onClick={() => handleLike(id)}
+        />
+        <h4>{course?.likes.length}</h4>
+      </Row>
     </Wrapper>
   );
 };
