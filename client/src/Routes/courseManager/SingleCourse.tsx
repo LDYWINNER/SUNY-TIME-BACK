@@ -2,7 +2,7 @@ import { IconButton } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../../api";
 import {
