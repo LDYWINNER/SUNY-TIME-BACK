@@ -15,6 +15,7 @@ import {
   Course,
   Container,
   Row,
+  IconRow,
   Icon,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState } from "../../atoms";
@@ -146,12 +147,14 @@ const AllCourses = () => {
                         {course.subj}
                         {course.crs} : {course.courseTitle}
                       </h4>
-                      <Icon>
-                        <Row style={{ color: "blue" }}>
-                          <AiOutlineLike />
-                          {course.likes.length}
-                        </Row>
-                      </Icon>
+                      <IconRow>
+                        <Icon>
+                          <Row style={{ color: "blue" }}>
+                            <AiOutlineLike />
+                            {course.likes.length}
+                          </Row>
+                        </Icon>
+                      </IconRow>
                     </Container>
                   </Link>
                 </Course>

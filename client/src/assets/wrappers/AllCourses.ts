@@ -48,15 +48,23 @@ export const Course = styled.div`
   color: ${(props) => props.theme.textColor.lighter};
   border: 2px solid ${(props) => props.theme.textColor.lighter};
   background-color: ${(props) => props.theme.bgColor.lighter};
+  border-radius: 10px;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const Container = styled.div`
-  margin-bottom: 2rem;
+  padding: 1rem;
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const IconRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const Icon = styled.div`
