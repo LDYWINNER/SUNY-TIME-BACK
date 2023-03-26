@@ -41,19 +41,19 @@ interface ICourseReview {
 
 interface ICourse {
   _id: string;
-  classNbr: number;
+  classNbr: string;
   subj: string;
-  crs: number;
+  crs: string;
   courseTitle: string;
   sbc: string;
   cmp: string;
   sctn: string;
-  credits: number;
-  day: [{ any: string }];
-  startTime: [{ any: string }];
-  endTime: [{ any: string }];
-  room: [{ any: string }];
-  instructor: [{ any: string }];
+  credits: string;
+  day: [{ "2022_fall": string }, { "2023_spring": string }];
+  startTime: [{ "2022_fall": string }, { "2023_spring": string }];
+  endTime: [{ "2022_fall": string }, { "2023_spring": string }];
+  room: [{ "2022_fall": string }, { "2023_spring": string }];
+  instructor: [{ "2022_fall": string }, { "2023_spring": string }];
   likes: [string];
   reviews: [ICourseReview];
 }

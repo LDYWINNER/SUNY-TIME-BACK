@@ -119,7 +119,7 @@ const likeCourse = async (req: Request, res: Response) => {
 const getSingleCourse = async (req: Request, res: Response) => {
   const { id: courseId } = req.params;
 
-  const course = await Course.findOne({ classNbr: courseId });
+  const course = await Course.findOne({ _id: courseId });
 
   if (!course) {
     throw new NotFoundError(`No course with id: ${courseId}`);

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const CourseSchema = new mongoose_1.Schema({
     classNbr: {
-        type: Number,
+        type: String,
         required: true,
     },
     subj: {
@@ -11,7 +11,7 @@ const CourseSchema = new mongoose_1.Schema({
         required: true,
     },
     crs: {
-        type: Number,
+        type: String,
         requred: true,
     },
     courseTitle: {
@@ -31,7 +31,7 @@ const CourseSchema = new mongoose_1.Schema({
         requred: true,
     },
     credits: {
-        type: Number,
+        type: String,
         required: true,
     },
     day: {

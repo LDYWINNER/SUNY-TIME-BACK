@@ -3,7 +3,7 @@ import { isStringLiteral } from "typescript";
 
 const CourseSchema = new Schema({
   classNbr: {
-    type: Number,
+    type: String,
     required: true,
   },
   subj: {
@@ -11,7 +11,7 @@ const CourseSchema = new Schema({
     required: true,
   },
   crs: {
-    type: Number,
+    type: String,
     requred: true,
   },
   courseTitle: {
@@ -31,7 +31,7 @@ const CourseSchema = new Schema({
     requred: true,
   },
   credits: {
-    type: Number,
+    type: String,
     required: true,
   },
   day: {

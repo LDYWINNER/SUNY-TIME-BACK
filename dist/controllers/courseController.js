@@ -99,7 +99,7 @@ const likeCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.likeCourse = likeCourse;
 const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id: courseId } = req.params;
-    const course = yield Course_1.default.findOne({ classNbr: courseId });
+    const course = yield Course_1.default.findOne({ _id: courseId });
     if (!course) {
         throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
     }
