@@ -4,7 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../../api";
-import { Review, CourseBulletin } from "./index";
+import { OverallInfo, Review, CourseBulletin } from "./index";
 import {
   Tabs,
   TabList,
@@ -210,10 +210,14 @@ const SingleCourse = () => {
 
         <Tabs isFitted variant="enclosed">
           <TabList mb="1em">
+            <Tab>Overall Info</Tab>
             <Tab>Review</Tab>
             <Tab>Bulletin</Tab>
           </TabList>
           <TabPanels>
+            <TabPanel>
+              <OverallInfo />
+            </TabPanel>
             <TabPanel>
               <Review />
             </TabPanel>
