@@ -66,3 +66,8 @@ export const Row = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const FormRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

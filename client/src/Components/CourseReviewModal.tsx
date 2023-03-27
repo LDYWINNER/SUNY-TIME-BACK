@@ -3,7 +3,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
@@ -16,6 +15,7 @@ import {
   Wrapper,
   Logo,
   Button,
+  FormRow,
   Row,
 } from "../assets/wrappers/CourseReviewModal";
 import logo from "../assets/images/navbar_logo.svg";
@@ -237,172 +237,196 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
                   )}
                 </select>
 
-                <label className="form-label">Overall Course Rating</label>
-                <div className="star-rating">
-                  {[...Array(5)].map((star, index) => {
-                    index += 1;
-                    return (
-                      <button
-                        type="button"
-                        key={index}
-                        className={index <= (hover || rating) ? "on" : "off"}
-                        onClick={() => setRating(index)}
-                        onMouseEnter={() => setHover(index)}
-                        onMouseLeave={() => setHover(rating)}
+                <FormRow>
+                  <div>
+                    <label className="form-label">Overall Course Rating</label>
+                    <div className="star-rating">
+                      {[...Array(5)].map((star, index) => {
+                        index += 1;
+                        return (
+                          <button
+                            type="button"
+                            key={index}
+                            className={
+                              index <= (hover || rating) ? "on" : "off"
+                            }
+                            onClick={() => setRating(index)}
+                            onMouseEnter={() => setHover(index)}
+                            onMouseLeave={() => setHover(rating)}
+                          >
+                            <span className="star">&#9733;</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="form-label">TEST QUANTITY</label>
+                    <HStack mt={1} spacing={1}>
+                      <Checkbox
+                        isChecked={testQuantityItems[0]}
+                        onChange={(e) =>
+                          setTestQuantityItems([
+                            e.target.checked,
+                            false,
+                            false,
+                            false,
+                          ])
+                        }
                       >
-                        <span className="star">&#9733;</span>
-                      </button>
-                    );
-                  })}
-                </div>
+                        0
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={testQuantityItems[1]}
+                        onChange={(e) =>
+                          setTestQuantityItems([
+                            false,
+                            e.target.checked,
+                            false,
+                            false,
+                          ])
+                        }
+                      >
+                        1
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={testQuantityItems[2]}
+                        onChange={(e) =>
+                          setTestQuantityItems([
+                            false,
+                            false,
+                            e.target.checked,
+                            false,
+                          ])
+                        }
+                      >
+                        2
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={testQuantityItems[3]}
+                        onChange={(e) =>
+                          setTestQuantityItems([
+                            false,
+                            false,
+                            false,
+                            e.target.checked,
+                          ])
+                        }
+                      >
+                        3
+                      </Checkbox>
+                    </HStack>
+                  </div>
+                </FormRow>
 
-                <label className="form-label">Difficulty</label>
-                <HStack mt={1} spacing={1}>
-                  <Checkbox
-                    isChecked={difficultyItems[0]}
-                    onChange={(e) =>
-                      setdifficultyItems([e.target.checked, false, false])
-                    }
-                  >
-                    difficult
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={difficultyItems[1]}
-                    onChange={(e) =>
-                      setdifficultyItems([false, e.target.checked, false])
-                    }
-                  >
-                    soso
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={difficultyItems[2]}
-                    onChange={(e) =>
-                      setdifficultyItems([false, false, e.target.checked])
-                    }
-                  >
-                    easy
-                  </Checkbox>
-                </HStack>
+                <FormRow>
+                  <div>
+                    <label className="form-label">Difficulty</label>
+                    <HStack mt={1} spacing={1}>
+                      <Checkbox
+                        isChecked={difficultyItems[0]}
+                        onChange={(e) =>
+                          setdifficultyItems([e.target.checked, false, false])
+                        }
+                      >
+                        difficult
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={difficultyItems[1]}
+                        onChange={(e) =>
+                          setdifficultyItems([false, e.target.checked, false])
+                        }
+                      >
+                        soso
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={difficultyItems[2]}
+                        onChange={(e) =>
+                          setdifficultyItems([false, false, e.target.checked])
+                        }
+                      >
+                        easy
+                      </Checkbox>
+                    </HStack>
+                  </div>
 
-                <label className="form-label">HOMEWORK QUANTITY</label>
-                <HStack mt={1} spacing={1}>
-                  <Checkbox
-                    isChecked={hwQuantityItems[0]}
-                    onChange={(e) =>
-                      sethwQuantityItems([e.target.checked, false, false])
-                    }
-                  >
-                    many
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={hwQuantityItems[1]}
-                    onChange={(e) =>
-                      sethwQuantityItems([false, e.target.checked, false])
-                    }
-                  >
-                    soso
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={hwQuantityItems[2]}
-                    onChange={(e) =>
-                      sethwQuantityItems([false, false, e.target.checked])
-                    }
-                  >
-                    few
-                  </Checkbox>
-                </HStack>
+                  <div>
+                    <label className="form-label">HOMEWORK QUANTITY</label>
+                    <HStack mt={1} spacing={1}>
+                      <Checkbox
+                        isChecked={hwQuantityItems[0]}
+                        onChange={(e) =>
+                          sethwQuantityItems([e.target.checked, false, false])
+                        }
+                      >
+                        many
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={hwQuantityItems[1]}
+                        onChange={(e) =>
+                          sethwQuantityItems([false, e.target.checked, false])
+                        }
+                      >
+                        soso
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={hwQuantityItems[2]}
+                        onChange={(e) =>
+                          sethwQuantityItems([false, false, e.target.checked])
+                        }
+                      >
+                        few
+                      </Checkbox>
+                    </HStack>
+                  </div>
+                </FormRow>
 
-                <label className="form-label">TEST QUANTITY</label>
-                <HStack mt={1} spacing={1}>
-                  <Checkbox
-                    isChecked={testQuantityItems[0]}
-                    onChange={(e) =>
-                      setTestQuantityItems([
-                        e.target.checked,
-                        false,
-                        false,
-                        false,
-                      ])
-                    }
-                  >
-                    0
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={testQuantityItems[1]}
-                    onChange={(e) =>
-                      setTestQuantityItems([
-                        false,
-                        e.target.checked,
-                        false,
-                        false,
-                      ])
-                    }
-                  >
-                    1
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={testQuantityItems[2]}
-                    onChange={(e) =>
-                      setTestQuantityItems([
-                        false,
-                        false,
-                        e.target.checked,
-                        false,
-                      ])
-                    }
-                  >
-                    2
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={testQuantityItems[3]}
-                    onChange={(e) =>
-                      setTestQuantityItems([
-                        false,
-                        false,
-                        false,
-                        e.target.checked,
-                      ])
-                    }
-                  >
-                    3
-                  </Checkbox>
-                </HStack>
+                <FormRow>
+                  <div>
+                    <label className="form-label">Team Project Presence</label>
+                    <HStack mt={1} spacing={1}>
+                      <Checkbox
+                        isChecked={teamProjectPresence[0]}
+                        onChange={(e) =>
+                          setTeamProjectPresence([e.target.checked, false])
+                        }
+                      >
+                        Yes
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={teamProjectPresence[1]}
+                        onChange={(e) =>
+                          setTeamProjectPresence([false, e.target.checked])
+                        }
+                      >
+                        No
+                      </Checkbox>
+                    </HStack>
+                  </div>
 
-                <label className="form-label">Team Project Presence</label>
-                <HStack mt={1} spacing={1}>
-                  <Checkbox
-                    isChecked={teamProjectPresence[0]}
-                    onChange={(e) =>
-                      setTeamProjectPresence([e.target.checked, false])
-                    }
-                  >
-                    Yes
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={teamProjectPresence[1]}
-                    onChange={(e) =>
-                      setTeamProjectPresence([false, e.target.checked])
-                    }
-                  >
-                    No
-                  </Checkbox>
-                </HStack>
-
-                <label className="form-label">Quiz Presence</label>
-                <HStack mt={1} spacing={1}>
-                  <Checkbox
-                    isChecked={quizPresence[0]}
-                    onChange={(e) => setQuizPresence([e.target.checked, false])}
-                  >
-                    Yes
-                  </Checkbox>
-                  <Checkbox
-                    isChecked={quizPresence[1]}
-                    onChange={(e) => setQuizPresence([false, e.target.checked])}
-                  >
-                    No
-                  </Checkbox>
-                </HStack>
+                  <div>
+                    <label className="form-label">Quiz Presence</label>
+                    <HStack mt={1} spacing={1}>
+                      <Checkbox
+                        isChecked={quizPresence[0]}
+                        onChange={(e) =>
+                          setQuizPresence([e.target.checked, false])
+                        }
+                      >
+                        Yes
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={quizPresence[1]}
+                        onChange={(e) =>
+                          setQuizPresence([false, e.target.checked])
+                        }
+                      >
+                        No
+                      </Checkbox>
+                    </HStack>
+                  </div>
+                </FormRow>
 
                 <div className="form-row">
                   <Row>
