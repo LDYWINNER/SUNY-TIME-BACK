@@ -32,7 +32,6 @@ const CourseReviewSchema = new Schema({
   },
   overallGrade: {
     type: Number,
-    enum: [1, 2, 3, 4, 5],
     required: [true, "Please select overall grade of the course"],
   },
   overallEvaluation: {

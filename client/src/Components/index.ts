@@ -17,6 +17,7 @@ import BulletinAllComments from "./BulletinAllComments";
 import CourseSearch from "./CourseSearch";
 import CoursePagination from "./CoursePagination";
 import Loading from "./Loading";
+import CourseReviewModal from "./CourseReviewModal";
 
 export {
   Clock,
@@ -39,4 +40,5 @@ export {
   CourseSearch,
   CoursePagination,
   Loading,
+  CourseReviewModal,
 };
