@@ -1,10 +1,18 @@
-import { IconButton } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../../api";
+import { Review, CourseBulletin } from "./index";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  IconButton,
+} from "@chakra-ui/react";
 import {
   LoadingWrapper,
   Wrapper,
@@ -187,20 +195,33 @@ const SingleCourse = () => {
             spring - {course?.instructor[1]["2023_spring"]}
           </h4>
         </Info>
-        <Row>
-          <IconButton
-            aria-label="Like this course?"
-            icon={
-              course?.likes.includes(globalState.user._id) ? (
-                <AiFillLike />
-              ) : (
-                <AiOutlineLike />
-              )
-            }
-            onClick={() => handleLike(id)}
-          />
-          <h4>{course?.likes.length}</h4>
-        </Row>
+        <IconButton
+          aria-label="Like this course?"
+          icon={
+            course?.likes.includes(globalState.user._id) ? (
+              <AiFillLike />
+            ) : (
+              <AiOutlineLike />
+            )
+          }
+          onClick={() => handleLike(id)}
+        />
+        <h4>{course?.likes.length}</h4>
+
+        <Tabs isFitted variant="enclosed">
+          <TabList mb="1em">
+            <Tab>Review</Tab>
+            <Tab>Bulletin</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Review />
+            </TabPanel>
+            <TabPanel>
+              <CourseBulletin />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Container>
     </Wrapper>
   );
