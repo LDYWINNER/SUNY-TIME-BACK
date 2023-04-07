@@ -9,6 +9,10 @@ const CourseReviewSchema = new Schema({
     type: String,
     required: [true, "Please provide which semester you took this course"],
   },
+  instructor: {
+    type: String,
+    required: [true, "Please provide the instructor"],
+  },
   homeworkQuantity: {
     type: String,
     enum: ["many", "soso", "few"],

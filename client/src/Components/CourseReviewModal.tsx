@@ -76,6 +76,7 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
   } = useForm<IForm>();
 
   const onValid: SubmitHandler<IForm> = async (data) => {
+    // 마지막에 : ~ 로 처리하면 안되고 undefined 일때까지 처리해줘야 함
     const newCourseReview = {
       semester: data.semester,
       instructor: data.instructor,
