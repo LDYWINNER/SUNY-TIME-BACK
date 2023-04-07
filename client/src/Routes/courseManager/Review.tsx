@@ -3,7 +3,11 @@ import { BsPencilSquare } from "react-icons/bs";
 import { Wrapper, CourseReviewBtn } from "../../assets/wrappers/Review";
 import { CourseReviewModal } from "../../Components/index";
 
-const Review = () => {
+interface IReview {
+  id: any;
+}
+
+const Review = ({ id }: IReview) => {
   //course review modal
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -14,7 +18,7 @@ const Review = () => {
         <BsPencilSquare />
         Review Course
       </CourseReviewBtn>
-      <CourseReviewModal isOpen={isOpen} onClose={onClose} />
+      <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
     </Wrapper>
   );
 };

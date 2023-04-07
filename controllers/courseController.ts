@@ -141,10 +141,11 @@ const createReview = async (req: Request, res: Response) => {
       testQuantity,
       quizPresence,
       overallGrade,
+      instructor,
     },
   } = req;
 
-  const course = await Course.findOne({ classNbr: courseId });
+  const course = await Course.findOne({ id: courseId });
 
   if (!course) {
     throw new NotFoundError(`No course with id: ${courseId}`);
@@ -153,11 +154,12 @@ const createReview = async (req: Request, res: Response) => {
   if (
     !semester ||
     !homeworkQuantity ||
-    !teamProjectPresence ||
+    teamProjectPresence === null ||
     !difficulty ||
     !testQuantity ||
-    !quizPresence ||
-    !overallGrade
+    quizPresence === null ||
+    !overallGrade ||
+    !instructor
   ) {
     throw new BadRequestError("Please provide all values");
   }

@@ -109,18 +109,19 @@ const getSingleCourse = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getSingleCourse = getSingleCourse;
 const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _d, _e;
-    const { params: { id: courseId }, body: { semester, homeworkQuantity, teamProjectPresence, difficulty, testQuantity, quizPresence, overallGrade, }, } = req;
-    const course = yield Course_1.default.findOne({ classNbr: courseId });
+    const { params: { id: courseId }, body: { semester, homeworkQuantity, teamProjectPresence, difficulty, testQuantity, quizPresence, overallGrade, instructor, }, } = req;
+    const course = yield Course_1.default.findOne({ id: courseId });
     if (!course) {
         throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
     }
     if (!semester ||
         !homeworkQuantity ||
-        !teamProjectPresence ||
+        teamProjectPresence === null ||
         !difficulty ||
         !testQuantity ||
-        !quizPresence ||
-        !overallGrade) {
+        quizPresence === null ||
+        !overallGrade ||
+        !instructor) {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     req.body.createdBy = (_d = req.user) === null || _d === void 0 ? void 0 : _d.userId;

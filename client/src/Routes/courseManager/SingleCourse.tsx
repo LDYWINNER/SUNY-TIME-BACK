@@ -219,7 +219,7 @@ const SingleCourse = () => {
               <OverallInfo />
             </TabPanel>
             <TabPanel>
-              <Review />
+              <Review id={id} />
             </TabPanel>
             <TabPanel>
               <CourseBulletin />

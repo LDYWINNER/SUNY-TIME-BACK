@@ -20,13 +20,11 @@ import {
 } from "../assets/wrappers/CourseReviewModal";
 import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { globalCurrentState } from "../atoms";
-import { addUserToLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import { BsQuestionCircleFill } from "react-icons/bs";
 
 interface IUpdateUserModal {
+  id: any;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -53,7 +51,7 @@ const registerState: IRegisterState = {
   errorMessage: "",
 };
 
-function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
+function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
   const [values, setValues] = useState(registerState);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -70,7 +68,6 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
     false,
   ]);
   const [quizPresence, setQuizPresence] = useState([false, false]);
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -107,22 +104,9 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
     console.log(newCourseReview);
 
     try {
-      const { data } = await authFetch.patch(
-        "/auth/updateUser",
-        newCourseReview
-      );
+      const { data } = await authFetch.post(`course/${id}`, newCourseReview);
       console.log(data);
 
-      const { user, token } = data;
-      setGlobalCurrentState((currentState) => {
-        return {
-          ...currentState,
-          token,
-          user,
-        };
-      });
-      //adding user to local storage
-      addUserToLocalStorage({ user, token });
       setValues({ ...values, formSuccess: true });
       setTimeout(() => {
         //clear alert
@@ -131,7 +115,7 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
           formSuccess: null,
           errorMessage: "",
         });
-      }, 5000);
+      }, 3000);
     } catch (error: any) {
       console.log(error.response);
       if (error.response.status !== 401) {
@@ -148,7 +132,7 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
           formSuccess: null,
           errorMessage: "",
         });
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -158,6 +142,13 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
         semester: "-1",
         instructor: "-2",
       });
+      setRating(0);
+      setHover(0);
+      setdifficultyItems([false, false, false]);
+      sethwQuantityItems([false, false, false]);
+      setTestQuantityItems([false, false, false, false]);
+      setTeamProjectPresence([false, false]);
+      setQuizPresence([false, false]);
     }
   }, [reset, isSubmitSuccessful]);
 
@@ -180,7 +171,7 @@ function CourseReviewModal({ isOpen, onClose }: IUpdateUserModal) {
                 <Logo src={logo} alt="sunytime" className="logo" />
 
                 {values.formSuccess === true && (
-                  <Alert message="My Profile Updated!" ifSuccess={true} />
+                  <Alert message="Course Review Registered!" ifSuccess={true} />
                 )}
 
                 {values.formSuccess === false && (
