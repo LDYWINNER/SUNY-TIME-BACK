@@ -76,7 +76,6 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
   } = useForm<IForm>();
 
   const onValid: SubmitHandler<IForm> = async (data) => {
-    // 마지막에 : ~ 로 처리하면 안되고 undefined 일때까지 처리해줘야 함
     const newCourseReview = {
       semester: data.semester,
       instructor: data.instructor,
@@ -85,21 +84,35 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
         ? "difficult"
         : difficultyItems[1]
         ? "soso"
-        : "easy",
+        : difficultyItems[2]
+        ? "easy"
+        : undefined,
       homeworkQuantity: hwQuantityItems[0]
         ? "many"
         : hwQuantityItems[1]
         ? "soso"
-        : "few",
+        : hwQuantityItems[2]
+        ? "few"
+        : undefined,
       testQuantity: testQuantityItems[0]
         ? 0
         : testQuantityItems[1]
         ? 1
         : testQuantityItems[2]
         ? 2
-        : 3,
-      teamProjectPresence: teamProjectPresence[0] ? true : false,
-      quizPresence: quizPresence[0] ? true : false,
+        : testQuantityItems[3]
+        ? 3
+        : undefined,
+      teamProjectPresence: teamProjectPresence[0]
+        ? true
+        : teamProjectPresence[1]
+        ? false
+        : undefined,
+      quizPresence: quizPresence[0]
+        ? true
+        : quizPresence[1]
+        ? false
+        : undefined,
       overallEvaluation: data.overallEvaluation,
     };
     console.log(newCourseReview);
