@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { authFetch } from "../../api";
 import { OverallInfo, Review, CourseBulletin } from "./index";
 import {
@@ -21,7 +21,7 @@ import {
   Title,
   Row,
 } from "../../assets/wrappers/SingleCourse";
-import { globalCurrentState } from "../../atoms";
+import { courseReviewInstructorState, globalCurrentState } from "../../atoms";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
 
@@ -69,6 +69,9 @@ const SingleCourse = () => {
   const { id } = location.state;
   const [like, setLike] = useState(true);
   const [course, setCourse] = useState<ICourse>();
+  const setCourseReviewInstructorState = useSetRecoilState(
+    courseReviewInstructorState
+  );
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -124,6 +127,16 @@ const SingleCourse = () => {
         instructor,
         likes,
         reviews,
+      });
+      setCourseReviewInstructorState((currentState) => {
+        return {
+          instructorNum:
+            instructor[0]["2022_fall"] === instructor[1]["2023_spring"] ? 1 : 2,
+          instructorName: [
+            instructor[0]["2022_fall"],
+            instructor[1]["2023_spring"],
+          ],
+        };
       });
       console.log(data);
 

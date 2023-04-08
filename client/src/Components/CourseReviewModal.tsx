@@ -22,6 +22,8 @@ import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { authFetch } from "../api";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { useRecoilValue } from "recoil";
+import { courseReviewInstructorState } from "../atoms";
 
 interface IUpdateUserModal {
   id: any;
@@ -74,6 +76,7 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
     formState: { isSubmitSuccessful },
     reset,
   } = useForm<IForm>();
+  const instructor = useRecoilValue(courseReviewInstructorState);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newCourseReview = {
@@ -219,25 +222,26 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
                   {...register("instructor", { required: true })}
                   defaultValue="-2"
                 >
-                  {true ? (
+                  {instructor.instructorNum === 1 ? (
                     <>
                       <option value="-2" disabled>
                         SELECT INSTRUCTOR
                       </option>
-                      <option value="1">AMS</option>
-                      <option value="2">BM</option>
-                      <option value="3">CS</option>
-                      <option value="4">ECE</option>
-                      <option value="5">MEC</option>
-                      <option value="6">TSM</option>
+                      <option value={instructor.instructorName[0]}>
+                        {instructor.instructorName[0]}
+                      </option>
                     </>
                   ) : (
                     <>
                       <option value="-2" disabled>
-                        SELECT MAJOR
+                        SELECT INSTRUCTOR
                       </option>
-                      <option value="7">FBM</option>
-                      <option value="8">FD</option>
+                      <option value={instructor.instructorName[0]}>
+                        {instructor.instructorName[0]}
+                      </option>
+                      <option value={instructor.instructorName[1]}>
+                        {instructor.instructorName[1]}
+                      </option>
                     </>
                   )}
                 </select>

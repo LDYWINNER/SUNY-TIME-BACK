@@ -49,6 +49,14 @@ export const courseSearchState = atom({
   },
 });
 
+export const courseReviewInstructorState = atom({
+  key: "courseReviewInstructor",
+  default: {
+    instructorNum: 0,
+    instructorName: ["", ""],
+  },
+});
+
 export interface ITodo {
   id: number;
   text: string;
