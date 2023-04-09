@@ -68,6 +68,11 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             categories: ["many", "soso", "few"],
           },
           colors: ["#0fbcf9"],
+          tooltip: {
+            y: {
+              formatter: (value) => value + "%",
+            },
+          },
         }}
       />
       <h4>difficulty</h4>
@@ -117,6 +122,11 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             categories: ["difficult", "soso", "easy"],
           },
           colors: ["#0fbcf9"],
+          tooltip: {
+            y: {
+              formatter: (value) => value + "%",
+            },
+          },
         }}
       />
       <h4>test quantity</h4>
@@ -166,6 +176,11 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             categories: [0, 1, 2, 3],
           },
           colors: ["#0fbcf9"],
+          tooltip: {
+            y: {
+              formatter: (value) => value + "%",
+            },
+          },
         }}
       />
       <h4>Teamproject Presence</h4>
@@ -215,6 +230,11 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             categories: ["Yes", "No"],
           },
           colors: ["#0fbcf9"],
+          tooltip: {
+            y: {
+              formatter: (value) => value + "%",
+            },
+          },
         }}
       />
       <h4>Quiz Presence</h4>
@@ -264,6 +284,11 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             categories: ["Yes", "No"],
           },
           colors: ["#0fbcf9"],
+          tooltip: {
+            y: {
+              formatter: (value) => value + "%",
+            },
+          },
         }}
       />
     </Wrapper>
