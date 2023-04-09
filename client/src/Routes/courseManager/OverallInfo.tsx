@@ -21,16 +21,13 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
     <Wrapper>
       <h4>Stars</h4>
       <h1>{crResult.stars}</h1>
-      {/* <ApexChart
+      <h4>homework quantity</h4>
+      <ApexChart
         type="bar"
         series={[
           {
-            name: "Price",
-            data:
-              reviews?.map((review) => ({
-                x: 100,
-                y: [review.homeworkQuantity],
-              })) ?? [],
+            name: "Homework Quantity",
+            data: [...crResult.homeworkQuantity],
           },
         ]}
         options={{
@@ -38,8 +35,8 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             mode: isDark ? "dark" : "light",
           },
           chart: {
-            height: 300,
-            width: 500,
+            height: 350,
+            width: 200,
             toolbar: {
               show: false,
             },
@@ -52,8 +49,14 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             curve: "smooth",
             width: 3,
           },
-          yaxis: {
-            show: false,
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
           },
           xaxis: {
             axisBorder: {
@@ -64,18 +67,205 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
             },
             categories: ["many", "soso", "few"],
           },
-          fill: {
-            type: "gradient",
-            gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
-          },
           colors: ["#0fbcf9"],
-          tooltip: {
-            y: {
-              formatter: (value) => `$${value.toFixed(2)}`,
+        }}
+      />
+      <h4>difficulty</h4>
+      <ApexChart
+        type="bar"
+        series={[
+          {
+            name: "Difficulty",
+            data: [...crResult.difficulty],
+          },
+        ]}
+        options={{
+          theme: {
+            mode: isDark ? "dark" : "light",
+          },
+          chart: {
+            height: 350,
+            width: 200,
+            toolbar: {
+              show: false,
+            },
+            background: "transparent",
+          },
+          grid: {
+            show: false,
+          },
+          stroke: {
+            curve: "smooth",
+            width: 3,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
             },
           },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+            categories: ["difficult", "soso", "easy"],
+          },
+          colors: ["#0fbcf9"],
         }}
-      /> */}
+      />
+      <h4>test quantity</h4>
+      <ApexChart
+        type="bar"
+        series={[
+          {
+            name: "Test Quantity",
+            data: [...crResult.testQuantity],
+          },
+        ]}
+        options={{
+          theme: {
+            mode: isDark ? "dark" : "light",
+          },
+          chart: {
+            height: 350,
+            width: 200,
+            toolbar: {
+              show: false,
+            },
+            background: "transparent",
+          },
+          grid: {
+            show: false,
+          },
+          stroke: {
+            curve: "smooth",
+            width: 3,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+            categories: [0, 1, 2, 3],
+          },
+          colors: ["#0fbcf9"],
+        }}
+      />
+      <h4>Teamproject Presence</h4>
+      <ApexChart
+        type="bar"
+        series={[
+          {
+            name: "Team Project Presence",
+            data: [...crResult.teamProjectPresence],
+          },
+        ]}
+        options={{
+          theme: {
+            mode: isDark ? "dark" : "light",
+          },
+          chart: {
+            height: 350,
+            width: 200,
+            toolbar: {
+              show: false,
+            },
+            background: "transparent",
+          },
+          grid: {
+            show: false,
+          },
+          stroke: {
+            curve: "smooth",
+            width: 3,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+            categories: ["Yes", "No"],
+          },
+          colors: ["#0fbcf9"],
+        }}
+      />
+      <h4>Quiz Presence</h4>
+      <ApexChart
+        type="bar"
+        series={[
+          {
+            name: "Quiz Presence",
+            data: [...crResult.quizPresence],
+          },
+        ]}
+        options={{
+          theme: {
+            mode: isDark ? "dark" : "light",
+          },
+          chart: {
+            height: 350,
+            width: 200,
+            toolbar: {
+              show: false,
+            },
+            background: "transparent",
+          },
+          grid: {
+            show: false,
+          },
+          stroke: {
+            curve: "smooth",
+            width: 3,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+            categories: ["Yes", "No"],
+          },
+          colors: ["#0fbcf9"],
+        }}
+      />
     </Wrapper>
   );
 };

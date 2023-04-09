@@ -236,6 +236,8 @@ const SingleCourse = () => {
           quizPresence: qpTemp,
         };
       });
+      console.log(courseReviewResult);
+
       console.log(data);
 
       setIsLoading(false);
