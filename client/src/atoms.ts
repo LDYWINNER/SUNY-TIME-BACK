@@ -57,6 +57,18 @@ export const courseReviewInstructorState = atom({
   },
 });
 
+export const courseReviewResultState = atom({
+  key: "courseReviewResult",
+  default: {
+    stars: 0,
+    homeworkQuantity: [0, 0, 0],
+    difficulty: [0, 0, 0],
+    testQuantity: [0, 0, 0, 0],
+    teamProjectPresence: [0, 0],
+    quizPresence: [0, 0],
+  },
+});
+
 export interface ITodo {
   id: number;
   text: string;
