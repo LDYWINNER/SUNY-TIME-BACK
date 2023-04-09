@@ -4,7 +4,6 @@ import { BadRequestError, NotFoundError } from "../errors";
 import Course from "../models/Course";
 import CourseReview from "../models/CourseReview";
 import User from "../models/User";
-import checkPermissions from "../utils/checkPermissions";
 
 interface IQueryObject {
   [x: string]: any;
@@ -14,9 +13,6 @@ interface IQueryObject {
       }
     | {
         subj: any;
-      }
-    | {
-        instructor: any;
       }
   )[];
 }
@@ -62,6 +58,7 @@ const getAllCourses = async (req: Request, res: Response) => {
           $or: [
             { crs: { $regex: search, $options: "i" } },
             { courseTitle: { $regex: search, $options: "i" } },
+            { instructor_names: { $regex: search, $options: "i" } },
           ],
         },
         { subj },

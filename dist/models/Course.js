@@ -74,6 +74,10 @@ const CourseSchema = new mongoose_1.Schema({
         ],
         required: true,
     },
+    instructor_names: {
+        type: String,
+        required: true,
+    },
     likes: {
         type: [String],
         required: true,

@@ -54,6 +54,7 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                     $or: [
                         { crs: { $regex: search, $options: "i" } },
                         { courseTitle: { $regex: search, $options: "i" } },
+                        { instructor_names: { $regex: search, $options: "i" } },
                     ],
                 },
                 { subj },

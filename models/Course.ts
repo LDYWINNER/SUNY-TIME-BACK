@@ -74,6 +74,10 @@ const CourseSchema = new Schema({
     ],
     required: true,
   },
+  instructor_names: {
+    type: String,
+    required: true,
+  },
   likes: {
     type: [String],
     required: true,
