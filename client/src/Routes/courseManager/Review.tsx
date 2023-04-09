@@ -1,8 +1,7 @@
-import { useState, useCallback, useRef } from "react";
-import { useRecoilState } from "recoil";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
 import { authFetch } from "../../api";
 import { globalCurrentState } from "../../atoms";
-import { removeUserFromLocalStorage } from "../../utils";
 import { CourseReviewModal } from "../../Components/index";
 import { useDisclosure, IconButton } from "@chakra-ui/react";
 import {
@@ -42,8 +41,7 @@ const Review = ({ id, reviews }: IReview) => {
   //course review modal
   const { isOpen, onOpen, onClose } = useDisclosure();
   //course reviews
-  const [globalState, setGlobalCurrentState] =
-    useRecoilState(globalCurrentState);
+  const globalState = useRecoilValue(globalCurrentState);
   const [like, setLike] = useState(true);
 
   const handleLike = async (id: any) => {

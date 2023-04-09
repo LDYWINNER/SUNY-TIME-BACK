@@ -24,7 +24,6 @@ import { authFetch } from "../api";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
 import { courseReviewInstructorState } from "../atoms";
-import { useNavigate } from "react-router-dom";
 
 interface IUpdateUserModal {
   id: any;
@@ -55,7 +54,6 @@ const registerState: IRegisterState = {
 };
 
 function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
-  const navigate = useNavigate();
   const [values, setValues] = useState(registerState);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
