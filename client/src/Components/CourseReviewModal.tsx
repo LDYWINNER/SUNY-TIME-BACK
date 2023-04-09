@@ -41,6 +41,7 @@ interface IForm {
   teamProjectPresence: boolean;
   quizPresence: boolean;
   overallEvaluation: string;
+  anonymity: boolean;
 }
 
 interface IRegisterState {
@@ -469,6 +470,15 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
                 </div>
               </ModalBody>
               <ModalFooter>
+                <div className="checkbox-div">
+                  <input
+                    type="checkbox"
+                    {...register("anonymity")}
+                    id="anonymity"
+                    className="anonymity-checkbox"
+                  />
+                  <label htmlFor="anonymity">Anonymity</label>
+                </div>
                 <Button type="submit">Save</Button>
               </ModalFooter>
             </form>
