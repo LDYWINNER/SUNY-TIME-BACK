@@ -14,6 +14,9 @@ const CourseReviewSchema = new mongoose_1.Schema({
         type: String,
         required: [true, "Please provide the instructor"],
     },
+    myLetterGrade: {
+        type: String,
+    },
     homeworkQuantity: {
         type: String,
         enum: ["many", "soso", "few"],
@@ -61,5 +64,5 @@ const CourseReviewSchema = new mongoose_1.Schema({
         required: true,
         default: [],
     },
-});
+}, { timestamps: true });
 exports.default = (0, mongoose_1.model)("CourseReview", CourseReviewSchema);

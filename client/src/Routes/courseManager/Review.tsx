@@ -17,6 +17,8 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 interface ICourseReview {
   course: string;
   semester: string;
+  instructor: string;
+  myLetterGrade: string;
   homeworkQuantity: string;
   teamProjectPresence: boolean;
   difficulty: string;

@@ -34,6 +34,7 @@ interface IUpdateUserModal {
 interface IForm {
   semester: string;
   instructor: string;
+  myLetterGrade: string;
   overallGrade: number;
   difficulty: string;
   homeworkQuantity: string;
@@ -118,6 +119,8 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
         ? false
         : undefined,
       overallEvaluation: data.overallEvaluation,
+      anonymity: data.anonymity,
+      myLetterGrade: data.myLetterGrade,
     };
     console.log(newCourseReview);
 
@@ -247,6 +250,27 @@ function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
                       </option>
                     </>
                   )}
+                </select>
+
+                <label htmlFor="myLetterGrade" className="form-label">
+                  My Letter Grade (Optional)
+                </label>
+                <select {...register("myLetterGrade")} defaultValue="-1">
+                  <option value="-1" disabled>
+                    SELECT THE LETTER GRADE YOU RECEIVED
+                  </option>
+                  <option value="A">A</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B">B</option>
+                  <option value="B-">B-</option>
+                  <option value="C+">C+</option>
+                  <option value="C">C</option>
+                  <option value="C-">C-</option>
+                  <option value="D+">D+</option>
+                  <option value="D">D</option>
+                  <option value="F">F</option>
+                  <option value="W">W</option>
                 </select>
 
                 <FormRow>
