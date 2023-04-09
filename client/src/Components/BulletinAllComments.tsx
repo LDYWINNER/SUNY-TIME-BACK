@@ -52,7 +52,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
 
   const deleteComment = async (id: string) => {
     try {
-      await authFetch.delete(`/bulletin/comment/${id}`);
+      await authFetch.delete(`/course/review/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -65,7 +65,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
     try {
       setLike((prev) => !prev);
       console.log(like);
-      await authFetch.patch(`/bulletin/comment/${id}`);
+      await authFetch.patch(`/course/review/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);

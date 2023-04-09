@@ -8,5 +8,5 @@ const courseController_1 = require("../controllers/courseController");
 const courseRouter = express_1.default.Router();
 courseRouter.route("/").get(courseController_1.getAllCourses).patch(courseController_1.likeCourse);
 courseRouter.route("/:id").get(courseController_1.getSingleCourse).post(courseController_1.createReview);
-courseRouter.route("/review/:reviewId").patch(courseController_1.likeReview).delete(courseController_1.deleteReview);
+courseRouter.route("/review/:reviewId").patch(courseController_1.likeReview);
 exports.default = courseRouter;

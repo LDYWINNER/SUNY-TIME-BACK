@@ -12,13 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReview = exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
+exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const Course_1 = __importDefault(require("../models/Course"));
 const CourseReview_1 = __importDefault(require("../models/CourseReview"));
 const User_1 = __importDefault(require("../models/User"));
-const checkPermissions_1 = __importDefault(require("../utils/checkPermissions"));
 const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { search, subj } = req.query;
     let queryObject = {
@@ -157,14 +156,3 @@ const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.likeReview = likeReview;
-const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { reviewId } = req.params;
-    const review = yield CourseReview_1.default.findOne({ _id: reviewId });
-    if (!review) {
-        throw new errors_1.NotFoundError(`No review with id: ${reviewId}`);
-    }
-    (0, checkPermissions_1.default)(req.user, review.createdBy);
-    yield review.remove();
-    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Review removed successfully" });
-});
-exports.deleteReview = deleteReview;

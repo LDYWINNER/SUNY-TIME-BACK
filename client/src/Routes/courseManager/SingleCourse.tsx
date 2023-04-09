@@ -39,6 +39,8 @@ interface ICourseReview {
   createdByUsername: string;
   anonymity: boolean;
   likes: [string];
+  _id: string;
+  createdAt: string;
 }
 
 interface ICourse {
@@ -229,10 +231,10 @@ const SingleCourse = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <OverallInfo />
+              <OverallInfo reviews={course?.reviews as [ICourseReview]} />
             </TabPanel>
             <TabPanel>
-              <Review id={id} />
+              <Review id={id} reviews={course?.reviews as [ICourseReview]} />
             </TabPanel>
             <TabPanel>
               <CourseBulletin />

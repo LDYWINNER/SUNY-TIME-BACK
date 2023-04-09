@@ -14,3 +14,11 @@ export const CourseReviewBtn = styled.button`
     background-color: ${(props) => props.theme.main.lightBlue};
   }
 `;
+
+export const Reviews = styled.div``;
+
+export const SingleReview = styled.div``;
+
+export const Row = styled.div`
+  display: flex;
+`;

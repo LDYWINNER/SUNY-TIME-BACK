@@ -207,27 +207,4 @@ const likeReview = async (req: Request, res: Response) => {
   }
 };
 
-const deleteReview = async (req: Request, res: Response) => {
-  const { reviewId } = req.params;
-
-  const review = await CourseReview.findOne({ _id: reviewId });
-
-  if (!review) {
-    throw new NotFoundError(`No review with id: ${reviewId}`);
-  }
-
-  checkPermissions(req.user as { userId: string }, review.createdBy);
-
-  await review.remove();
-
-  res.status(StatusCodes.OK).json({ msg: "Review removed successfully" });
-};
-
-export {
-  getAllCourses,
-  likeCourse,
-  getSingleCourse,
-  createReview,
-  likeReview,
-  deleteReview,
-};
+export { getAllCourses, likeCourse, getSingleCourse, createReview, likeReview };

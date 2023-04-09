@@ -5,13 +5,12 @@ import {
   getSingleCourse,
   createReview,
   likeReview,
-  deleteReview,
 } from "../controllers/courseController";
 
 const courseRouter = express.Router();
 
 courseRouter.route("/").get(getAllCourses).patch(likeCourse);
 courseRouter.route("/:id").get(getSingleCourse).post(createReview);
-courseRouter.route("/review/:reviewId").patch(likeReview).delete(deleteReview);
+courseRouter.route("/review/:reviewId").patch(likeReview);
 
 export default courseRouter;
