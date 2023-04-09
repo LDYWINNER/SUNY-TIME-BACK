@@ -69,6 +69,7 @@ const Review = ({ id, reviews }: IReview) => {
         {reviews.map((review: ICourseReview) => {
           return (
             <SingleReview key={review._id}>
+              <h4>{review.overallGrade}</h4>
               <h4>{review.anonymity ? "익명" : review.createdByUsername}</h4>
               <h4>{review.createdAt}</h4>
               <h4>
