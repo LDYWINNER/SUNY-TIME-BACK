@@ -168,12 +168,6 @@ const SingleCourse = () => {
               : [],
         };
       });
-      setGlobalCurrentState((currentState) => {
-        return {
-          ...currentState,
-          currentCourse: `${course?.subj}${course?.crs}`,
-        };
-      });
 
       //calculate course review data
       let starTemp = 0;
@@ -382,7 +376,7 @@ const SingleCourse = () => {
               <Review id={id} reviews={course?.reviews as [ICourseReview]} />
             </TabPanel>
             <TabPanel>
-              <CourseBulletin />
+              <CourseBulletin id={id} />
             </TabPanel>
           </TabPanels>
         </Tabs>

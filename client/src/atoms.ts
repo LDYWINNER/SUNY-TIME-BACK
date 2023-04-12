@@ -21,7 +21,6 @@ export const globalCurrentState = atom({
     bulletinTotalPosts: 0,
     bulletinNumOfPages: 1,
     bulletinPage: 1,
-    currentCourse: "",
     allCourses: [],
     totalCourses: 0,
     courseNumOfPages: 1,

@@ -17,8 +17,6 @@ import {
 } from "../assets/wrappers/BulletinPostPopOverContent";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { authFetch } from "../api";
-import { useRecoilValue } from "recoil";
-import { globalCurrentState } from "../atoms";
 
 interface IForm {
   title: string;
@@ -36,9 +34,12 @@ const BPPOCState: IBPPOCState = {
   errorMessage: "",
 };
 
-function CourseBulletinPopOver() {
+interface ICourseBulletinPopOver {
+  id: any;
+}
+
+function CourseBulletinPopOver({ id }: ICourseBulletinPopOver) {
   const [values, setValues] = useState(BPPOCState);
-  const globalState = useRecoilValue(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -56,7 +57,7 @@ function CourseBulletinPopOver() {
     const newPost = {
       title: data.title,
       content: data.content,
-      board: `${globalState.currentCourse}`,
+      board: id,
       anonymity: data.anonymity,
     };
     console.log(newPost);

@@ -41,7 +41,11 @@ interface IPost {
   _id: string;
 }
 
-const CourseBulletinAllPosts = () => {
+interface ICourseBulletinAllPosts {
+  id: any;
+}
+
+const CourseBulletinAllPosts = ({ id }: ICourseBulletinAllPosts) => {
   const [isLoading, setIsLoading] = useState(false);
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
@@ -60,7 +64,7 @@ const CourseBulletinAllPosts = () => {
 
   //getting the posts
   const getPost = useCallback(async () => {
-    let url = `bulletin?page=${globalState.bulletinPage}&board=${globalState.currentCourse}`;
+    let url = `bulletin?page=${globalState.bulletinPage}&board=${id}`;
 
     setIsLoading(true);
     try {
@@ -83,12 +87,7 @@ const CourseBulletinAllPosts = () => {
       // log user out
       logoutUser();
     }
-  }, [
-    globalState.bulletinPage,
-    globalState.currentCourse,
-    logoutUser,
-    setGlobalCurrentState,
-  ]);
+  }, [globalState.bulletinPage, id, logoutUser, setGlobalCurrentState]);
 
   useEffect(() => {
     getPost();

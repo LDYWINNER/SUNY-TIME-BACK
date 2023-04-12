@@ -9,7 +9,11 @@ import {
 } from "../../Components";
 import { Wrapper, BulletinPostBtn } from "../../assets/wrappers/CourseBulletin";
 
-const CourseBulletin = () => {
+interface ICourseBulletin {
+  id: any;
+}
+
+const CourseBulletin = ({ id }: ICourseBulletin) => {
   const { bulletinNumOfPages } = useRecoilValue(globalCurrentState);
 
   return (
@@ -20,9 +24,9 @@ const CourseBulletin = () => {
             <BsPencilSquare />
           </BulletinPostBtn>
         </PopoverTrigger>
-        <CourseBulletinPopOver />
+        <CourseBulletinPopOver id={id} />
       </Popover>
-      <CourseBulletinAllPosts />
+      <CourseBulletinAllPosts id={id} />
       {bulletinNumOfPages > 1 && <CourseBulletinPagination />}
     </Wrapper>
   );
