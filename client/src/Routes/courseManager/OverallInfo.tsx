@@ -2,6 +2,7 @@ import ApexChart from "react-apexcharts";
 import { useRecoilValue } from "recoil";
 import { Wrapper } from "../../assets/wrappers/OverallInfo";
 import { isDarkAtom } from "../../atoms";
+import img from "../../assets/images/no-review.svg";
 
 interface IOverallInfo {
   crResult: {
@@ -18,7 +19,12 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
   const isDark = useRecoilValue(isDarkAtom);
 
   if (isNaN(crResult.stars)) {
-    return <div>No data</div>;
+    return (
+      <div>
+        <img src={img} alt="not review" />
+        <p>No review yet for this course</p>
+      </div>
+    );
   }
   return (
     <Wrapper>
