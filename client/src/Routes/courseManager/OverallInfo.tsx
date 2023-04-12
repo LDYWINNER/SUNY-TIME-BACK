@@ -17,6 +17,9 @@ interface IOverallInfo {
 const OverallInfo = ({ crResult }: IOverallInfo) => {
   const isDark = useRecoilValue(isDarkAtom);
 
+  if (isNaN(crResult.stars)) {
+    return <div>No data</div>;
+  }
   return (
     <Wrapper>
       <h4>Stars</h4>

@@ -35,35 +35,19 @@ const CourseSchema = new mongoose_1.Schema({
         required: true,
     },
     day: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: String,
         required: true,
     },
     startTime: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: String,
         required: true,
     },
     endTime: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: String,
         required: true,
     },
     room: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: String,
         required: true,
     },
     instructor: {
@@ -89,5 +73,13 @@ const CourseSchema = new mongoose_1.Schema({
             ref: "CourseReview",
         },
     ],
+    semesters: {
+        type: [
+            {
+                any: String,
+            },
+        ],
+        required: true,
+    },
 });
 exports.default = (0, mongoose_1.model)("Course", CourseSchema);

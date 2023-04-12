@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { isStringLiteral } from "typescript";
 
 const CourseSchema = new Schema({
   classNbr: {
@@ -35,35 +34,19 @@ const CourseSchema = new Schema({
     required: true,
   },
   day: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: String,
     required: true,
   },
   startTime: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: String,
     required: true,
   },
   endTime: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: String,
     required: true,
   },
   room: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: String,
     required: true,
   },
   instructor: {
@@ -89,6 +72,14 @@ const CourseSchema = new Schema({
       ref: "CourseReview",
     },
   ],
+  semesters: {
+    type: [
+      {
+        any: String,
+      },
+    ],
+    required: true,
+  },
 });
 
 export default model("Course", CourseSchema);

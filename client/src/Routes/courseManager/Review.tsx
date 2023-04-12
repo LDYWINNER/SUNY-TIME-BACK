@@ -69,30 +69,30 @@ const Review = ({ id, reviews }: IReview) => {
       <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
       <Reviews>
         {reviews.map((review: ICourseReview) => {
-          return (
-            <SingleReview key={review._id}>
-              <h4>{review.overallGrade}</h4>
-              <h4>{review.anonymity ? "익명" : review.createdByUsername}</h4>
-              <h4>{review.createdAt}</h4>
-              <h4>
-                {review.overallEvaluation !== "" && review.overallEvaluation}
-              </h4>
-              <Row>
-                <IconButton
-                  aria-label="Like this comment?"
-                  icon={
-                    review?.likes.includes(globalState.user._id) ? (
-                      <AiFillLike />
-                    ) : (
-                      <AiOutlineLike />
-                    )
-                  }
-                  onClick={() => handleLike(review._id)}
-                />
-                <h4>{review?.likes.length}</h4>
-              </Row>
-            </SingleReview>
-          );
+          if (review.overallEvaluation !== "") {
+            return (
+              <SingleReview key={review._id}>
+                <h4>{review.overallGrade}</h4>
+                <h4>{review.anonymity ? "익명" : review.createdByUsername}</h4>
+                <h4>{review.createdAt}</h4>
+                <h4>{review.overallEvaluation}</h4>
+                <Row>
+                  <IconButton
+                    aria-label="Like this comment?"
+                    icon={
+                      review?.likes.includes(globalState.user._id) ? (
+                        <AiFillLike />
+                      ) : (
+                        <AiOutlineLike />
+                      )
+                    }
+                    onClick={() => handleLike(review._id)}
+                  />
+                  <h4>{review?.likes.length}</h4>
+                </Row>
+              </SingleReview>
+            );
+          }
         })}
       </Reviews>
     </Wrapper>

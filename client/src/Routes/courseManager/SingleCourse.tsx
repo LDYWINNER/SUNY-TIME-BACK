@@ -68,13 +68,15 @@ interface ICourse {
   cmp: string;
   sctn: string;
   credits: string;
-  day: [{ "2022_fall": string }, { "2023_spring": string }];
-  startTime: [{ "2022_fall": string }, { "2023_spring": string }];
-  endTime: [{ "2022_fall": string }, { "2023_spring": string }];
-  room: [{ "2022_fall": string }, { "2023_spring": string }];
-  instructor: [{ "2022_fall": string }, { "2023_spring": string }];
   likes: [string];
   reviews: [ICourseReview];
+  day: string;
+  startTime: string;
+  endTime: string;
+  room: string;
+  instructor: string;
+  instructor_names: string;
+  semesters: any;
 }
 
 const SingleCourse = () => {
@@ -128,6 +130,8 @@ const SingleCourse = () => {
           instructor,
           likes,
           reviews,
+          instructor_names,
+          semesters,
         },
       } = data;
       setCourse({
@@ -140,23 +144,28 @@ const SingleCourse = () => {
         cmp,
         sctn,
         credits,
-        day,
-        startTime,
-        endTime,
-        room,
+        day: day.split(","),
+        startTime: startTime.split(","),
+        endTime: endTime.split(","),
+        room: room.split(","),
         instructor,
         likes,
         reviews,
+        instructor_names: instructor_names.split(","),
+        semesters,
       });
       setCourseReviewInstructorState((currentState) => {
         return {
           ...currentState,
-          instructorNum:
-            instructor[0]["2022_fall"] === instructor[1]["2023_spring"] ? 1 : 2,
-          instructorName: [
-            instructor[0]["2022_fall"],
-            instructor[1]["2023_spring"],
-          ],
+          instructorNum: instructor.length,
+          instructorName:
+            instructor.length === 2
+              ? instructor_names.split(",")
+              : semesters[0] === "2023_spring"
+              ? [instructor_names]
+              : semesters[0] === "2022_fall"
+              ? [instructor_names]
+              : [],
         };
       });
 
@@ -244,9 +253,9 @@ const SingleCourse = () => {
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error.response);
+      console.log(error);
       // log user out
-      logoutUser();
+      // logoutUser();
     }
   }, [id, logoutUser]);
 
@@ -288,26 +297,56 @@ const SingleCourse = () => {
             {course?.crs} : {course?.courseTitle}
           </Title>
           <Row>
-            <h4>sbc: {course?.sbc}</h4>
+            {course?.sbc ? <h4>sbc: {course?.sbc}</h4> : <></>}
             <h4>credits: {course?.credits}</h4>
           </Row>
           <h4>
-            day: 2022 fall - {course?.day[0]["2022_fall"]} & 2023 spring -{" "}
-            {course?.day[1]["2023_spring"]}
+            day:{" "}
+            {course?.semesters.length === 2
+              ? `2023 spring - ${course?.day[1]} & 2022 fall - ${course?.day[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2022_fall"
+              ? `2022 fall - ${course?.day[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2023_spring"
+              ? `2023 spring - ${course?.day[0]}`
+              : "No day info :("}
           </h4>
           <h4>
-            time: 2022 fall - {course?.startTime[0]["2022_fall"]} ~{" "}
-            {course?.endTime[0]["2022_fall"]} & 2023 spring -{" "}
-            {course?.startTime[1]["2023_spring"]} ~{" "}
-            {course?.endTime[1]["2023_spring"]}
+            time:{" "}
+            {course?.semesters.length === 2
+              ? `2023 spring - ${course?.startTime[1]} ~ ${course?.endTime[1]} & 2022 fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2022_fall"
+              ? `2022 fall - ${course?.day[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2023_spring"
+              ? `2023 spring - ${course?.day[0]}`
+              : "No time info :("}
           </h4>
           <h4>
-            room: 2022 fall - {course?.room[0]["2022_fall"]} & 2023 spring -{" "}
-            {course?.room[1]["2023_spring"]}
+            room:{" "}
+            {course?.semesters.length === 2
+              ? `2023 spring - ${course?.room[1]} & 2022 fall - ${course?.room[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2022_fall"
+              ? `2022 fall - ${course?.room[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2023_spring"
+              ? `2023 spring - ${course?.room[0]}`
+              : "No room info :("}
           </h4>
           <h4>
-            instructor: 2022 fall - {course?.instructor[0]["2022_fall"]} & 2023
-            spring - {course?.instructor[1]["2023_spring"]}
+            instructor:{" "}
+            {course?.semesters.length === 2
+              ? `2023 spring - ${course?.instructor_names[1]} & 2022 fall - ${course?.instructor_names[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2022_fall"
+              ? `2022 fall - ${course?.instructor_names[0]}`
+              : course?.semesters.length === 1 &&
+                course?.semesters[0] === "2023_spring"
+              ? `2023 spring - ${course?.instructor_names[0]}`
+              : "No instructor info :("}
           </h4>
         </Info>
         <IconButton
