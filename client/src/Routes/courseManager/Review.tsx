@@ -93,6 +93,7 @@ const Review = ({ id, reviews }: IReview) => {
               </SingleReview>
             );
           }
+          return <></>;
         })}
       </Reviews>
     </Wrapper>
