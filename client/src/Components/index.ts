@@ -18,6 +18,9 @@ import CourseSearch from "./CourseSearch";
 import CoursePagination from "./CoursePagination";
 import Loading from "./Loading";
 import CourseReviewModal from "./CourseReviewModal";
+import CourseBulletinPopOver from "./CourseBulletinPopOver";
+import CourseBulletinPagination from "./CourseBulletinPagination";
+import CourseBulletinAllPosts from "./CourseBulletinAllPosts";
 
 export {
   Clock,
@@ -41,4 +44,7 @@ export {
   CoursePagination,
   Loading,
   CourseReviewModal,
+  CourseBulletinPopOver,
+  CourseBulletinPagination,
+  CourseBulletinAllPosts,
 };

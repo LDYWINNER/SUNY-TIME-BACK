@@ -168,6 +168,12 @@ const SingleCourse = () => {
               : [],
         };
       });
+      setGlobalCurrentState((currentState) => {
+        return {
+          ...currentState,
+          currentCourse: `${course?.subj}${course?.crs}`,
+        };
+      });
 
       //calculate course review data
       let starTemp = 0;
