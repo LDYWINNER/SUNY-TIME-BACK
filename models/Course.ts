@@ -50,11 +50,7 @@ const CourseSchema = new Schema({
     required: true,
   },
   instructor: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: [String],
     required: true,
   },
   instructor_names: {
@@ -73,11 +69,7 @@ const CourseSchema = new Schema({
     },
   ],
   semesters: {
-    type: [
-      {
-        any: String,
-      },
-    ],
+    type: [String],
     required: true,
   },
 });

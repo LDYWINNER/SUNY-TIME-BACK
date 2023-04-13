@@ -51,11 +51,7 @@ const CourseSchema = new mongoose_1.Schema({
         required: true,
     },
     instructor: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: [String],
         required: true,
     },
     instructor_names: {
@@ -74,11 +70,7 @@ const CourseSchema = new mongoose_1.Schema({
         },
     ],
     semesters: {
-        type: [
-            {
-                any: String,
-            },
-        ],
+        type: [String],
         required: true,
     },
 });

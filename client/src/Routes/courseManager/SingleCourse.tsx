@@ -144,14 +144,17 @@ const SingleCourse = () => {
         cmp,
         sctn,
         credits,
-        day: day.split(","),
-        startTime: startTime.split(","),
-        endTime: endTime.split(","),
-        room: room.split(","),
+        day: day.length === 2 ? day.split(",") : [day],
+        startTime: startTime.length === 2 ? startTime.split(",") : [startTime],
+        endTime: endTime.length === 2 ? endTime.split(",") : [endTime],
+        room: room.length === 2 ? room.split(",") : [room],
         instructor,
         likes,
         reviews,
-        instructor_names: instructor_names.split(","),
+        instructor_names:
+          instructor_names.length === 2
+            ? instructor_names.split(",")
+            : [instructor_names],
         semesters,
       });
       setCourseReviewInstructorState((currentState) => {
@@ -318,10 +321,10 @@ const SingleCourse = () => {
               ? `2023 spring - ${course?.startTime[1]} ~ ${course?.endTime[1]} & 2022 fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
               : course?.semesters.length === 1 &&
                 course?.semesters[0] === "2022_fall"
-              ? `2022 fall - ${course?.day[0]}`
+              ? `2022 fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
               : course?.semesters.length === 1 &&
                 course?.semesters[0] === "2023_spring"
-              ? `2023 spring - ${course?.day[0]}`
+              ? `2023 spring - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
               : "No time info :("}
           </h4>
           <h4>
