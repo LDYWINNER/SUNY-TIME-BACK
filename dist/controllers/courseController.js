@@ -62,6 +62,7 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         };
     }
     let result = Course_1.default.find(queryObject);
+    result = result.sort("crs");
     //setup pagination
     const finalPage = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 16;

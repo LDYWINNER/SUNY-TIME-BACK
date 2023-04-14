@@ -68,6 +68,8 @@ const getAllCourses = async (req: Request, res: Response) => {
 
   let result = Course.find(queryObject);
 
+  result = result.sort("crs");
+
   //setup pagination
   const finalPage = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 16;
