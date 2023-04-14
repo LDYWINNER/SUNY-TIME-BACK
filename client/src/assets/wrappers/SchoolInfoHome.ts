@@ -25,12 +25,9 @@ export const Logo = styled.div`
   align-items: center;
 `;
 
-export const SBULogo = styled.div<{ bgImage: string }>`
-  background-image: url(${(props) => props.bgImage});
-  background-size: cover;
-  grid-column: 1 / 3;
-  display: flex;
-  align-items: center;
+export const LogoItem = styled.img`
+  height: 100%;
+  width: 100%;
 `;
 
 export const STLogo = styled.img`

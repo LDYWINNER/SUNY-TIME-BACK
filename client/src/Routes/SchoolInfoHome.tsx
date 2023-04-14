@@ -4,7 +4,7 @@ import {
   Wrapper,
   Blocks,
   Logo,
-  SBULogo,
+  LogoItem,
   Block,
   BigBlock,
   STLogo,
@@ -21,7 +21,9 @@ function SchoolInfoHome() {
         <Block></Block>
         <Block></Block>
 
-        <SBULogo bgImage={seawolf} />
+        <Logo>
+          <LogoItem src={seawolf} alt="seawolf" className="logo" />
+        </Logo>
         <Block></Block>
         <Block></Block>
         <Block></Block>
