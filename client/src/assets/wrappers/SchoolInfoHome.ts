@@ -19,8 +19,25 @@ export const Blocks = styled.div`
 `;
 
 export const Logo = styled.div`
-  background-color: tomato;
+  background-color: white;
   grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+`;
+
+export const SBULogo = styled.div<{ bgImage: string }>`
+  background-image: url(${(props) => props.bgImage});
+  background-size: cover;
+  grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+`;
+
+export const STLogo = styled.img`
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1.38rem;
+  width: 100%;
 `;
 
 export const Block = styled.div`
