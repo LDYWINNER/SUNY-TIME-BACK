@@ -300,7 +300,7 @@ const SingleCourse = () => {
             {course?.crs} : {course?.courseTitle}
           </Title>
           <Row>
-            {course?.sbc ? <h4>sbc: {course?.sbc}</h4> : <></>}
+            {course?.sbc !== "NaN" ? <h4>sbc: {course?.sbc}</h4> : <></>}
             <h4>credits: {course?.credits}</h4>
           </Row>
           <h4>
