@@ -144,31 +144,34 @@ const SingleCourse = () => {
         cmp,
         sctn,
         credits,
-        day: day.length === 2 ? day.split(",") : [day],
-        startTime: startTime.length === 2 ? startTime.split(",") : [startTime],
-        endTime: endTime.length === 2 ? endTime.split(",") : [endTime],
-        room: room.length === 2 ? room.split(",") : [room],
+        day: day.includes(",") ? day.split(",") : [day],
+        startTime: startTime.includes(",") ? startTime.split(",") : [startTime],
+        endTime: endTime.includes(",") ? endTime.split(",") : [endTime],
+        room: room.includes(",") ? room.split(",") : [room],
         instructor,
         likes,
         reviews,
         instructor_names:
-          instructor_names.length === 2
+          instructor.length === 2
             ? instructor_names.split(",")
             : [instructor_names],
         semesters,
       });
       setCourseReviewInstructorState((currentState) => {
+        let instructor_result = [];
+        if (instructor.length === 2) {
+          instructor_result = instructor;
+          if (instructor_result[0] === instructor_result[1]) {
+            instructor_result.pop();
+          }
+        } else if (instructor.length === 1) {
+          instructor_result = [instructor_names];
+        }
+
         return {
           ...currentState,
           instructorNum: instructor.length,
-          instructorName:
-            instructor.length === 2
-              ? instructor_names.split(",")
-              : semesters[0] === "2023_spring"
-              ? [instructor_names]
-              : semesters[0] === "2022_fall"
-              ? [instructor_names]
-              : [],
+          instructorName: instructor_result,
         };
       });
 
