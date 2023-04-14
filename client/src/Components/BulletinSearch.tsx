@@ -98,7 +98,7 @@ const BulletinSearch = () => {
           id="Free"
           checked={bulletinSearch.boardFilter === "Free"}
         />{" "}
-        Free
+        자유게시판
       </label>
       <label htmlFor="Secret">
         <input
@@ -126,7 +126,119 @@ const BulletinSearch = () => {
           id="Secret"
           checked={bulletinSearch.boardFilter === "Secret"}
         />{" "}
-        Secret
+        비밀게시판
+      </label>
+      <label htmlFor="Freshmen">
+        <input
+          {...register("radio", {
+            required: true,
+            onChange: (e) => {
+              //set page to 1
+              setGlobalState((currentState) => {
+                return {
+                  ...currentState,
+                  bulletinPage: 1,
+                };
+              });
+              setBulletinSearch((currentState) => {
+                return {
+                  ...currentState,
+                  boardFilter: e.target.value,
+                };
+              });
+            },
+          })}
+          type="radio"
+          name="radio"
+          value="Freshmen"
+          id="Freshmen"
+          checked={bulletinSearch.boardFilter === "Freshmen"}
+        />{" "}
+        새내기게시판
+      </label>
+      <label htmlFor="Info">
+        <input
+          {...register("radio", {
+            required: true,
+            onChange: (e) => {
+              //set page to 1
+              setGlobalState((currentState) => {
+                return {
+                  ...currentState,
+                  bulletinPage: 1,
+                };
+              });
+              setBulletinSearch((currentState) => {
+                return {
+                  ...currentState,
+                  boardFilter: e.target.value,
+                };
+              });
+            },
+          })}
+          type="radio"
+          name="radio"
+          value="Info"
+          id="Info"
+          checked={bulletinSearch.boardFilter === "Info"}
+        />{" "}
+        정보게시판
+      </label>
+      <label htmlFor="Promotion">
+        <input
+          {...register("radio", {
+            required: true,
+            onChange: (e) => {
+              //set page to 1
+              setGlobalState((currentState) => {
+                return {
+                  ...currentState,
+                  bulletinPage: 1,
+                };
+              });
+              setBulletinSearch((currentState) => {
+                return {
+                  ...currentState,
+                  boardFilter: e.target.value,
+                };
+              });
+            },
+          })}
+          type="radio"
+          name="radio"
+          value="Promotion"
+          id="Promotion"
+          checked={bulletinSearch.boardFilter === "Promotion"}
+        />{" "}
+        홍보게시판
+      </label>
+      <label htmlFor="Club">
+        <input
+          {...register("radio", {
+            required: true,
+            onChange: (e) => {
+              //set page to 1
+              setGlobalState((currentState) => {
+                return {
+                  ...currentState,
+                  bulletinPage: 1,
+                };
+              });
+              setBulletinSearch((currentState) => {
+                return {
+                  ...currentState,
+                  boardFilter: e.target.value,
+                };
+              });
+            },
+          })}
+          type="radio"
+          name="radio"
+          value="Club"
+          id="Club"
+          checked={bulletinSearch.boardFilter === "Club"}
+        />{" "}
+        동아리게시판
       </label>
     </form>
   );
