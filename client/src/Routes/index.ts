@@ -2,6 +2,7 @@ import Home from "./Home";
 import ScheduleManager from "./ScheduleManager";
 import Bulletin from "./Bulletin";
 import SinglePost from "./SinglePost";
+import SchoolInfoHome from "./SchoolInfoHome";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import Error from "./Error";
@@ -11,6 +12,7 @@ export {
   ScheduleManager,
   Bulletin,
   SinglePost,
+  SchoolInfoHome,
   Register,
   ProtectedRoute,
   Error,

@@ -7,6 +7,7 @@ import {
   ProtectedRoute,
   Error,
   SinglePost,
+  SchoolInfoHome,
 } from "./Routes";
 import {
   CMSharedLayout,
@@ -14,13 +15,6 @@ import {
   AllCourses,
 } from "./Routes/courseManager/index";
 import SingleCourse from "./Routes/courseManager/SingleCourse";
-import {
-  SchoolInfoSharedLayout,
-  SchoolInfoHome,
-  SchoolContact,
-  CampusLife,
-  Academics,
-} from "./Routes/schoolInfo/index";
 
 function Router() {
   return (
@@ -29,6 +23,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/school-info" element={<SchoolInfoHome />} />
         {/* <Route path="/schedule-manager" element={<ScheduleManager />} /> */}
 
         <Route
@@ -47,20 +42,6 @@ function Router() {
             </ProtectedRoute>
           }
         />
-
-        <Route
-          path="/school-info"
-          element={
-            <ProtectedRoute>
-              <SchoolInfoSharedLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<SchoolInfoHome />} />
-          <Route path="contact" element={<SchoolContact />} />
-          <Route path="campus-life" element={<CampusLife />} />
-          <Route path="academics" element={<Academics />} />
-        </Route>
 
         <Route
           path="/course-manager"
