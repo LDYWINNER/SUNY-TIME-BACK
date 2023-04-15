@@ -47,10 +47,15 @@ export const Block = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   padding-top: 5%;
   font-weight: 600;
+  h4 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 `;
 
 export const Logo = styled.div`

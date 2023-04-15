@@ -10,6 +10,14 @@ import {
   STLogo,
 } from "../assets/wrappers/SchoolInfoHome";
 import { Link } from "react-router-dom";
+import { TbMathFunction } from "react-icons/tb";
+import { IoMdBusiness } from "react-icons/io";
+import { IoCodeSlash } from "react-icons/io5";
+import { GiElectricalResistance, GiMechanicGarage } from "react-icons/gi";
+import { FcConferenceCall } from "react-icons/fc";
+import { TbReportMoney } from "react-icons/tb";
+import { FaWpforms } from "react-icons/fa";
+import { BsFillCalendar2WeekFill } from "react-icons/bs";
 
 function SchoolInfoHome() {
   return (
@@ -22,16 +30,19 @@ function SchoolInfoHome() {
         </Logo>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030101.html">
           <Block className="light-blue">
+            <TbMathFunction size="24" />
             <h4>Applied Mathematics and Statistics</h4>{" "}
           </Block>
         </Link>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030105.html">
           <Block className="main-blue">
+            <IoMdBusiness size="24" />
             <h4>Business Management</h4>
           </Block>
         </Link>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030104.html">
           <Block className="light-blue">
+            <IoCodeSlash size="24" />
             <h4>Computer Science</h4>
           </Block>
         </Link>
@@ -43,16 +54,19 @@ function SchoolInfoHome() {
         </Logo>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030106.html">
           <Block className="main-blue">
+            <GiElectricalResistance size="24" />
             <h4>Electrical and Computer Engineering</h4>
           </Block>
         </Link>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030102.html">
           <Block className="light-blue">
+            <GiMechanicGarage size="24" />
             <h4>Mechanical Engineering</h4>
           </Block>
         </Link>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030103.html">
           <Block className="etc">
+            <FcConferenceCall size="24" />
             <h4>Technology and Society</h4>
           </Block>
         </Link>
@@ -65,16 +79,19 @@ function SchoolInfoHome() {
         <Link to="">
           <Block className="main-blue">
             <h4>Academic Calendars</h4>
+            <BsFillCalendar2WeekFill size="30" />
           </Block>
         </Link>
         <Link to="">
           <Block className="etc">
             <h4>Scholarship</h4>
+            <TbReportMoney size="40" />
           </Block>
         </Link>
         <Link to="">
           <Block className="main-blue">
             <h4>Forms</h4>
+            <FaWpforms size="30" />
           </Block>
         </Link>
         <Link to="">
