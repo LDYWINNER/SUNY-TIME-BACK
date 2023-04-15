@@ -292,7 +292,7 @@ const SingleCourse = () => {
       <Container>
         <IconButton
           onClick={() => {
-            navigate("/course-manager/all");
+            navigate(-1);
           }}
           aria-label="Go back"
           icon={<BiArrowBack />}
