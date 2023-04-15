@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   flex-wrap: wrap;
   gap: 1rem;
   .btn-container {
-    background: var(--primary-100);
+    background: var(--light-main-blue);
     border-radius: var(--borderRadius);
   }
   .pageBtn {
@@ -19,13 +19,13 @@ const Wrapper = styled.section`
     height: 40px;
     font-weight: 700;
     font-size: 1.25rem;
-    color: var(--primary-500);
+    color: var(--main-blue);
     transition: var(--transition);
     border-radius: var(--borderRadius);
     cursor: pointer;
   }
   .active {
-    background: var(--primary-500);
+    background: var(--main-blue);
     color: var(--white);
   }
   .prev-btn,
@@ -35,7 +35,7 @@ const Wrapper = styled.section`
     background: var(--white);
     border-color: transparent;
     border-radius: var(--borderRadius);
-    color: var(--primary-500);
+    color: var(--main-blue);
     text-transform: capitalize;
     letter-spacing: var(--letterSpacing);
     display: flex;
@@ -47,7 +47,7 @@ const Wrapper = styled.section`
   }
   .prev-btn:hover,
   .next-btn:hover {
-    background: var(--primary-500);
+    background: var(--main-blue);
     color: var(--white);
   }
 `;
