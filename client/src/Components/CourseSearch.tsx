@@ -4,7 +4,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { courseSearchState, globalCurrentState } from "../atoms";
 import { IconButton } from "@chakra-ui/react";
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Row } from "../assets/wrappers/CourseSearch";
+import { Wrapper, Row, Filters } from "../assets/wrappers/CourseSearch";
 
 interface IForm {
   searchKeyword?: string;
@@ -44,230 +44,223 @@ const CourseSearch = () => {
   const optimizedDebounce = useMemo(() => debounce(), []);
 
   return (
-    <form onSubmit={handleSubmit(onValid)}>
-      <Row>
-        <input
-          type="text"
-          {...register("searchKeyword", {
-            required: true,
-            value: localSearch,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              optimizedDebounce(e);
-            },
-          })}
-          placeholder="SEARCH"
-        ></input>
-        <IconButton
-          type="submit"
-          aria-label="Clear Search"
-          icon={<RiArrowGoBackFill />}
-          style={{ height: "40px" }}
-        />
-      </Row>
-      <label htmlFor="AMS">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="AMS"
-          id="AMS"
-          checked={courseSearch.courseSubjFilter === "AMS"}
-        />{" "}
-        AMS
-      </label>
-      <label htmlFor="ACC/BUS">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="ACC/BUS"
-          id="ACC/BUS"
-          checked={courseSearch.courseSubjFilter === "ACC/BUS"}
-        />{" "}
-        ACC / BUS
-      </label>
-      <label htmlFor="CSE">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="CSE"
-          id="CSE"
-          checked={courseSearch.courseSubjFilter === "CSE"}
-        />{" "}
-        CSE
-      </label>
-      <label htmlFor="ESE">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="ESE"
-          id="ESE"
-          checked={courseSearch.courseSubjFilter === "ESE"}
-        />{" "}
-        ESE
-      </label>
-      <label htmlFor="EST/EMP">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="EST/EMP"
-          id="EST/EMP"
-          checked={courseSearch.courseSubjFilter === "EST/EMP"}
-        />{" "}
-        EST / EMP
-      </label>
-      <label htmlFor="MEC">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="MEC"
-          id="MEC"
-          checked={courseSearch.courseSubjFilter === "MEC"}
-        />{" "}
-        MEC
-      </label>
-      <label htmlFor="SHCourse">
-        <input
-          {...register("radio", {
-            required: true,
-            onChange: (e) => {
-              //set page to 1
-              setGlobalState((currentState) => {
-                return {
-                  ...currentState,
-                  coursePage: 1,
-                };
-              });
-              setCourseSearch((currentState) => {
-                return {
-                  ...currentState,
-                  courseSubjFilter: e.target.value,
-                };
-              });
-            },
-          })}
-          type="radio"
-          name="radio"
-          value="SHCourse"
-          id="SHCourse"
-          checked={courseSearch.courseSubjFilter === "SHCourse"}
-        />{" "}
-        Faculty of Sciences and Humanities Courses
-      </label>
-    </form>
+    <Wrapper>
+      <form onSubmit={handleSubmit(onValid)}>
+        <Row>
+          <input
+            type="text"
+            {...register("searchKeyword", {
+              required: true,
+              value: localSearch,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                optimizedDebounce(e);
+              },
+            })}
+            placeholder="SEARCH"
+          ></input>
+          <IconButton
+            type="submit"
+            aria-label="Clear Search"
+            icon={<RiArrowGoBackFill />}
+            style={{ height: "40px" }}
+          />
+        </Row>
+
+        <Filters>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="AMS"
+            id="AMS"
+            checked={courseSearch.courseSubjFilter === "AMS"}
+          />
+          <label htmlFor="AMS">AMS</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="ACC/BUS"
+            id="ACC/BUS"
+            checked={courseSearch.courseSubjFilter === "ACC/BUS"}
+          />
+          <label htmlFor="ACC/BUS">ACC / BUS</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="CSE"
+            id="CSE"
+            checked={courseSearch.courseSubjFilter === "CSE"}
+          />
+          <label htmlFor="CSE">CSE</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="ESE"
+            id="ESE"
+            checked={courseSearch.courseSubjFilter === "ESE"}
+          />
+          <label htmlFor="ESE">ESE</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="EST/EMP"
+            id="EST/EMP"
+            checked={courseSearch.courseSubjFilter === "EST/EMP"}
+          />
+          <label htmlFor="EST/EMP">EST / EMP</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="MEC"
+            id="MEC"
+            checked={courseSearch.courseSubjFilter === "MEC"}
+          />
+          <label htmlFor="MEC">MEC</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    coursePage: 1,
+                  };
+                });
+                setCourseSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    courseSubjFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="SHCourse"
+            id="SHCourse"
+            checked={courseSearch.courseSubjFilter === "SHCourse"}
+          />
+          <label htmlFor="SHCourse">
+            Faculty of Sciences and Humanities Courses
+          </label>
+        </Filters>
+      </form>
+    </Wrapper>
   );
 };
 export default CourseSearch;
