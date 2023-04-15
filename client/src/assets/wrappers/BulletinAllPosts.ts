@@ -24,6 +24,9 @@ export const Post = styled.div`
   border: 2px solid ${(props) => props.theme.textColor.lighter};
   background-color: ${(props) => props.theme.bgColor.lighter};
   padding: 1.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 `;
 
 export const Row = styled.div`

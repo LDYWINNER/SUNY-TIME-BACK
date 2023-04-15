@@ -51,6 +51,8 @@ export const Course = styled.div`
   border-radius: 10px;
   margin-right: 2rem;
   margin-bottom: 1rem;
+  box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 `;
 
 export const Container = styled.div`
