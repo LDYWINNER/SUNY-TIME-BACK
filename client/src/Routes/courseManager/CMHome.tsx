@@ -1,5 +1,5 @@
 import Timetable from "react-timetable-events";
-import { Wrapper, Col } from "../../assets/wrappers/CMHome";
+import { Wrapper, Col, Temp } from "../../assets/wrappers/CMHome";
 
 interface Event {
   id: number | string;
@@ -47,15 +47,18 @@ const events: Events = {
 
 function CMHome() {
   return (
-    <Wrapper>
-      <Col>
-        <Timetable
-          events={events}
-          style={{ height: "40rem", width: "30rem" }}
-        />
-      </Col>
-      <Col></Col>
-    </Wrapper>
+    // <Wrapper>
+    //   <Col>
+    //     <Timetable
+    //       events={events}
+    //       style={{ height: "40rem", width: "30rem" }}
+    //     />
+    //   </Col>
+    //   <Col></Col>
+    <Temp>
+      <h1>Coming Soon...</h1>
+    </Temp>
+    // </Wrapper>
   );
 }
 export default CMHome;

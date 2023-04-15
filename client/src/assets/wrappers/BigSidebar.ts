@@ -13,6 +13,7 @@ const Wrapper = styled.aside`
     transition: var(--transition);
     position: fixed;
     box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    z-index: 100;
   }
   .show-sidebar {
     margin-left: 0;
