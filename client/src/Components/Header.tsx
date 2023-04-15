@@ -25,7 +25,6 @@ function Header() {
   const homeMatch = useMatch("/");
   const infoMatch = useMatch("/school-info/*");
   const courseManagerMatch = useMatch("/course-manager/*");
-  // const scheduleManagerMatch = useMatch("/schedule-manager/*");
   const bulletinMatch = useMatch("/bulletin");
   const registerMatch = useMatch("/register");
   //nav animation
@@ -66,7 +65,7 @@ function Header() {
   return (
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
-        <Show breakpoint="(min-width: 1300px)">
+        <Show breakpoint="(min-width: 1000px)">
           <Link to="/">
             <Logo src={logo} alt="sunytime" />
           </Link>
@@ -81,12 +80,6 @@ function Header() {
                 School Info {infoMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
-            {/* <Item>
-              <Link to="/schedule-manager">
-                Schedule Manager{" "}
-                {scheduleManagerMatch && <Circle layoutId="circle" />}
-              </Link>
-            </Item> */}
             <Item>
               <Link to="/course-manager">
                 Course Manager{" "}
@@ -100,18 +93,18 @@ function Header() {
             </Item>
           </Items>
         </Show>
-        <Hide breakpoint="(min-width: 1300px)">
+        <Hide breakpoint="(min-width: 1000px)">
           <SmallSidebar />
         </Hide>
       </Col>
-      <Hide breakpoint="(min-width: 1300px)">
+      <Hide breakpoint="(min-width: 1000px)">
         <Col>
           <Link to="/">
             <Logo src={logo} alt="sunytime" />
           </Link>
         </Col>
       </Hide>
-      <Show breakpoint="(min-width: 1300px)">
+      <Show breakpoint="(min-width: 1000px)">
         <Col>
           <Item>
             <DarkModeToggleBtn
@@ -157,7 +150,7 @@ function Header() {
           )}
         </Col>
       </Show>
-      <Hide breakpoint="(min-width: 1300px)">
+      <Hide breakpoint="(min-width: 1000px)">
         <Col>
           <button
             type="button"
