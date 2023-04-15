@@ -14,6 +14,7 @@ export const lightTheme: DefaultTheme = {
   main: {
     blue: "#004B93",
     lightBlue: "#0078F0",
+    red: "#CC0001",
   },
   bgColor: {
     lighter: "#fff",
@@ -42,6 +43,7 @@ export const darkTheme: DefaultTheme = {
   main: {
     blue: "#004B93",
     lightBlue: "#0078F0",
+    red: "#CC0001",
   },
   bgColor: {
     veryDark: "#141414",

@@ -15,6 +15,7 @@ declare module "styled-components" {
     main: {
       blue: string;
       lightBlue: string;
+      red: string;
     };
     bgColor:
       | {
