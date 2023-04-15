@@ -42,6 +42,17 @@ export const Blocks = styled.div`
   grid-template-rows: repeat(4, minmax(25%, 1fr));
 `;
 
+export const Block = styled.div`
+  background-color: teal;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5%;
+  font-weight: 600;
+`;
+
 export const Logo = styled.div`
   background-color: white;
   grid-column: 1 / 3;
@@ -62,12 +73,6 @@ export const LogoItem = styled.img`
 export const STLogo = styled.img`
   width: 50%;
   height: 100%;
-`;
-
-export const Block = styled.div`
-  background-color: teal;
-  height: 100%;
-  width: 100%;
 `;
 
 export const BigBlock = styled.div`
