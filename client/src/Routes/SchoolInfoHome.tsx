@@ -75,52 +75,52 @@ function SchoolInfoHome() {
           </Block>
         </Link>
 
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub01/011402.html">
           <Block className="light-blue">
             <h4>Faculty Senators</h4>
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030501.html">
           <Block className="main-blue">
             <h4>Academic Calendars</h4>
             <BsFillCalendar2WeekFill size="30" />
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030503.html">
           <Block className="etc">
             <h4>Scholarship</h4>
             <TbReportMoney size="40" />
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030505.html">
           <Block className="main-blue">
             <h4>Forms</h4>
             <FaWpforms size="30" />
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/0303.html">
           <Block className="light-blue">
             <h4>Faculty of Sciences and Humanities</h4>
           </Block>
         </Link>
 
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub04/040403.html">
           <Block className="etc">
             <h4>Career Services Opportunities</h4>
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub04/040404.html">
           <Block className="light-blue">
             <h4>Career Events</h4>
           </Block>
         </Link>
-        <Link to="">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub04/040405.html">
           <Block className="main-blue">
             <h4>Career Resources</h4>
           </Block>
         </Link>
 
-        <Link to="" className="big-block">
+        <Link to="https://sunykoreacdc.youcanbook.me/" className="big-block">
           <CDCBlock bgImage={cdc}>
             <div>
               <h4>Book meeting with CDC</h4>
