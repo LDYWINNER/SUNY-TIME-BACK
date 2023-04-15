@@ -29,6 +29,20 @@ const Bulletin = () => {
   const [bgImage, setBgImage] = useRecoilState(singlePageBgImageState);
   const { bulletinNumOfPages } = useRecoilValue(globalCurrentState);
   const { boardFilter } = useRecoilValue(bulletinSearchState);
+  let whichBoard = "";
+  if (boardFilter === "Free") {
+    whichBoard = "자유게시판";
+  } else if (boardFilter === "Secret") {
+    whichBoard = "비밀게시판";
+  } else if (boardFilter === "Freshmen") {
+    whichBoard = "새내기게시판";
+  } else if (boardFilter === "Info") {
+    whichBoard = "정보게시판";
+  } else if (boardFilter === "Promotion") {
+    whichBoard = "홍보게시판";
+  } else if (boardFilter === "Club") {
+    whichBoard = "동아리게시판";
+  }
 
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
@@ -42,7 +56,7 @@ const Bulletin = () => {
             <BulletinSearch />
           </FilterRow>
           <TitleRow>
-            <Title>{boardFilter} Board</Title>
+            <Title>{whichBoard}</Title>
             <Popover closeOnBlur={false} closeOnEsc={false}>
               <PopoverTrigger>
                 <BulletinPostBtn type="button" className="btn">

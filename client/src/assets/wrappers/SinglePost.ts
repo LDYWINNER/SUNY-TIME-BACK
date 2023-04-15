@@ -20,10 +20,17 @@ export const Wrapper = styled.section<{ bgImage: string }>`
 
 export const Container = styled.div`
   margin-top: 200px;
+  z-index: 0;
   width: 70%;
   height: 100%;
   background-color: ${(props) => props.theme.bgColor.lighter};
-  padding: 10px;
+  padding: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  h1 {
+    font-weight: 600;
+    font-size: 3rem;
+  }
 `;
 
 export const Main = styled.div`
@@ -31,10 +38,14 @@ export const Main = styled.div`
 `;
 
 export const TitleRow = styled.div`
-  height: 10rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  button {
+    background-color: ${(props) => props.theme.main.blue};
+  }
 `;
 
 export const Title = styled.span`
@@ -46,6 +57,32 @@ export const Title = styled.span`
 
 export const Row = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+`;
+
+export const IconRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  h4 {
+    margin-left: 0.5rem;
+  }
+`;
+
+export const PostContent = styled.div`
+  margin-bottom: 2rem;
+`;
+
+export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  .time {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.8rem;
+  }
 `;
 
 export const Comments = styled.div``;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Nav = styled(motion.nav)`
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;

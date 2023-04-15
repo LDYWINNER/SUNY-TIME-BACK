@@ -9,6 +9,9 @@ import {
   TitleRow,
   Title,
   Row,
+  IconRow,
+  Col,
+  PostContent,
   Comments,
   LoadingWrapper,
 } from "../assets/wrappers/SinglePost";
@@ -66,6 +69,7 @@ function SinglePost() {
   const cancelRef = useRef(null);
   const [like, setLike] = useState(true);
   const [post, setPost] = useState<IPost>();
+  const [boardName, setBoardName] = useState("");
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -107,6 +111,19 @@ function SinglePost() {
         title,
       });
       console.log(data);
+      if (board === "Free") {
+        setBoardName("자유게시판");
+      } else if (board === "Secret") {
+        setBoardName("비밀게시판");
+      } else if (board === "Freshmen") {
+        setBoardName("새내기게시판");
+      } else if (board === "Info") {
+        setBoardName("정보게시판");
+      } else if (board === "Promotion") {
+        setBoardName("홍보게시판");
+      } else if (board === "Club") {
+        setBoardName("동아리게시판");
+      }
 
       setIsLoading(false);
     } catch (error: any) {
@@ -162,8 +179,8 @@ function SinglePost() {
         />
         <Main>
           <TitleRow>
-            <Title>{post?.board}</Title>
-            <button type="button" className="btn delete-btn" onClick={onOpen}>
+            <Title>{boardName}</Title>
+            <button type="button" className="btn" onClick={onOpen}>
               DELETE
             </button>
             <AlertDialog
@@ -198,11 +215,19 @@ function SinglePost() {
               </AlertDialogOverlay>
             </AlertDialog>
           </TitleRow>
-          <h1>{post?.title}</h1>
-          <h4>{post?.anonymity ? "익명" : post?.createdByUsername}</h4>
-          <h4>{post?.content}</h4>
-          <h4>{moment(post?.createdAt).format("MMMM Do, h:mm a")}</h4>
           <Row>
+            <h1>{post?.title}</h1>
+            <Col>
+              <h4>{post?.anonymity ? "익명" : post?.createdByUsername}</h4>
+              <h4 className="time">
+                {moment(post?.createdAt).format("MMMM Do, h:mm a")}
+              </h4>
+            </Col>
+          </Row>
+
+          <PostContent>{post?.content}</PostContent>
+
+          <IconRow>
             <IconButton
               aria-label="Like this post?"
               icon={
@@ -214,8 +239,8 @@ function SinglePost() {
               }
               onClick={() => handleLike(id)}
             />
-            <h4>{post?.likes.length}</h4>
-          </Row>
+            <h4>{post?.likes.length} likes</h4>
+          </IconRow>
           <Comments>
             <BulletinCommentPost id={id} />
             <BulletinAllComments comments={post?.comments as [IPostComment]} />

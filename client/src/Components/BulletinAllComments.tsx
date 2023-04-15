@@ -1,7 +1,15 @@
 import { useState, useCallback, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { authFetch } from "../api";
-import { Wrapper, Comment, Row } from "../assets/wrappers/BulletinAllComments";
+import {
+  Wrapper,
+  Comment,
+  Row,
+  SecondRow,
+  Buttons,
+  Name,
+  Text,
+} from "../assets/wrappers/BulletinAllComments";
 import { globalCurrentState } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import {
@@ -16,6 +24,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { AiFillLike, AiOutlineLike, AiTwotoneDelete } from "react-icons/ai";
+import moment from "moment";
 
 interface IPostComment {
   text: string;
@@ -80,28 +89,37 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
       {comments.map((comment: IPostComment) => {
         return (
           <Comment key={comment._id}>
-            <h4>{comment.text}</h4>
-            <h4>{comment.anonymity ? "익명" : comment.createdByUsername}</h4>
-            <h4>{comment.createdAt}</h4>
             <Row>
-              <IconButton
-                aria-label="Like this comment?"
-                icon={
-                  comment?.likes.includes(globalState.user._id) ? (
-                    <AiFillLike />
-                  ) : (
-                    <AiOutlineLike />
-                  )
-                }
-                onClick={() => handleLike(comment._id)}
-              />
-              <h4>{comment?.likes.length}</h4>
+              <Name>
+                {comment.anonymity ? "익명" : comment.createdByUsername}
+              </Name>
+              <h4 className="time">
+                {moment(comment?.createdAt).format("MMMM Do, h:mm a")}
+              </h4>
             </Row>
-            <IconButton
-              aria-label="Delete this comment?"
-              icon={<AiTwotoneDelete />}
-              onClick={onOpen}
-            />
+
+            <SecondRow>
+              <Text>{comment.text}</Text>
+              <Buttons>
+                <IconButton
+                  aria-label="Like this comment?"
+                  icon={
+                    comment?.likes.includes(globalState.user._id) ? (
+                      <AiFillLike />
+                    ) : (
+                      <AiOutlineLike />
+                    )
+                  }
+                  onClick={() => handleLike(comment._id)}
+                />
+                <h4>{comment?.likes.length} likes</h4>
+                <IconButton
+                  aria-label="Delete this comment?"
+                  icon={<AiTwotoneDelete />}
+                  onClick={onOpen}
+                />
+              </Buttons>
+            </SecondRow>
             <AlertDialog
               isOpen={isOpen}
               leastDestructiveRef={cancelRef}

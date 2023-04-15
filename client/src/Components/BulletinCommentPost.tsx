@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { authFetch } from "../api";
-import { Button } from "../assets/wrappers/BulletinCommentPost";
+import {
+  Button,
+  Row,
+  ButtonContainer,
+  InputContainer,
+} from "../assets/wrappers/BulletinCommentPost";
 import Alert from "./Alert";
 
 interface IBulletinCommentPost {
@@ -95,26 +100,30 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
 
       {values.formSuccess === false && <Alert message={values.errorMessage} />}
 
-      <div className="form-row">
-        <input
-          type="text"
-          className="form-input"
-          {...register("text", { required: true })}
-          placeholder="COMMENT"
-        ></input>
-      </div>
-      {errors?.text?.message && <Alert message={errors.text.message} />}
+      <Row>
+        <InputContainer>
+          <input
+            type="text"
+            className="form-input"
+            {...register("text", { required: true })}
+            placeholder="COMMENT"
+          ></input>
+        </InputContainer>
+        {errors?.text?.message && <Alert message={errors.text.message} />}
 
-      <div className="checkbox-div">
-        <input
-          type="checkbox"
-          {...register("anonymity")}
-          id="anonymity"
-          className="anonymity-checkbox"
-        />
-        <label htmlFor="anonymity">Anonymity</label>
-      </div>
-      <Button type="submit">Save</Button>
+        <ButtonContainer>
+          <input
+            type="checkbox"
+            {...register("anonymity")}
+            id="anonymity"
+            className="anonymity-checkbox"
+          />
+          <label htmlFor="anonymity">Anonymity</label>
+          <Button className="btn" type="submit">
+            Save
+          </Button>
+        </ButtonContainer>
+      </Row>
     </form>
   );
 }
