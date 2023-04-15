@@ -30,6 +30,10 @@ export const Wrapper = styled.section`
       color: ${(props) => props.theme.white.lighter};
     }
   }
+
+  .big-block {
+    grid-column: -3 / -1;
+  }
 `;
 
 export const Blocks = styled.div`
@@ -43,7 +47,6 @@ export const Blocks = styled.div`
 `;
 
 export const Block = styled.div`
-  background-color: teal;
   height: 100%;
   width: 100%;
   display: flex;
@@ -55,6 +58,32 @@ export const Block = styled.div`
   h4 {
     margin-top: 5%;
     margin-bottom: 5%;
+  }
+`;
+
+export const CDCBlock = styled.div<{ bgImage: string }>`
+  height: 100%;
+  width: 100%;
+  background-image: url(${(props) => props.bgImage});
+  background-size: cover;
+  color: ${(props) => props.theme.main.blue};
+  padding-top: 5%;
+  padding-left: 2%;
+  font-weight: 600;
+
+  div {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    background-color: ${(props) => props.theme.white.darker};
+    border-radius: 10px;
+    h4 {
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+    &:hover {
+      background-color: ${(props) => props.theme.main.lightBlue};
+    }
   }
 `;
 
@@ -78,9 +107,4 @@ export const LogoItem = styled.img`
 export const STLogo = styled.img`
   width: 50%;
   height: 100%;
-`;
-
-export const BigBlock = styled.div`
-  background-color: black;
-  grid-column: -3 / -1;
 `;

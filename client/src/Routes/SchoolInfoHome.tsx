@@ -1,4 +1,5 @@
 import sunykorea from "../assets/images/sunykorea.png";
+import cdc from "../assets/images/sunykoreacdc.png";
 import seawolf from "../assets/images/seawolf.jpeg";
 import {
   Wrapper,
@@ -6,7 +7,7 @@ import {
   Logo,
   LogoItem,
   Block,
-  BigBlock,
+  CDCBlock,
   STLogo,
 } from "../assets/wrappers/SchoolInfoHome";
 import { Link } from "react-router-dom";
@@ -17,7 +18,10 @@ import { GiElectricalResistance, GiMechanicGarage } from "react-icons/gi";
 import { FcConferenceCall } from "react-icons/fc";
 import { TbReportMoney } from "react-icons/tb";
 import { FaWpforms } from "react-icons/fa";
-import { BsFillCalendar2WeekFill } from "react-icons/bs";
+import {
+  BsFillCalendar2WeekFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 function SchoolInfoHome() {
   return (
@@ -116,7 +120,14 @@ function SchoolInfoHome() {
           </Block>
         </Link>
 
-        <BigBlock></BigBlock>
+        <Link to="" className="big-block">
+          <CDCBlock bgImage={cdc}>
+            <div>
+              <h4>Book meeting with CDC</h4>
+              <BsFillArrowRightCircleFill />
+            </div>
+          </CDCBlock>
+        </Link>
       </Blocks>
     </Wrapper>
   );
