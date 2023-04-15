@@ -1,4 +1,4 @@
-import logo from "../assets/images/navbar_logo.svg";
+import sunykorea from "../assets/images/sunykorea.png";
 import seawolf from "../assets/images/seawolf.jpeg";
 import {
   Wrapper,
@@ -9,34 +9,95 @@ import {
   BigBlock,
   STLogo,
 } from "../assets/wrappers/SchoolInfoHome";
+import { Link } from "react-router-dom";
 
 function SchoolInfoHome() {
   return (
     <Wrapper>
       <Blocks>
         <Logo>
-          <STLogo src={logo} alt="sunytime" className="logo" />
+          <Link to="https://www.sunykorea.ac.kr/en/">
+            <STLogo src={sunykorea} alt="sunytime" className="logo" />
+          </Link>
         </Logo>
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030101.html">
+          <Block className="light-blue">
+            <h4>Applied Mathematics and Statistics</h4>{" "}
+          </Block>
+        </Link>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030105.html">
+          <Block className="main-blue">
+            <h4>Business Management</h4>
+          </Block>
+        </Link>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030104.html">
+          <Block className="light-blue">
+            <h4>Computer Science</h4>
+          </Block>
+        </Link>
 
         <Logo>
-          <LogoItem src={seawolf} alt="seawolf" className="logo" />
+          <Link to="https://www.stonybrook.edu/">
+            <LogoItem src={seawolf} alt="seawolf" className="logo" />
+          </Link>
         </Logo>
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030106.html">
+          <Block className="main-blue">
+            <h4>Electrical and Computer Engineering</h4>
+          </Block>
+        </Link>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030102.html">
+          <Block className="light-blue">
+            <h4>Mechanical Engineering</h4>
+          </Block>
+        </Link>
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030103.html">
+          <Block className="etc">
+            <h4>Technology and Society</h4>
+          </Block>
+        </Link>
 
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
+        <Link to="">
+          <Block className="light-blue">
+            <h4>Faculty Senators</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="main-blue">
+            <h4>Academic Calendars</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="etc">
+            <h4>Scholarship</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="main-blue">
+            <h4>Forms</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="light-blue">
+            <h4>Faculty of Sciences and Humanities</h4>
+          </Block>
+        </Link>
 
-        <Block></Block>
-        <Block></Block>
-        <Block></Block>
+        <Link to="">
+          <Block className="etc">
+            <h4>Career Services Opportunities</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="light-blue">
+            <h4>Career Events</h4>
+          </Block>
+        </Link>
+        <Link to="">
+          <Block className="main-blue">
+            <h4>Career Resources</h4>
+          </Block>
+        </Link>
 
         <BigBlock></BigBlock>
       </Blocks>
