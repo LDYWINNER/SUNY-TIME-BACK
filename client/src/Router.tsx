@@ -51,8 +51,8 @@ function Router() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<CMHome />} />
-          <Route path="all" element={<AllCourses />} />
+          <Route index element={<AllCourses />} />
+          <Route path="my" element={<CMHome />} />
           <Route path=":courseId" element={<SingleCourse />} />
         </Route>
 

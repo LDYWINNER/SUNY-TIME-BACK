@@ -5,8 +5,8 @@ interface ILink {
 }
 
 const links: ILink[] = [
-  { id: 1, text: "My Course", path: "/course-manager" },
-  { id: 2, text: "All Courses", path: "all" },
+  { id: 1, text: "All Courses", path: "/course-manager" },
+  { id: 2, text: "My Course", path: "my" },
 ];
 
 export default links;
