@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { Content } from "../assets/wrappers/NavLinks";
+import { IoIosArrowForward } from "react-icons/io";
 
 interface ILink {
   id: number;
@@ -26,7 +28,10 @@ const NavLinks = ({ links, onClick }: INavLinks) => {
             }
             end
           >
-            {text}
+            <Content>
+              <h4>{text}</h4>
+              <IoIosArrowForward />
+            </Content>
           </NavLink>
         );
       })}

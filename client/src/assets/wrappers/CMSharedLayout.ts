@@ -24,8 +24,8 @@ export const Wrapper = styled.section<{ bgImage: string }>`
     color: #f8efba;
     cursor: pointer;
     display: flex;
-    align-items: center;
     position: fixed;
+    align-items: center;
     top: 150px;
     left: 250px;
     transition: var(--transition);
@@ -33,6 +33,7 @@ export const Wrapper = styled.section<{ bgImage: string }>`
   .toggle-btn-hide {
     top: 150px;
     left: 0px;
+    position: fixed;
   }
 `;
 

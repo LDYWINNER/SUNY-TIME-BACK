@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 const Wrapper = styled.aside`
   box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
-  position: relative;
   .sidebar-container {
     background: var(--white);
-    height: 100vh;
+    height: 60vh;
     width: 250px;
     margin-left: -250px;
+    margin-top: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     transition: var(--transition);
-  }
-  .content {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.1);
   }
   .show-sidebar {
     margin-left: 0;
