@@ -49,7 +49,6 @@ const BulletinSearch = () => {
       <Row>
         <input
           type="text"
-          className="form-input"
           {...register("searchKeyword", {
             required: true,
             value: localSearch,
@@ -70,6 +69,7 @@ const BulletinSearch = () => {
           type="submit"
           aria-label="Clear Search"
           icon={<RiArrowGoBackFill />}
+          style={{ height: "40px" }}
         />
       </Row>
       <label htmlFor="Free">

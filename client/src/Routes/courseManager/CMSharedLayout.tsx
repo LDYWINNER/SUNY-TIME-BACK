@@ -8,7 +8,7 @@ import { Wrapper, Main } from "../../assets/wrappers/CMSharedLayout";
 
 const CMSharedLayout = () => {
   const [bgImage, setbgImage] = useState("");
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const toggleSidebar = () => {
     setShowSidebar((prev) => !prev);

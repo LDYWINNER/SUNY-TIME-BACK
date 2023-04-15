@@ -4,7 +4,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { courseSearchState, globalCurrentState } from "../atoms";
 import { IconButton } from "@chakra-ui/react";
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Row } from "../assets/wrappers/BulletinSearch";
+import { Row } from "../assets/wrappers/CourseSearch";
 
 interface IForm {
   searchKeyword?: string;
@@ -48,7 +48,6 @@ const CourseSearch = () => {
       <Row>
         <input
           type="text"
-          className="form-input"
           {...register("searchKeyword", {
             required: true,
             value: localSearch,
@@ -69,6 +68,7 @@ const CourseSearch = () => {
           type="submit"
           aria-label="Clear Search"
           icon={<RiArrowGoBackFill />}
+          style={{ height: "40px" }}
         />
       </Row>
       <label htmlFor="AMS">
