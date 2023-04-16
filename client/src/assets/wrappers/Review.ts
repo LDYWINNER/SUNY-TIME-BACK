@@ -15,6 +15,20 @@ export const CourseReviewBtn = styled.button`
   }
 `;
 
+export const ClassieBtn = styled.button`
+  background-color: ${(props) => props.theme.main.darkred};
+  color: ${(props) => props.theme.textColor};
+  display: flex;
+  &:hover {
+    background-color: ${(props) => props.theme.main.red};
+  }
+  width: 15rem;
+`;
+
+export const WoolfieIcon = styled.img`
+  width: 20%;
+`;
+
 export const Reviews = styled.div``;
 
 export const SingleReview = styled.div``;

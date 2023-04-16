@@ -7,12 +7,15 @@ import { useDisclosure, IconButton } from "@chakra-ui/react";
 import {
   Wrapper,
   CourseReviewBtn,
+  ClassieBtn,
   Reviews,
   SingleReview,
   Row,
+  WoolfieIcon,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import Woolfie from "../../assets/images/woolfie.png";
 
 interface ICourseReview {
   course: string;
@@ -67,6 +70,10 @@ const Review = ({ id, reviews }: IReview) => {
         Review Course
       </CourseReviewBtn>
       <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
+      <ClassieBtn type="button" className="btn">
+        <WoolfieIcon src={Woolfie} />
+        <span>Go to Classie Eval</span>
+      </ClassieBtn>
       <Reviews>
         {reviews.map((review: ICourseReview) => {
           if (review.overallEvaluation !== "") {
