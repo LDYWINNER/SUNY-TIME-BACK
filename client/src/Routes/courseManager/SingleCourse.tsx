@@ -379,7 +379,11 @@ const SingleCourse = () => {
               <OverallInfo crResult={courseReviewResult as ICRResult} />
             </TabPanel>
             <TabPanel>
-              <Review id={id} reviews={course?.reviews as [ICourseReview]} />
+              <Review
+                id={id}
+                reviews={course?.reviews as [ICourseReview]}
+                courseName={`${course?.subj}${course?.crs}`}
+              />
             </TabPanel>
             <TabPanel>
               <CourseBulletin id={id} />

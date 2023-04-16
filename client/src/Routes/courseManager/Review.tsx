@@ -16,6 +16,7 @@ import {
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import Woolfie from "../../assets/images/woolfie.png";
+import { Link } from "react-router-dom";
 
 interface ICourseReview {
   course: string;
@@ -40,9 +41,10 @@ interface ICourseReview {
 interface IReview {
   id: any;
   reviews: [ICourseReview];
+  courseName: string;
 }
 
-const Review = ({ id, reviews }: IReview) => {
+const Review = ({ id, reviews, courseName }: IReview) => {
   //course review modal
   const { isOpen, onOpen, onClose } = useDisclosure();
   //course reviews
@@ -70,10 +72,14 @@ const Review = ({ id, reviews }: IReview) => {
         Review Course
       </CourseReviewBtn>
       <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
-      <ClassieBtn type="button" className="btn">
-        <WoolfieIcon src={Woolfie} />
-        <span>Go to Classie Eval</span>
-      </ClassieBtn>
+      <Link
+        to={`https://classie-evals.stonybrook.edu/?SearchKeyword=${courseName}&SearchTerm=ALL`}
+      >
+        <ClassieBtn type="button" className="btn">
+          <WoolfieIcon src={Woolfie} />
+          <span>Go to Classie Eval</span>
+        </ClassieBtn>
+      </Link>
       <Reviews>
         {reviews.map((review: ICourseReview) => {
           if (review.overallEvaluation !== "") {
