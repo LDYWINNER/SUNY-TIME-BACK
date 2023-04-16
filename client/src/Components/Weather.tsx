@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { IGetWeatherResult } from "../api";
 
 const WeatherWrapper = styled.div`
-  width: 15vw;
-  height: 22vh;
+  width: 15%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,13 +17,13 @@ const WeatherWrapper = styled.div`
 `;
 
 const City = styled.span`
-  font-size: 2.5vh;
+  font-size: 2vw;
   font-weight: 400;
   margin-bottom: 5px;
 `;
 
 const Info = styled.p`
-  font-size: 2vh;
+  font-size: 1.2vw;
   font-weight: 300;
   margin-bottom: 2px;
 `;

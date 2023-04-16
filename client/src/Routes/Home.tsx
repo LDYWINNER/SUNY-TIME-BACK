@@ -10,6 +10,7 @@ import {
   Welcome,
   Title,
   LogoDate,
+  SUNYTIME,
   Img,
 } from "../assets/wrappers/Home";
 import { startInterval } from "../utils";
@@ -46,8 +47,8 @@ function Home() {
       <Main>
         <Greeting>
           <Welcome>
-            Hello {globalState.user?.username}, Welcome to{" "}
-            <Title>SUNYTIME</Title>
+            Hello <Title>{globalState.user?.username}</Title>, Welcome to{" "}
+            <SUNYTIME>SUNYTIME</SUNYTIME>
           </Welcome>
         </Greeting>
         <LogoDate>

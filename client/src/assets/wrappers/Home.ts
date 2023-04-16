@@ -42,6 +42,12 @@ const Title = styled.span`
   background-position: center bottom;
 `;
 
+const SUNYTIME = styled.span`
+  display: inline;
+  background-color: ${(props) => props.theme.main.lightBlue};
+  padding: 5px;
+`;
+
 const LogoDate = styled.div`
   display: flex;
   justify-content: space-between;
@@ -55,4 +61,4 @@ const Img = styled.img`
   height: 100%;
 `;
 
-export { Wrapper, Main, Greeting, Welcome, Title, LogoDate, Img };
+export { Wrapper, Main, Greeting, Welcome, Title, LogoDate, Img, SUNYTIME };
