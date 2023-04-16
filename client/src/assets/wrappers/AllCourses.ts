@@ -72,3 +72,18 @@ export const IconRow = styled.div`
 export const Icon = styled.div`
   display: flex;
 `;
+
+export const ClassieBtn = styled.button`
+  background-color: ${(props) => props.theme.main.darkred};
+  color: ${(props) => props.theme.textColor};
+  display: flex;
+  &:hover {
+    background-color: ${(props) => props.theme.main.red};
+  }
+  width: 11rem;
+  margin-right: 2rem;
+`;
+
+export const WoolfieIcon = styled.img`
+  width: 20%;
+`;

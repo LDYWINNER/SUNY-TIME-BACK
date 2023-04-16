@@ -17,11 +17,14 @@ import {
   Row,
   IconRow,
   Icon,
+  ClassieBtn,
+  WoolfieIcon,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState } from "../../atoms";
 import { CourseSearch, CoursePagination } from "../../Components";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
+import Woolfie from "../../assets/images/woolfie.png";
 
 interface ICourseReview {
   course: string;
@@ -131,6 +134,30 @@ const AllCourses = () => {
                 : courseSubjFilter}{" "}
               Courses
             </Title>
+            {courseSubjFilter !== "SHCourse" && (
+              <Link
+                to={
+                  courseSubjFilter === "AMS"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ams/"
+                    : courseSubjFilter === "ACC/BUS"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/bus/"
+                    : courseSubjFilter === "CSE"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/cse/"
+                    : courseSubjFilter === "ESE"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ese/"
+                    : courseSubjFilter === "EST/EMP"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/tsm/"
+                    : courseSubjFilter === "MEC"
+                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/mec/"
+                    : ""
+                }
+              >
+                <ClassieBtn type="button" className="btn">
+                  <WoolfieIcon src={Woolfie} />
+                  <span>Go to Bulletin</span>
+                </ClassieBtn>
+              </Link>
+            )}
           </TitleRow>
           {isLoading && <Loading center />}
           <Courses>
