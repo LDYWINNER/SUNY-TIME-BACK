@@ -138,4 +138,8 @@ export const quotes = [
     quote: "Life is like this.",
     author: "Antonino Mione",
   },
+  {
+    quote: "좌절을 경험한 사람은 자신만의 역사를 갖게 된다.",
+    author: "쇼펜하우어의 <희망에 대하여> 중에서",
+  },
 ];
