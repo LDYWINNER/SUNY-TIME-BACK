@@ -72,7 +72,7 @@ export const CDCBlock = styled.div<{ bgImage: string }>`
   font-weight: 600;
 
   div {
-    width: 45%;
+    width: 38%;
     display: flex;
     align-items: center;
     background-color: ${(props) => props.theme.white.darker};
