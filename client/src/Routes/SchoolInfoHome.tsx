@@ -75,9 +75,10 @@ function SchoolInfoHome() {
           </Block>
         </Link>
 
-        <Link to="https://www.sunykorea.ac.kr/en/html/sub01/011402.html">
+        <Link to="https://www.sunykorea.ac.kr/en/html/sub05/0505.html">
           <Block className="light-blue">
-            <h4>Faculty Senators</h4>
+            <h4>SUNY Korea Monthly Schedule</h4>
+            <BsFillCalendar2WeekFill size="30" />
           </Block>
         </Link>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030501.html">
