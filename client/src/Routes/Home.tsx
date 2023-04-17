@@ -67,7 +67,6 @@ function Home() {
           </LogoDate>
           <Quotes />
         </MainContent>
-        <div></div>
       </Main>
     </Wrapper>
   );

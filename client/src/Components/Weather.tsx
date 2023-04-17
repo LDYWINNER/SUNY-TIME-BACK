@@ -3,7 +3,7 @@ import { IGetWeatherResult } from "../api";
 
 const WeatherWrapper = styled.div`
   width: 15vw;
-  height: 20vw;
+  height: 18vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
