@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
-  height: 200vh;
+  height: 175vh;
   width: 100%;
   display: flex;
   align-items: center;

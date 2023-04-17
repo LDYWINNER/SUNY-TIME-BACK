@@ -21,6 +21,7 @@ import CourseReviewModal from "./CourseReviewModal";
 import CourseBulletinPopOver from "./CourseBulletinPopOver";
 import CourseBulletinPagination from "./CourseBulletinPagination";
 import CourseBulletinAllPosts from "./CourseBulletinAllPosts";
+import Footer from "./Footer";
 
 export {
   Clock,
@@ -47,4 +48,5 @@ export {
   CourseBulletinPopOver,
   CourseBulletinPagination,
   CourseBulletinAllPosts,
+  Footer,
 };

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Header } from "./Components";
+import { Header, Footer } from "./Components";
 import {
   Home,
   Register,
@@ -58,6 +58,7 @@ function Router() {
 
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

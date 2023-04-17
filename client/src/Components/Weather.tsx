@@ -2,18 +2,15 @@ import styled from "styled-components";
 import { IGetWeatherResult } from "../api";
 
 const WeatherWrapper = styled.div`
-  width: 15%;
-  height: 30%;
+  width: 15vw;
+  height: 20vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-self: flex-start;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-bottom: 50px;
-  position: absolute;
-  bottom: 1vh;
 `;
 
 const City = styled.span`

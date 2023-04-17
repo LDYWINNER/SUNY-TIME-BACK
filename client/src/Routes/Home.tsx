@@ -6,6 +6,8 @@ import { FakeWeather, Weather, Quotes, Clock } from "../Components";
 import {
   Wrapper,
   Main,
+  MainContent,
+  WeatherDiv,
   Greeting,
   Welcome,
   Title,
@@ -45,23 +47,28 @@ function Home() {
   return (
     <Wrapper bgImage={bgImage}>
       <Main>
-        <Greeting>
-          <Welcome>
-            Hello <Title>{globalState.user?.username}</Title>, Welcome to{" "}
-            <SUNYTIME>SUNYTIME</SUNYTIME>
-          </Welcome>
-        </Greeting>
-        <LogoDate>
-          <Img src={logo}></Img>
-          <Clock />
-        </LogoDate>
-        <Quotes />
+        <WeatherDiv>
+          {typeof data?.main != "undefined" ? (
+            <Weather weatherData={data} />
+          ) : (
+            <FakeWeather />
+          )}
+        </WeatherDiv>
+        <MainContent>
+          <Greeting>
+            <Welcome>
+              Hello <Title>{globalState.user?.username}</Title>, Welcome to{" "}
+              <SUNYTIME>SUNYTIME</SUNYTIME>
+            </Welcome>
+          </Greeting>
+          <LogoDate>
+            <Img src={logo}></Img>
+            <Clock />
+          </LogoDate>
+          <Quotes />
+        </MainContent>
+        <div></div>
       </Main>
-      {typeof data?.main != "undefined" ? (
-        <Weather weatherData={data} />
-      ) : (
-        <FakeWeather />
-      )}
     </Wrapper>
   );
 }

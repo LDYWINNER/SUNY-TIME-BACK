@@ -5,7 +5,8 @@ export const Wrapper = styled.section`
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 90px;
+  margin-bottom: 20px;
   .main-blue {
     background-color: ${(props) => props.theme.main.blue};
     color: ${(props) => props.theme.white.lighter};

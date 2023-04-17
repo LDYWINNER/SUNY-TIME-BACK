@@ -16,15 +16,20 @@ const Wrapper = styled.div<{ bgImage: string }>`
 
 const Main = styled.div`
   font-family: "Bebas Neue", cursive;
-  max-width: 70vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 4vh auto 10vh auto;
-  padding: 30px;
-  border-radius: 10px;
+`;
+
+const MainContent = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 70vw;
+  margin: 4vh auto 10vh auto;
+`;
+
+const WeatherDiv = styled.div`
+  position: absolute;
+  left: 2vw;
+  bottom: 25vh;
 `;
 
 const Greeting = styled.div``;
@@ -61,4 +66,15 @@ const Img = styled.img`
   height: 100%;
 `;
 
-export { Wrapper, Main, Greeting, Welcome, Title, LogoDate, Img, SUNYTIME };
+export {
+  Wrapper,
+  Main,
+  MainContent,
+  WeatherDiv,
+  Greeting,
+  Welcome,
+  Title,
+  LogoDate,
+  Img,
+  SUNYTIME,
+};
