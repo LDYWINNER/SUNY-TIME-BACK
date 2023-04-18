@@ -41,6 +41,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "express-mongo-sanitize": "^2.2.0",
@@ -50,6 +51,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.1",
     "xss-clean": "^0.1.1"
   }
 }
