@@ -25,7 +25,7 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
 import { courseReviewInstructorState } from "../atoms";
 
-interface IUpdateUserModal {
+interface ICourseReviewModal {
   id: any;
   isOpen: boolean;
   onClose: () => void;
@@ -55,7 +55,7 @@ const registerState: IRegisterState = {
   errorMessage: "",
 };
 
-function CourseReviewModal({ id, isOpen, onClose }: IUpdateUserModal) {
+function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
   const [values, setValues] = useState(registerState);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);

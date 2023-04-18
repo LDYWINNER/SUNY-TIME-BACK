@@ -2,10 +2,28 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors";
+import ejs from "ejs";
+import nodemailer from "nodemailer";
+import path from "path";
 
-const register = async (req: Request, res: Response) => {
-  const { username, email, passwordRegister, school, major } = req.body;
-  if (!username || !email || !passwordRegister || !school || !major) {
+const appDir = path.dirname(require.main?.filename as string);
+
+let emailConfirmationNum = 0;
+let userData = {
+  username: "",
+  email: "",
+  school: "",
+  major: "",
+};
+
+const generateRandom = (min: number, max: number) => {
+  const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return ranNum;
+};
+
+const sendEmail = async (req: Request, res: Response) => {
+  const { username, email, school, major } = req.body;
+  if (!username || !email || !school || !major) {
     throw new BadRequestError("Please check if you provided all values");
   }
   //duplicate email checking
@@ -13,10 +31,64 @@ const register = async (req: Request, res: Response) => {
   if (userAlreadyExists) {
     throw new BadRequestError("Email already in use");
   }
+  userData = {
+    username,
+    email,
+    school,
+    major,
+  };
+
+  let authNum = generateRandom(111111, 999999);
+  let emailTemplete;
+  ejs.renderFile(
+    appDir + "/template/authMail.ejs",
+    { authCode: authNum },
+    function (err, data) {
+      if (err) {
+        console.log(err);
+      }
+      emailTemplete = data;
+    }
+  );
+
+  let transporter = nodemailer.createTransport({
+    service: "naver",
+    host: "smtp.naver.com",
+    port: 465,
+    auth: {
+      user: "sunytime-auth@naver.com",
+      pass: "discomfort2306!",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  let mailOptions = await transporter.sendMail({
+    from: "sunytime-auth@naver.com",
+    to: req.body.email,
+    subject: "SUNYTIME Email Verfication",
+    html: emailTemplete,
+  });
+
+  emailConfirmationNum = authNum;
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    }
+    // console.log("Finish sending email : " + info.response);
+
+    res.send({ emailConfirmationNum });
+    transporter.close();
+  });
+};
+
+const register = async (req: Request, res: Response) => {
+  const { username, email, school, major } = userData;
   const user = await User.create({
     username,
     email,
-    passwordRegister,
     school,
     major,
   });
@@ -33,20 +105,16 @@ const register = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-  const { email, passwordLogin } = req.body;
-  if (!email || !passwordLogin) {
-    throw new BadRequestError("Please provide all values");
+  const { email } = req.body;
+  if (!email) {
+    throw new BadRequestError("Please provide valid email");
   }
-  const user = await User.findOne({ email }).select("+passwordRegister");
+  const user = await User.findOne({ email });
   if (!user) {
     throw new UnAuthenticatedError("Login failed");
   }
   // console.log(user);
 
-  const isPasswordCorrect = await user.comparePassword(passwordLogin);
-  if (!isPasswordCorrect) {
-    throw new UnAuthenticatedError("Login failed");
-  }
   const token = user.createJWT();
 
   res.status(StatusCodes.OK).json({
@@ -79,4 +147,4 @@ const updateUser = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).json({ user, token });
 };
 
-export { register, login, updateUser };
+export { sendEmail, register, login, updateUser };

@@ -83,3 +83,10 @@ export const toDoState = atom<IToDoState>({
   default: {},
   effects_UNSTABLE: [persistAtom],
 });
+
+export const emailConfirmationState = atom({
+  key: "emailConfirmation",
+  default: {
+    authNum: 0,
+  },
+});

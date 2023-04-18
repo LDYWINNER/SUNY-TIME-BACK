@@ -1,20 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.3983831b.css",
-    "main.js": "/static/js/main.f8739e91.js",
+    "main.css": "/static/css/main.6affa3dc.css",
+    "main.js": "/static/js/main.618aed1e.js",
+    "static/media/seawolf.jpeg": "/static/media/seawolf.6aa6657c01de5cfd0c58.jpeg",
     "static/media/banner1.png": "/static/media/banner1.fb391f483d0cf1b2265f.png",
+    "static/media/sunykoreacdc.png": "/static/media/sunykoreacdc.181ec9ce158e101120d7.png",
     "static/media/banner5.jpeg": "/static/media/banner5.011ac391436ff25476f1.jpeg",
     "static/media/banner4.jpeg": "/static/media/banner4.da25744681942b7e9386.jpeg",
     "static/media/banner3.jpeg": "/static/media/banner3.9f6486d88a4c64db3f6e.jpeg",
+    "static/media/sunykorea.png": "/static/media/sunykorea.1b0aba2e3b31e72e864e.png",
     "static/media/navbar_logo.svg": "/static/media/navbar_logo.d3f36a89243c160f1698bda1eb2858d9.svg",
     "static/media/final.svg": "/static/media/final.d04e1c0870fb56aa7cc54008a9d55fd3.svg",
+    "static/media/woolfie.png": "/static/media/woolfie.eea78ae04350f118b32c.png",
     "static/media/not-found.svg": "/static/media/not-found.feb67e664b17eedae48d90aae1fa1c96.svg",
+    "static/media/no-review.svg": "/static/media/no-review.766d7c94c2a1686b108c8bcf8a671477.svg",
     "index.html": "/index.html",
-    "main.3983831b.css.map": "/static/css/main.3983831b.css.map",
-    "main.f8739e91.js.map": "/static/js/main.f8739e91.js.map"
+    "main.6affa3dc.css.map": "/static/css/main.6affa3dc.css.map",
+    "main.618aed1e.js.map": "/static/js/main.618aed1e.js.map"
   },
   "entrypoints": [
-    "static/css/main.3983831b.css",
-    "static/js/main.f8739e91.js"
+    "static/css/main.6affa3dc.css",
+    "static/js/main.618aed1e.js"
   ]
 }

@@ -11,14 +11,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.login = exports.register = void 0;
+exports.updateUser = exports.login = exports.register = exports.sendEmail = void 0;
 const User_1 = __importDefault(require("../models/User"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
-const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, email, passwordRegister, school, major } = req.body;
-    if (!username || !email || !passwordRegister || !school || !major) {
+const ejs_1 = __importDefault(require("ejs"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
+const path_1 = __importDefault(require("path"));
+const appDir = path_1.default.dirname((_a = require.main) === null || _a === void 0 ? void 0 : _a.filename);
+let emailConfirmationNum = 0;
+let userData = {
+    username: "",
+    email: "",
+    school: "",
+    major: "",
+};
+const generateRandom = (min, max) => {
+    const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    return ranNum;
+};
+const sendEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, email, school, major } = req.body;
+    if (!username || !email || !school || !major) {
         throw new errors_1.BadRequestError("Please check if you provided all values");
     }
     //duplicate email checking
@@ -26,10 +42,54 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (userAlreadyExists) {
         throw new errors_1.BadRequestError("Email already in use");
     }
+    userData = {
+        username,
+        email,
+        school,
+        major,
+    };
+    let authNum = generateRandom(111111, 999999);
+    let emailTemplete;
+    ejs_1.default.renderFile(appDir + "/template/authMail.ejs", { authCode: authNum }, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        emailTemplete = data;
+    });
+    let transporter = nodemailer_1.default.createTransport({
+        service: "naver",
+        host: "smtp.naver.com",
+        port: 465,
+        auth: {
+            user: "sunytime-auth@naver.com",
+            pass: "discomfort2306!",
+        },
+        tls: {
+            rejectUnauthorized: false,
+        },
+    });
+    let mailOptions = yield transporter.sendMail({
+        from: "sunytime-auth@naver.com",
+        to: req.body.email,
+        subject: "SUNYTIME Email Verfication",
+        html: emailTemplete,
+    });
+    emailConfirmationNum = authNum;
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        }
+        // console.log("Finish sending email : " + info.response);
+        res.send({ emailConfirmationNum });
+        transporter.close();
+    });
+});
+exports.sendEmail = sendEmail;
+const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, email, school, major } = userData;
     const user = yield User_1.default.create({
         username,
         email,
-        passwordRegister,
         school,
         major,
     });
@@ -46,19 +106,15 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, passwordLogin } = req.body;
-    if (!email || !passwordLogin) {
-        throw new errors_1.BadRequestError("Please provide all values");
+    const { email } = req.body;
+    if (!email) {
+        throw new errors_1.BadRequestError("Please provide valid email");
     }
-    const user = yield User_1.default.findOne({ email }).select("+passwordRegister");
+    const user = yield User_1.default.findOne({ email });
     if (!user) {
         throw new errors_1.UnAuthenticatedError("Login failed");
     }
     // console.log(user);
-    const isPasswordCorrect = yield user.comparePassword(passwordLogin);
-    if (!isPasswordCorrect) {
-        throw new errors_1.UnAuthenticatedError("Login failed");
-    }
     const token = user.createJWT();
     res.status(http_status_codes_1.StatusCodes.OK).json({
         user: {
@@ -73,12 +129,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _b;
     const { username, school, major } = req.body;
     if (!username || !school || !major) {
         throw new errors_1.BadRequestError("Please check if you provided all values");
     }
-    const user = yield User_1.default.findOne({ _id: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId });
+    const user = yield User_1.default.findOne({ _id: (_b = req.user) === null || _b === void 0 ? void 0 : _b.userId });
     user.username = username;
     user.school = school;
     user.major = major;

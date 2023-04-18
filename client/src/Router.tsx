@@ -3,6 +3,8 @@ import { Header, Footer } from "./Components";
 import {
   Home,
   Register,
+  VerifyEmail,
+  CRBeforeRegister,
   Bulletin,
   ProtectedRoute,
   Error,
@@ -23,6 +25,8 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/course-review" element={<CRBeforeRegister />} />
         <Route path="/school-info" element={<SchoolInfoHome />} />
         {/* <Route path="/schedule-manager" element={<ScheduleManager />} /> */}
 

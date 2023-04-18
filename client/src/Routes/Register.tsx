@@ -7,15 +7,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { globalCurrentState } from "../atoms";
+import { emailConfirmationState, globalCurrentState } from "../atoms";
 import { addUserToLocalStorage } from "../utils";
 
 interface IForm {
   username: string;
   email: string;
-  passwordLogin: string;
-  passwordRegister: string;
-  passwordConfirmation: string;
   school: string;
   major: string;
 }
@@ -37,41 +34,17 @@ function Register() {
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(registerState);
   const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
+  const setEmailConfirmationState = useSetRecoilState(emailConfirmationState);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
-    setError,
     reset,
     watch,
   } = useForm<IForm>();
   let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
-    //If password !== passwordConfirmation (register)
-    if (
-      !values.isMember &&
-      data.passwordRegister !== data.passwordConfirmation
-    ) {
-      return setError(
-        "passwordConfirmation",
-        { message: "Password Confirmation Failed" },
-        { shouldFocus: true }
-      );
-    }
-    //If password includes username (register)
-    if (
-      !values.isMember &&
-      data.username &&
-      data.passwordRegister &&
-      data.passwordRegister.includes(data.username)
-    ) {
-      return setError(
-        "passwordRegister",
-        { message: "Password can't include username" },
-        { shouldFocus: true }
-      );
-    }
     console.log("data here");
     console.log(data);
 
@@ -80,12 +53,10 @@ function Register() {
       email: data.email,
       school: data.school,
       major: data.major,
-      passwordRegister: data.passwordRegister,
     };
 
     const loginUser = {
       email: data.email,
-      passwordLogin: data.passwordLogin,
     };
 
     if (values.isMember) {
@@ -121,25 +92,16 @@ function Register() {
     } else {
       //register user
       try {
-        const { data } = await axios.post("/api/v1/auth/register", currentUser);
-        const { user, token } = data;
-        setGlobalCurrentState((currentState) => {
-          return {
-            ...currentState,
-            token,
-            user,
-          };
+        const { data } = await axios.post(
+          "/api/v1/auth/sendEmail",
+          currentUser
+        );
+        const { authNum } = data;
+        console.log(authNum);
+        setEmailConfirmationState({
+          authNum,
         });
-        //adding user to local storage
-        addUserToLocalStorage({ user, token });
-        setValues({ ...values, formSuccess: true });
-        //navigate back to previous page
-        navigateBackOrNot = true;
-        if (navigateBackOrNot) {
-          setTimeout(() => {
-            navigate(-1);
-          }, 2500);
-        }
+        navigate("/verify-email");
       } catch (error: any) {
         console.log(error.response);
         setValues({
@@ -158,9 +120,6 @@ function Register() {
       email: "",
       school: "-1",
       major: "-2",
-      passwordLogin: "",
-      passwordRegister: "",
-      passwordConfirmation: "",
     });
   };
 
@@ -172,9 +131,6 @@ function Register() {
         email: "",
         school: "-1",
         major: "-2",
-        passwordLogin: "",
-        passwordRegister: "",
-        passwordConfirmation: "",
       });
     }
   }, [bgImage, reset, isSubmitSuccessful]);
@@ -187,9 +143,7 @@ function Register() {
         {values.isMember && values.formSuccess === true && (
           <Alert message="Login Successful! Redirecting..." ifSuccess={true} />
         )}
-        {!values.isMember && values.formSuccess === true && (
-          <Alert message="User created! Redirecting..." ifSuccess={true} />
-        )}
+
         {values.formSuccess === false && (
           <Alert message={values.errorMessage} />
         )}
@@ -258,67 +212,17 @@ function Register() {
         <FormRow
           type="email"
           name="email"
-          labelText="email (@stonybrook/@fitnyc only)"
+          labelText="email (@stonybrook only)"
           placeholder="EMAIL"
           register={register}
           validation={{
             pattern: {
-              value: /^[A-Za-z0-9._%+-]+@(stonybrook|fitnyc).edu$/,
+              value: /^[A-Za-z0-9._%+-]+@(stonybrook).edu$/,
               message: "Only stonybrook / fit emails allowed",
             },
           }}
         />
         {errors?.email?.message && <Alert message={errors?.email?.message} />}
-
-        {/* password input for login */}
-        {values.isMember && (
-          <FormRow
-            type="password"
-            name="passwordLogin"
-            placeholder="PASSWORD"
-            labelText="password"
-            register={register}
-          />
-        )}
-        {errors?.passwordLogin?.message && (
-          <Alert message={errors.passwordLogin.message} />
-        )}
-
-        {/* password input for Register */}
-        {!values.isMember && (
-          <FormRow
-            type="password"
-            name="passwordRegister"
-            placeholder="PASSWORD"
-            labelText="password"
-            register={register}
-            validation={{
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                message:
-                  "Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character",
-              },
-            }}
-          />
-        )}
-        {errors?.passwordRegister?.message && (
-          <Alert message={errors.passwordRegister.message} />
-        )}
-
-        {/* password confirmation */}
-        {!values.isMember && (
-          <FormRow
-            type="password"
-            name="passwordConfirmation"
-            labelText="password confirmation"
-            register={register}
-            placeholder="PASSWORD CONFIRMATION"
-          />
-        )}
-        {errors?.passwordConfirmation?.message && (
-          <Alert message={errors.passwordConfirmation.message} />
-        )}
 
         <button type="submit" className="btn btn-block">
           submit

@@ -3,19 +3,11 @@ import { UseFormRegister } from "react-hook-form";
 interface IForm {
   username: string;
   email: string;
-  passwordLogin: string;
-  passwordRegister: string;
-  passwordConfirmation: string;
   school: string;
   major: string;
 }
 
-type FormType =
-  | "email"
-  | "username"
-  | "passwordLogin"
-  | "passwordRegister"
-  | "passwordConfirmation";
+type FormType = "email" | "username";
 
 interface IFormRowProps {
   type: string;

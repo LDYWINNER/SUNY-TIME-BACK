@@ -13,6 +13,7 @@ const apiLimiter = (0, express_rate_limit_1.default)({
 });
 const authController_1 = require("../controllers/authController");
 const auth_1 = __importDefault(require("../middleware/auth"));
+authRouter.route("/sendEmail").post(apiLimiter, authController_1.sendEmail);
 authRouter.route("/register").post(apiLimiter, authController_1.register);
 authRouter.route("/login").post(apiLimiter, authController_1.login);
 authRouter.route("/updateUser").patch(auth_1.default, authController_1.updateUser);
