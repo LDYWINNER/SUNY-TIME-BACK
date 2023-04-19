@@ -130,7 +130,7 @@ const AllCourses = () => {
           <TitleRow>
             <Title>
               {courseSubjFilter === "SHCourse"
-                ? "Faculty of Sciences and Humanities Courses"
+                ? "Faculty of Sciences and Humanities"
                 : courseSubjFilter}{" "}
               Courses
             </Title>

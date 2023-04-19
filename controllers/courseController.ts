@@ -68,7 +68,9 @@ const getAllCourses = async (req: Request, res: Response) => {
 
   let result = Course.find(queryObject);
 
-  result = result.sort("crs");
+  if (subj !== "SHCourse") {
+    result = result.sort("crs");
+  }
 
   //setup pagination
   const finalPage = Number(req.query.page) || 1;
