@@ -21,6 +21,7 @@ import CourseReviewModal from "./CourseReviewModal";
 import CourseBulletinPopOver from "./CourseBulletinPopOver";
 import CourseBulletinPagination from "./CourseBulletinPagination";
 import CourseBulletinAllPosts from "./CourseBulletinAllPosts";
+import Announcement from "./Announcement";
 import Footer from "./Footer";
 
 export {
@@ -48,5 +49,6 @@ export {
   CourseBulletinPopOver,
   CourseBulletinPagination,
   CourseBulletinAllPosts,
+  Announcement,
   Footer,
 };

@@ -21,7 +21,7 @@ import {
   WoolfieIcon,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState } from "../../atoms";
-import { CourseSearch, CoursePagination } from "../../Components";
+import { CourseSearch, CoursePagination, Announcement } from "../../Components";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
 import Woolfie from "../../assets/images/woolfie.png";
@@ -189,7 +189,9 @@ const AllCourses = () => {
           </Courses>
           {courseNumOfPages > 1 && <CoursePagination />}
         </MainContent>
-        <SubContent></SubContent>
+        <SubContent>
+          <Announcement />
+        </SubContent>
       </Main>
     </Wrapper>
   );

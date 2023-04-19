@@ -16,6 +16,7 @@ import {
   BulletinPostPopOverContent,
   BulletinSearch,
   BulletinPagination,
+  Announcement,
 } from "../Components";
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -71,7 +72,9 @@ const Bulletin = () => {
           <BulletinAllPosts />
           {bulletinNumOfPages > 1 && <BulletinPagination />}
         </MainContent>
-        <SubContent></SubContent>
+        <SubContent>
+          <Announcement />
+        </SubContent>
       </Main>
     </Wrapper>
   );
