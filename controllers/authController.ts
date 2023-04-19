@@ -56,8 +56,8 @@ const sendEmail = async (req: Request, res: Response) => {
     host: "smtp.naver.com",
     port: 465,
     auth: {
-      user: "sunytime-auth@naver.com",
-      pass: "discomfort2306!",
+      user: process.env.NODEMAILER_USER,
+      pass: process.env.NODEMAILER_PASS,
     },
     tls: {
       rejectUnauthorized: false,
@@ -65,7 +65,7 @@ const sendEmail = async (req: Request, res: Response) => {
   });
 
   let mailOptions = await transporter.sendMail({
-    from: "sunytime-auth@naver.com",
+    from: process.env.NODEMAILER_USER,
     to: req.body.email,
     subject: "SUNYTIME Email Verfication",
     html: emailTemplete,

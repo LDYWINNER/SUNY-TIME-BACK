@@ -61,15 +61,15 @@ const sendEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         host: "smtp.naver.com",
         port: 465,
         auth: {
-            user: "sunytime-auth@naver.com",
-            pass: "discomfort2306!",
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS,
         },
         tls: {
             rejectUnauthorized: false,
         },
     });
     let mailOptions = yield transporter.sendMail({
-        from: "sunytime-auth@naver.com",
+        from: process.env.NODEMAILER_USER,
         to: req.body.email,
         subject: "SUNYTIME Email Verfication",
         html: emailTemplete,
