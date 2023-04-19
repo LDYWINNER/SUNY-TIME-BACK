@@ -42,6 +42,8 @@ const Bulletin = () => {
     whichBoard = "홍보게시판";
   } else if (boardFilter === "Club") {
     whichBoard = "동아리게시판";
+  } else if (boardFilter === "Sbu") {
+    whichBoard = "본교게시판";
   }
 
   useEffect(() => {

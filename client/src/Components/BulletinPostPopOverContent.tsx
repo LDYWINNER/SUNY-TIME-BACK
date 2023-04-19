@@ -204,6 +204,7 @@ function BulletinPostPopOverContent() {
                   <option value="Info">정보게시판</option>
                   <option value="Promotion">홍보게시판</option>
                   <option value="Club">동아리게시판</option>
+                  <option value="Sbu">본교게시판</option>
                 </select>
               </Row>
             </PopoverBody>

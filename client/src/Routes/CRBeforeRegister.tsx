@@ -71,14 +71,6 @@ function CRBeforeRegister() {
         <button type="submit" className="btn btn-block">
           submit
         </button>
-
-        <IconButton
-          onClick={() => {
-            navigate(-1);
-          }}
-          aria-label="Go back"
-          icon={<BiArrowBack />}
-        />
       </form>
     </Wrapper>
   );

@@ -231,6 +231,32 @@ const BulletinSearch = () => {
             checked={bulletinSearch.boardFilter === "Club"}
           />
           <label htmlFor="Club">동아리게시판</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    bulletinPage: 1,
+                  };
+                });
+                setBulletinSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    boardFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
+            value="Sbu"
+            id="Sbu"
+            checked={bulletinSearch.boardFilter === "Sbu"}
+          />
+          <label htmlFor="Sbu">본교게시판</label>
         </Filters>
       </form>
     </Wrapper>
