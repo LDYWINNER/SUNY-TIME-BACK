@@ -407,7 +407,7 @@ const SingleCourse = () => {
                 <Review
                   id={id}
                   reviews={course?.reviews as [ICourseReview]}
-                  reviewsExisting={course?.reviews ? true : false}
+                  reviewsExisting={Number(course?.reviews.length) === 0}
                 />
               </TabPanel>
               <TabPanel>
