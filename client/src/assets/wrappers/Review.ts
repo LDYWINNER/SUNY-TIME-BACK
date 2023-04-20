@@ -64,3 +64,8 @@ export const Likes = styled.div`
 export const Row = styled.div`
   display: flex;
 `;
+
+export const NoReviewSpan = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
+`;

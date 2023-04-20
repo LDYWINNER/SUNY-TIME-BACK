@@ -99,7 +99,7 @@ const CourseBulletinAllPosts = ({ id }: ICourseBulletinAllPosts) => {
   if (globalState.bulletinAllPosts.length === 0) {
     return (
       <Wrapper>
-        <h2>No posts to display...</h2>
+        <h2>No posts to display... :(</h2>
       </Wrapper>
     );
   }

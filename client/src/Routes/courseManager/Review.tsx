@@ -15,6 +15,7 @@ import {
   Likes,
   Grade,
   Row,
+  NoReviewSpan,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
@@ -43,9 +44,10 @@ interface ICourseReview {
 interface IReview {
   id: any;
   reviews: [ICourseReview];
+  reviewsExisting: boolean;
 }
 
-const Review = ({ id, reviews }: IReview) => {
+const Review = ({ id, reviews, reviewsExisting }: IReview) => {
   //course review modal
   const { isOpen, onOpen, onClose } = useDisclosure();
   //course reviews
@@ -77,6 +79,11 @@ const Review = ({ id, reviews }: IReview) => {
         <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
       </ButtonContainer>
       <Reviews>
+        {reviewsExisting ? (
+          <NoReviewSpan>No review yet for this course... :(</NoReviewSpan>
+        ) : (
+          <></>
+        )}
         {reviews.map((review: ICourseReview) => {
           if (review.overallEvaluation !== "") {
             return (

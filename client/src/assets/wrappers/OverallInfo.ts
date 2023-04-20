@@ -17,3 +17,13 @@ export const Charts = styled.div`
 export const Chart = styled.div`
   width: 50%;
 `;
+
+export const NoReviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Span = styled.span`
+  font-weight: 600;
+  font-size: 1rem;
+`;
