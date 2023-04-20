@@ -298,7 +298,7 @@ const SingleCourse = () => {
     <Wrapper>
       <Container>
         <IconButton
-          colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
+          colorScheme={isDark ? "blackAlpha" : "gray"}
           onClick={() => {
             navigate(-1);
           }}
@@ -312,8 +312,8 @@ const SingleCourse = () => {
                 {course?.subj}
                 {course?.crs} : {course?.courseTitle}
               </Title>
-              {course?.sbc !== "NaN" ? <h4>SBC: {course?.sbc}</h4> : <></>}
               <h4>Credits: {course?.credits}</h4>
+              {course?.sbc !== "NaN" ? <h4>SBC: {course?.sbc}</h4> : <></>}
               <h4>
                 Day:{" "}
                 {course?.semesters.length === 2
@@ -366,7 +366,7 @@ const SingleCourse = () => {
             <Likes>
               <div>
                 <IconButton
-                  colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
+                  colorScheme={isDark ? "blackAlpha" : "gray"}
                   size="lg"
                   aria-label="Like this course?"
                   icon={

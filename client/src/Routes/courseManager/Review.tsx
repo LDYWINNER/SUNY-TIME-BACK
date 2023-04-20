@@ -9,10 +9,16 @@ import {
   CourseReviewBtn,
   Reviews,
   SingleReview,
+  Container,
+  ButtonContainer,
+  Name,
+  Likes,
+  Grade,
   Row,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
+import moment from "moment";
 
 interface ICourseReview {
   course: string;
@@ -63,35 +69,92 @@ const Review = ({ id, reviews }: IReview) => {
   }
   return (
     <Wrapper>
-      <CourseReviewBtn type="button" className="btn" onClick={onOpen}>
-        <BsPencilSquare />
-        Review Course
-      </CourseReviewBtn>
-      <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
-
+      <ButtonContainer>
+        <CourseReviewBtn type="button" className="btn" onClick={onOpen}>
+          <BsPencilSquare />
+          <h4>Review Course</h4>
+        </CourseReviewBtn>
+        <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
+      </ButtonContainer>
       <Reviews>
         {reviews.map((review: ICourseReview) => {
           if (review.overallEvaluation !== "") {
             return (
               <SingleReview key={review._id}>
-                <h4>{review.overallGrade}</h4>
-                <h4>{review.anonymity ? "익명" : review.createdByUsername}</h4>
-                <h4>{review.createdAt}</h4>
-                <h4>{review.overallEvaluation}</h4>
-                <Row>
-                  <IconButton
-                    aria-label="Like this comment?"
-                    icon={
-                      review?.likes.includes(globalState.user._id) ? (
-                        <AiFillLike />
-                      ) : (
-                        <AiOutlineLike />
-                      )
-                    }
-                    onClick={() => handleLike(review._id)}
-                  />
-                  <h4>{review?.likes.length}</h4>
-                </Row>
+                <Container>
+                  <Name>
+                    <h4>
+                      {review.anonymity ? "익명" : review.createdByUsername}
+                    </h4>
+                    {review?.myLetterGrade ? (
+                      <Grade>{review?.myLetterGrade}</Grade>
+                    ) : (
+                      <></>
+                    )}
+                  </Name>
+                  <h4>
+                    {review.overallGrade === 1 ? (
+                      <Row>
+                        <AiFillStar color="yellow" />
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                      </Row>
+                    ) : review.overallGrade === 2 ? (
+                      <Row>
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                      </Row>
+                    ) : review.overallGrade === 3 ? (
+                      <Row>
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar />
+                        <AiFillStar />
+                      </Row>
+                    ) : review.overallGrade === 4 ? (
+                      <Row>
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar />
+                      </Row>
+                    ) : (
+                      <Row>
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                        <AiFillStar color="yellow" />
+                      </Row>
+                    )}
+                  </h4>
+                  <h4>{review.overallEvaluation}</h4>
+                </Container>
+                <Container>
+                  <h4>{moment(review.createdAt).format("MMMM Do, h:mm a")}</h4>
+                  <Likes>
+                    <IconButton
+                      colorScheme={isDark ? "blackAlpha" : "gray"}
+                      aria-label="Like this comment?"
+                      icon={
+                        review?.likes.includes(globalState.user._id) ? (
+                          <AiFillLike />
+                        ) : (
+                          <AiOutlineLike />
+                        )
+                      }
+                      onClick={() => handleLike(review._id)}
+                    />
+                    <h4>{review?.likes.length} likes</h4>
+                  </Likes>
+                </Container>
               </SingleReview>
             );
           }
