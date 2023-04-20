@@ -7,7 +7,11 @@ import {
   CourseBulletinPopOver,
   CourseBulletinPagination,
 } from "../../Components";
-import { Wrapper, BulletinPostBtn } from "../../assets/wrappers/CourseBulletin";
+import {
+  Wrapper,
+  BulletinPostBtn,
+  PostButton,
+} from "../../assets/wrappers/CourseBulletin";
 
 interface ICourseBulletin {
   id: any;
@@ -18,14 +22,16 @@ const CourseBulletin = ({ id }: ICourseBulletin) => {
 
   return (
     <Wrapper>
-      <Popover closeOnBlur={false} closeOnEsc={false}>
-        <PopoverTrigger>
-          <BulletinPostBtn type="button" className="btn">
-            <BsPencilSquare />
-          </BulletinPostBtn>
-        </PopoverTrigger>
-        <CourseBulletinPopOver id={id} />
-      </Popover>
+      <PostButton>
+        <Popover closeOnBlur={false} closeOnEsc={false}>
+          <PopoverTrigger>
+            <BulletinPostBtn type="button" className="btn">
+              <BsPencilSquare />
+            </BulletinPostBtn>
+          </PopoverTrigger>
+          <CourseBulletinPopOver id={id} />
+        </Popover>
+      </PostButton>
       <CourseBulletinAllPosts id={id} />
       {bulletinNumOfPages > 1 && <CourseBulletinPagination />}
     </Wrapper>
