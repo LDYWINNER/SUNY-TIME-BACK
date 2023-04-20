@@ -19,6 +19,14 @@ export const Wrapper = styled.section<{ bgImage: string }>`
     font-weight: 500;
     margin-bottom: 1rem;
   }
+  h4 {
+    color: ${(props) => props.theme.black.darker};
+    font-size: 1.3rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
   p {
     margin: 0;
     margin-top: 1rem;

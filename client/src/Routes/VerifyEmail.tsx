@@ -108,12 +108,11 @@ function VerifyEmail() {
         )}
 
         {/* email confirmation */}
-
-        <h4>학교 이메일로 발송된 6자리 숫자를 입력해주세요.</h4>
         <div className="form-row">
           <label htmlFor="emailConfirmation" className="form-label">
             email confirmation
           </label>
+          <h4>학교 이메일로 발송된 6자리 숫자를 입력해주세요.</h4>
           <input
             type="text"
             className="form-input"
@@ -130,13 +129,14 @@ function VerifyEmail() {
           submit
         </button>
 
-        <IconButton
+        <button
           onClick={() => {
             navigate(-1);
           }}
-          aria-label="Go back"
-          icon={<BiArrowBack />}
-        />
+          className="btn btn-block"
+        >
+          Go back
+        </button>
       </form>
     </Wrapper>
   );
