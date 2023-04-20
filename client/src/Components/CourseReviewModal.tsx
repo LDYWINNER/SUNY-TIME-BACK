@@ -6,7 +6,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  HStack,
   Checkbox,
   Tooltip,
 } from "@chakra-ui/react";
@@ -17,13 +16,15 @@ import {
   Button,
   FormRow,
   Row,
+  Footer,
+  StarRating,
 } from "../assets/wrappers/CourseReviewModal";
 import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { authFetch } from "../api";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
-import { courseReviewInstructorState } from "../atoms";
+import { courseReviewInstructorState, isDarkAtom } from "../atoms";
 
 interface ICourseReviewModal {
   id: any;
@@ -79,6 +80,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     reset,
   } = useForm<IForm>();
   const instructor = useRecoilValue(courseReviewInstructorState);
+  const isDark = useRecoilValue(isDarkAtom);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newCourseReview = {
@@ -191,9 +193,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         <ModalContent>
           <Wrapper>
             <form onSubmit={handleSubmit(onValid)}>
-              <ModalCloseButton />
+              <ModalCloseButton color={isDark ? "white" : "black"} />
               <ModalBody>
-                <Logo src={logo} alt="sunytime" className="logo" />
+                {/* <Logo src={logo} alt="sunytime" className="logo" /> */}
 
                 {values.formSuccess === true && (
                   <Alert message="Course Review Registered!" ifSuccess={true} />
@@ -227,6 +229,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 <select
                   {...register("instructor", { required: true })}
                   defaultValue="-2"
+                  style={{ width: "50%" }}
                 >
                   {instructor.instructorNum === 1 ? (
                     <>
@@ -252,31 +255,33 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   )}
                 </select>
 
-                <label htmlFor="myLetterGrade" className="form-label">
-                  My Letter Grade (Optional)
-                </label>
-                <select {...register("myLetterGrade")} defaultValue="-1">
-                  <option value="-1" disabled>
-                    SELECT THE LETTER GRADE YOU RECEIVED
-                  </option>
-                  <option value="A">A</option>
-                  <option value="A-">A-</option>
-                  <option value="B+">B+</option>
-                  <option value="B">B</option>
-                  <option value="B-">B-</option>
-                  <option value="C+">C+</option>
-                  <option value="C">C</option>
-                  <option value="C-">C-</option>
-                  <option value="D+">D+</option>
-                  <option value="D">D</option>
-                  <option value="F">F</option>
-                  <option value="W">W</option>
-                </select>
-
                 <FormRow>
                   <div>
+                    <label htmlFor="myLetterGrade" className="form-label">
+                      My Letter Grade (Optional)
+                    </label>
+                    <select {...register("myLetterGrade")} defaultValue="-1">
+                      <option value="-1" disabled>
+                        SELECT THE LETTER GRADE YOU RECEIVED
+                      </option>
+                      <option value="A">A</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B">B</option>
+                      <option value="B-">B-</option>
+                      <option value="C+">C+</option>
+                      <option value="C">C</option>
+                      <option value="C-">C-</option>
+                      <option value="D+">D+</option>
+                      <option value="D">D</option>
+                      <option value="F">F</option>
+                      <option value="W">W</option>
+                    </select>
+                  </div>
+
+                  <div>
                     <label className="form-label">Overall Course Rating</label>
-                    <div className="star-rating">
+                    <StarRating>
                       {[...Array(5)].map((star, index) => {
                         index += 1;
                         return (
@@ -294,175 +299,171 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                           </button>
                         );
                       })}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="form-label">TEST QUANTITY</label>
-                    <HStack mt={1} spacing={1}>
-                      <Checkbox
-                        isChecked={testQuantityItems[0]}
-                        onChange={(e) =>
-                          setTestQuantityItems([
-                            e.target.checked,
-                            false,
-                            false,
-                            false,
-                          ])
-                        }
-                      >
-                        0
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={testQuantityItems[1]}
-                        onChange={(e) =>
-                          setTestQuantityItems([
-                            false,
-                            e.target.checked,
-                            false,
-                            false,
-                          ])
-                        }
-                      >
-                        1
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={testQuantityItems[2]}
-                        onChange={(e) =>
-                          setTestQuantityItems([
-                            false,
-                            false,
-                            e.target.checked,
-                            false,
-                          ])
-                        }
-                      >
-                        2
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={testQuantityItems[3]}
-                        onChange={(e) =>
-                          setTestQuantityItems([
-                            false,
-                            false,
-                            false,
-                            e.target.checked,
-                          ])
-                        }
-                      >
-                        3
-                      </Checkbox>
-                    </HStack>
+                    </StarRating>
                   </div>
                 </FormRow>
 
-                <FormRow>
-                  <div>
-                    <label className="form-label">Difficulty</label>
-                    <HStack mt={1} spacing={1}>
-                      <Checkbox
-                        isChecked={difficultyItems[0]}
-                        onChange={(e) =>
-                          setdifficultyItems([e.target.checked, false, false])
-                        }
-                      >
-                        difficult
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={difficultyItems[1]}
-                        onChange={(e) =>
-                          setdifficultyItems([false, e.target.checked, false])
-                        }
-                      >
-                        soso
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={difficultyItems[2]}
-                        onChange={(e) =>
-                          setdifficultyItems([false, false, e.target.checked])
-                        }
-                      >
-                        easy
-                      </Checkbox>
-                    </HStack>
-                  </div>
+                <label className="form-label">Difficulty</label>
+                <Row>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={difficultyItems[0]}
+                    onChange={(e) =>
+                      setdifficultyItems([e.target.checked, false, false])
+                    }
+                  >
+                    difficult
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={difficultyItems[1]}
+                    onChange={(e) =>
+                      setdifficultyItems([false, e.target.checked, false])
+                    }
+                  >
+                    soso
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={difficultyItems[2]}
+                    onChange={(e) =>
+                      setdifficultyItems([false, false, e.target.checked])
+                    }
+                  >
+                    easy
+                  </Checkbox>
+                </Row>
 
-                  <div>
-                    <label className="form-label">HOMEWORK QUANTITY</label>
-                    <HStack mt={1} spacing={1}>
-                      <Checkbox
-                        isChecked={hwQuantityItems[0]}
-                        onChange={(e) =>
-                          sethwQuantityItems([e.target.checked, false, false])
-                        }
-                      >
-                        many
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={hwQuantityItems[1]}
-                        onChange={(e) =>
-                          sethwQuantityItems([false, e.target.checked, false])
-                        }
-                      >
-                        soso
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={hwQuantityItems[2]}
-                        onChange={(e) =>
-                          sethwQuantityItems([false, false, e.target.checked])
-                        }
-                      >
-                        few
-                      </Checkbox>
-                    </HStack>
-                  </div>
-                </FormRow>
+                <label className="form-label">TEST QUANTITY</label>
+                <Row>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={testQuantityItems[0]}
+                    onChange={(e) =>
+                      setTestQuantityItems([
+                        e.target.checked,
+                        false,
+                        false,
+                        false,
+                      ])
+                    }
+                  >
+                    0
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={testQuantityItems[1]}
+                    onChange={(e) =>
+                      setTestQuantityItems([
+                        false,
+                        e.target.checked,
+                        false,
+                        false,
+                      ])
+                    }
+                  >
+                    1
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={testQuantityItems[2]}
+                    onChange={(e) =>
+                      setTestQuantityItems([
+                        false,
+                        false,
+                        e.target.checked,
+                        false,
+                      ])
+                    }
+                  >
+                    2
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={testQuantityItems[3]}
+                    onChange={(e) =>
+                      setTestQuantityItems([
+                        false,
+                        false,
+                        false,
+                        e.target.checked,
+                      ])
+                    }
+                  >
+                    3
+                  </Checkbox>
+                </Row>
 
-                <FormRow>
-                  <div>
-                    <label className="form-label">Team Project Presence</label>
-                    <HStack mt={1} spacing={1}>
-                      <Checkbox
-                        isChecked={teamProjectPresence[0]}
-                        onChange={(e) =>
-                          setTeamProjectPresence([e.target.checked, false])
-                        }
-                      >
-                        Yes
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={teamProjectPresence[1]}
-                        onChange={(e) =>
-                          setTeamProjectPresence([false, e.target.checked])
-                        }
-                      >
-                        No
-                      </Checkbox>
-                    </HStack>
-                  </div>
+                <label className="form-label">HOMEWORK QUANTITY</label>
+                <Row>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={hwQuantityItems[0]}
+                    onChange={(e) =>
+                      sethwQuantityItems([e.target.checked, false, false])
+                    }
+                  >
+                    many
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={hwQuantityItems[1]}
+                    onChange={(e) =>
+                      sethwQuantityItems([false, e.target.checked, false])
+                    }
+                  >
+                    soso
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={hwQuantityItems[2]}
+                    onChange={(e) =>
+                      sethwQuantityItems([false, false, e.target.checked])
+                    }
+                  >
+                    few
+                  </Checkbox>
+                </Row>
 
-                  <div>
-                    <label className="form-label">Quiz Presence</label>
-                    <HStack mt={1} spacing={1}>
-                      <Checkbox
-                        isChecked={quizPresence[0]}
-                        onChange={(e) =>
-                          setQuizPresence([e.target.checked, false])
-                        }
-                      >
-                        Yes
-                      </Checkbox>
-                      <Checkbox
-                        isChecked={quizPresence[1]}
-                        onChange={(e) =>
-                          setQuizPresence([false, e.target.checked])
-                        }
-                      >
-                        No
-                      </Checkbox>
-                    </HStack>
-                  </div>
-                </FormRow>
+                <label className="form-label">Team Project Presence</label>
+                <Row>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={teamProjectPresence[0]}
+                    onChange={(e) =>
+                      setTeamProjectPresence([e.target.checked, false])
+                    }
+                  >
+                    Yes
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={teamProjectPresence[1]}
+                    onChange={(e) =>
+                      setTeamProjectPresence([false, e.target.checked])
+                    }
+                  >
+                    No
+                  </Checkbox>
+                </Row>
+
+                <label className="form-label">Quiz Presence</label>
+                <Row>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={quizPresence[0]}
+                    onChange={(e) => setQuizPresence([e.target.checked, false])}
+                  >
+                    Yes
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={quizPresence[1]}
+                    onChange={(e) => setQuizPresence([false, e.target.checked])}
+                  >
+                    No
+                  </Checkbox>
+                </Row>
 
                 <div className="form-row">
                   <Row>
@@ -492,16 +493,18 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <div className="checkbox-div">
-                  <input
-                    type="checkbox"
-                    {...register("anonymity")}
-                    id="anonymity"
-                    className="anonymity-checkbox"
-                  />
-                  <label htmlFor="anonymity">Anonymity</label>
-                </div>
-                <Button type="submit">Save</Button>
+                <Footer>
+                  <div className="checkbox-div">
+                    <input
+                      type="checkbox"
+                      {...register("anonymity")}
+                      id="anonymity"
+                      className="anonymity-checkbox"
+                    />
+                    <label htmlFor="anonymity">Anonymity</label>
+                  </div>
+                  <Button type="submit">Save</Button>
+                </Footer>
               </ModalFooter>
             </form>
           </Wrapper>

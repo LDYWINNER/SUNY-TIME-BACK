@@ -2,23 +2,22 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   background-color: ${(props) => props.theme.bgColor.lighter};
-  color: ${(props) => props.theme.textColor.darker};
   font-family: "Bebas Neue", cursive;
   font-size: max(16px, 1.8vh);
+  border-radius: 10px;
   header {
     text-align: center;
     color: ${(props) => props.theme.main.blue};
     font-size: max(40px, 4.5vh);
     font-weight: 500;
   }
-
   label {
-    font-size: max(24px, 2.5vh);
+    font-size: 24px;
     color: ${(props) => props.theme.main.blue};
+    margin-bottom: -5px;
+    margin-right: 5px;
   }
-
   select {
-    width: 50%;
     padding: 0.375rem 0.75rem;
     border-radius: var(--borderRadius);
     background: var(--backgroundColor);
@@ -27,9 +26,17 @@ export const Wrapper = styled.section`
     height: 35px;
     color: var(--grey-400);
   }
+  textarea {
+    margin-top: 7px;
+    height: 15vh;
+  }
+  span {
+    font-size: 24px;
+    margin-right: 5px;
+  }
 
   .on {
-    color: #000;
+    color: yellow;
   }
   .off {
     color: #ccc;
@@ -72,4 +79,18 @@ export const Row = styled.div`
 export const FormRow = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StarRating = styled.div`
+  .star {
+    font-size: 150%;
+  }
 `;
