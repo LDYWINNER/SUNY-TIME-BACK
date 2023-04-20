@@ -7,7 +7,7 @@ export const Comment = styled.div`
   border-radius: 5px;
   padding: 0.5rem;
   .time {
-    color: rgba(0, 0, 0, 0.5);
+    color: ${(props) => props.theme.textColor.darker};
     font-size: 0.8rem;
   }
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.1);

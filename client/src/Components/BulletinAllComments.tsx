@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -10,7 +10,7 @@ import {
   Name,
   Text,
 } from "../assets/wrappers/BulletinAllComments";
-import { globalCurrentState } from "../atoms";
+import { globalCurrentState, isDarkAtom } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import {
   AlertDialog,
@@ -46,6 +46,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
   const [like, setLike] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
+  const isDark = useRecoilValue(isDarkAtom);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -102,6 +103,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
               <Text>{comment.text}</Text>
               <Buttons>
                 <IconButton
+                  colorScheme={isDark ? "blackAlpha" : "gray"}
                   aria-label="Like this comment?"
                   icon={
                     comment?.likes.includes(globalState.user._id) ? (
@@ -114,6 +116,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
                 />
                 <h4>{comment?.likes.length} likes</h4>
                 <IconButton
+                  colorScheme={isDark ? "blackAlpha" : "gray"}
                   aria-label="Delete this comment?"
                   icon={<AiTwotoneDelete />}
                   onClick={onOpen}

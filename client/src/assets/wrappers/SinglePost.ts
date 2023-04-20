@@ -26,6 +26,7 @@ export const Container = styled.div`
   height: 100%;
   min-height: 100vh;
   background-color: ${(props) => props.theme.bgColor.lighter};
+  color: ${(props) => props.theme.textColor.darker};
   padding: 15px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -45,6 +46,7 @@ export const TitleRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: ${(props) => props.theme.textColor.darker};
   button {
     background-color: ${(props) => props.theme.main.blue};
   }
@@ -82,7 +84,7 @@ export const Col = styled.div`
   flex-direction: column;
   align-items: flex-end;
   .time {
-    color: rgba(0, 0, 0, 0.5);
+    color: ${(props) => props.theme.textColor.darker};
     font-size: 0.8rem;
   }
 `;

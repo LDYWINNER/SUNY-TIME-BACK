@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useLocation } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authFetch } from "../api";
 import {
   Wrapper,
@@ -27,7 +27,11 @@ import {
   Button,
   IconButton,
 } from "@chakra-ui/react";
-import { singlePageBgImageState, globalCurrentState } from "../atoms";
+import {
+  singlePageBgImageState,
+  globalCurrentState,
+  isDarkAtom,
+} from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -70,6 +74,7 @@ function SinglePost() {
   const [like, setLike] = useState(true);
   const [post, setPost] = useState<IPost>();
   const [boardName, setBoardName] = useState("");
+  const isDark = useRecoilValue(isDarkAtom);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -171,6 +176,7 @@ function SinglePost() {
     <Wrapper bgImage={bgImage}>
       <Container>
         <IconButton
+          colorScheme={isDark ? "blackAlpha" : "gray"}
           onClick={() => {
             navigate(-1);
           }}
@@ -229,6 +235,7 @@ function SinglePost() {
 
           <IconRow>
             <IconButton
+              colorScheme={isDark ? "blackAlpha" : "gray"}
               aria-label="Like this post?"
               icon={
                 post?.likes.includes(globalState.user._id) ? (
