@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { authFetch } from "../../api";
 import { OverallInfo, Review, CourseBulletin } from "./index";
 import {
@@ -26,6 +26,7 @@ import {
   courseReviewInstructorState,
   courseReviewResultState,
   globalCurrentState,
+  isDarkAtom,
 } from "../../atoms";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
@@ -95,6 +96,7 @@ const SingleCourse = () => {
   const [courseReviewResult, setCourseReviewResult] = useRecoilState(
     courseReviewResultState
   );
+  const isDark = useRecoilValue(isDarkAtom);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -292,6 +294,7 @@ const SingleCourse = () => {
     <Wrapper>
       <Container>
         <IconButton
+          colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
           onClick={() => {
             navigate(-1);
           }}
@@ -358,6 +361,7 @@ const SingleCourse = () => {
             </div>
             <Likes>
               <IconButton
+                colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
                 size="lg"
                 aria-label="Like this course?"
                 icon={
