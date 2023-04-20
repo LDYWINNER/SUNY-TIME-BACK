@@ -82,8 +82,11 @@ export const ClassieBtn = styled.button`
   }
   width: 11rem;
   margin-right: 2rem;
+  font-weight: 500;
 `;
 
 export const WoolfieIcon = styled.img`
   width: 20%;
+  margin-right: 10px;
+  margin-left: -5px;
 `;
