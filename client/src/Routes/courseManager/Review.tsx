@@ -1,22 +1,18 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { authFetch } from "../../api";
-import { globalCurrentState } from "../../atoms";
+import { globalCurrentState, isDarkAtom } from "../../atoms";
 import { CourseReviewModal } from "../../Components/index";
 import { useDisclosure, IconButton } from "@chakra-ui/react";
 import {
   Wrapper,
   CourseReviewBtn,
-  ClassieBtn,
   Reviews,
   SingleReview,
   Row,
-  WoolfieIcon,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import Woolfie from "../../assets/images/woolfie.png";
-import { Link } from "react-router-dom";
 
 interface ICourseReview {
   course: string;
@@ -41,15 +37,15 @@ interface ICourseReview {
 interface IReview {
   id: any;
   reviews: [ICourseReview];
-  courseName: string;
 }
 
-const Review = ({ id, reviews, courseName }: IReview) => {
+const Review = ({ id, reviews }: IReview) => {
   //course review modal
   const { isOpen, onOpen, onClose } = useDisclosure();
   //course reviews
   const globalState = useRecoilValue(globalCurrentState);
   const [like, setLike] = useState(true);
+  const isDark = useRecoilValue(isDarkAtom);
 
   const handleLike = async (id: any) => {
     try {
@@ -72,14 +68,7 @@ const Review = ({ id, reviews, courseName }: IReview) => {
         Review Course
       </CourseReviewBtn>
       <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
-      <Link
-        to={`https://classie-evals.stonybrook.edu/?SearchKeyword=${courseName}&SearchTerm=ALL`}
-      >
-        <ClassieBtn type="button" className="btn">
-          <WoolfieIcon src={Woolfie} />
-          <span>Go to Classie Eval</span>
-        </ClassieBtn>
-      </Link>
+
       <Reviews>
         {reviews.map((review: ICourseReview) => {
           if (review.overallEvaluation !== "") {

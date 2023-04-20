@@ -51,8 +51,33 @@ export const Title = styled.span`
 
 export const Likes = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 30px;
   h4 {
     margin-left: 5px;
   }
+  div {
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+export const ClassieBtn = styled.button`
+  background-color: ${(props) => props.theme.main.darkred};
+  color: ${(props) => props.theme.textColor};
+  display: flex;
+  &:hover {
+    background-color: ${(props) => props.theme.main.red};
+  }
+  width: 15rem;
+  font-weight: 600;
+  font-size: 18px;
+  align-items: center;
+`;
+
+export const WoolfieIcon = styled.img`
+  width: 20%;
+  margin-left: -5px;
+  margin-right: 5px;
 `;

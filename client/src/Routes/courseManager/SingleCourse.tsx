@@ -21,6 +21,8 @@ import {
   Info,
   Title,
   Likes,
+  ClassieBtn,
+  WoolfieIcon,
 } from "../../assets/wrappers/SingleCourse";
 import {
   courseReviewInstructorState,
@@ -30,6 +32,8 @@ import {
 } from "../../atoms";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
+import Woolfie from "../../assets/images/woolfie.png";
+import { Link } from "react-router-dom";
 
 interface ICRResult {
   stars: number;
@@ -360,20 +364,32 @@ const SingleCourse = () => {
               </h4>
             </div>
             <Likes>
-              <IconButton
-                colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
-                size="lg"
-                aria-label="Like this course?"
-                icon={
-                  course?.likes.includes(globalState.user._id) ? (
-                    <AiFillLike />
-                  ) : (
-                    <AiOutlineLike />
-                  )
-                }
-                onClick={() => handleLike(id)}
-              />
-              <h4>{course?.likes.length} likes</h4>
+              <div>
+                <IconButton
+                  colorScheme={isDark ? "blackAlpha" : "whiteAlpha"}
+                  size="lg"
+                  aria-label="Like this course?"
+                  icon={
+                    course?.likes.includes(globalState.user._id) ? (
+                      <AiFillLike />
+                    ) : (
+                      <AiOutlineLike />
+                    )
+                  }
+                  onClick={() => handleLike(id)}
+                />
+                <h4>{course?.likes.length} likes</h4>
+              </div>
+              <div>
+                <Link
+                  to={`https://classie-evals.stonybrook.edu/?SearchKeyword=${course?.subj}${course?.crs}&SearchTerm=ALL`}
+                >
+                  <ClassieBtn type="button" className="btn">
+                    <WoolfieIcon src={Woolfie} />
+                    <span>Go to Classie Eval</span>
+                  </ClassieBtn>
+                </Link>
+              </div>
             </Likes>
           </Info>
 
@@ -388,11 +404,7 @@ const SingleCourse = () => {
                 <OverallInfo crResult={courseReviewResult as ICRResult} />
               </TabPanel>
               <TabPanel>
-                <Review
-                  id={id}
-                  reviews={course?.reviews as [ICourseReview]}
-                  courseName={`${course?.subj}${course?.crs}`}
-                />
+                <Review id={id} reviews={course?.reviews as [ICourseReview]} />
               </TabPanel>
               <TabPanel>
                 <CourseBulletin id={id} />
