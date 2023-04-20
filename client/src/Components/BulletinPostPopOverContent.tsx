@@ -17,6 +17,8 @@ import {
 } from "../assets/wrappers/BulletinPostPopOverContent";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { authFetch } from "../api";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface IForm {
   title: string;
@@ -52,6 +54,7 @@ function BulletinPostPopOverContent() {
       newBoard: "",
     },
   });
+  const isDark = useRecoilValue(isDarkAtom);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newPost = {
@@ -114,7 +117,7 @@ function BulletinPostPopOverContent() {
         <Wrapper>
           <form onSubmit={handleSubmit(onValid)}>
             <PopoverArrow />
-            <PopoverCloseButton />
+            <PopoverCloseButton color={isDark ? "white" : "black"} />
             <PopoverHeader>Bulletin Post</PopoverHeader>
             <PopoverBody>
               {values.formSuccess === true && (

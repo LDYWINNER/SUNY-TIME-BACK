@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  color: ${(props) => props.theme.textColor.darker};
+  background-color: ${(props) => props.theme.bgColor.lighter};
+  color: ${(props) => props.theme.black.darker};
   font-weight: 500;
   font-family: "Bebas Neue", cursive;
   font-size: max(16px, 1.8vh);
-  margin: 10px;
   header {
     text-align: center;
     color: ${(props) => props.theme.main.blue};
