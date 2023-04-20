@@ -172,7 +172,7 @@ function SinglePost() {
       <Container>
         <IconButton
           onClick={() => {
-            navigate("/bulletin");
+            navigate(-1);
           }}
           aria-label="Go back"
           icon={<BiArrowBack />}

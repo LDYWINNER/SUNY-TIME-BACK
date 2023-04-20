@@ -17,9 +17,10 @@ import {
   LoadingWrapper,
   Wrapper,
   Container,
+  Main,
   Info,
   Title,
-  Row,
+  Likes,
 } from "../../assets/wrappers/SingleCourse";
 import {
   courseReviewInstructorState,
@@ -297,99 +298,104 @@ const SingleCourse = () => {
           aria-label="Go back"
           icon={<BiArrowBack />}
         />
-        <Info>
-          <Title>
-            {course?.subj}
-            {course?.crs} : {course?.courseTitle}
-          </Title>
-          <Row>
-            {course?.sbc !== "NaN" ? <h4>sbc: {course?.sbc}</h4> : <></>}
-            <h4>credits: {course?.credits}</h4>
-          </Row>
-          <h4>
-            day:{" "}
-            {course?.semesters.length === 2
-              ? `2023 spring - ${course?.day[1]} & 2022 fall - ${course?.day[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2022_fall"
-              ? `2022 fall - ${course?.day[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2023_spring"
-              ? `2023 spring - ${course?.day[0]}`
-              : "No day info :("}
-          </h4>
-          <h4>
-            time:{" "}
-            {course?.semesters.length === 2
-              ? `2023 spring - ${course?.startTime[1]} ~ ${course?.endTime[1]} & 2022 fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2022_fall"
-              ? `2022 fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2023_spring"
-              ? `2023 spring - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
-              : "No time info :("}
-          </h4>
-          <h4>
-            room:{" "}
-            {course?.semesters.length === 2
-              ? `2023 spring - ${course?.room[1]} & 2022 fall - ${course?.room[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2022_fall"
-              ? `2022 fall - ${course?.room[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2023_spring"
-              ? `2023 spring - ${course?.room[0]}`
-              : "No room info :("}
-          </h4>
-          <h4>
-            instructor:{" "}
-            {course?.semesters.length === 2
-              ? `2023 spring - ${course?.instructor_names[1]} & 2022 fall - ${course?.instructor_names[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2022_fall"
-              ? `2022 fall - ${course?.instructor_names[0]}`
-              : course?.semesters.length === 1 &&
-                course?.semesters[0] === "2023_spring"
-              ? `2023 spring - ${course?.instructor_names[0]}`
-              : "No instructor info :("}
-          </h4>
-        </Info>
-        <IconButton
-          aria-label="Like this course?"
-          icon={
-            course?.likes.includes(globalState.user._id) ? (
-              <AiFillLike />
-            ) : (
-              <AiOutlineLike />
-            )
-          }
-          onClick={() => handleLike(id)}
-        />
-        <h4>{course?.likes.length}</h4>
-
-        <Tabs isFitted variant="enclosed">
-          <TabList mb="1em">
-            <Tab>Overall Info</Tab>
-            <Tab>Review</Tab>
-            <Tab>Bulletin</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <OverallInfo crResult={courseReviewResult as ICRResult} />
-            </TabPanel>
-            <TabPanel>
-              <Review
-                id={id}
-                reviews={course?.reviews as [ICourseReview]}
-                courseName={`${course?.subj}${course?.crs}`}
+        <Main>
+          <Info>
+            <div>
+              <Title>
+                {course?.subj}
+                {course?.crs} : {course?.courseTitle}
+              </Title>
+              {course?.sbc !== "NaN" ? <h4>SBC: {course?.sbc}</h4> : <></>}
+              <h4>Credits: {course?.credits}</h4>
+              <h4>
+                Day:{" "}
+                {course?.semesters.length === 2
+                  ? `2023 Spring - ${course?.day[1]} & 2022 Fall - ${course?.day[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2022_fall"
+                  ? `2022 Fall - ${course?.day[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2023_spring"
+                  ? `2023 Spring - ${course?.day[0]}`
+                  : "No day info :("}
+              </h4>
+              <h4>
+                Time:{" "}
+                {course?.semesters.length === 2
+                  ? `2023 Spring - ${course?.startTime[1]} ~ ${course?.endTime[1]} & 2022 Fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2022_fall"
+                  ? `2022 Fall - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2023_spring"
+                  ? `2023 Spring - ${course?.startTime[0]} ~ ${course?.endTime[0]}`
+                  : "No time info :("}
+              </h4>
+              <h4>
+                Room:{" "}
+                {course?.semesters.length === 2
+                  ? `2023 Spring - ${course?.room[1]} & 2022 Fall - ${course?.room[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2022_fall"
+                  ? `2022 Fall - ${course?.room[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2023_spring"
+                  ? `2023 Spring - ${course?.room[0]}`
+                  : "No room info :("}
+              </h4>
+              <h4>
+                Instructor:{" "}
+                {course?.semesters.length === 2
+                  ? `2023 Spring - ${course?.instructor_names[1]} & 2022 Fall - ${course?.instructor_names[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2022_fall"
+                  ? `2022 Fall - ${course?.instructor_names[0]}`
+                  : course?.semesters.length === 1 &&
+                    course?.semesters[0] === "2023_spring"
+                  ? `2023 Spring - ${course?.instructor_names[0]}`
+                  : "No instructor info :("}
+              </h4>
+            </div>
+            <Likes>
+              <IconButton
+                size="lg"
+                aria-label="Like this course?"
+                icon={
+                  course?.likes.includes(globalState.user._id) ? (
+                    <AiFillLike />
+                  ) : (
+                    <AiOutlineLike />
+                  )
+                }
+                onClick={() => handleLike(id)}
               />
-            </TabPanel>
-            <TabPanel>
-              <CourseBulletin id={id} />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+              <h4>{course?.likes.length} likes</h4>
+            </Likes>
+          </Info>
+
+          <Tabs isFitted variant="enclosed">
+            <TabList mb="1em">
+              <Tab>Overall Info</Tab>
+              <Tab>Review</Tab>
+              <Tab>Bulletin</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <OverallInfo crResult={courseReviewResult as ICRResult} />
+              </TabPanel>
+              <TabPanel>
+                <Review
+                  id={id}
+                  reviews={course?.reviews as [ICourseReview]}
+                  courseName={`${course?.subj}${course?.crs}`}
+                />
+              </TabPanel>
+              <TabPanel>
+                <CourseBulletin id={id} />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Main>
       </Container>
     </Wrapper>
   );

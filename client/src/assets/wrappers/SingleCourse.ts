@@ -9,31 +9,50 @@ export const LoadingWrapper = styled.div`
 `;
 
 export const Wrapper = styled.section`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  @media (min-width: 992px) {
-  }
+  align-items: center;
+  min-height: 80vh;
 `;
 
 export const Container = styled.div`
-  width: 60%;
+  z-index: 0;
+  width: 70%;
   height: 100%;
-  padding: 10px;
+  min-height: 100vh;
+  background-color: ${(props) => props.theme.bgColor.lighter};
+  color: ${(props) => props.theme.textColor.darker};
+  padding: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 `;
 
-export const Info = styled.div``;
+export const Main = styled.div`
+  padding: 0.5rem 3rem;
+`;
+
+export const Info = styled.div`
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+`;
 
 export const Title = styled.span`
   font-size: 50px;
   font-weight: 600;
   color: ${(props) => props.theme.main.blue};
   font-family: "Bebas Neue", cursive;
+  display: block;
+  margin-bottom: 1rem;
 `;
 
-export const Row = styled.div`
+export const Likes = styled.div`
   display: flex;
-  justify-content: space-between;
+  font-size: 30px;
+  h4 {
+    margin-left: 5px;
+  }
 `;
