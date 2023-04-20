@@ -11,18 +11,20 @@ export const LoadingWrapper = styled.div`
 export const Wrapper = styled.section<{ bgImage: string }>`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 80vh;
 `;
 
 export const Container = styled.div`
-  margin-top: 200px;
+  margin-top: 100px;
   z-index: 0;
   width: 70%;
   height: 100%;
+  min-height: 100vh;
   background-color: ${(props) => props.theme.bgColor.lighter};
   padding: 15px;
   border-top-left-radius: 15px;
