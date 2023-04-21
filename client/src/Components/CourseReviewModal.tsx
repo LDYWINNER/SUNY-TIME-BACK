@@ -8,6 +8,7 @@ import {
   ModalCloseButton,
   Checkbox,
   Tooltip,
+  useToast,
 } from "@chakra-ui/react";
 import { Alert } from "../Components";
 import {
@@ -62,6 +63,7 @@ const registerState: IRegisterState = {
 };
 
 function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
+  const toast = useToast();
   const navigate = useNavigate();
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
@@ -167,7 +169,13 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
           navigate("/course-review");
         } else {
           navigate("/");
-          //with toast
+          toast({
+            title: "Register Process Successfully Done!",
+            description: "Thank you. Enjoy SUNYTIME :)",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
         }
       }, 3000);
     } catch (error: any) {

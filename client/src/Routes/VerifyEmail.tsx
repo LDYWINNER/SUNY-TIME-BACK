@@ -111,7 +111,7 @@ function VerifyEmail() {
           <label htmlFor="emailConfirmation" className="form-label">
             email confirmation
           </label>
-          <h4>학교 이메일로 발송된 6자리 숫자를 입력해주세요.</h4>
+          <h4>이메일로 발송된 6자리 숫자를 입력해주세요.</h4>
           <input
             type="text"
             className="form-input"
