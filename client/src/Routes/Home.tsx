@@ -57,7 +57,7 @@ function Home() {
         <MainContent>
           <Greeting>
             <Welcome>
-              Hello <Title>{globalState.user?.username}</Title>, Welcome to{" "}
+              Hello <Title>{globalState.user?.username}</Title>! Welcome to{" "}
               <SUNYTIME>SUNYTIME</SUNYTIME>
             </Welcome>
           </Greeting>
