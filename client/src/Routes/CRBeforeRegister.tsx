@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
-import { Progress } from "@chakra-ui/react";
+import { Progress, useToast } from "@chakra-ui/react";
 
 interface IForm {}
 
@@ -23,6 +23,7 @@ const registerState: IRegisterState = {
 
 function CRBeforeRegister() {
   const navigate = useNavigate();
+  const toast = useToast();
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(registerState);
   const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
@@ -71,6 +72,15 @@ function CRBeforeRegister() {
 
         <button
           onClick={() => {
+            if (globalState.user.courseReviewNum > 2) {
+              toast({
+                title: "Register Successfully Done!!",
+                description: "Enjoy SUNYTIME",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+              });
+            }
             navigate("/course-manager");
           }}
           className="btn btn-block"
