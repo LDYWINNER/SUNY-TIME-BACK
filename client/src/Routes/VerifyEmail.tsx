@@ -9,8 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { emailConfirmationState, globalCurrentState } from "../atoms";
 import { addUserToLocalStorage } from "../utils";
-import { IconButton, Progress } from "@chakra-ui/react";
-import { BiArrowBack } from "react-icons/bi";
+import { Progress } from "@chakra-ui/react";
 
 interface IForm {
   emailConfirmation: string;
