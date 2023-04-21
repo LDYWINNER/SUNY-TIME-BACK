@@ -1,68 +1,27 @@
 import { useEffect, useState } from "react";
-import { Alert } from "../Components";
 import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { globalCurrentState } from "../atoms";
-import { Progress, useToast } from "@chakra-ui/react";
-
-interface IForm {}
-
-interface IRegisterState {
-  formSuccess: Boolean | null;
-  errorMessage: string;
-}
-
-const registerState: IRegisterState = {
-  formSuccess: null,
-  errorMessage: "",
-};
+import { Progress } from "@chakra-ui/react";
 
 function CRBeforeRegister() {
   const navigate = useNavigate();
-  const toast = useToast();
   const [bgImage, setbgImage] = useState("");
-  const [values, setValues] = useState(registerState);
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitSuccessful },
-    reset,
-  } = useForm<IForm>();
-  let navigateBackOrNot = false;
   const globalState = useRecoilValue(globalCurrentState);
-
-  const onValid: SubmitHandler<IForm> = async (data) => {
-    console.log("data here");
-    console.log(data);
-  };
 
   useEffect(() => {
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-    if (isSubmitSuccessful) {
-      reset({});
-    }
-  }, [bgImage, reset, isSubmitSuccessful]);
+  }, [bgImage]);
 
   return (
     <Wrapper className="full-page" bgImage={bgImage}>
-      <form className="form" onSubmit={handleSubmit(onValid)}>
+      <form className="form">
         <Logo src={logo} alt="sunytime" className="logo" />
         <h3>Course Review ({globalState.user.courseReviewNum} / 3)</h3>
         <Progress hasStripe value={66} />
-        {values.formSuccess === true && (
-          <Alert
-            message="Registration Successful! Welcome :)"
-            ifSuccess={true}
-          />
-        )}
-        {values.formSuccess === false && (
-          <Alert message={values.errorMessage} />
-        )}
 
         {/* Mandatory Course Review */}
         <h4>
@@ -72,15 +31,6 @@ function CRBeforeRegister() {
 
         <button
           onClick={() => {
-            if (globalState.user.courseReviewNum > 2) {
-              toast({
-                title: "Register Successfully Done!!",
-                description: "Enjoy SUNYTIME",
-                status: "success",
-                duration: 9000,
-                isClosable: true,
-              });
-            }
             navigate("/course-manager");
           }}
           className="btn btn-block"
