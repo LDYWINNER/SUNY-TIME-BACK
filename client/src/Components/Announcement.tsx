@@ -14,7 +14,7 @@ const Announcement = () => {
         <h2>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              Section 1 title
+              Announcement 1
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -31,7 +31,7 @@ const Announcement = () => {
         <h2>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              Section 2 title
+              Announcement 2
             </Box>
             <AccordionIcon />
           </AccordionButton>
