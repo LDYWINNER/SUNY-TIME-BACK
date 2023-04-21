@@ -6,9 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 mongoose_1.default.set("strictQuery", true);
 const connectDB = (url) => {
-    return mongoose_1.default.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    return mongoose_1.default.connect(url);
 };
 exports.default = connectDB;

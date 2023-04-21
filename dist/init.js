@@ -19,7 +19,7 @@ const port = process.env.PORT || 4001;
 const handleListening = () => console.log(`Server Listening on port http://localhost:${port}`);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, connect_1.default)(process.env.MONGO_URL);
+        yield (0, connect_1.default)(process.env.MONGO_URI);
         server_1.default.listen(port, handleListening);
     }
     catch (error) {
