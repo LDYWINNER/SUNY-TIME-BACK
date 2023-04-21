@@ -20,7 +20,6 @@ import {
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
 import moment from "moment";
-import { Navigate, useNavigate } from "react-router-dom";
 
 interface ICourseReview {
   course: string;
@@ -99,6 +98,7 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
                     ) : (
                       <></>
                     )}
+                    <h4>{review.semester}</h4>
                   </Name>
                   <h4>
                     {review.overallGrade === 1 ? (
