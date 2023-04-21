@@ -24,6 +24,10 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         required: [true, "Please provide your major"],
     },
+    courseReviewNum: {
+        type: Number,
+        required: true,
+    },
 });
 UserSchema.methods.createJWT = function () {
     return jsonwebtoken_1.default.sign({ userId: this._id }, process.env.JWT_SECRET, {

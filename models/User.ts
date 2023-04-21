@@ -6,6 +6,7 @@ export interface IUser {
   email: string;
   school: string;
   major: string;
+  courseReviewNum: number;
 }
 
 export interface IUserMethods {
@@ -32,6 +33,10 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
   major: {
     type: String,
     required: [true, "Please provide your major"],
+  },
+  courseReviewNum: {
+    type: Number,
+    required: true,
   },
 });
 

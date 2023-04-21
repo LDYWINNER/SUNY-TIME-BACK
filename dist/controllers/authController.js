@@ -92,6 +92,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         email,
         school,
         major,
+        courseReviewNum: 0,
     });
     const token = user.createJWT();
     res.status(http_status_codes_1.StatusCodes.CREATED).json({
@@ -100,6 +101,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             email: user.email,
             school: user.school,
             major: user.major,
+            courseReviewNum: user.courseReviewNum,
         },
         token,
     });
@@ -122,6 +124,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             email: user.email,
             school: user.school,
             major: user.major,
+            courseReviewNum: user.courseReviewNum,
             _id: user._id,
         },
         token,

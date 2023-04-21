@@ -1,4 +1,4 @@
-import { Link, useMatch } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useAnimation, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "../assets/images/navbar_logo.svg";
@@ -21,6 +21,7 @@ import SmallSidebar from "./SmallNavbar";
 import UpdateUserModal from "./UpdateUserModal";
 
 function Header() {
+  const navigate = useNavigate();
   //route match
   const homeMatch = useMatch("/");
   const infoMatch = useMatch("/school-info/*");
@@ -47,6 +48,7 @@ function Header() {
       };
     });
     removeUserFromLocalStorage();
+    navigate("/");
     window.location.reload();
   };
   //update user modal

@@ -20,6 +20,7 @@ import {
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
 import moment from "moment";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface ICourseReview {
   course: string;

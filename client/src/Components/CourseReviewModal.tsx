@@ -12,19 +12,24 @@ import {
 import { Alert } from "../Components";
 import {
   Wrapper,
-  Logo,
   Button,
   FormRow,
   Row,
   Footer,
   StarRating,
 } from "../assets/wrappers/CourseReviewModal";
-import logo from "../assets/images/navbar_logo.svg";
+// import logo from "../assets/images/navbar_logo.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { authFetch } from "../api";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { useRecoilValue } from "recoil";
-import { courseReviewInstructorState, isDarkAtom } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  courseReviewInstructorState,
+  globalCurrentState,
+  isDarkAtom,
+} from "../atoms";
+import { useNavigate } from "react-router-dom";
+import { addUserToLocalStorage } from "../utils";
 
 interface ICourseReviewModal {
   id: any;
@@ -57,6 +62,9 @@ const registerState: IRegisterState = {
 };
 
 function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
+  const navigate = useNavigate();
+  const [globalState, setGlobalCurrentState] =
+    useRecoilState(globalCurrentState);
   const [values, setValues] = useState(registerState);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -131,7 +139,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
       console.log(data);
 
       setValues({ ...values, formSuccess: true });
-      setTimeout(() => {
+      setTimeout(async () => {
         //clear alert
         setValues({
           ...values,
@@ -140,10 +148,30 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         });
         //close modal & refresh page
         onClose();
-        window.location.reload();
+        // window.location.reload();
+        const { data } = await authFetch.patch("course/updateUserCourseNum");
+        console.log(data);
+
+        const { user, token } = data;
+        setGlobalCurrentState((currentState) => {
+          return {
+            ...currentState,
+            token,
+            user,
+          };
+        });
+        //adding user to local storage
+        addUserToLocalStorage({ user, token });
+
+        if (globalState.user.courseReviewNum < 2) {
+          navigate("/course-review");
+        } else {
+          navigate("/");
+          //with toast
+        }
       }, 3000);
     } catch (error: any) {
-      console.log(error.response);
+      console.log(error);
       if (error.response.status !== 401) {
         setValues({
           ...values,

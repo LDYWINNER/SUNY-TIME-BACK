@@ -208,4 +208,23 @@ const likeReview = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllCourses, likeCourse, getSingleCourse, createReview, likeReview };
+const updateUserCourseNum = async (req: Request, res: Response) => {
+  const user = await User.findOne({ _id: req.user?.userId });
+
+  user!.courseReviewNum++;
+
+  await user?.save();
+
+  const token = user?.createJWT();
+
+  res.status(StatusCodes.OK).json({ user, token });
+};
+
+export {
+  getAllCourses,
+  likeCourse,
+  getSingleCourse,
+  createReview,
+  likeReview,
+  updateUserCourseNum,
+};

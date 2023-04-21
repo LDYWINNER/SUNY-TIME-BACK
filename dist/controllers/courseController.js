@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
+exports.updateUserCourseNum = exports.likeReview = exports.createReview = exports.getSingleCourse = exports.likeCourse = exports.getAllCourses = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const Course_1 = __importDefault(require("../models/Course"));
@@ -160,3 +160,12 @@ const likeReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.likeReview = likeReview;
+const updateUserCourseNum = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _j;
+    const user = yield User_1.default.findOne({ _id: (_j = req.user) === null || _j === void 0 ? void 0 : _j.userId });
+    user.courseReviewNum++;
+    yield (user === null || user === void 0 ? void 0 : user.save());
+    const token = user === null || user === void 0 ? void 0 : user.createJWT();
+    res.status(http_status_codes_1.StatusCodes.OK).json({ user, token });
+});
+exports.updateUserCourseNum = updateUserCourseNum;

@@ -4,12 +4,10 @@ import logo from "../assets/images/navbar_logo.svg";
 import { bgImages } from "../assets/assets";
 import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { globalCurrentState } from "../atoms";
-import { IconButton, Progress } from "@chakra-ui/react";
-import { BiArrowBack } from "react-icons/bi";
+import { Progress } from "@chakra-ui/react";
 
 interface IForm {}
 
@@ -35,6 +33,7 @@ function CRBeforeRegister() {
     reset,
   } = useForm<IForm>();
   let navigateBackOrNot = false;
+  const globalState = useRecoilValue(globalCurrentState);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     console.log("data here");
@@ -52,7 +51,7 @@ function CRBeforeRegister() {
     <Wrapper className="full-page" bgImage={bgImage}>
       <form className="form" onSubmit={handleSubmit(onValid)}>
         <Logo src={logo} alt="sunytime" className="logo" />
-        <h3>Register</h3>
+        <h3>Course Review ({globalState.user.courseReviewNum} / 3)</h3>
         <Progress hasStripe value={66} />
         {values.formSuccess === true && (
           <Alert
@@ -64,12 +63,19 @@ function CRBeforeRegister() {
           <Alert message={values.errorMessage} />
         )}
 
-        {/* email confirmation */}
+        {/* Mandatory Course Review */}
+        <h4>
+          회원가입을 완료하기 위해서 저번학기에 들었던 3개의 수업에 대한
+          수강평을 작성해주세요.
+        </h4>
 
-        <h4>Course Review</h4>
-
-        <button type="submit" className="btn btn-block">
-          submit
+        <button
+          onClick={() => {
+            navigate("/course-manager");
+          }}
+          className="btn btn-block"
+        >
+          Go to Course Review
         </button>
       </form>
     </Wrapper>

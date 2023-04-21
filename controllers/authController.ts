@@ -91,6 +91,7 @@ const register = async (req: Request, res: Response) => {
     email,
     school,
     major,
+    courseReviewNum: 0,
   });
   const token = user.createJWT();
   res.status(StatusCodes.CREATED).json({
@@ -99,6 +100,7 @@ const register = async (req: Request, res: Response) => {
       email: user.email,
       school: user.school,
       major: user.major,
+      courseReviewNum: user.courseReviewNum,
     },
     token,
   });
@@ -123,6 +125,7 @@ const login = async (req: Request, res: Response) => {
       email: user.email,
       school: user.school,
       major: user.major,
+      courseReviewNum: user.courseReviewNum,
       _id: user._id,
     },
     token,
