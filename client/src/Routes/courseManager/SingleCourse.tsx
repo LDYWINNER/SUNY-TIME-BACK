@@ -407,7 +407,11 @@ const SingleCourse = () => {
                 <Review
                   id={id}
                   reviews={course?.reviews as [ICourseReview]}
-                  reviewsExisting={Number(course?.reviews.length) === 0}
+                  reviewsExisting={
+                    course?.reviews.filter(
+                      (review) => review.overallEvaluation !== ""
+                    ).length === 0
+                  }
                 />
               </TabPanel>
               <TabPanel>

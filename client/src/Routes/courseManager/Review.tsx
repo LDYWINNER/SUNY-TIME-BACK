@@ -82,7 +82,9 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
       </ButtonContainer>
       <Reviews>
         {reviewsExisting ? (
-          <NoReviewSpan>No review yet for this course... :(</NoReviewSpan>
+          <NoReviewSpan>
+            No detailed evaluation yet for this course... :(
+          </NoReviewSpan>
         ) : (
           <></>
         )}
