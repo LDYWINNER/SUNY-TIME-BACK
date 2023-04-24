@@ -9,7 +9,7 @@ import {
 
 const Announcement = () => {
   return (
-    <Accordion allowToggle allowMultiple>
+    <Accordion allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton>
