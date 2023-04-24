@@ -16,6 +16,7 @@ import {
   Grade,
   Row,
   NoReviewSpan,
+  Semester,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
@@ -93,12 +94,12 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
                     <h4>
                       {review.anonymity ? "익명" : review.createdByUsername}
                     </h4>
-                    {review?.myLetterGrade ? (
+                    {review?.myLetterGrade !== "-1" ? (
                       <Grade>{review?.myLetterGrade}</Grade>
                     ) : (
                       <></>
                     )}
-                    <h4>{review.semester}</h4>
+                    <Semester>{review.semester}</Semester>
                   </Name>
                   <h4>
                     {review.overallGrade === 1 ? (

@@ -38,7 +38,6 @@ export const SingleReview = styled.div`
 
 export const Grade = styled.div`
   margin-left: 5px;
-  margin-right: 5px;
   color: ${(props) => props.theme.main.darkred};
 `;
 
@@ -69,4 +68,8 @@ export const Row = styled.div`
 export const NoReviewSpan = styled.span`
   font-size: 1rem;
   font-weight: 500;
+`;
+
+export const Semester = styled.div`
+  margin-left: 5px;
 `;
