@@ -17,6 +17,7 @@ import {
   Row,
   NoReviewSpan,
   Semester,
+  Instructor,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
@@ -100,11 +101,12 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
                       <></>
                     )}
                     <Semester>{review.semester}</Semester>
+                    <Instructor>{review.instructor}</Instructor>
                   </Name>
                   <h4>
                     {review.overallGrade === 1 ? (
                       <Row>
-                        <AiFillStar color="yellow" />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
                         <AiFillStar />
                         <AiFillStar />
                         <AiFillStar />
@@ -112,35 +114,35 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
                       </Row>
                     ) : review.overallGrade === 2 ? (
                       <Row>
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
                         <AiFillStar />
                         <AiFillStar />
                         <AiFillStar />
                       </Row>
                     ) : review.overallGrade === 3 ? (
                       <Row>
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
                         <AiFillStar />
                         <AiFillStar />
                       </Row>
                     ) : review.overallGrade === 4 ? (
                       <Row>
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
                         <AiFillStar />
                       </Row>
                     ) : (
                       <Row>
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
-                        <AiFillStar color="yellow" />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
+                        <AiFillStar color={isDark ? "yellow" : "red"} />
                       </Row>
                     )}
                   </h4>

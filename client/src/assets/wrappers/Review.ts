@@ -73,3 +73,8 @@ export const NoReviewSpan = styled.span`
 export const Semester = styled.div`
   margin-left: 5px;
 `;
+
+export const Instructor = styled.div`
+  margin-left: 5px;
+  color: ${(props) => props.theme.main.lightBlue};
+`;
