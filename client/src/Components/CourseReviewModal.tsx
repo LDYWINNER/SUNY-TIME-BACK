@@ -164,9 +164,13 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         });
         //close modal & refresh page
         onClose();
-        // window.location.reload();
-        const { data } = await authFetch.patch("course/updateUserCourseNum");
-        console.log(data);
+
+        if (globalState.user.courseReviewNum >= 3) {
+          window.location.reload();
+        } else {
+          const { data } = await authFetch.patch("course/updateUserCourseNum");
+          console.log(data);
+        }
 
         const { user, token } = data;
         setGlobalCurrentState((currentState) => {
