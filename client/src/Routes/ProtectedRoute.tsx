@@ -1,14 +1,13 @@
-// import { useRecoilValue } from "recoil";
-// import { globalCurrentState } from "../atoms";
-import { Navigate } from "react-router-dom";
+import { Navigate, useMatch } from "react-router-dom";
 
 const ProtectedRoute = ({ children }: any) => {
-  // const { user } = useRecoilValue(globalCurrentState);
-  // if (!user) {
-  //   return <Navigate to="/" />;
-  // }
   const user = localStorage.getItem("user");
+  const courseReviewMatch = useMatch("/course-review");
+
   if (!user) {
+    return <Navigate to="/register" />;
+  }
+  if (courseReviewMatch) {
     return <Navigate to="/register" />;
   }
   return children;
