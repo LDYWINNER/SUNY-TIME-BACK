@@ -125,7 +125,7 @@ const CourseSearch = () => {
             id="ACC/BUS"
             checked={courseSearch.courseSubjFilter === "ACC/BUS"}
           />
-          <label htmlFor="ACC/BUS">ACC / BUS</label>
+          <label htmlFor="ACC/BUS">ACC/BUS</label>
           <input
             {...register("radio", {
               required: true,
@@ -203,7 +203,7 @@ const CourseSearch = () => {
             id="EST/EMP"
             checked={courseSearch.courseSubjFilter === "EST/EMP"}
           />
-          <label htmlFor="EST/EMP">EST / EMP</label>
+          <label htmlFor="EST/EMP">EST/EMP</label>
           <input
             {...register("radio", {
               required: true,
@@ -255,9 +255,7 @@ const CourseSearch = () => {
             id="SHCourse"
             checked={courseSearch.courseSubjFilter === "SHCourse"}
           />
-          <label htmlFor="SHCourse">
-            Faculty of Sciences and Humanities Courses
-          </label>
+          <label htmlFor="SHCourse">SH/Writing</label>
         </Filters>
       </form>
     </Wrapper>
