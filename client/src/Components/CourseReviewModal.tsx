@@ -88,7 +88,21 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     handleSubmit,
     formState: { isSubmitSuccessful },
     reset,
-  } = useForm<IForm>();
+  } = useForm<IForm>({
+    defaultValues: {
+      anonymity: true,
+      semester: "-1",
+      instructor: "-2",
+      myLetterGrade: "-1",
+      overallGrade: undefined,
+      difficulty: "",
+      homeworkQuantity: "",
+      testQuantity: undefined,
+      teamProjectPresence: undefined,
+      quizPresence: undefined,
+      overallEvaluation: "",
+    },
+  });
   const instructor = useRecoilValue(courseReviewInstructorState);
   const isDark = useRecoilValue(isDarkAtom);
 
@@ -311,6 +325,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                       <option value="D+">D+</option>
                       <option value="D">D</option>
                       <option value="F">F</option>
+                      <option value="I">I</option>
                       <option value="W">W</option>
                     </select>
                   </div>
