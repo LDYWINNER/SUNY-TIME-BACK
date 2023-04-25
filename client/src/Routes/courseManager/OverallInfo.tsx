@@ -15,7 +15,7 @@ interface IOverallInfo {
     stars: number;
     homeworkQuantity: [number, number, number];
     difficulty: [number, number, number];
-    testQuantity: [number, number, number, number];
+    testQuantity: [number, number, number, number, number];
     teamProjectPresence: [number, number];
     quizPresence: [number, number];
   };
@@ -193,7 +193,7 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
                 axisTicks: {
                   show: false,
                 },
-                categories: [0, 1, 2, 3],
+                categories: [0, 1, 2, 3, 4],
               },
               colors: ["#0fbcf9"],
               tooltip: {

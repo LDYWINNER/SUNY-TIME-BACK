@@ -77,6 +77,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     false,
     false,
     false,
+    false,
   ]);
   const [teamProjectPresence, setTeamProjectPresence] = useState([
     false,
@@ -133,6 +134,8 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         ? 2
         : testQuantityItems[3]
         ? 3
+        : testQuantityItems[4]
+        ? 4
         : undefined,
       teamProjectPresence: teamProjectPresence[0]
         ? true
@@ -227,7 +230,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
       setHover(0);
       setdifficultyItems([false, false, false]);
       sethwQuantityItems([false, false, false]);
-      setTestQuantityItems([false, false, false, false]);
+      setTestQuantityItems([false, false, false, false, false]);
       setTeamProjectPresence([false, false]);
       setQuizPresence([false, false]);
     }
@@ -400,6 +403,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                         false,
                         false,
                         false,
+                        false,
                       ])
                     }
                   >
@@ -412,6 +416,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                       setTestQuantityItems([
                         false,
                         e.target.checked,
+                        false,
                         false,
                         false,
                       ])
@@ -428,6 +433,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                         false,
                         e.target.checked,
                         false,
+                        false,
                       ])
                     }
                   >
@@ -442,10 +448,26 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                         false,
                         false,
                         e.target.checked,
+                        false,
                       ])
                     }
                   >
                     3
+                  </Checkbox>
+                  <Checkbox
+                    borderColor={isDark ? "white" : "black"}
+                    isChecked={testQuantityItems[4]}
+                    onChange={(e) =>
+                      setTestQuantityItems([
+                        false,
+                        false,
+                        false,
+                        false,
+                        e.target.checked,
+                      ])
+                    }
+                  >
+                    4
                   </Checkbox>
                 </Row>
 

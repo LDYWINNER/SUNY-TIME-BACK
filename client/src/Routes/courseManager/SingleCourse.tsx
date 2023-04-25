@@ -39,7 +39,7 @@ interface ICRResult {
   stars: number;
   homeworkQuantity: [number, number, number];
   difficulty: [number, number, number];
-  testQuantity: [number, number, number, number];
+  testQuantity: [number, number, number, number, number];
   teamProjectPresence: [number, number];
   quizPresence: [number, number];
 }
@@ -186,7 +186,7 @@ const SingleCourse = () => {
       let starTemp = 0;
       let hwqTemp = [0, 0, 0];
       let difficultyTemp = [0, 0, 0];
-      let tqTemp = [0, 0, 0, 0];
+      let tqTemp = [0, 0, 0, 0, 0];
       let tppTemp = [0, 0];
       let qpTemp = [0, 0];
       const totalLength = reviews.length;
@@ -216,8 +216,10 @@ const SingleCourse = () => {
           tqTemp[1]++;
         } else if (reviews[i].testQuantity === 2) {
           tqTemp[2]++;
-        } else {
+        } else if (reviews[i].testQuantity === 3) {
           tqTemp[3]++;
+        } else {
+          tqTemp[4]++;
         }
         //teamProjectPresence
         if (reviews[i].teamProjectPresence === true) {
@@ -240,7 +242,7 @@ const SingleCourse = () => {
         difficultyTemp[j] = Math.floor((difficultyTemp[j] / totalLength) * 100);
       }
       //testQuantity
-      for (let k = 0; k < 4; k++) {
+      for (let k = 0; k < 5; k++) {
         tqTemp[k] = Math.floor((tqTemp[k] / totalLength) * 100);
       }
       //teamProjectPresence, quizPresence
