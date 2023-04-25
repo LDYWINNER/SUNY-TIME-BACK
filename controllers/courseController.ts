@@ -157,7 +157,7 @@ const createReview = async (req: Request, res: Response) => {
     !homeworkQuantity ||
     teamProjectPresence === null ||
     !difficulty ||
-    !testQuantity ||
+    testQuantity === null ||
     quizPresence === null ||
     !overallGrade ||
     !instructor

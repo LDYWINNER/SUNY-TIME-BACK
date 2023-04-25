@@ -121,7 +121,7 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         !homeworkQuantity ||
         teamProjectPresence === null ||
         !difficulty ||
-        !testQuantity ||
+        testQuantity === null ||
         quizPresence === null ||
         !overallGrade ||
         !instructor) {
