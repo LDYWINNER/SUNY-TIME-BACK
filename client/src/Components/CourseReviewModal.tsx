@@ -170,6 +170,8 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
 
         if (globalState.user.courseReviewNum >= 3) {
           window.location.reload();
+          const { data } = await authFetch.patch("course/updateUserCourseNum");
+          console.log(data);
         } else {
           const { data } = await authFetch.patch("course/updateUserCourseNum");
           console.log(data);
