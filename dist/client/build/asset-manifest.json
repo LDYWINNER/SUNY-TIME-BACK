@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6affa3dc.css",
-    "main.js": "/static/js/main.13b2aacc.js",
+    "main.js": "/static/js/main.382b60b1.js",
     "static/media/seawolf.jpeg": "/static/media/seawolf.6aa6657c01de5cfd0c58.jpeg",
     "static/media/banner1.png": "/static/media/banner1.fb391f483d0cf1b2265f.png",
     "static/media/sunykoreacdc.png": "/static/media/sunykoreacdc.181ec9ce158e101120d7.png",
@@ -16,10 +16,10 @@
     "static/media/no-review.svg": "/static/media/no-review.766d7c94c2a1686b108c8bcf8a671477.svg",
     "index.html": "/index.html",
     "main.6affa3dc.css.map": "/static/css/main.6affa3dc.css.map",
-    "main.13b2aacc.js.map": "/static/js/main.13b2aacc.js.map"
+    "main.382b60b1.js.map": "/static/js/main.382b60b1.js.map"
   },
   "entrypoints": [
     "static/css/main.6affa3dc.css",
-    "static/js/main.13b2aacc.js"
+    "static/js/main.382b60b1.js"
   ]
 }
