@@ -2,8 +2,12 @@ import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useAnimation, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "../assets/images/navbar_logo.svg";
-import { useRecoilState } from "recoil";
-import { globalCurrentState, isDarkAtom } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  emailConfirmationState,
+  globalCurrentState,
+  isDarkAtom,
+} from "../atoms";
 import DarkModeToggleBtn from "react-dark-mode-toggle";
 import {
   Nav,
@@ -28,6 +32,8 @@ function Header() {
   const courseManagerMatch = useMatch("/course-manager/*");
   const bulletinMatch = useMatch("/bulletin");
   const registerMatch = useMatch("/register");
+  //no navigation if authNum < 3
+  const { authNum } = useRecoilValue(emailConfirmationState);
   //nav animation
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
@@ -68,28 +74,37 @@ function Header() {
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
         <Show breakpoint="(min-width: 1000px)">
-          <Link to="/">
+          <Link to="/" className={authNum < 3 ? "disabled-link" : ""}>
             <Logo src={logo} alt="sunytime" />
           </Link>
           <Items>
             <Item>
-              <Link to="/">
+              <Link to="/" className={authNum < 3 ? "disabled-link" : ""}>
                 Home {homeMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
             <Item>
-              <Link to="/school-info">
+              <Link
+                to="/school-info"
+                className={authNum < 3 ? "disabled-link" : ""}
+              >
                 School Info {infoMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
             <Item>
-              <Link to="/course-manager">
+              <Link
+                to="/course-manager"
+                className={authNum < 3 ? "disabled-link" : ""}
+              >
                 Course Manager{" "}
                 {courseManagerMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
             <Item>
-              <Link to="/bulletin">
+              <Link
+                to="/bulletin"
+                className={authNum < 3 ? "disabled-link" : ""}
+              >
                 Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>

@@ -62,6 +62,12 @@ const Nav = styled(motion.nav)`
     display: flex;
     align-items: center;
   }
+  .disabled-link {
+    pointer-events: none;
+  }
+  a:disabled {
+    pointer-events: none;
+  }
 `;
 
 const Col = styled.div`
