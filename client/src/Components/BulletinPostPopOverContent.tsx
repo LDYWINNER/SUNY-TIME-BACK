@@ -43,7 +43,7 @@ function BulletinPostPopOverContent() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     reset,
   } = useForm<IForm>({
     defaultValues: {
@@ -100,7 +100,7 @@ function BulletinPostPopOverContent() {
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (values.formSuccess) {
       reset({
         title: "",
         content: "",
@@ -109,7 +109,7 @@ function BulletinPostPopOverContent() {
         anonymity: false,
       });
     }
-  }, [reset, isSubmitSuccessful]);
+  }, [reset, values.formSuccess]);
 
   return (
     <>

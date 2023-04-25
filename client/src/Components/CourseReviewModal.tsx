@@ -84,12 +84,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     false,
   ]);
   const [quizPresence, setQuizPresence] = useState([false, false]);
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitSuccessful },
-    reset,
-  } = useForm<IForm>({
+  const { register, handleSubmit, reset } = useForm<IForm>({
     defaultValues: {
       anonymity: true,
       semester: "-1",
@@ -219,7 +214,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (values.formSuccess) {
       reset({
         semester: "-1",
         instructor: "-2",
@@ -233,7 +228,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
       setTeamProjectPresence([false, false]);
       setQuizPresence([false, false]);
     }
-  }, [reset, isSubmitSuccessful]);
+  }, [reset, values.formSuccess]);
 
   return (
     <>
