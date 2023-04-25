@@ -181,7 +181,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
 
         if (globalState.user.courseReviewNum < 2) {
           navigate("/course-review");
-        } else {
+        } else if (globalState.user.courseReviewNum === 3) {
           navigate("/");
           toast({
             title: "Register Process Successfully Done!",
