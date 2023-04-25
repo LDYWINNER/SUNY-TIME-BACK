@@ -167,14 +167,11 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         });
         //close modal & refresh page
         onClose();
+        const { data } = await authFetch.patch("course/updateUserCourseNum");
+        console.log(data);
 
-        if (globalState.user.courseReviewNum >= 3) {
+        if (globalState.user.courseReviewNum > 2) {
           window.location.reload();
-          const { data } = await authFetch.patch("course/updateUserCourseNum");
-          console.log(data);
-        } else {
-          const { data } = await authFetch.patch("course/updateUserCourseNum");
-          console.log(data);
         }
 
         const { user, token } = data;
@@ -190,7 +187,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
 
         if (globalState.user.courseReviewNum < 2) {
           navigate("/course-review");
-        } else if (globalState.user.courseReviewNum === 3) {
+        } else if (Number(globalState.user.courseReviewNum) === 2) {
           navigate("/");
           toast({
             title: "Register Process Successfully Done!",
