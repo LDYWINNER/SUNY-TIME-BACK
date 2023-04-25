@@ -20,7 +20,7 @@ export const Main = styled.div`
 `;
 
 export const MainContent = styled.div`
-  width: 100%;
+  width: 95%;
 `;
 
 export const SubContent = styled.div`
