@@ -38,7 +38,7 @@ const Footer = () => {
         <Link to="">
           <span>FAQ</span>
         </Link>
-        <Link to="">
+        <Link to="mailto:sunytime-auth@naver.com">
           <span>Contact</span>
         </Link>
         <Link to="">
