@@ -278,10 +278,6 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   <option value="2021-spring">2021 Spring</option>
                   <option value="2020-fall">2020 Fall</option>
                   <option value="2020-spring">2020 Spring</option>
-                  <option value="2019-fall">2019 Fall</option>
-                  <option value="2019-spring">2019 Spring</option>
-                  <option value="2018-fall">2018 Fall</option>
-                  <option value="2018-spring">2018 Spring</option>
                 </select>
                 <select
                   {...register("instructor", { required: true })}
