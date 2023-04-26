@@ -6,7 +6,13 @@ interface IAlertProps {
 const Alert = ({ message, ifSuccess }: IAlertProps) => {
   console.log(message);
   return (
-    <div className={ifSuccess ? "alert alert-success" : "alert alert-danger"}>
+    <div
+      className={
+        ifSuccess
+          ? "course-review-alert alert-success"
+          : "course-review-alert alert-danger"
+      }
+    >
       {message}
     </div>
   );
