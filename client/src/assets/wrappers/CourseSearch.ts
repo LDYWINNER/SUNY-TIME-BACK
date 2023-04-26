@@ -35,12 +35,13 @@ export const Row = styled.div`
   margin-bottom: 10px;
 
   input {
-    width: 91%;
+    width: 95%;
     height: 40px;
     padding: 0.375rem 0.75rem;
     border-radius: var(--borderRadius);
-    background: var(--backgroundColor);
-    border: 1px solid var(--grey-200);
+    background-color: ${(props) => props.theme.bgColor.lighter};
+    color: ${(props) => props.theme.textColor.lighter};
+    border: 1px solid ${(props) => props.theme.textColor.lighter};
   }
 `;
 

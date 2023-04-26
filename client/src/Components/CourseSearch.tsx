@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { courseSearchState, globalCurrentState } from "../atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { courseSearchState, globalCurrentState, isDarkAtom } from "../atoms";
 import { IconButton } from "@chakra-ui/react";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Wrapper, Row, Filters } from "../assets/wrappers/CourseSearch";
@@ -16,6 +16,7 @@ const CourseSearch = () => {
   const [courseSearch, setCourseSearch] = useRecoilState(courseSearchState);
   const setGlobalState = useSetRecoilState(globalCurrentState);
   const [localSearch, setLocalSearch] = useState("");
+  const isDark = useRecoilValue(isDarkAtom);
 
   const onValid: SubmitHandler<IForm> = () => {
     //clear search
@@ -69,7 +70,11 @@ const CourseSearch = () => {
             type="submit"
             aria-label="Clear Search"
             icon={<RiArrowGoBackFill />}
-            style={{ height: "40px" }}
+            style={{
+              height: "40px",
+              color: isDark ? "#fff" : "#2F2F2F",
+              backgroundColor: isDark ? "#2F2F2F" : "#fff",
+            }}
           />
         </Row>
 
