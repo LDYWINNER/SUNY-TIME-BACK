@@ -234,10 +234,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     <>
       <Modal
         blockScrollOnMount={false}
-        closeOnOverlayClick={false}
+        scrollBehavior="outside"
         isOpen={isOpen}
         onClose={onClose}
-        isCentered
         size="xl"
       >
         <ModalOverlay />
