@@ -261,6 +261,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 <select
                   {...register("semester", { required: true })}
                   defaultValue="-1"
+                  style={{ width: "50%" }}
                 >
                   <option value="-1" disabled>
                     SELECT SEMESTER YOU TOOK THIS COURSE
