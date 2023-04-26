@@ -316,6 +316,15 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                       mecInstructors.map((instructor) => (
                         <option value={instructor}>{instructor}</option>
                       ))
+                    ) : instructor.instructorNum === 1 ? (
+                      <>
+                        <option value="-2" disabled>
+                          SELECT INSTRUCTOR
+                        </option>
+                        <option value={instructor.instructorName[0]}>
+                          {instructor.instructorName[0]}
+                        </option>
+                      </>
                     ) : (
                       <>
                         <option value={instructor.instructorName[0]}>
