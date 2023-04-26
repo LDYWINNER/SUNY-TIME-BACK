@@ -47,7 +47,51 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             ],
         };
     }
-    if (search) {
+    if (search && subj !== "SHCourse") {
+        if (subj === "ACC/BUS") {
+            queryObject = {
+                $and: [
+                    {
+                        $or: [
+                            { crs: { $regex: search, $options: "i" } },
+                            { courseTitle: { $regex: search, $options: "i" } },
+                            { instructor_names: { $regex: search, $options: "i" } },
+                        ],
+                    },
+                    { $or: [{ subj: "ACC" }, { subj: "BUS" }] },
+                ],
+            };
+        }
+        else if (subj === "EST/EMP") {
+            queryObject = {
+                $and: [
+                    {
+                        $or: [
+                            { crs: { $regex: search, $options: "i" } },
+                            { courseTitle: { $regex: search, $options: "i" } },
+                            { instructor_names: { $regex: search, $options: "i" } },
+                        ],
+                    },
+                    { $or: [{ subj: "EST" }, { subj: "EMP" }] },
+                ],
+            };
+        }
+        else {
+            queryObject = {
+                $and: [
+                    {
+                        $or: [
+                            { crs: { $regex: search, $options: "i" } },
+                            { courseTitle: { $regex: search, $options: "i" } },
+                            { instructor_names: { $regex: search, $options: "i" } },
+                        ],
+                    },
+                    { subj },
+                ],
+            };
+        }
+    }
+    else if (search && subj === "SHCourse") {
         queryObject = {
             $and: [
                 {
@@ -57,10 +101,22 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                         { instructor_names: { $regex: search, $options: "i" } },
                     ],
                 },
-                { subj },
+                {
+                    $nor: [
+                        { subj: "AMS" },
+                        { subj: "ACC" },
+                        { subj: "BUS" },
+                        { subj: "CSE" },
+                        { subj: "ESE" },
+                        { subj: "EST" },
+                        { subj: "EMP" },
+                        { subj: "MEC" },
+                    ],
+                },
             ],
         };
     }
+    console.log(queryObject);
     let result = Course_1.default.find(queryObject);
     if (subj !== "SHCourse") {
         result = result.sort("crs");
