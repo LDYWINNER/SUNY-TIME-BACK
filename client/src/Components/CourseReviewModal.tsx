@@ -337,7 +337,13 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                             type="button"
                             key={index}
                             className={
-                              index <= (hover || rating) ? "on" : "off"
+                              isDark
+                                ? index <= (hover || rating)
+                                  ? "dark-on"
+                                  : "off"
+                                : index <= (hover || rating)
+                                ? "on"
+                                : "off"
                             }
                             onClick={() => setRating(index)}
                             onMouseEnter={() => setHover(index)}

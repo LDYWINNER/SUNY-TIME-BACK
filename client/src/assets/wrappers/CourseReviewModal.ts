@@ -36,6 +36,9 @@ export const Wrapper = styled.section`
   }
 
   .on {
+    color: red;
+  }
+  .dark-on {
     color: yellow;
   }
   .off {
