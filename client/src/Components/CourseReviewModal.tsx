@@ -547,8 +547,17 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                       hasArrow
                       label={
                         <>
-                          <p>Tips for writing</p>
+                          <p>
+                            수강학기, 교수명, 별점, 난이도, 시험 횟수, 과제량,
+                            조별과제 유무, 퀴즈 유무는 필수 사항입니다.
+                          </p>
                           <br />
+                          <p>
+                            Overall Evaluation 에는 과목에 대한 총평을
+                            남겨주시면 감사하겠습니다 (점수를 잘 받기 위한 꿀팁,
+                            무엇을 배우는지, 교수님에 대한 코멘트, 출석체크 방법
+                            등).
+                          </p>
                         </>
                       }
                     >
