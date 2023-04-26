@@ -35,13 +35,13 @@ const Footer = () => {
     <Wrapper>
       <Logo src={logo} alt="sunytime" className="logo" />
       <Content>
-        <Link to="">
+        <Link to="mailto:sunytime-auth@naver.com">
           <span>FAQ</span>
         </Link>
         <Link to="mailto:sunytime-auth@naver.com">
           <span>Contact</span>
         </Link>
-        <Link to="">
+        <Link to="https://docs.google.com/forms/d/e/1FAIpQLSfeiKLVDzh8HjoM7NQ6yz6Ei-76qaCbe0_JSdQ3hcg2d2L6VA/viewform?usp=sf_link">
           <span>Feedback</span>
         </Link>
       </Content>
