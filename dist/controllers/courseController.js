@@ -116,9 +116,11 @@ const getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             ],
         };
     }
-    console.log(queryObject);
     let result = Course_1.default.find(queryObject);
-    if (subj !== "SHCourse") {
+    if (subj === "SHCourse") {
+        result = result.sort("subj");
+    }
+    else if (subj !== "ACC/BUS") {
         result = result.sort("crs");
     }
     //setup pagination

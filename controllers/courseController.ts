@@ -119,11 +119,11 @@ const getAllCourses = async (req: Request, res: Response) => {
     };
   }
 
-  console.log(queryObject);
-
   let result = Course.find(queryObject);
 
-  if (subj !== "SHCourse") {
+  if (subj === "SHCourse") {
+    result = result.sort("subj");
+  } else if (subj !== "ACC/BUS") {
     result = result.sort("crs");
   }
 
