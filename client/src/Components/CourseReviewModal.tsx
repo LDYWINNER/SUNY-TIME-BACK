@@ -26,11 +26,20 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   courseReviewInstructorState,
+  courseSearchState,
   globalCurrentState,
   isDarkAtom,
 } from "../atoms";
 import { useNavigate } from "react-router-dom";
-import { addUserToLocalStorage } from "../utils";
+import {
+  addUserToLocalStorage,
+  amsInstructors,
+  accbusInstructors,
+  cseInstructors,
+  eseInstructors,
+  estempInstructors,
+  mecInstructors,
+} from "../utils";
 
 interface ICourseReviewModal {
   id: any;
@@ -99,8 +108,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
       overallEvaluation: "",
     },
   });
-  const instructor = useRecoilValue(courseReviewInstructorState);
   const isDark = useRecoilValue(isDarkAtom);
+  const { courseSubjFilter } = useRecoilValue(courseSearchState);
+  const instructor = useRecoilValue(courseReviewInstructorState);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newCourseReview = {
@@ -278,28 +288,45 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   defaultValue="-2"
                   style={{ width: "50%" }}
                 >
-                  {instructor.instructorNum === 1 ? (
-                    <>
-                      <option value="-2" disabled>
-                        SELECT INSTRUCTOR
-                      </option>
-                      <option value={instructor.instructorName[0]}>
-                        {instructor.instructorName[0]}
-                      </option>
-                    </>
-                  ) : (
-                    <>
-                      <option value="-2" disabled>
-                        SELECT INSTRUCTOR
-                      </option>
-                      <option value={instructor.instructorName[0]}>
-                        {instructor.instructorName[0]}
-                      </option>
-                      <option value={instructor.instructorName[1]}>
-                        {instructor.instructorName[1]}
-                      </option>
-                    </>
-                  )}
+                  <>
+                    <option value="-2" disabled>
+                      SELECT INSTRUCTOR
+                    </option>
+                    {courseSubjFilter === "AMS" ? (
+                      amsInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : courseSubjFilter === "ACC/BUS" ? (
+                      accbusInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : courseSubjFilter === "CSE" ? (
+                      cseInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : courseSubjFilter === "ESE" ? (
+                      eseInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : courseSubjFilter === "EST/EMP" ? (
+                      estempInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : courseSubjFilter === "MEC" ? (
+                      mecInstructors.map((instructor) => (
+                        <option value={instructor}>{instructor}</option>
+                      ))
+                    ) : (
+                      <>
+                        <option value={instructor.instructorName[0]}>
+                          {instructor.instructorName[0]}
+                        </option>
+                        <option value={instructor.instructorName[1]}>
+                          {instructor.instructorName[1]}
+                        </option>{" "}
+                      </>
+                    )}
+                  </>
                 </select>
 
                 <FormRow>

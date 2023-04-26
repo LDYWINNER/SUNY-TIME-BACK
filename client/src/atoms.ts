@@ -69,6 +69,13 @@ export const courseReviewResultState = atom({
   },
 });
 
+export const emailConfirmationState = atom({
+  key: "emailConfirmation",
+  default: {
+    authNum: 0,
+  },
+});
+
 export interface ITodo {
   id: number;
   text: string;
@@ -82,11 +89,4 @@ export const toDoState = atom<IToDoState>({
   key: "toDo",
   default: {},
   effects_UNSTABLE: [persistAtom],
-});
-
-export const emailConfirmationState = atom({
-  key: "emailConfirmation",
-  default: {
-    authNum: 0,
-  },
 });

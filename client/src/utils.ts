@@ -66,9 +66,7 @@ export const amsInstructors = [
   "Hyunwook Koh",
 ];
 
-export const accInstructors = ["Jeehong Kim", "Sunghee Kim", "Soo Young Kwon"];
-
-export const busInstructors = [
+export const accbusInstructors = [
   "Jaeyeong Lee",
   "Chungseung Lee",
   "Noelle (Myunghun) Chung",
@@ -82,6 +80,7 @@ export const busInstructors = [
 
   "Soo Young Kwon",
   "Jeehong Kim",
+  "Sunghee Kim",
 ];
 
 export const cseInstructors = [
@@ -98,7 +97,7 @@ export const cseInstructors = [
 
 export const eseInstructors = ["Sangjin Hong", "Cornelius Bradter"];
 
-export const estInstructors = [
+export const estempInstructors = [
   "Maurice Bess",
   "Joseph Cabuay",
   "Anthony Pennings",
@@ -115,9 +114,9 @@ export const estInstructors = [
   "Young-Geun Lee",
   "Johng-Ihl Lee",
   "Gerald Stokes",
-];
 
-export const empInstructors = ["Johng-Ihl Lee", "Sung Jin Kim"];
+  "Sung Jin Kim",
+];
 
 export const mecInstructors = [
   "Cornelius Bradter",
