@@ -4,10 +4,13 @@ import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(accordionAnatomy.keys);
 
+const { isDark } = JSON.parse(localStorage.getItem("recoil-persist") as string);
+console.log(isDark);
+
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
   container: {
-    bg: "#fff", // change the backgroundColor of the container
+    bg: isDark ? "#2F2F2F" : "#fff",
+    color: isDark ? "#fff" : "#2F2F2F",
     borderRadius: "10px",
   },
 });

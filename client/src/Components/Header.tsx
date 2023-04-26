@@ -35,7 +35,18 @@ function Header() {
   const [showLogout, setShowLogout] = useState(false);
   //light dark theme toggle
   const [isDark, setDarkAtom] = useRecoilState(isDarkAtom);
-  const toggleDarkAtom = () => setDarkAtom((prev: boolean) => !prev);
+  const toggleDarkAtom = () => {
+    setDarkAtom((prev: boolean) => !prev);
+    localStorage.setItem(
+      "recoil-persist",
+      JSON.stringify({
+        isDark,
+      })
+    );
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  };
   //logout user
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
