@@ -33,9 +33,10 @@ export const Wrapper = styled.div`
 export const Row = styled.div`
   display: flex;
   margin-bottom: 10px;
+  margin-right: 2rem;
 
   input {
-    width: 95%;
+    width: 100%;
     height: 40px;
     padding: 0.375rem 0.75rem;
     border-radius: var(--borderRadius);
