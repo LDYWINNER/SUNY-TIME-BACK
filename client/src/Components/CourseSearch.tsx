@@ -260,7 +260,7 @@ const CourseSearch = () => {
             id="SHCourse"
             checked={courseSearch.courseSubjFilter === "SHCourse"}
           />
-          <label htmlFor="SHCourse">SH/Writing</label>
+          <label htmlFor="SHCourse">교양/Writing</label>
         </Filters>
       </form>
     </Wrapper>
