@@ -7,8 +7,21 @@ import {
   Span,
   NoReviewContainer,
 } from "../../assets/wrappers/OverallInfo";
-import { isDarkAtom } from "../../atoms";
+import {
+  courseReviewInstructorState,
+  courseSearchState,
+  isDarkAtom,
+} from "../../atoms";
 import img from "../../assets/images/no-review.svg";
+import { useForm } from "react-hook-form";
+import {
+  amsInstructors,
+  accbusInstructors,
+  cseInstructors,
+  eseInstructors,
+  estempInstructors,
+  mecInstructors,
+} from "../../utils";
 
 interface IOverallInfo {
   crResult: {
@@ -21,8 +34,19 @@ interface IOverallInfo {
   };
 }
 
+interface IForm {
+  instructor: string;
+}
+
 const OverallInfo = ({ crResult }: IOverallInfo) => {
   const isDark = useRecoilValue(isDarkAtom);
+  const { courseSubjFilter } = useRecoilValue(courseSearchState);
+  const instructor = useRecoilValue(courseReviewInstructorState);
+  const { register, handleSubmit, reset } = useForm<IForm>({
+    defaultValues: {
+      instructor: "-2",
+    },
+  });
 
   if (isNaN(crResult.stars)) {
     return (
@@ -35,6 +59,80 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
   return (
     <Wrapper>
       <h1>Overall Grade: {crResult.stars} / 5</h1>
+      <div className="form-row">
+        <select
+          {...register("instructor", { required: true })}
+          defaultValue="-2"
+          onChange={() => {}}
+        >
+          <>
+            <option value="-2" disabled>
+              SELECT INSTRUCTOR
+            </option>
+            {courseSubjFilter === "AMS" ? (
+              amsInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : courseSubjFilter === "ACC/BUS" ? (
+              accbusInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : courseSubjFilter === "CSE" ? (
+              cseInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : courseSubjFilter === "ESE" ? (
+              eseInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : courseSubjFilter === "EST/EMP" ? (
+              estempInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : courseSubjFilter === "MEC" ? (
+              mecInstructors.map((instructor) => (
+                <option key={instructor} value={instructor}>
+                  {instructor}
+                </option>
+              ))
+            ) : instructor.instructorNum === 1 ? (
+              <>
+                <option
+                  key={instructor.instructorName[0]}
+                  value={instructor.instructorName[0]}
+                >
+                  {instructor.instructorName[0]}
+                </option>
+              </>
+            ) : (
+              <>
+                <option
+                  key={instructor.instructorName[0]}
+                  value={instructor.instructorName[0]}
+                >
+                  {instructor.instructorName[0]}
+                </option>
+                <option
+                  key={instructor.instructorName[1]}
+                  value={instructor.instructorName[1]}
+                >
+                  {instructor.instructorName[1]}
+                </option>{" "}
+              </>
+            )}
+          </>
+        </select>
+      </div>
       <Charts>
         <Chart>
           <h4>Homework Quantity</h4>

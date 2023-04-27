@@ -294,43 +294,61 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                     </option>
                     {courseSubjFilter === "AMS" ? (
                       amsInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : courseSubjFilter === "ACC/BUS" ? (
                       accbusInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : courseSubjFilter === "CSE" ? (
                       cseInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : courseSubjFilter === "ESE" ? (
                       eseInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : courseSubjFilter === "EST/EMP" ? (
                       estempInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : courseSubjFilter === "MEC" ? (
                       mecInstructors.map((instructor) => (
-                        <option value={instructor}>{instructor}</option>
+                        <option key={instructor} value={instructor}>
+                          {instructor}
+                        </option>
                       ))
                     ) : instructor.instructorNum === 1 ? (
                       <>
-                        <option value="-2" disabled>
-                          SELECT INSTRUCTOR
-                        </option>
-                        <option value={instructor.instructorName[0]}>
+                        <option
+                          key={instructor.instructorName[0]}
+                          value={instructor.instructorName[0]}
+                        >
                           {instructor.instructorName[0]}
                         </option>
                       </>
                     ) : (
                       <>
-                        <option value={instructor.instructorName[0]}>
+                        <option
+                          key={instructor.instructorName[0]}
+                          value={instructor.instructorName[0]}
+                        >
                           {instructor.instructorName[0]}
                         </option>
-                        <option value={instructor.instructorName[1]}>
+                        <option
+                          key={instructor.instructorName[1]}
+                          value={instructor.instructorName[1]}
+                        >
                           {instructor.instructorName[1]}
                         </option>{" "}
                       </>

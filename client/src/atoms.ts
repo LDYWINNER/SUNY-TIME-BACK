@@ -76,6 +76,11 @@ export const emailConfirmationState = atom({
   },
 });
 
+export const overallInfoInstructorFilter = atom({
+  key: "overallInfoInstructorFilter",
+  default: "",
+});
+
 export interface ITodo {
   id: number;
   text: string;
