@@ -81,6 +81,31 @@ export const overallInfoInstructorState = atom({
   default: "",
 });
 
+interface ICourseReview {
+  course: string;
+  semester: string;
+  instructor: string;
+  myLetterGrade: string;
+  homeworkQuantity: string;
+  teamProjectPresence: boolean;
+  difficulty: string;
+  testQuantity: number;
+  quizPresence: boolean;
+  overallGrade: number;
+  overallEvaluation: string;
+  createdBy: string;
+  createdByUsername: string;
+  anonymity: boolean;
+  likes: [string];
+  _id: string;
+  createdAt: string;
+}
+
+export const courseReviewsState = atom<ICourseReview[]>({
+  key: "courseReviews",
+  default: [],
+});
+
 export interface ITodo {
   id: number;
   text: string;
