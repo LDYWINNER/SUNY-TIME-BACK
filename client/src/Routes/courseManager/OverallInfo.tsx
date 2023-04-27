@@ -1,5 +1,5 @@
 import ApexChart from "react-apexcharts";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   Wrapper,
   Charts,
@@ -11,6 +11,7 @@ import {
   courseReviewInstructorState,
   courseSearchState,
   isDarkAtom,
+  overallInfoInstructorState,
 } from "../../atoms";
 import img from "../../assets/images/no-review.svg";
 import { useForm } from "react-hook-form";
@@ -42,7 +43,10 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
   const isDark = useRecoilValue(isDarkAtom);
   const { courseSubjFilter } = useRecoilValue(courseSearchState);
   const instructor = useRecoilValue(courseReviewInstructorState);
-  const { register, handleSubmit, reset } = useForm<IForm>({
+  const [overallInfoInstructor, setOverallInfoInstructor] = useRecoilState(
+    overallInfoInstructorState
+  );
+  const { register } = useForm<IForm>({
     defaultValues: {
       instructor: "-2",
     },
@@ -58,17 +62,23 @@ const OverallInfo = ({ crResult }: IOverallInfo) => {
   }
   return (
     <Wrapper>
-      <h1>Overall Grade: {crResult.stars} / 5</h1>
+      <h1>
+        Overall Grade: {crResult.stars} / 5{" "}
+        {overallInfoInstructor && `- ${overallInfoInstructor}`}
+      </h1>
       <div className="form-row">
         <select
           {...register("instructor", { required: true })}
           defaultValue="-2"
-          onChange={() => {}}
+          onChange={(e) => {
+            setOverallInfoInstructor(e.target.value);
+          }}
         >
           <>
             <option value="-2" disabled>
               SELECT INSTRUCTOR
             </option>
+            <option value="ALL">ALL</option>
             {courseSubjFilter === "AMS" ? (
               amsInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>

@@ -76,8 +76,8 @@ export const emailConfirmationState = atom({
   },
 });
 
-export const overallInfoInstructorFilter = atom({
-  key: "overallInfoInstructorFilter",
+export const overallInfoInstructorState = atom({
+  key: "overallInfoInstructor",
   default: "",
 });
 
