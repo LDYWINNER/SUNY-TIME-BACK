@@ -76,11 +76,6 @@ export const emailConfirmationState = atom({
   },
 });
 
-export const overallInfoInstructorState = atom({
-  key: "overallInfoInstructor",
-  default: "",
-});
-
 interface ICourseReview {
   course: string;
   semester: string;

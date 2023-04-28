@@ -67,6 +67,7 @@ const AllCourses = () => {
     useRecoilState(globalCurrentState);
   const { courseNumOfPages } = useRecoilValue(globalCurrentState);
   const { courseSubjFilter, searchKeyword } = useRecoilValue(courseSearchState);
+  const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -82,7 +83,7 @@ const AllCourses = () => {
 
   //getting the posts
   const getCourse = useCallback(async () => {
-    let url = `course?page=${globalState.coursePage}&subj=${courseSubjFilter}`;
+    let url = `course?page=${globalState.coursePage}&subj=${courseSubjSearchFilter}`;
 
     if (searchKeyword) {
       url = url + `&search=${searchKeyword}`;
@@ -110,10 +111,10 @@ const AllCourses = () => {
     }
   }, [
     globalState.coursePage,
-    courseSubjFilter,
-    logoutUser,
+    courseSubjSearchFilter,
     searchKeyword,
     setGlobalCurrentState,
+    logoutUser,
   ]);
 
   useEffect(() => {
@@ -129,25 +130,25 @@ const AllCourses = () => {
           </FilterRow>
           <TitleRow>
             <Title>
-              {courseSubjFilter === "SHCourse"
+              {courseSubjSearchFilter === "SHCourse"
                 ? "Faculty of Sciences and Humanities"
-                : courseSubjFilter}{" "}
+                : courseSubjSearchFilter}{" "}
               Courses
             </Title>
-            {courseSubjFilter !== "SHCourse" && (
+            {courseSubjSearchFilter !== "SHCourse" && (
               <Link
                 to={
-                  courseSubjFilter === "AMS"
+                  courseSubjSearchFilter === "AMS"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ams/"
-                    : courseSubjFilter === "ACC/BUS"
+                    : courseSubjSearchFilter === "ACC/BUS"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/bus/"
-                    : courseSubjFilter === "CSE"
+                    : courseSubjSearchFilter === "CSE"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/cse/"
-                    : courseSubjFilter === "ESE"
+                    : courseSubjSearchFilter === "ESE"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ese/"
-                    : courseSubjFilter === "EST/EMP"
+                    : courseSubjSearchFilter === "EST/EMP"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/tsm/"
-                    : courseSubjFilter === "MEC"
+                    : courseSubjSearchFilter === "MEC"
                     ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/mec/"
                     : ""
                 }

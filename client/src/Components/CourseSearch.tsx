@@ -17,6 +17,7 @@ const CourseSearch = () => {
   const setGlobalState = useSetRecoilState(globalCurrentState);
   const [localSearch, setLocalSearch] = useState("");
   const isDark = useRecoilValue(isDarkAtom);
+  const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
 
   const onValid: SubmitHandler<IForm> = () => {
     //clear search
@@ -96,13 +97,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="AMS"
             id="AMS"
-            checked={courseSearch.courseSubjFilter === "AMS"}
+            checked={courseSubjSearchFilter === "AMS"}
           />
           <label htmlFor="AMS">AMS</label>
           <input
@@ -122,13 +124,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="ACC/BUS"
             id="ACC/BUS"
-            checked={courseSearch.courseSubjFilter === "ACC/BUS"}
+            checked={courseSubjSearchFilter === "ACC/BUS"}
           />
           <label htmlFor="ACC/BUS">ACC/BUS</label>
           <input
@@ -148,13 +151,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="CSE"
             id="CSE"
-            checked={courseSearch.courseSubjFilter === "CSE"}
+            checked={courseSubjSearchFilter === "CSE"}
           />
           <label htmlFor="CSE">CSE</label>
           <input
@@ -174,13 +178,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="ESE"
             id="ESE"
-            checked={courseSearch.courseSubjFilter === "ESE"}
+            checked={courseSubjSearchFilter === "ESE"}
           />
           <label htmlFor="ESE">ESE</label>
           <input
@@ -200,13 +205,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="EST/EMP"
             id="EST/EMP"
-            checked={courseSearch.courseSubjFilter === "EST/EMP"}
+            checked={courseSubjSearchFilter === "EST/EMP"}
           />
           <label htmlFor="EST/EMP">EST/EMP</label>
           <input
@@ -226,13 +232,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="MEC"
             id="MEC"
-            checked={courseSearch.courseSubjFilter === "MEC"}
+            checked={courseSubjSearchFilter === "MEC"}
           />
           <label htmlFor="MEC">MEC</label>
           <input
@@ -252,13 +259,14 @@ const CourseSearch = () => {
                     courseSubjFilter: e.target.value,
                   };
                 });
+                localStorage.setItem("courseSubjSearchFilter", e.target.value);
               },
             })}
             type="radio"
             name="radio"
             value="SHCourse"
             id="SHCourse"
-            checked={courseSearch.courseSubjFilter === "SHCourse"}
+            checked={courseSubjSearchFilter === "SHCourse"}
           />
           <label htmlFor="SHCourse">교양/Writing</label>
         </Filters>

@@ -59,6 +59,8 @@ function Header() {
       };
     });
     removeUserFromLocalStorage();
+    localStorage.setItem("courseSubjSearchFilter", "AMS");
+    localStorage.setItem("filterInstructor", "ALL");
     navigate("/");
     window.location.reload();
   };

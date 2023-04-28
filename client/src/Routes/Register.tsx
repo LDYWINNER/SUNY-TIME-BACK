@@ -73,6 +73,7 @@ function Register() {
         });
         //adding user to local storage
         addUserToLocalStorage({ user, token });
+        localStorage.setItem("courseSubjSearchFilter", "AMS");
         setValues({ ...values, formSuccess: true });
         //navigate back to previous page
         navigateBackOrNot = true;

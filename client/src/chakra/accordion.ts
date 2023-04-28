@@ -4,7 +4,14 @@ import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(accordionAnatomy.keys);
 
-const { isDark } = JSON.parse(localStorage.getItem("recoil-persist") as string);
+let isDark = false;
+try {
+  const rp = JSON.parse(localStorage.getItem("recoil-persist") as string);
+  isDark = rp.isDark;
+} catch (error) {
+  console.log(error);
+}
+
 console.log(isDark);
 
 const baseStyle = definePartsStyle({

@@ -173,7 +173,7 @@ const SingleCourse = () => {
 
       setCourseReview(reviews);
 
-      localStorage.setItem("filterInstructor", "ALL");
+      // localStorage.setItem("filterInstructor", "ALL");
 
       console.log(data);
 

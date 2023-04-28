@@ -11,9 +11,7 @@ import {
   courseReviewInstructorState,
   courseReviewResultState,
   courseReviewsState,
-  courseSearchState,
   isDarkAtom,
-  overallInfoInstructorState,
 } from "../../atoms";
 import img from "../../assets/images/no-review.svg";
 import { useForm } from "react-hook-form";
@@ -33,11 +31,8 @@ interface IForm {
 
 const OverallInfo = () => {
   const isDark = useRecoilValue(isDarkAtom);
-  const { courseSubjFilter } = useRecoilValue(courseSearchState);
   const instructor = useRecoilValue(courseReviewInstructorState);
-  const [overallInfoInstructor, setOverallInfoInstructor] = useRecoilState(
-    overallInfoInstructorState
-  );
+
   const [crResult, setCourseReviewResult] = useRecoilState(
     courseReviewResultState
   );
@@ -48,6 +43,7 @@ const OverallInfo = () => {
     },
   });
   const filterInstructor = localStorage.getItem("filterInstructor");
+  const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
 
   const calculateReviewResult = () => {
     let reviews;
@@ -156,7 +152,6 @@ const OverallInfo = () => {
             defaultValue="-2"
             value={filterInstructor as string}
             onChange={(e) => {
-              setOverallInfoInstructor(e.target.value);
               localStorage.setItem("filterInstructor", e.target.value);
               window.location.reload();
             }}
@@ -166,37 +161,37 @@ const OverallInfo = () => {
                 SELECT INSTRUCTOR
               </option>
               <option value="ALL">ALL</option>
-              {courseSubjFilter === "AMS" ? (
+              {courseSubjSearchFilter === "AMS" ? (
                 amsInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
                   </option>
                 ))
-              ) : courseSubjFilter === "ACC/BUS" ? (
+              ) : courseSubjSearchFilter === "ACC/BUS" ? (
                 accbusInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
                   </option>
                 ))
-              ) : courseSubjFilter === "CSE" ? (
+              ) : courseSubjSearchFilter === "CSE" ? (
                 cseInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
                   </option>
                 ))
-              ) : courseSubjFilter === "ESE" ? (
+              ) : courseSubjSearchFilter === "ESE" ? (
                 eseInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
                   </option>
                 ))
-              ) : courseSubjFilter === "EST/EMP" ? (
+              ) : courseSubjSearchFilter === "EST/EMP" ? (
                 estempInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
                   </option>
                 ))
-              ) : courseSubjFilter === "MEC" ? (
+              ) : courseSubjSearchFilter === "MEC" ? (
                 mecInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
@@ -242,7 +237,7 @@ const OverallInfo = () => {
     <Wrapper>
       <h1>
         Overall Grade: {crResult.stars} / 5{" "}
-        {overallInfoInstructor && `- ${overallInfoInstructor}`}
+        {filterInstructor && `- ${filterInstructor}`}
       </h1>
       <div className="form-row">
         <select
@@ -250,7 +245,6 @@ const OverallInfo = () => {
           defaultValue="-2"
           value={filterInstructor as string}
           onChange={(e) => {
-            setOverallInfoInstructor(e.target.value);
             localStorage.setItem("filterInstructor", e.target.value);
             window.location.reload();
           }}
@@ -260,37 +254,37 @@ const OverallInfo = () => {
               SELECT INSTRUCTOR
             </option>
             <option value="ALL">ALL</option>
-            {courseSubjFilter === "AMS" ? (
+            {courseSubjSearchFilter === "AMS" ? (
               amsInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
                 </option>
               ))
-            ) : courseSubjFilter === "ACC/BUS" ? (
+            ) : courseSubjSearchFilter === "ACC/BUS" ? (
               accbusInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
                 </option>
               ))
-            ) : courseSubjFilter === "CSE" ? (
+            ) : courseSubjSearchFilter === "CSE" ? (
               cseInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
                 </option>
               ))
-            ) : courseSubjFilter === "ESE" ? (
+            ) : courseSubjSearchFilter === "ESE" ? (
               eseInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
                 </option>
               ))
-            ) : courseSubjFilter === "EST/EMP" ? (
+            ) : courseSubjSearchFilter === "EST/EMP" ? (
               estempInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
                 </option>
               ))
-            ) : courseSubjFilter === "MEC" ? (
+            ) : courseSubjSearchFilter === "MEC" ? (
               mecInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}
