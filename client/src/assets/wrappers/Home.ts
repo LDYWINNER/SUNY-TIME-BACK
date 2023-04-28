@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Wrapper = styled.div<{ bgImage: string }>`
@@ -12,6 +13,12 @@ const Wrapper = styled.div<{ bgImage: string }>`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.theme.white.lighter};
+`;
+
+const Logo = styled(motion.img)`
+  margin-right: 50px;
+  width: 150px;
+  height: 50px;
 `;
 
 const Main = styled.div`
@@ -78,4 +85,5 @@ export {
   LogoDate,
   Img,
   SUNYTIME,
+  Logo,
 };

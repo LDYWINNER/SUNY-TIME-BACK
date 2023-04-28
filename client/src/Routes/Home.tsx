@@ -14,10 +14,22 @@ import {
   LogoDate,
   SUNYTIME,
   Img,
+  Logo,
 } from "../assets/wrappers/Home";
 import { startInterval } from "../utils";
 import { useRecoilValue } from "recoil";
 import { globalCurrentState } from "../atoms";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import navbarlogo from "../assets/images/navbar_logo.svg";
+import img from "../assets/images/working.svg";
 
 function Home() {
   const [bgImage, setbgImage] = useState("");
@@ -32,8 +44,12 @@ function Home() {
     });
   };
   const globalState = useRecoilValue(globalCurrentState);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
+    if (window.innerWidth < 1000) {
+      onOpen();
+    }
     let weatherId: NodeJS.Timer;
     weatherId = startInterval(10, () => {
       fetchWeather();
@@ -67,6 +83,20 @@ function Home() {
           </LogoDate>
           <Quotes />
         </MainContent>
+        <Drawer onClose={onClose} isOpen={isOpen} size="full">
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>
+              <Logo src={navbarlogo} alt="sunytime" />
+            </DrawerHeader>
+            <DrawerBody fontWeight={500}>
+              <p>SUNYTIME doesn't support mobile web view for now... :(</p>
+              <p>We are currently working on it so please wait!</p>
+              <img src={img} alt="working" />
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Main>
     </Wrapper>
   );
