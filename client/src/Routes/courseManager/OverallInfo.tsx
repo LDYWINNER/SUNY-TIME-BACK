@@ -26,7 +26,6 @@ import {
   mecInstructors,
 } from "../../utils";
 import { useEffect } from "react";
-import { filter } from "@chakra-ui/react";
 
 interface IForm {
   instructor: string;
@@ -51,11 +50,7 @@ const OverallInfo = () => {
   const filterInstructor = localStorage.getItem("filterInstructor");
 
   const calculateReviewResult = () => {
-    console.log("hey");
-
-    console.log(courseReview);
     let reviews;
-    console.log(overallInfoInstructor);
     // reviews = courseReview;
     if (filterInstructor === "ALL") {
       reviews = courseReview;
