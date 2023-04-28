@@ -59,6 +59,8 @@ const CourseBulletinAllPosts = ({ id }: ICourseBulletinAllPosts) => {
       };
     });
     removeUserFromLocalStorage();
+    localStorage.setItem("courseSubjSearchFilter", "AMS");
+    localStorage.setItem("filterInstructor", "ALL");
     window.location.reload();
   }, [setGlobalCurrentState]);
 

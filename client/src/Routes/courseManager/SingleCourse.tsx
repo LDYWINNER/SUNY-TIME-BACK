@@ -100,6 +100,8 @@ const SingleCourse = () => {
       };
     });
     removeUserFromLocalStorage();
+    localStorage.setItem("courseSubjSearchFilter", "AMS");
+    localStorage.setItem("filterInstructor", "ALL");
     window.location.reload();
   }, [setGlobalCurrentState]);
 
@@ -173,15 +175,13 @@ const SingleCourse = () => {
 
       setCourseReview(reviews);
 
-      // localStorage.setItem("filterInstructor", "ALL");
-
       console.log(data);
 
       setIsLoading(false);
     } catch (error: any) {
       console.log(error);
       // log user out
-      // logoutUser();
+      logoutUser();
     }
   }, [id, logoutUser]);
 
