@@ -20,7 +20,7 @@ import {
   ClassieBtn,
   WoolfieIcon,
 } from "../../assets/wrappers/AllCourses";
-import { courseSearchState, globalCurrentState } from "../../atoms";
+import { courseSearchState, globalCurrentState, isDarkAtom } from "../../atoms";
 import { CourseSearch, CoursePagination, Announcement } from "../../Components";
 import { Loading } from "../../Components";
 import { removeUserFromLocalStorage } from "../../utils";
@@ -68,6 +68,7 @@ const AllCourses = () => {
   const { courseNumOfPages } = useRecoilValue(globalCurrentState);
   const { courseSubjFilter, searchKeyword } = useRecoilValue(courseSearchState);
   const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
+  const isDark = useRecoilValue(isDarkAtom);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -178,7 +179,7 @@ const AllCourses = () => {
                       </h4>
                       <IconRow>
                         <Icon>
-                          <Row style={{ color: "blue" }}>
+                          <Row style={{ color: isDark ? "yellow" : "blue" }}>
                             <AiOutlineLike />
                             {course.likes.length}
                           </Row>
