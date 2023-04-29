@@ -47,7 +47,7 @@ function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    if (window.innerWidth < 1000) {
+    if (window.innerWidth < 768) {
       onOpen();
     }
     let weatherId: NodeJS.Timer;
