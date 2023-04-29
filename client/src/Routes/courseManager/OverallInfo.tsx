@@ -27,6 +27,7 @@ import { useEffect } from "react";
 
 interface IForm {
   instructor: string;
+  semester: string;
 }
 
 const OverallInfo = () => {
@@ -39,22 +40,33 @@ const OverallInfo = () => {
   const { register } = useForm<IForm>({
     defaultValues: {
       instructor: "-2",
+      semester: "-1",
     },
   });
   const filterInstructor = localStorage.getItem("filterInstructor");
+  const filterSemester = localStorage.getItem("filterSemester");
   const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
   const data = JSON.parse(localStorage.getItem("currentCourse") as string);
   console.log(data.subj);
 
   const calculateReviewResult = () => {
     let reviews;
-    // reviews = courseReview;
-    if (filterInstructor === "ALL") {
-      reviews = courseReview;
-    } else {
+    if (filterInstructor !== "ALL" && filterSemester === "ALL") {
+      console.log("instructor");
+
       reviews = courseReview.filter(
         (review) => review.instructor === filterInstructor
       );
+    } else if (filterInstructor === "ALL" && filterSemester !== "ALL") {
+      console.log("semester");
+
+      reviews = courseReview.filter(
+        (review) => review.semester === filterSemester
+      );
+    } else {
+      console.log("else");
+
+      reviews = courseReview;
     }
 
     //calculate course review data
@@ -153,6 +165,7 @@ const OverallInfo = () => {
             defaultValue="-2"
             value={filterInstructor as string}
             onChange={(e) => {
+              localStorage.setItem("filterSemester", "ALL");
               localStorage.setItem("filterInstructor", e.target.value);
               window.location.reload();
             }}
@@ -225,6 +238,27 @@ const OverallInfo = () => {
               )}
             </>
           </select>
+          <select
+            {...register("semester", { required: true })}
+            defaultValue="-1"
+            value={filterSemester as string}
+            onChange={(e) => {
+              localStorage.setItem("filterInstructor", "ALL");
+              localStorage.setItem("filterSemester", e.target.value);
+              window.location.reload();
+            }}
+          >
+            <option value="-1" disabled>
+              SELECT SEMESTER YOU TOOK THIS COURSE
+            </option>
+            <option value="ALL">ALL</option>
+            <option value="2022-fall">2022 Fall</option>
+            <option value="2022-spring">2022 Spring</option>
+            <option value="2021-fall">2021 Fall</option>
+            <option value="2021-spring">2021 Spring</option>
+            <option value="2020-fall">2020 Fall</option>
+            <option value="2020-spring">2020 Spring</option>
+          </select>
         </div>
         <img src={img} alt="not review" />
         <Span>
@@ -236,16 +270,18 @@ const OverallInfo = () => {
   }
   return (
     <Wrapper>
-      <h1>
-        Overall Grade: {crResult.stars} / 5{" "}
-        {filterInstructor && `- ${filterInstructor}`}
-      </h1>
+      <h1>Overall Grade: {crResult.stars} / 5 </h1>
+      <h4>
+        {filterInstructor !== "ALL" && `Instructor: ${filterInstructor}`}
+        {filterSemester !== "ALL" && `Semester: ${filterSemester}`}
+      </h4>
       <div className="form-row">
         <select
           {...register("instructor", { required: true })}
           defaultValue="-2"
           value={filterInstructor as string}
           onChange={(e) => {
+            localStorage.setItem("filterSemester", "ALL");
             localStorage.setItem("filterInstructor", e.target.value);
             window.location.reload();
           }}
@@ -317,6 +353,28 @@ const OverallInfo = () => {
               </>
             )}
           </>
+        </select>
+        <select
+          {...register("semester", { required: true })}
+          defaultValue="-1"
+          style={{ width: "20%" }}
+          value={filterSemester as string}
+          onChange={(e) => {
+            localStorage.setItem("filterInstructor", "ALL");
+            localStorage.setItem("filterSemester", e.target.value);
+            window.location.reload();
+          }}
+        >
+          <option value="-1" disabled>
+            SELECT SEMESTER YOU TOOK THIS COURSE
+          </option>
+          <option value="ALL">ALL</option>
+          <option value="2022-fall">2022 Fall</option>
+          <option value="2022-spring">2022 Spring</option>
+          <option value="2021-fall">2021 Fall</option>
+          <option value="2021-spring">2021 Spring</option>
+          <option value="2020-fall">2020 Fall</option>
+          <option value="2020-spring">2020 Spring</option>
         </select>
       </div>
       <Charts>

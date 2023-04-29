@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
     font-size: 30px;
     margin-bottom: 20px;
   }
+  h4 {
+    margin-bottom: 10px;
+  }
 `;
 
 export const Charts = styled.div`

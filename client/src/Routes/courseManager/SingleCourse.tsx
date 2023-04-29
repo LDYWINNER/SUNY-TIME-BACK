@@ -104,6 +104,7 @@ const SingleCourse = () => {
     removeUserFromLocalStorage();
     localStorage.setItem("courseSubjSearchFilter", "AMS");
     localStorage.setItem("filterInstructor", "ALL");
+    localStorage.setItem("filterSemester", "ALL");
     window.location.reload();
   }, [setGlobalCurrentState]);
 

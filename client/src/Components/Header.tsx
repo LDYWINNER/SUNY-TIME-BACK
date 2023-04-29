@@ -61,6 +61,7 @@ function Header() {
     removeUserFromLocalStorage();
     localStorage.setItem("courseSubjSearchFilter", "AMS");
     localStorage.setItem("filterInstructor", "ALL");
+    localStorage.setItem("filterSemester", "ALL");
     navigate("/");
     window.location.reload();
   };
