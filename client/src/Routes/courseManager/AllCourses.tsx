@@ -123,6 +123,8 @@ const AllCourses = () => {
 
   useEffect(() => {
     getCourse();
+    localStorage.setItem("filterInstructor", "ALL");
+    localStorage.setItem("filterSemester", "ALL");
   }, [getCourse, courseSubjFilter, searchKeyword, globalState.coursePage]);
 
   return (
