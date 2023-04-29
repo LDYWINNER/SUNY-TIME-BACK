@@ -26,7 +26,6 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   courseReviewInstructorState,
-  courseSearchState,
   currentCourseState,
   globalCurrentState,
   isDarkAtom,
@@ -110,9 +109,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
     },
   });
   const isDark = useRecoilValue(isDarkAtom);
-  const { courseSubjFilter } = useRecoilValue(courseSearchState);
   const instructor = useRecoilValue(courseReviewInstructorState);
   const { subj } = useRecoilValue(currentCourseState);
+  const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newCourseReview = {
@@ -294,37 +293,37 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                     <option value="-2" disabled>
                       SELECT INSTRUCTOR
                     </option>
-                    {courseSubjFilter === "AMS" || subj === "MAT" ? (
+                    {courseSubjSearchFilter === "AMS" || subj === "MAT" ? (
                       amsInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
                         </option>
                       ))
-                    ) : courseSubjFilter === "ACC/BUS" ? (
+                    ) : courseSubjSearchFilter === "ACC/BUS" ? (
                       accbusInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
                         </option>
                       ))
-                    ) : courseSubjFilter === "CSE" ? (
+                    ) : courseSubjSearchFilter === "CSE" ? (
                       cseInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
                         </option>
                       ))
-                    ) : courseSubjFilter === "ESE" ? (
+                    ) : courseSubjSearchFilter === "ESE" ? (
                       eseInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
                         </option>
                       ))
-                    ) : courseSubjFilter === "EST/EMP" ? (
+                    ) : courseSubjSearchFilter === "EST/EMP" ? (
                       estempInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
                         </option>
                       ))
-                    ) : courseSubjFilter === "MEC" ? (
+                    ) : courseSubjSearchFilter === "MEC" ? (
                       mecInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
