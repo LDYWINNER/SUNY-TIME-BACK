@@ -27,6 +27,7 @@ import {
 import {
   courseReviewInstructorState,
   courseReviewsState,
+  currentCourseState,
   globalCurrentState,
   isDarkAtom,
 } from "../../atoms";
@@ -90,6 +91,7 @@ const SingleCourse = () => {
   );
   const isDark = useRecoilValue(isDarkAtom);
   const setCourseReview = useSetRecoilState(courseReviewsState);
+  const setCurrentCourse = useSetRecoilState(currentCourseState);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -174,6 +176,18 @@ const SingleCourse = () => {
       });
 
       setCourseReview(reviews);
+
+      setCurrentCourse({
+        subj,
+        crs,
+      });
+      localStorage.setItem(
+        "currentCourse",
+        JSON.stringify({
+          subj,
+          crs,
+        })
+      );
 
       console.log(data);
 

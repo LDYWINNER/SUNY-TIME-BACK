@@ -32,7 +32,6 @@ interface IForm {
 const OverallInfo = () => {
   const isDark = useRecoilValue(isDarkAtom);
   const instructor = useRecoilValue(courseReviewInstructorState);
-
   const [crResult, setCourseReviewResult] = useRecoilState(
     courseReviewResultState
   );
@@ -44,6 +43,8 @@ const OverallInfo = () => {
   });
   const filterInstructor = localStorage.getItem("filterInstructor");
   const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
+  const data = JSON.parse(localStorage.getItem("currentCourse") as string);
+  console.log(data.subj);
 
   const calculateReviewResult = () => {
     let reviews;
@@ -161,7 +162,7 @@ const OverallInfo = () => {
                 SELECT INSTRUCTOR
               </option>
               <option value="ALL">ALL</option>
-              {courseSubjSearchFilter === "AMS" ? (
+              {courseSubjSearchFilter === "AMS" || data.subj === "MAT" ? (
                 amsInstructors.map((instructor) => (
                   <option key={instructor} value={instructor}>
                     {instructor}
@@ -254,7 +255,7 @@ const OverallInfo = () => {
               SELECT INSTRUCTOR
             </option>
             <option value="ALL">ALL</option>
-            {courseSubjSearchFilter === "AMS" ? (
+            {courseSubjSearchFilter === "AMS" || data.subj === "MAT" ? (
               amsInstructors.map((instructor) => (
                 <option key={instructor} value={instructor}>
                   {instructor}

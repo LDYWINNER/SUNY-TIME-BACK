@@ -101,6 +101,14 @@ export const courseReviewsState = atom<ICourseReview[]>({
   default: [],
 });
 
+export const currentCourseState = atom({
+  key: "currentCourse",
+  default: {
+    subj: "",
+    crs: "",
+  },
+});
+
 export interface ITodo {
   id: number;
   text: string;

@@ -27,6 +27,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   courseReviewInstructorState,
   courseSearchState,
+  currentCourseState,
   globalCurrentState,
   isDarkAtom,
 } from "../atoms";
@@ -111,6 +112,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
   const isDark = useRecoilValue(isDarkAtom);
   const { courseSubjFilter } = useRecoilValue(courseSearchState);
   const instructor = useRecoilValue(courseReviewInstructorState);
+  const { subj } = useRecoilValue(currentCourseState);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     const newCourseReview = {
@@ -292,7 +294,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                     <option value="-2" disabled>
                       SELECT INSTRUCTOR
                     </option>
-                    {courseSubjFilter === "AMS" ? (
+                    {courseSubjFilter === "AMS" || subj === "MAT" ? (
                       amsInstructors.map((instructor) => (
                         <option key={instructor} value={instructor}>
                           {instructor}
