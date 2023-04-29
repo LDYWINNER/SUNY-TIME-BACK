@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  height: 100vh;
+  height: 110vh;
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 90px;
-  margin-bottom: 20px;
+  padding-top: 90px;
+  padding-bottom: 50px;
+  background-color: ${(props) => props.theme.bgColor.lighter};
   .main-blue {
     background-color: ${(props) => props.theme.main.blue};
     color: ${(props) => props.theme.white.lighter};
