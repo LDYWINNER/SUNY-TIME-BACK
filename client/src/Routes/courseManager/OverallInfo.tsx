@@ -241,6 +241,7 @@ const OverallInfo = () => {
           <select
             {...register("semester", { required: true })}
             defaultValue="-1"
+            style={{ width: "20%" }}
             value={filterSemester as string}
             onChange={(e) => {
               localStorage.setItem("filterInstructor", "ALL");
@@ -262,8 +263,8 @@ const OverallInfo = () => {
         </div>
         <img src={img} alt="not review" />
         <Span>
-          No review yet for this course OR This instructor never taught this
-          course... :(
+          No review yet for this course for the semester you chose OR This
+          instructor never taught this course... :(
         </Span>
       </NoReviewContainer>
     );
