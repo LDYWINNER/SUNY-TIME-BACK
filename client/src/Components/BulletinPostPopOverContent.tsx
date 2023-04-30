@@ -130,13 +130,13 @@ function BulletinPostPopOverContent() {
 
               <div className="form-row">
                 <label htmlFor="title" className="form-label">
-                  Title
+                  제목
                 </label>
                 <input
                   type="text"
                   className="form-input"
                   {...register("title", { required: true })}
-                  placeholder="TITLE"
+                  placeholder="제목"
                 ></input>
               </div>
               {errors?.title?.message && (
@@ -146,7 +146,7 @@ function BulletinPostPopOverContent() {
               <div className="form-row">
                 <Row>
                   <label htmlFor="content" className="form-label">
-                    Content
+                    내용
                   </label>
                   <Tooltip
                     hasArrow
@@ -194,12 +194,12 @@ function BulletinPostPopOverContent() {
               )}
 
               <label htmlFor="existingBoard" className="form-label">
-                SELECT BOARD
+                게시판 선택
               </label>
               <Row>
                 <select {...register("existingBoard")} defaultValue="-1">
                   <option value="-1" disabled>
-                    SELECT BOARD
+                    게시판 선택
                   </option>
                   <option value="Free">자유게시판</option>
                   <option value="Secret">비밀게시판</option>
@@ -219,9 +219,9 @@ function BulletinPostPopOverContent() {
                   id="anonymity"
                   className="anonymity-checkbox"
                 />
-                <label htmlFor="anonymity">Anonymity</label>
+                <label htmlFor="anonymity">익명</label>
               </div>
-              <Button type="submit">Save</Button>
+              <Button type="submit">저장</Button>
             </PopoverFooter>
           </form>
         </Wrapper>

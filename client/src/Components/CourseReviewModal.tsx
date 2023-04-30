@@ -267,7 +267,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 )}
 
                 <label htmlFor="semester" className="form-label">
-                  Semester & Instructor
+                  수강학기 & 교수님
                 </label>
                 <select
                   {...register("semester", { required: true })}
@@ -275,7 +275,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   style={{ width: "50%" }}
                 >
                   <option value="-1" disabled>
-                    SELECT SEMESTER YOU TOOK THIS COURSE
+                    수강학기
                   </option>
                   <option value="2022-fall">2022 Fall</option>
                   <option value="2022-spring">2022 Spring</option>
@@ -291,7 +291,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 >
                   <>
                     <option value="-2" disabled>
-                      SELECT INSTRUCTOR
+                      교수님
                     </option>
                     {courseSubjSearchFilter === "AMS" || subj === "MAT" ? (
                       amsInstructors.map((instructor) => (
@@ -360,11 +360,11 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                 <FormRow>
                   <div>
                     <label htmlFor="myLetterGrade" className="form-label">
-                      My Letter Grade (Optional)
+                      받은 Letter grade (선택)
                     </label>
                     <select {...register("myLetterGrade")} defaultValue="-1">
                       <option value="-1" disabled>
-                        SELECT THE LETTER GRADE YOU RECEIVED
+                        받은 Letter grade
                       </option>
                       <option value="A">A</option>
                       <option value="A-">A-</option>
@@ -383,7 +383,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   </div>
 
                   <div>
-                    <label className="form-label">Overall Course Rating</label>
+                    <label className="form-label">총 별점</label>
                     <StarRating>
                       {[...Array(5)].map((star, index) => {
                         index += 1;
@@ -412,38 +412,41 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   </div>
                 </FormRow>
 
-                <label className="form-label">Difficulty</label>
+                <label className="form-label">난이도</label>
                 <Row>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={difficultyItems[0]}
+                    fontWeight={400}
                     onChange={(e) =>
                       setdifficultyItems([e.target.checked, false, false])
                     }
                   >
-                    difficult
+                    어려움
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={difficultyItems[1]}
+                    fontWeight={400}
                     onChange={(e) =>
                       setdifficultyItems([false, e.target.checked, false])
                     }
                   >
-                    soso
+                    중간
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={difficultyItems[2]}
+                    fontWeight={400}
                     onChange={(e) =>
                       setdifficultyItems([false, false, e.target.checked])
                     }
                   >
-                    easy
+                    쉬움
                   </Checkbox>
                 </Row>
 
-                <label className="form-label">TEST QUANTITY</label>
+                <label className="form-label">시험 개수(미드텀 & 파이널)</label>
                 <Row>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
@@ -522,81 +525,88 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   </Checkbox>
                 </Row>
 
-                <label className="form-label">HOMEWORK QUANTITY</label>
+                <label className="form-label">과제량</label>
                 <Row>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={hwQuantityItems[0]}
+                    fontWeight={400}
                     onChange={(e) =>
                       sethwQuantityItems([e.target.checked, false, false])
                     }
                   >
-                    many
+                    많음
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={hwQuantityItems[1]}
+                    fontWeight={400}
                     onChange={(e) =>
                       sethwQuantityItems([false, e.target.checked, false])
                     }
                   >
-                    soso
+                    보통
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={hwQuantityItems[2]}
+                    fontWeight={400}
                     onChange={(e) =>
                       sethwQuantityItems([false, false, e.target.checked])
                     }
                   >
-                    few
+                    적음
                   </Checkbox>
                 </Row>
 
-                <label className="form-label">Team Project Presence</label>
+                <label className="form-label">팀플 유무</label>
                 <Row>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={teamProjectPresence[0]}
+                    fontWeight={400}
                     onChange={(e) =>
                       setTeamProjectPresence([e.target.checked, false])
                     }
                   >
-                    Yes
+                    있음
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={teamProjectPresence[1]}
+                    fontWeight={400}
                     onChange={(e) =>
                       setTeamProjectPresence([false, e.target.checked])
                     }
                   >
-                    No
+                    없음
                   </Checkbox>
                 </Row>
 
-                <label className="form-label">Quiz Presence</label>
+                <label className="form-label">퀴즈 유무</label>
                 <Row>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={quizPresence[0]}
+                    fontWeight={400}
                     onChange={(e) => setQuizPresence([e.target.checked, false])}
                   >
-                    Yes
+                    있음
                   </Checkbox>
                   <Checkbox
                     borderColor={isDark ? "white" : "black"}
                     isChecked={quizPresence[1]}
+                    fontWeight={400}
                     onChange={(e) => setQuizPresence([false, e.target.checked])}
                   >
-                    No
+                    없음
                   </Checkbox>
                 </Row>
 
                 <div className="form-row">
                   <Row>
                     <label htmlFor="overallEvaluation" className="form-label">
-                      Overall Evaluaiton
+                      총평
                     </label>
                     <Tooltip
                       hasArrow
@@ -608,10 +618,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                           </p>
                           <br />
                           <p>
-                            Overall Evaluation 에는 과목에 대한 총평을
-                            남겨주시면 감사하겠습니다 (점수를 잘 받기 위한 꿀팁,
-                            무엇을 배우는지, 교수님에 대한 코멘트, 출석체크 방법
-                            등).
+                            총평에는 과목에 대한 총평을 남겨주시면
+                            감사하겠습니다 (점수를 잘 받기 위한 꿀팁, 무엇을
+                            배우는지, 교수님에 대한 코멘트, 출석체크 방법 등).
                           </p>
                         </>
                       }
@@ -625,7 +634,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                     cols={30}
                     className="form-input"
                     {...register("overallEvaluation")}
-                    placeholder="Overall Evaluation here"
+                    placeholder="코스 총평"
                   ></textarea>
                 </div>
               </ModalBody>
@@ -638,9 +647,9 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                       id="anonymity"
                       className="anonymity-checkbox"
                     />
-                    <label htmlFor="anonymity">Anonymity</label>
+                    <label htmlFor="anonymity">익명</label>
                   </div>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit">저장</Button>
                 </Footer>
               </ModalFooter>
             </form>

@@ -172,7 +172,7 @@ const OverallInfo = () => {
           >
             <>
               <option value="-2" disabled>
-                SELECT INSTRUCTOR
+                교수
               </option>
               <option value="ALL">ALL</option>
               {courseSubjSearchFilter === "AMS" || data.subj === "MAT" ? (
@@ -241,7 +241,7 @@ const OverallInfo = () => {
           <select
             {...register("semester", { required: true })}
             defaultValue="-1"
-            style={{ width: "20%" }}
+            style={{ width: "10%" }}
             value={filterSemester as string}
             onChange={(e) => {
               localStorage.setItem("filterInstructor", "ALL");
@@ -250,7 +250,7 @@ const OverallInfo = () => {
             }}
           >
             <option value="-1" disabled>
-              SELECT SEMESTER YOU TOOK THIS COURSE
+              수강학기
             </option>
             <option value="ALL">ALL</option>
             <option value="2022-fall">2022 Fall</option>
@@ -271,13 +271,13 @@ const OverallInfo = () => {
   }
   return (
     <Wrapper>
-      <h1>Overall Grade: {crResult.stars} / 5 </h1>
+      <h1>총점: {crResult.stars} / 5 </h1>
       <h4>
         {filterInstructor === "ALL" &&
           filterSemester === "ALL" &&
-          "Instructor: ALL & Semester: ALL"}
-        {filterInstructor !== "ALL" && `Instructor: ${filterInstructor}`}
-        {filterSemester !== "ALL" && `Semester: ${filterSemester}`}
+          "교수: ALL & 수강학기: ALL"}
+        {filterInstructor !== "ALL" && `교수: ${filterInstructor}`}
+        {filterSemester !== "ALL" && `수강학기: ${filterSemester}`}
       </h4>
       <div className="form-row">
         <select
@@ -292,7 +292,7 @@ const OverallInfo = () => {
         >
           <>
             <option value="-2" disabled>
-              SELECT INSTRUCTOR
+              교수
             </option>
             <option value="ALL">ALL</option>
             {courseSubjSearchFilter === "AMS" || data.subj === "MAT" ? (
@@ -361,7 +361,7 @@ const OverallInfo = () => {
         <select
           {...register("semester", { required: true })}
           defaultValue="-1"
-          style={{ width: "20%" }}
+          style={{ width: "10%" }}
           value={filterSemester as string}
           onChange={(e) => {
             localStorage.setItem("filterInstructor", "ALL");
@@ -370,7 +370,7 @@ const OverallInfo = () => {
           }}
         >
           <option value="-1" disabled>
-            SELECT SEMESTER YOU TOOK THIS COURSE
+            수강학기
           </option>
           <option value="ALL">ALL</option>
           <option value="2022-fall">2022 Fall</option>
@@ -383,12 +383,12 @@ const OverallInfo = () => {
       </div>
       <Charts>
         <Chart>
-          <h4>Homework Quantity</h4>
+          <h4>과제량</h4>
           <ApexChart
             type="bar"
             series={[
               {
-                name: "Homework Quantity",
+                name: "과제량",
                 data: [...crResult.homeworkQuantity],
               },
             ]}
@@ -427,7 +427,7 @@ const OverallInfo = () => {
                 axisTicks: {
                   show: false,
                 },
-                categories: ["many", "soso", "few"],
+                categories: ["많음", "보통", "적음"],
               },
               colors: ["#0fbcf9"],
               tooltip: {
@@ -439,12 +439,12 @@ const OverallInfo = () => {
           />
         </Chart>
         <Chart>
-          <h4>Difficulty</h4>
+          <h4>난이도</h4>
           <ApexChart
             type="bar"
             series={[
               {
-                name: "Difficulty",
+                name: "난이도",
                 data: [...crResult.difficulty],
               },
             ]}
@@ -483,7 +483,7 @@ const OverallInfo = () => {
                 axisTicks: {
                   show: false,
                 },
-                categories: ["difficult", "soso", "easy"],
+                categories: ["어려움", "중간", "쉬움"],
               },
               colors: ["#0fbcf9"],
               tooltip: {
@@ -495,12 +495,12 @@ const OverallInfo = () => {
           />
         </Chart>
         <Chart>
-          <h4>Test Quantity</h4>
+          <h4>시험 개수</h4>
           <ApexChart
             type="bar"
             series={[
               {
-                name: "Test Quantity",
+                name: "시험 개수",
                 data: [...crResult.testQuantity],
               },
             ]}
@@ -551,12 +551,12 @@ const OverallInfo = () => {
           />
         </Chart>
         <Chart>
-          <h4>Teamproject Presence</h4>
+          <h4>팀플 유무</h4>
           <ApexChart
             type="bar"
             series={[
               {
-                name: "Team Project Presence",
+                name: "팀플 유무",
                 data: [...crResult.teamProjectPresence],
               },
             ]}
@@ -595,7 +595,7 @@ const OverallInfo = () => {
                 axisTicks: {
                   show: false,
                 },
-                categories: ["Yes", "No"],
+                categories: ["있음", "없음"],
               },
               colors: ["#0fbcf9"],
               tooltip: {
@@ -607,12 +607,12 @@ const OverallInfo = () => {
           />
         </Chart>
         <Chart>
-          <h4>Quiz Presence</h4>
+          <h4>퀴즈 유무</h4>
           <ApexChart
             type="bar"
             series={[
               {
-                name: "Quiz Presence",
+                name: "퀴즈 유무",
                 data: [...crResult.quizPresence],
               },
             ]}
@@ -651,7 +651,7 @@ const OverallInfo = () => {
                 axisTicks: {
                   show: false,
                 },
-                categories: ["Yes", "No"],
+                categories: ["있음", "없음"],
               },
               colors: ["#0fbcf9"],
               tooltip: {

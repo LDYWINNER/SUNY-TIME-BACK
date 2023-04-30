@@ -16,6 +16,7 @@ export const Wrapper = styled.section`
     color: ${(props) => props.theme.main.blue};
     margin-bottom: -5px;
     margin-right: 5px;
+    font-weight: 400;
   }
   select {
     padding: 0.375rem 0.75rem;

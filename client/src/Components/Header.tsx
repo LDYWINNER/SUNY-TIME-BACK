@@ -169,7 +169,7 @@ function Header() {
                 className={showLogout ? "dropdown show-dropdown" : "dropdown"}
               >
                 <button type="button" className="dropdown-btn" onClick={onOpen}>
-                  My Profile
+                  Update Profile
                 </button>
                 <UpdateUserModal isOpen={isOpen} onClose={onClose} />
 
