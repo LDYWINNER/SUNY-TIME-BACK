@@ -157,7 +157,6 @@ const OverallInfo = () => {
           <label className="form-label">교수 & 수강학기 선택</label>
           <select
             {...register("instructor", { required: true })}
-            defaultValue="-2"
             value={filterInstructor as string}
             onChange={(e) => {
               localStorage.setItem("filterSemester", "ALL");
@@ -235,7 +234,6 @@ const OverallInfo = () => {
           </select>
           <select
             {...register("semester", { required: true })}
-            defaultValue="-1"
             style={{ width: "10%" }}
             value={filterSemester as string}
             onChange={(e) => {
@@ -277,7 +275,6 @@ const OverallInfo = () => {
       <div className="form-row">
         <select
           {...register("instructor", { required: true })}
-          defaultValue="-2"
           value={filterInstructor as string}
           onChange={(e) => {
             localStorage.setItem("filterSemester", "ALL");
@@ -355,7 +352,6 @@ const OverallInfo = () => {
         </select>
         <select
           {...register("semester", { required: true })}
-          defaultValue="-1"
           style={{ width: "10%" }}
           value={filterSemester as string}
           onChange={(e) => {
