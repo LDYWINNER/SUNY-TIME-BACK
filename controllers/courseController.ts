@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import mongoose from "mongoose";
 import { BadRequestError, NotFoundError } from "../errors";
 import Course from "../models/Course";
 import CourseReview from "../models/CourseReview";
@@ -202,6 +203,7 @@ const createReview = async (req: Request, res: Response) => {
   } = req;
 
   const course = await Course.findOne({ id: courseId });
+  console.log(courseId);
 
   if (!course) {
     throw new NotFoundError(`No course with id: ${courseId}`);
@@ -218,6 +220,18 @@ const createReview = async (req: Request, res: Response) => {
     !instructor
   ) {
     throw new BadRequestError("Please provide all values");
+  }
+
+  var ObjectId = mongoose.Types.ObjectId;
+  const alreadyCourse = await CourseReview.findOne({
+    createdBy: new ObjectId(req.user?.userId),
+    course: new ObjectId(courseId),
+  });
+
+  if (alreadyCourse) {
+    throw new BadRequestError(
+      "You already submitted course review for this course :)"
+    );
   }
 
   req.body.createdBy = req.user?.userId;
