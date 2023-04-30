@@ -1,4 +1,3 @@
-import sunykorea from "../assets/images/sunykorea.png";
 import cdc from "../assets/images/sunykoreacdc.png";
 import seawolf from "../assets/images/seawolf.jpeg";
 import {
@@ -8,7 +7,6 @@ import {
   LogoItem,
   Block,
   CDCBlock,
-  STLogo,
 } from "../assets/wrappers/SchoolInfoHome";
 import { Link } from "react-router-dom";
 import { TbMathFunction } from "react-icons/tb";
@@ -29,7 +27,7 @@ function SchoolInfoHome() {
       <Blocks>
         <Logo>
           <Link to="https://www.sunykorea.ac.kr/en/">
-            <STLogo src={sunykorea} alt="sunytime" className="logo" />
+            <h1>SUNY KOREA</h1>
           </Link>
         </Logo>
         <Link to="https://www.sunykorea.ac.kr/en/html/sub03/030101.html">

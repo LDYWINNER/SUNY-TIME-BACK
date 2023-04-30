@@ -96,6 +96,7 @@ export const CDCBlock = styled.div<{ bgImage: string }>`
 export const Logo = styled.div`
   background-color: white;
   grid-column: 1 / 3;
+
   a {
     display: flex;
     align-items: center;
@@ -103,14 +104,23 @@ export const Logo = styled.div`
     height: 100%;
     width: 100%;
   }
+  h1 {
+    height: 100%;
+    width: 100%;
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 2rem;
+    background-color: ${(props) => props.theme.white.darker};
+    color: ${(props) => props.theme.main.blue};
+    &:hover {
+      background-color: ${(props) => props.theme.main.blue};
+      color: ${(props) => props.theme.white.lighter};
+    }
+  }
 `;
 
 export const LogoItem = styled.img`
   height: 100%;
   width: 100%;
-`;
-
-export const STLogo = styled.img`
-  width: 50%;
-  height: 100%;
 `;
