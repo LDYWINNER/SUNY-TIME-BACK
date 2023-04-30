@@ -273,6 +273,9 @@ const OverallInfo = () => {
     <Wrapper>
       <h1>Overall Grade: {crResult.stars} / 5 </h1>
       <h4>
+        {filterInstructor === "ALL" &&
+          filterSemester === "ALL" &&
+          "Instructor: ALL & Semester: ALL"}
         {filterInstructor !== "ALL" && `Instructor: ${filterInstructor}`}
         {filterSemester !== "ALL" && `Semester: ${filterSemester}`}
       </h4>
