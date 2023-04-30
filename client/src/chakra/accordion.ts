@@ -9,10 +9,10 @@ try {
   const rp = JSON.parse(localStorage.getItem("recoil-persist") as string);
   isDark = rp.isDark;
 } catch (error) {
-  console.log(error);
+  // console.log(error);
 }
 
-console.log(isDark);
+// console.log(isDark);
 
 const baseStyle = definePartsStyle({
   container: {
