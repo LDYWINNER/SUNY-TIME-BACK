@@ -55,11 +55,11 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
       school: data.school,
       major: data.major,
     };
-    console.log(newUser);
+    // console.log(newUser);
 
     try {
       const { data } = await authFetch.patch("/auth/updateUser", newUser);
-      console.log(data);
+      // console.log(data);
 
       const { user, token } = data;
       setGlobalCurrentState((currentState) => {
@@ -81,7 +81,7 @@ function UpdateUserModal({ isOpen, onClose }: IUpdateUserModal) {
         });
       }, 5000);
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       if (error.response.status !== 401) {
         setValues({
           ...values,

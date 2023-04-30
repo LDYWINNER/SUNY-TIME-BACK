@@ -63,11 +63,11 @@ function BulletinPostPopOverContent() {
       board: data.existingBoard,
       anonymity: data.anonymity,
     };
-    console.log(newPost);
+    // console.log(newPost);
 
     try {
       const { data } = await authFetch.post("/bulletin", newPost);
-      console.log(data);
+      // console.log(data);
 
       setValues({ ...values, formSuccess: true });
       setTimeout(() => {
@@ -80,7 +80,7 @@ function BulletinPostPopOverContent() {
       }, 3000);
       window.location.reload();
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       if (error.response.status !== 401) {
         setValues({
           ...values,

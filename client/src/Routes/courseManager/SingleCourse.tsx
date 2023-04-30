@@ -190,11 +190,11 @@ const SingleCourse = () => {
         })
       );
 
-      console.log(data);
+      // console.log(data);
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       // log user out
       logoutUser();
     }
@@ -203,11 +203,11 @@ const SingleCourse = () => {
   const handleLike = async (id: string) => {
     try {
       setLike((prev) => !prev);
-      console.log(like);
+      // console.log(like);
       await authFetch.patch(`/course?id=${id}`);
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

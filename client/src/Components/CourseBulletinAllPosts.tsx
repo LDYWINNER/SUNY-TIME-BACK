@@ -80,12 +80,12 @@ const CourseBulletinAllPosts = ({ id }: ICourseBulletinAllPosts) => {
           bulletinNumOfPages,
         };
       });
-      console.log("answer here");
-      console.log(data);
+      // console.log("answer here");
+      // console.log(data);
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       // log user out
       logoutUser();
     }

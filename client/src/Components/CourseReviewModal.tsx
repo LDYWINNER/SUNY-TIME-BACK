@@ -157,11 +157,11 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
       anonymity: data.anonymity,
       myLetterGrade: data.myLetterGrade,
     };
-    console.log(newCourseReview);
+    // console.log(newCourseReview);
 
     try {
       const { data } = await authFetch.post(`course/${id}`, newCourseReview);
-      console.log(data);
+      // console.log(data);
 
       setValues({ ...values, formSuccess: true });
       setTimeout(async () => {
@@ -174,7 +174,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         //close modal & refresh page
         onClose();
         const { data } = await authFetch.patch("course/updateUserCourseNum");
-        console.log(data);
+        // console.log(data);
 
         if (globalState.user.courseReviewNum > 2) {
           window.location.reload();
@@ -205,7 +205,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         }
       }, 3000);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       if (error.response.status !== 401) {
         setValues({
           ...values,

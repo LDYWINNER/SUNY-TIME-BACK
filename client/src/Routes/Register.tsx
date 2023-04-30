@@ -45,8 +45,8 @@ function Register() {
   let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
-    console.log("data here");
-    console.log(data);
+    // console.log("data here");
+    // console.log(data);
 
     const currentUser = {
       username: data.username,
@@ -83,7 +83,7 @@ function Register() {
           }, 2500);
         }
       } catch (error: any) {
-        console.log(error.response);
+        // console.log(error.response);
         setValues({
           ...values,
           formSuccess: false,
@@ -98,13 +98,13 @@ function Register() {
           currentUser
         );
         const { authNum } = data;
-        console.log(authNum);
+        // console.log(authNum);
         setEmailConfirmationState({
           authNum,
         });
         navigate("/verify-email");
       } catch (error: any) {
-        console.log(error.response);
+        // console.log(error.response);
         setValues({
           ...values,
           formSuccess: false,

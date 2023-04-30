@@ -67,7 +67,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
       await authFetch.delete(`/course/review/${id}`);
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       // log user out
       logoutUser();
     }
@@ -76,11 +76,11 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
   const handleLike = async (id: any) => {
     try {
       setLike((prev) => !prev);
-      console.log(like);
+      // console.log(like);
       await authFetch.patch(`/course/review/${id}`);
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

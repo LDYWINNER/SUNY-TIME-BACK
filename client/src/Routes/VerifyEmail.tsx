@@ -41,8 +41,8 @@ function VerifyEmail() {
   let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
-    console.log("data here");
-    console.log(data);
+    // console.log("data here");
+    // console.log(data);
 
     if (data.emailConfirmation === String(authNum)) {
       setError(
@@ -74,7 +74,7 @@ function VerifyEmail() {
         }, 1500);
       }
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       setValues({
         ...values,
         formSuccess: false,

@@ -4,7 +4,6 @@ interface IAlertProps {
 }
 
 const Alert = ({ message, ifSuccess }: IAlertProps) => {
-  console.log(message);
   return (
     <div
       className={

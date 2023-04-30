@@ -117,7 +117,7 @@ function SinglePost() {
         likes,
         title,
       });
-      console.log(data);
+      // console.log(data);
       if (board === "Free") {
         setBoardName("자유게시판");
       } else if (board === "Secret") {
@@ -134,7 +134,7 @@ function SinglePost() {
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       // log user out
       logoutUser();
     }
@@ -145,7 +145,7 @@ function SinglePost() {
       await authFetch.delete(`/bulletin/${id}`);
       navigate("/bulletin");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       // log user out
       logoutUser();
     }
@@ -154,11 +154,11 @@ function SinglePost() {
   const handleLike = async (id: string) => {
     try {
       setLike((prev) => !prev);
-      console.log(like);
+      // console.log(like);
       await authFetch.patch(`/bulletin?id=${id}&like=${like}`);
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

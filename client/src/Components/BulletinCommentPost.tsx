@@ -47,11 +47,11 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
       text: data.text,
       anonymity: data.anonymity,
     };
-    console.log(newComment);
+    // console.log(newComment);
 
     try {
       const { data } = await authFetch.post(`bulletin/${id}`, newComment);
-      console.log(data);
+      // console.log(data);
 
       setValues({ ...values, formSuccess: true });
       setTimeout(() => {
@@ -64,7 +64,7 @@ function BulletinCommentPost({ id }: IBulletinCommentPost) {
       }, 3000);
       window.location.reload();
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       if (error.response.status !== 401) {
         setValues({
           ...values,

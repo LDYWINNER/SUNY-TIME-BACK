@@ -47,25 +47,19 @@ const OverallInfo = () => {
   const filterSemester = localStorage.getItem("filterSemester");
   const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
   const data = JSON.parse(localStorage.getItem("currentCourse") as string);
-  console.log(data.subj);
+  // console.log(data.subj);
 
   const calculateReviewResult = () => {
     let reviews;
     if (filterInstructor !== "ALL" && filterSemester === "ALL") {
-      console.log("instructor");
-
       reviews = courseReview.filter(
         (review) => review.instructor === filterInstructor
       );
     } else if (filterInstructor === "ALL" && filterSemester !== "ALL") {
-      console.log("semester");
-
       reviews = courseReview.filter(
         (review) => review.semester === filterSemester
       );
     } else {
-      console.log("else");
-
       reviews = courseReview;
     }
 
@@ -149,7 +143,7 @@ const OverallInfo = () => {
         quizPresence: qpTemp,
       };
     });
-    console.log(crResult);
+    // console.log(crResult);
   };
 
   useEffect(() => {

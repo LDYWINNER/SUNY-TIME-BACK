@@ -81,11 +81,11 @@ const BulletinAllPosts = () => {
           bulletinNumOfPages,
         };
       });
-      console.log(data);
+      // console.log(data);
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error.response);
+      // console.log(error.response);
       // log user out
       logoutUser();
     }
