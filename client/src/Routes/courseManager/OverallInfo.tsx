@@ -160,6 +160,7 @@ const OverallInfo = () => {
     return (
       <NoReviewContainer>
         <div className="form-row">
+          <label className="form-label">교수 & 수강학기 선택</label>
           <select
             {...register("instructor", { required: true })}
             defaultValue="-2"

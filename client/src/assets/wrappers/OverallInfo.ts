@@ -10,6 +10,15 @@ export const Wrapper = styled.div`
   h4 {
     margin-bottom: 10px;
   }
+  select {
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--borderRadius);
+    background: var(--backgroundColor);
+    border: 1px solid var(--grey-200);
+    margin-bottom: 1rem;
+    height: 35px;
+    color: var(--grey-400);
+  }
 `;
 
 export const Charts = styled.div`
@@ -24,6 +33,15 @@ export const Chart = styled.div`
 export const NoReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
+  select {
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--borderRadius);
+    background: var(--backgroundColor);
+    border: 1px solid var(--grey-200);
+    margin-bottom: 1rem;
+    height: 35px;
+    color: var(--grey-400);
+  }
 `;
 
 export const Span = styled.span`
