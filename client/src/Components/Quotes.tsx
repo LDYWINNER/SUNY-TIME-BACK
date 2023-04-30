@@ -5,6 +5,7 @@ import { quotes } from "../assets/assets";
 const QuoteDiv = styled.div`
   font-size: 1.6vw;
   font-weight: 500;
+  font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;

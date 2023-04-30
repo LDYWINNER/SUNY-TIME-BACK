@@ -63,7 +63,7 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', 'Nanum Gothic', sans-serif;
-  color:black;
+  color: black;
   line-height: 1.2;
   color: ${(props) => props.theme.white.darker};
   background-color: black;

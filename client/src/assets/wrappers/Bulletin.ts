@@ -17,6 +17,7 @@ export const Main = styled.div`
   margin-right: 4.5rem;
   display: grid;
   grid-template-columns: 5fr 2fr;
+  font-family: "Source Sans Pro", "Nanum Gothic", sans-serif;
 `;
 
 export const MainContent = styled.div`
