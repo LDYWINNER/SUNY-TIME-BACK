@@ -125,6 +125,10 @@ const AllCourses = () => {
     getCourse();
     localStorage.setItem("filterInstructor", "ALL");
     localStorage.setItem("filterSemester", "ALL");
+    localStorage.setItem(
+      "currentCourse",
+      JSON.stringify({ subj: "AMS", crs: "151" })
+    );
   }, [getCourse, courseSubjFilter, searchKeyword, globalState.coursePage]);
 
   return (
