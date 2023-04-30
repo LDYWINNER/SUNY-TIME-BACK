@@ -36,6 +36,10 @@ export const Wrapper = styled.section`
   .big-block {
     grid-column: -3 / -1;
   }
+
+  h4 {
+    font-size: 1.2rem;
+  }
 `;
 
 export const Blocks = styled.div`
@@ -74,7 +78,7 @@ export const CDCBlock = styled.div<{ bgImage: string }>`
   font-weight: 600;
 
   div {
-    width: 38%;
+    width: 15rem;
     display: flex;
     align-items: center;
     background-color: ${(props) => props.theme.white.darker};
