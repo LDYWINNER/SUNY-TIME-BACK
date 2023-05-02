@@ -154,6 +154,7 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
                   <h4>{moment(review.createdAt).format("MMMM Do, h:mm a")}</h4>
                   <Likes>
                     <IconButton
+                      disabled={globalState.user ? false : true}
                       colorScheme={isDark ? "blackAlpha" : "gray"}
                       aria-label="Like this comment?"
                       icon={

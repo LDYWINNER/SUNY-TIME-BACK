@@ -237,6 +237,7 @@ function SinglePost() {
 
           <IconRow>
             <IconButton
+              disabled={globalState.user ? false : true}
               colorScheme={isDark ? "blackAlpha" : "gray"}
               aria-label="Like this post?"
               icon={

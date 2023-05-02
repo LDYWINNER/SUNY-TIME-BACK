@@ -105,6 +105,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
               <Text>{comment.text}</Text>
               <Buttons>
                 <IconButton
+                  disabled={globalState.user ? false : true}
                   colorScheme={isDark ? "blackAlpha" : "gray"}
                   aria-label="Like this comment?"
                   icon={
@@ -118,6 +119,7 @@ function BulletinAllComments({ comments }: IBulletinAllComments) {
                 />
                 <h4>{comment?.likes.length} likes</h4>
                 <IconButton
+                  disabled={globalState.user ? false : true}
                   colorScheme={isDark ? "blackAlpha" : "gray"}
                   aria-label="Delete this comment?"
                   icon={<AiTwotoneDelete />}

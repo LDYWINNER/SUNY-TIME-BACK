@@ -294,6 +294,7 @@ const SingleCourse = () => {
             <Likes>
               <div>
                 <IconButton
+                  disabled={globalState.user ? false : true}
                   colorScheme={isDark ? "blackAlpha" : "gray"}
                   size="lg"
                   aria-label="Like this course?"
