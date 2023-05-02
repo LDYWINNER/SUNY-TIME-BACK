@@ -12,6 +12,7 @@ export const Wrapper = styled.section`
     font-weight: 500;
   }
   label {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
     font-size: 24px;
     color: ${(props) => props.theme.main.blue};
     margin-bottom: -5px;
@@ -19,6 +20,7 @@ export const Wrapper = styled.section`
     font-weight: 400;
   }
   select {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
     padding: 0.375rem 0.75rem;
     border-radius: var(--borderRadius);
     background: var(--backgroundColor);
@@ -27,13 +29,20 @@ export const Wrapper = styled.section`
     height: 35px;
     color: var(--grey-400);
   }
+  option {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
+  }
   textarea {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
     margin-top: 7px;
     height: 15vh;
   }
   span {
     font-size: 24px;
     margin-right: 5px;
+  }
+  p {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
   }
 
   .on {

@@ -16,9 +16,11 @@ export const Wrapper = styled.div`
   label {
     font-size: max(24px, 2.5vh);
     color: ${(props) => props.theme.main.blue};
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
   }
 
   select {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
     width: 50%;
     padding: 0.375rem 0.75rem;
     border-radius: var(--borderRadius);
@@ -47,6 +49,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
   background-color: ${(props) => props.theme.main.blue};
   color: ${(props) => props.theme.white.darker};
   border-radius: 7px;
@@ -60,4 +63,10 @@ export const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  select {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
+  }
+  option {
+    font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
+  }
 `;

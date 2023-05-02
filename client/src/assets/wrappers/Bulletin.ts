@@ -43,7 +43,7 @@ export const Title = styled.span`
   font-size: 5vh;
   font-weight: 600;
   color: ${(props) => props.theme.main.blue};
-  font-family: "Bebas Neue", cursive;
+  font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
 `;
 
 export const BulletinPostBtn = styled.button`
