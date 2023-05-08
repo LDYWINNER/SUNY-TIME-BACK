@@ -24,7 +24,7 @@ function CRBeforeRegister() {
         <Progress hasStripe value={66} />
 
         {/* Mandatory Course Review */}
-        <h4>
+        <h4 style={{ fontFamily: "Nanum Gothic, sans-serif" }}>
           회원가입을 완료하기 위해서 저번학기에 들었던 3개의 수업에 대한
           수강평을 작성해주세요.
         </h4>

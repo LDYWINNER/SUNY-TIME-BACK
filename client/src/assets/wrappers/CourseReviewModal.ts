@@ -75,6 +75,7 @@ export const Logo = styled.img`
 `;
 
 export const Button = styled.button`
+  font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
   background-color: ${(props) => props.theme.main.blue};
   color: ${(props) => props.theme.white.darker};
   border-radius: 7px;
