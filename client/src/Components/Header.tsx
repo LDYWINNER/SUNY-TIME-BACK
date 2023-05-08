@@ -155,14 +155,32 @@ function Header() {
             />
           </Item>
           {globalState.user ? (
-            <div className="btn-container">
+            <div className="btn-container" style={{ minWidth: "10rem" }}>
               <button
                 type="button"
                 className="btn"
                 onClick={() => setShowLogout(!showLogout)}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
               >
-                <FaUserCircle />
-                {globalState.user?.username}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <FaUserCircle />
+                  <h4
+                    style={{
+                      marginLeft: "0.5rem",
+                    }}
+                  >
+                    {globalState.user?.username}
+                  </h4>
+                </div>
                 <FaCaretDown />
               </button>
               <div
