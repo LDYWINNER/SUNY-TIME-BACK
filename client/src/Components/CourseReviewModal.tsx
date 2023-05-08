@@ -192,8 +192,10 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
         addUserToLocalStorage({ user, token });
 
         if (globalState.user.courseReviewNum < 2) {
+          localStorage.setItem("coursemanger-access", "false");
           navigate("/course-review");
         } else if (Number(globalState.user.courseReviewNum) === 2) {
+          localStorage.setItem("coursemanger-access", "null");
           navigate("/");
           toast({
             title: "Register Process Successfully Done!",

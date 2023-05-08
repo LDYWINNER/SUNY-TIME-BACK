@@ -1,4 +1,4 @@
-import { Link, useMatch, useNavigate } from "react-router-dom";
+import { Link, Navigate, useMatch, useNavigate } from "react-router-dom";
 import { useAnimation, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "../assets/images/navbar_logo.svg";
@@ -16,7 +16,7 @@ import {
 } from "../assets/wrappers/Header";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { removeUserFromLocalStorage } from "../utils";
-import { Show, Hide, useDisclosure } from "@chakra-ui/react";
+import { Show, Hide, useDisclosure, useToast } from "@chakra-ui/react";
 import SmallSidebar from "./SmallNavbar";
 import UpdateUserModal from "./UpdateUserModal";
 
@@ -67,6 +67,8 @@ function Header() {
   };
   //update user modal
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const user = localStorage.getItem("user");
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -82,41 +84,34 @@ function Header() {
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
         <Show breakpoint="(min-width: 1000px)">
-          <Link
-            to="/"
-            className={
-              globalState.user?.courseReviewNum < 3 ? "disabled-link" : ""
-            }
-          >
+          <Link to="/">
             <Logo src={logo} alt="sunytime" />
           </Link>
           <Items>
             <Item>
-              <Link
-                to="/"
-                className={
-                  globalState.user?.courseReviewNum < 3 ? "disabled-link" : ""
-                }
-              >
+              <Link to="/">
                 Home {homeMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
             <Item>
-              <Link
-                to="/school-info"
-                className={
-                  globalState.user?.courseReviewNum < 3 ? "disabled-link" : ""
-                }
-              >
+              <Link to="/school-info">
                 School Info {infoMatch && <Circle layoutId="circle" />}
               </Link>
             </Item>
             <Item>
               <Link
                 to="/course-manager"
-                className={
-                  globalState.user?.courseReviewNum < 3 ? "disabled-link" : ""
-                }
+                onClick={() => {
+                  if (!user)
+                    toast({
+                      title: "Authentication Warning!",
+                      description:
+                        "You should register first to use this feature :(",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
+                }}
               >
                 Course Manager{" "}
                 {courseManagerMatch && <Circle layoutId="circle" />}
@@ -125,9 +120,27 @@ function Header() {
             <Item>
               <Link
                 to="/bulletin"
-                className={
-                  globalState.user?.courseReviewNum < 3 ? "disabled-link" : ""
-                }
+                onClick={() => {
+                  if (!user)
+                    toast({
+                      title: "Authentication Warning!",
+                      description:
+                        "You should register first to use this feature :(",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
+                  const courseManagerAccess = JSON.parse(
+                    localStorage.getItem("coursemanger-access") as string
+                  );
+                  if (
+                    globalState.user?.courseReviewNum < 3 &&
+                    courseManagerAccess
+                  ) {
+                    localStorage.setItem("coursemanger-access", "false");
+                    return <Navigate to="/course-review" />;
+                  }
+                }}
               >
                 Bulletin Board {bulletinMatch && <Circle layoutId="circle" />}
               </Link>

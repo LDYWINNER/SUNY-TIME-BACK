@@ -5,16 +5,26 @@ import { Wrapper, Logo } from "../assets/wrappers/Register";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { globalCurrentState } from "../atoms";
-import { Progress } from "@chakra-ui/react";
+import { Progress, useToast } from "@chakra-ui/react";
 
 function CRBeforeRegister() {
   const navigate = useNavigate();
   const [bgImage, setbgImage] = useState("");
   const globalState = useRecoilValue(globalCurrentState);
+  const toast = useToast();
 
   useEffect(() => {
     setbgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-  }, [bgImage]);
+    if (globalState.user?.courseReviewNum < 3) {
+      toast({
+        title: "Authentication Warning!",
+        description: "You should finish your course review first :)",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, []);
 
   return (
     <Wrapper className="full-page" bgImage={bgImage}>
@@ -32,6 +42,7 @@ function CRBeforeRegister() {
         <button
           onClick={() => {
             navigate("/course-manager");
+            localStorage.setItem("coursemanger-access", "true");
           }}
           className="btn btn-block"
         >

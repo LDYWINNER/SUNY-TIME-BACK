@@ -26,14 +26,7 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route
-          path="/course-review"
-          element={
-            <ProtectedRoute>
-              <CRBeforeRegister />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/course-review" element={<CRBeforeRegister />} />
         <Route path="/school-info" element={<SchoolInfoHome />} />
         {/* <Route path="/schedule-manager" element={<ScheduleManager />} /> */}
 
