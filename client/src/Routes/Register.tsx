@@ -177,7 +177,7 @@ function Register() {
                 SELECT SCHOOL
               </option>
               <option value="1">SBU</option>
-              <option value="2">FIT</option>
+              {/* <option value="2">FIT</option> */}
             </select>
           </>
         )}
