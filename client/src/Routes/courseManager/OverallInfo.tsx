@@ -11,9 +11,11 @@ import {
   courseReviewInstructorState,
   courseReviewResultState,
   courseReviewsState,
+  globalCurrentState,
   isDarkAtom,
 } from "../../atoms";
 import img from "../../assets/images/no-review.svg";
+import nodataimg from "../../assets/images/no-data.svg";
 import { useForm } from "react-hook-form";
 import {
   amsInstructors,
@@ -48,6 +50,7 @@ const OverallInfo = () => {
   const courseSubjSearchFilter = localStorage.getItem("courseSubjSearchFilter");
   const data = JSON.parse(localStorage.getItem("currentCourse") as string);
   // console.log(data.subj);
+  const globalState = useRecoilValue(globalCurrentState);
 
   const calculateReviewResult = () => {
     let reviews;
@@ -150,6 +153,20 @@ const OverallInfo = () => {
     calculateReviewResult();
   }, []);
 
+  if (globalState.user?.courseReviewNum < 3) {
+    return (
+      <div style={{ display: "flex" }}>
+        <img src={nodataimg} alt="not data" />
+        <div>
+          <Span>
+            Data is available after you finish your registration process :)
+          </Span>
+          <br />
+          <Span>(3 course reviews)</Span>
+        </div>
+      </div>
+    );
+  }
   if (isNaN(crResult.stars)) {
     return (
       <NoReviewContainer>

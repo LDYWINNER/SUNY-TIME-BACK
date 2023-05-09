@@ -78,3 +78,8 @@ export const Instructor = styled.div`
   margin-left: 5px;
   color: ${(props) => props.theme.main.lightBlue};
 `;
+
+export const Span = styled.span`
+  font-weight: 600;
+  font-size: 1rem;
+`;

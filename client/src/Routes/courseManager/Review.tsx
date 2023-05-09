@@ -18,10 +18,12 @@ import {
   NoReviewSpan,
   Semester,
   Instructor,
+  Span,
 } from "../../assets/wrappers/Review";
 import { BsPencilSquare } from "react-icons/bs";
 import { AiFillLike, AiFillStar, AiOutlineLike } from "react-icons/ai";
 import moment from "moment";
+import nodataimg from "../../assets/images/no-data.svg";
 
 interface ICourseReview {
   course: string;
@@ -81,7 +83,18 @@ const Review = ({ id, reviews, reviewsExisting }: IReview) => {
         <CourseReviewModal id={id} isOpen={isOpen} onClose={onClose} />
       </ButtonContainer>
       <Reviews>
-        {reviewsExisting ? (
+        {globalState.user?.courseReviewNum < 3 ? (
+          <div style={{ display: "flex" }}>
+            <img src={nodataimg} alt="not data" />
+            <div>
+              <Span>
+                Data is available after you finish your registration process :)
+              </Span>
+              <br />
+              <Span>(3 course reviews)</Span>
+            </div>
+          </div>
+        ) : reviewsExisting ? (
           <NoReviewSpan>
             No detailed evaluation yet for this course... :(
           </NoReviewSpan>
