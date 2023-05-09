@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.feb7a95a.css",
-    "main.js": "/static/js/main.31ddc945.js",
+    "main.js": "/static/js/main.c408d956.js",
     "static/media/seawolf.jpeg": "/static/media/seawolf.6aa6657c01de5cfd0c58.jpeg",
     "static/media/banner1.png": "/static/media/banner1.fb391f483d0cf1b2265f.png",
     "static/media/sunykoreacdc.png": "/static/media/sunykoreacdc.181ec9ce158e101120d7.png",
@@ -14,12 +14,13 @@
     "static/media/not-found.svg": "/static/media/not-found.feb67e664b17eedae48d90aae1fa1c96.svg",
     "static/media/working.svg": "/static/media/working.c51cb049d90bccef8379664527bc9ae6.svg",
     "static/media/no-review.svg": "/static/media/no-review.766d7c94c2a1686b108c8bcf8a671477.svg",
+    "static/media/no-data.svg": "/static/media/no-data.810627350e9ed2c1d963d2fe1dfac495.svg",
     "index.html": "/index.html",
     "main.feb7a95a.css.map": "/static/css/main.feb7a95a.css.map",
-    "main.31ddc945.js.map": "/static/js/main.31ddc945.js.map"
+    "main.c408d956.js.map": "/static/js/main.c408d956.js.map"
   },
   "entrypoints": [
     "static/css/main.feb7a95a.css",
-    "static/js/main.31ddc945.js"
+    "static/js/main.c408d956.js"
   ]
 }
