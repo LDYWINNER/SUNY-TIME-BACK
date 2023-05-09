@@ -210,14 +210,14 @@ const createReview = async (req: Request, res: Response) => {
   }
 
   if (
-    !semester ||
+    semester === "-1" ||
     !homeworkQuantity ||
     teamProjectPresence === null ||
     !difficulty ||
     testQuantity === null ||
     quizPresence === null ||
     !overallGrade ||
-    !instructor
+    instructor === "-2"
   ) {
     throw new BadRequestError("Please provide all values");
   }

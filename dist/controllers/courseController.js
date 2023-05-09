@@ -177,14 +177,14 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     if (!course) {
         throw new errors_1.NotFoundError(`No course with id: ${courseId}`);
     }
-    if (!semester ||
+    if (semester === "-1" ||
         !homeworkQuantity ||
         teamProjectPresence === null ||
         !difficulty ||
         testQuantity === null ||
         quizPresence === null ||
         !overallGrade ||
-        !instructor) {
+        instructor === "-2") {
         throw new errors_1.BadRequestError("Please provide all values");
     }
     var ObjectId = mongoose_1.default.Types.ObjectId;
