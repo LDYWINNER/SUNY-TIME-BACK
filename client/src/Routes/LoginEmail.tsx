@@ -38,7 +38,6 @@ function LoginEmail() {
     setError,
     reset,
   } = useForm<IForm>();
-  let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     // console.log("data here");
@@ -67,13 +66,9 @@ function LoginEmail() {
       addUserToLocalStorage({ user, token });
       localStorage.setItem("courseSubjSearchFilter", "AMS");
       setValues({ ...values, formSuccess: true });
-      //navigate back to previous page
-      navigateBackOrNot = true;
-      if (navigateBackOrNot) {
-        setTimeout(() => {
-          navigate("/");
-        }, 2500);
-      }
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
     } catch (error: any) {
       // console.log(error.response);
       setValues({
