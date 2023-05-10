@@ -111,15 +111,16 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.register = register;
 const loginEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
+    const lowerCaseEmail = email.toLowerCase();
     if (!email) {
         throw new errors_1.BadRequestError("Please provide valid email");
     }
-    const user = yield User_1.default.findOne({ email });
+    const user = yield User_1.default.findOne({ lowerCaseEmail });
     if (!user) {
         throw new errors_1.UnAuthenticatedError("Login failed");
     }
     // console.log(user);
-    loginUserEmail = email;
+    loginUserEmail = lowerCaseEmail;
     //send email
     let authNum = generateRandom(1, 99);
     let emailTemplete;

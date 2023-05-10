@@ -48,7 +48,7 @@ function Register() {
 
     const currentUser = {
       username: data.username,
-      email: data.email,
+      email: data.email.toLowerCase(),
       school: data.school,
       major: data.major,
     };

@@ -110,16 +110,18 @@ const register = async (req: Request, res: Response) => {
 };
 
 const loginEmail = async (req: Request, res: Response) => {
-  const { email } = req.body;
+  const { email }: { email: string } = req.body;
+  const lowerCaseEmail = email.toLowerCase();
+
   if (!email) {
     throw new BadRequestError("Please provide valid email");
   }
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ lowerCaseEmail });
   if (!user) {
     throw new UnAuthenticatedError("Login failed");
   }
   // console.log(user);
-  loginUserEmail = email;
+  loginUserEmail = lowerCaseEmail;
 
   //send email
   let authNum = generateRandom(1, 99);
