@@ -7,8 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { emailConfirmationState, globalCurrentState } from "../atoms";
-import { addUserToLocalStorage } from "../utils";
+import { emailConfirmationState, loginConfirmationState } from "../atoms";
 
 interface IForm {
   username: string;
@@ -33,8 +32,8 @@ function Register() {
   const navigate = useNavigate();
   const [bgImage, setbgImage] = useState("");
   const [values, setValues] = useState(registerState);
-  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const setEmailConfirmationState = useSetRecoilState(emailConfirmationState);
+  const setLoginConfirmationState = useSetRecoilState(loginConfirmationState);
   const {
     register,
     handleSubmit,
@@ -42,7 +41,6 @@ function Register() {
     reset,
     watch,
   } = useForm<IForm>();
-  let navigateBackOrNot = false;
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     // console.log("data here");
@@ -62,26 +60,13 @@ function Register() {
     if (values.isMember) {
       //login user
       try {
-        const { data } = await axios.post("/api/v1/auth/login", loginUser);
-        const { user, token } = data;
-        setGlobalCurrentState((currentState) => {
-          return {
-            ...currentState,
-            token,
-            user,
-          };
+        const { data } = await axios.post("/api/v1/auth/loginEmail", loginUser);
+        const { authNum } = data;
+        // console.log(authNum);
+        setLoginConfirmationState({
+          authNum,
         });
-        //adding user to local storage
-        addUserToLocalStorage({ user, token });
-        localStorage.setItem("courseSubjSearchFilter", "AMS");
-        setValues({ ...values, formSuccess: true });
-        //navigate back to previous page
-        navigateBackOrNot = true;
-        if (navigateBackOrNot) {
-          setTimeout(() => {
-            navigate(-1);
-          }, 2500);
-        }
+        navigate("/login-email");
       } catch (error: any) {
         // console.log(error.response);
         setValues({

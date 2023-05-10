@@ -6,6 +6,7 @@ import SchoolInfoHome from "./SchoolInfoHome";
 import Register from "./Register";
 import CRBeforeRegister from "./CRBeforeRegister";
 import VerifyEmail from "./VerifyEmail";
+import LoginEmail from "./LoginEmail";
 import ProtectedRoute from "./ProtectedRoute";
 import Error from "./Error";
 
@@ -18,6 +19,7 @@ export {
   Register,
   CRBeforeRegister,
   VerifyEmail,
+  LoginEmail,
   ProtectedRoute,
   Error,
 };

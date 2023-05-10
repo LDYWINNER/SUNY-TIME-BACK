@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.login = exports.register = exports.sendEmail = void 0;
+exports.updateUser = exports.login = exports.register = exports.loginEmail = exports.sendEmail = void 0;
 const User_1 = __importDefault(require("../models/User"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
@@ -21,13 +21,15 @@ const ejs_1 = __importDefault(require("ejs"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const path_1 = __importDefault(require("path"));
 const appDir = path_1.default.dirname((_a = require.main) === null || _a === void 0 ? void 0 : _a.filename);
-let emailConfirmationNum = 0;
+let registerEmailConfirmationNum = 0;
 let userData = {
     username: "",
     email: "",
     school: "",
     major: "",
 };
+let loginEmailConfirmationNum = 0;
+let loginUserEmail = "";
 const generateRandom = (min, max) => {
     const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
     return ranNum;
@@ -71,16 +73,16 @@ const sendEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let mailOptions = yield transporter.sendMail({
         from: process.env.NODEMAILER_USER,
         to: req.body.email,
-        subject: "SUNYTIME Email Verfication",
+        subject: "SUNYTIME Register Email Verfication",
         html: emailTemplete,
     });
-    emailConfirmationNum = authNum;
+    registerEmailConfirmationNum = authNum;
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         }
         // console.log("Finish sending email : " + info.response);
-        res.send({ emailConfirmationNum });
+        res.send({ registerEmailConfirmationNum });
         transporter.close();
     });
 });
@@ -107,7 +109,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.register = register;
-const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const loginEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     if (!email) {
         throw new errors_1.BadRequestError("Please provide valid email");
@@ -117,6 +119,48 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         throw new errors_1.UnAuthenticatedError("Login failed");
     }
     // console.log(user);
+    loginUserEmail = email;
+    //send email
+    let authNum = generateRandom(1, 99);
+    let emailTemplete;
+    ejs_1.default.renderFile(appDir + "/template/loginMail.ejs", { authCode: authNum }, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        emailTemplete = data;
+    });
+    let transporter = nodemailer_1.default.createTransport({
+        service: "naver",
+        host: "smtp.naver.com",
+        port: 465,
+        auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        },
+    });
+    let mailOptions = yield transporter.sendMail({
+        from: process.env.NODEMAILER_USER,
+        to: req.body.email,
+        subject: "SUNYTIME Login Email Verfication",
+        html: emailTemplete,
+    });
+    loginEmailConfirmationNum = authNum;
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        }
+        // console.log("Finish sending email : " + info.response);
+        res.send({ loginEmailConfirmationNum });
+        transporter.close();
+    });
+});
+exports.loginEmail = loginEmail;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = loginUserEmail;
+    const user = yield User_1.default.findOne({ email });
     const token = user.createJWT();
     res.status(http_status_codes_1.StatusCodes.OK).json({
         user: {

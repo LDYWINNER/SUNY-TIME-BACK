@@ -8,13 +8,16 @@ import path from "path";
 
 const appDir = path.dirname(require.main?.filename as string);
 
-let emailConfirmationNum = 0;
+let registerEmailConfirmationNum = 0;
 let userData = {
   username: "",
   email: "",
   school: "",
   major: "",
 };
+
+let loginEmailConfirmationNum = 0;
+let loginUserEmail = "";
 
 const generateRandom = (min: number, max: number) => {
   const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -67,11 +70,11 @@ const sendEmail = async (req: Request, res: Response) => {
   let mailOptions = await transporter.sendMail({
     from: process.env.NODEMAILER_USER,
     to: req.body.email,
-    subject: "SUNYTIME Email Verfication",
+    subject: "SUNYTIME Register Email Verfication",
     html: emailTemplete,
   });
 
-  emailConfirmationNum = authNum;
+  registerEmailConfirmationNum = authNum;
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -79,7 +82,7 @@ const sendEmail = async (req: Request, res: Response) => {
     }
     // console.log("Finish sending email : " + info.response);
 
-    res.send({ emailConfirmationNum });
+    res.send({ registerEmailConfirmationNum });
     transporter.close();
   });
 };
@@ -106,7 +109,7 @@ const register = async (req: Request, res: Response) => {
   });
 };
 
-const login = async (req: Request, res: Response) => {
+const loginEmail = async (req: Request, res: Response) => {
   const { email } = req.body;
   if (!email) {
     throw new BadRequestError("Please provide valid email");
@@ -116,17 +119,70 @@ const login = async (req: Request, res: Response) => {
     throw new UnAuthenticatedError("Login failed");
   }
   // console.log(user);
+  loginUserEmail = email;
 
-  const token = user.createJWT();
+  //send email
+  let authNum = generateRandom(1, 99);
+  let emailTemplete;
+  ejs.renderFile(
+    appDir + "/template/loginMail.ejs",
+    { authCode: authNum },
+    function (err, data) {
+      if (err) {
+        console.log(err);
+      }
+      emailTemplete = data;
+    }
+  );
+
+  let transporter = nodemailer.createTransport({
+    service: "naver",
+    host: "smtp.naver.com",
+    port: 465,
+    auth: {
+      user: process.env.NODEMAILER_USER,
+      pass: process.env.NODEMAILER_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  let mailOptions = await transporter.sendMail({
+    from: process.env.NODEMAILER_USER,
+    to: req.body.email,
+    subject: "SUNYTIME Login Email Verfication",
+    html: emailTemplete,
+  });
+
+  loginEmailConfirmationNum = authNum;
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    }
+    // console.log("Finish sending email : " + info.response);
+
+    res.send({ loginEmailConfirmationNum });
+    transporter.close();
+  });
+};
+
+const login = async (req: Request, res: Response) => {
+  const email = loginUserEmail;
+
+  const user = await User.findOne({ email });
+
+  const token = user!.createJWT();
 
   res.status(StatusCodes.OK).json({
     user: {
-      username: user.username,
-      email: user.email,
-      school: user.school,
-      major: user.major,
-      courseReviewNum: user.courseReviewNum,
-      _id: user._id,
+      username: user!.username,
+      email: user!.email,
+      school: user!.school,
+      major: user!.major,
+      courseReviewNum: user!.courseReviewNum,
+      _id: user!._id,
     },
     token,
   });
@@ -150,4 +206,4 @@ const updateUser = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).json({ user, token });
 };
 
-export { sendEmail, register, login, updateUser };
+export { sendEmail, loginEmail, register, login, updateUser };

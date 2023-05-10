@@ -76,6 +76,13 @@ export const emailConfirmationState = atom({
   },
 });
 
+export const loginConfirmationState = atom({
+  key: "loginConfirmation",
+  default: {
+    authNum: 0,
+  },
+});
+
 interface ICourseReview {
   course: string;
   semester: string;

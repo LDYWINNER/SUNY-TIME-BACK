@@ -4,6 +4,7 @@ import {
   Home,
   Register,
   VerifyEmail,
+  LoginEmail,
   CRBeforeRegister,
   Bulletin,
   ProtectedRoute,
@@ -25,6 +26,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login-email" element={<LoginEmail />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/course-review" element={<CRBeforeRegister />} />
         <Route path="/school-info" element={<SchoolInfoHome />} />
