@@ -37,13 +37,14 @@ export const TitleRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "Nanum Gothic", sans-serif;
 `;
 
 export const Title = styled.span`
   font-size: 5vh;
   font-weight: 600;
   color: ${(props) => props.theme.main.blue};
-  font-family: "Bebas Neue", "Nanum Gothic", sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
 `;
 
 export const BulletinPostBtn = styled.button`
