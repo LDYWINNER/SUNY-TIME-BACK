@@ -202,9 +202,9 @@ function BulletinPostPopOverContent() {
                     게시판 선택
                   </option>
                   <option value="Free">자유게시판</option>
+                  <option value="courseRegister">수강신청게시판</option>
                   <option value="Secret">비밀게시판</option>
                   <option value="Freshmen">새내기게시판</option>
-                  <option value="Info">정보게시판</option>
                   <option value="Promotion">홍보게시판</option>
                   <option value="Club">동아리게시판</option>
                   <option value="Sbu">본교게시판</option>

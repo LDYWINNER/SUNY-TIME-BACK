@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     display: inline-block;
     cursor: pointer;
     height: 30px;
-    width: 90px;
+    width: 7rem;
     border: 1px solid ${(props) => props.theme.textColor.lighter};
     border-radius: 15px;
     margin-right: 5px;

@@ -37,8 +37,8 @@ const Bulletin = () => {
     whichBoard = "비밀게시판";
   } else if (boardFilter === "Freshmen") {
     whichBoard = "새내기게시판";
-  } else if (boardFilter === "Info") {
-    whichBoard = "정보게시판";
+  } else if (boardFilter === "courseRegister") {
+    whichBoard = "수강신청게시판";
   } else if (boardFilter === "Promotion") {
     whichBoard = "홍보게시판";
   } else if (boardFilter === "Club") {

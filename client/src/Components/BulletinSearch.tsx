@@ -122,6 +122,32 @@ const BulletinSearch = () => {
             })}
             type="radio"
             name="radio"
+            value="courseRegister"
+            id="courseRegister"
+            checked={bulletinSearch.boardFilter === "courseRegister"}
+          />
+          <label htmlFor="courseRegister">수강신청게시판</label>
+          <input
+            {...register("radio", {
+              required: true,
+              onChange: (e) => {
+                //set page to 1
+                setGlobalState((currentState) => {
+                  return {
+                    ...currentState,
+                    bulletinPage: 1,
+                  };
+                });
+                setBulletinSearch((currentState) => {
+                  return {
+                    ...currentState,
+                    boardFilter: e.target.value,
+                  };
+                });
+              },
+            })}
+            type="radio"
+            name="radio"
             value="Secret"
             id="Secret"
             checked={bulletinSearch.boardFilter === "Secret"}
@@ -153,32 +179,6 @@ const BulletinSearch = () => {
             checked={bulletinSearch.boardFilter === "Freshmen"}
           />{" "}
           <label htmlFor="Freshmen">새내기게시판</label>
-          <input
-            {...register("radio", {
-              required: true,
-              onChange: (e) => {
-                //set page to 1
-                setGlobalState((currentState) => {
-                  return {
-                    ...currentState,
-                    bulletinPage: 1,
-                  };
-                });
-                setBulletinSearch((currentState) => {
-                  return {
-                    ...currentState,
-                    boardFilter: e.target.value,
-                  };
-                });
-              },
-            })}
-            type="radio"
-            name="radio"
-            value="Info"
-            id="Info"
-            checked={bulletinSearch.boardFilter === "Info"}
-          />
-          <label htmlFor="Info">정보게시판</label>
           <input
             {...register("radio", {
               required: true,
