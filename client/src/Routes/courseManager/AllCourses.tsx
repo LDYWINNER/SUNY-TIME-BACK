@@ -18,6 +18,7 @@ import {
   IconRow,
   Icon,
   ClassieBtn,
+  DWBtn,
   WoolfieIcon,
 } from "../../assets/wrappers/AllCourses";
 import { courseSearchState, globalCurrentState, isDarkAtom } from "../../atoms";
@@ -145,30 +146,38 @@ const AllCourses = () => {
                 : courseSubjSearchFilter}{" "}
               Courses
             </Title>
-            {courseSubjSearchFilter !== "SHCourse" && (
-              <Link
-                to={
-                  courseSubjSearchFilter === "AMS"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ams/"
-                    : courseSubjSearchFilter === "ACC/BUS"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/bus/"
-                    : courseSubjSearchFilter === "CSE"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/cse/"
-                    : courseSubjSearchFilter === "ESE"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ese/"
-                    : courseSubjSearchFilter === "EST/EMP"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/tsm/"
-                    : courseSubjSearchFilter === "MEC"
-                    ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/mec/"
-                    : ""
-                }
-              >
-                <ClassieBtn type="button" className="btn">
+            <div>
+              <Link to="https://it.stonybrook.edu/services/degree-works">
+                <DWBtn type="button" className="btn">
                   <WoolfieIcon src={Woolfie} />
-                  <span>Go to Bulletin</span>
-                </ClassieBtn>
+                  <span>Degree Works</span>
+                </DWBtn>
               </Link>
-            )}
+              {courseSubjSearchFilter !== "SHCourse" && (
+                <Link
+                  to={
+                    courseSubjSearchFilter === "AMS"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ams/"
+                      : courseSubjSearchFilter === "ACC/BUS"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/bus/"
+                      : courseSubjSearchFilter === "CSE"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/cse/"
+                      : courseSubjSearchFilter === "ESE"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/ese/"
+                      : courseSubjSearchFilter === "EST/EMP"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/tsm/"
+                      : courseSubjSearchFilter === "MEC"
+                      ? "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/mec/"
+                      : ""
+                  }
+                >
+                  <ClassieBtn type="button" className="btn">
+                    <WoolfieIcon src={Woolfie} />
+                    <span>Go to Bulletin</span>
+                  </ClassieBtn>
+                </Link>
+              )}
+            </div>
           </TitleRow>
           {isLoading && <Loading center />}
           <Courses>

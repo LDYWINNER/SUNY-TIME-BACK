@@ -73,6 +73,19 @@ export const Icon = styled.div`
   display: flex;
 `;
 
+export const DWBtn = styled.button`
+  background-color: ${(props) => props.theme.main.blue};
+  color: ${(props) => props.theme.textColor};
+  display: flex;
+  &:hover {
+    background-color: ${(props) => props.theme.main.lightBlue};
+  }
+  width: 11.5rem;
+  margin-right: 2rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+`;
+
 export const ClassieBtn = styled.button`
   background-color: ${(props) => props.theme.main.darkred};
   color: ${(props) => props.theme.textColor};
@@ -80,7 +93,7 @@ export const ClassieBtn = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.main.red};
   }
-  width: 11rem;
+  width: 11.5rem;
   margin-right: 2rem;
   font-weight: 500;
 `;
