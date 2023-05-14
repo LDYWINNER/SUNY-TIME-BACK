@@ -9,7 +9,7 @@ import {
 
 const Announcement = () => {
   return (
-    <Accordion allowMultiple>
+    <Accordion defaultIndex={[2, 3]} allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton>
@@ -40,6 +40,42 @@ const Announcement = () => {
           아직 수니타임이 많이 부족하지만 저희의 노력을 이쁘게 봐주세요 ㅎㅎ
           수강평 사이트를 통해, 학생 여러분께서 시간표를 조율하시는 데에
           조금이나마 도움을 드리고 싶습니다 :)
+        </AccordionPanel>
+      </AccordionItem>
+
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+            <Box as="span" flex="1" textAlign="left" fontWeight={600}>
+              공지사항 3 - 이벤트 (2023.05.14)
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4} fontSize={16} fontWeight={400}>
+          최근 수강신청 관련해서 선배님들에게 질문을 하거나 상담을 요청하시는
+          후배님들이 많이 보입니다. 후배님들의 고민해결을 위해 특별 질의 응답
+          이벤트를 진행하려합니다! 쑤니타임 내의 게시판(Bulletin page)에 각종
+          질문들을 남겨주시면 각 과의 고학번들이 친절하고 빠르게 답변을 드립니다
+          :)
+        </AccordionPanel>
+      </AccordionItem>
+
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+            <Box as="span" flex="1" textAlign="left" fontWeight={600}>
+              공지사항 4 - 감사인사 (2023.05.14)
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4} fontSize={16} fontWeight={400}>
+          과분한 관심 가져주셔서 감사합니다. 가입 유저는 100 명, 수강평은 300
+          개가 넘었습니다. 책임감을 갖고 좀 더 도움이 되는 사이트가 될 수 있도록
+          노력하겠습니다. 종종 저희 사이트가 도움이 되었다고 말씀해주시는 분들도
+          계신데 저희에게는 작은 한 마디가 큰 힘이 됩니다. 앞으로도 응원과 관심
+          부탁드립니다.
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
