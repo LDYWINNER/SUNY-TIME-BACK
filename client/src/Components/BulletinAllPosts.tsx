@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { bulletinSearchState, globalCurrentState } from "../atoms";
+import { bulletinSearchState, globalCurrentState, isDarkAtom } from "../atoms";
 import { removeUserFromLocalStorage } from "../utils";
 import { authFetch } from "../api";
 import Loading from "./Loading";
@@ -46,6 +46,7 @@ const BulletinAllPosts = () => {
   const [globalState, setGlobalCurrentState] =
     useRecoilState(globalCurrentState);
   const { boardFilter, searchKeyword } = useRecoilValue(bulletinSearchState);
+  const isDark = useRecoilValue(isDarkAtom);
 
   const logoutUser = useCallback(() => {
     setGlobalCurrentState((currentState) => {
@@ -129,7 +130,7 @@ const BulletinAllPosts = () => {
               <Row>
                 <h5>{moment(post.createdAt).format("MMMM Do, h:mm a")}</h5>
                 <Icon>
-                  <Row style={{ color: "blue" }}>
+                  <Row style={{ color: isDark ? "yellow" : "blue" }}>
                     <AiOutlineLike />
                     {post.likes.length}
                   </Row>
