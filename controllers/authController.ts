@@ -26,7 +26,7 @@ const generateRandom = (min: number, max: number) => {
 
 const sendEmail = async (req: Request, res: Response) => {
   const { username, email, school, major } = req.body;
-  if (!username || !email || !school || !major) {
+  if (!username || !email || school === "-1" || major === "-2") {
     throw new BadRequestError("Please check if you provided all values");
   }
   //duplicate email checking
