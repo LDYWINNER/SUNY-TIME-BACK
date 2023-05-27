@@ -3,7 +3,7 @@ www.sunytime.com
 
 Web application that allows SUNY Korea students to get information about school courses including detailed course reviews
 
-RU - 100+
+RU - 100+,
 Registered course reviews - 300+
 
 2023.05.27
