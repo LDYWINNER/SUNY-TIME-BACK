@@ -279,6 +279,7 @@ function CourseReviewModal({ id, isOpen, onClose }: ICourseReviewModal) {
                   <option value="-1" disabled>
                     수강학기
                   </option>
+                  <option value="2023-spring">2023 Spring</option>
                   <option value="2022-fall">2022 Fall</option>
                   <option value="2022-spring">2022 Spring</option>
                   <option value="2021-fall">2021 Fall</option>
