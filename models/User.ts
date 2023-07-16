@@ -7,6 +7,7 @@ export interface IUser {
   school: string;
   major: string;
   courseReviewNum: number;
+  adminAccount: boolean;
 }
 
 export interface IUserMethods {
@@ -38,9 +39,15 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
     type: Number,
     required: true,
   },
+  adminAccount: {
+    type: Boolean,
+  },
 });
 
 UserSchema.methods.createJWT = function () {
+  if (this.adminAccount) {
+    jwt.sign({ userId: this._id }, process.env.JWT_SECRET as string);
+  }
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET as string, {
     expiresIn: process.env.JWT_LIFETIME,
   });

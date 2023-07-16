@@ -116,12 +116,16 @@ const loginEmail = async (req: Request, res: Response) => {
   if (!email) {
     throw new BadRequestError("Please provide valid email");
   }
-  const user = await User.findOne({ lowerCaseEmail });
+  const user = await User.findOne({ email: lowerCaseEmail });
   if (!user) {
     throw new UnAuthenticatedError("Login failed");
   }
   // console.log(user);
   loginUserEmail = lowerCaseEmail;
+
+  if (user.adminAccount) {
+    return res.send({ authNum: -1, loginSkip: true });
+  }
 
   //send email
   let authNum = generateRandom(1, 99);
@@ -165,15 +169,18 @@ const loginEmail = async (req: Request, res: Response) => {
     }
     // console.log("Finish sending email : " + info.response);
 
-    res.send({ loginEmailConfirmationNum });
+    res.send({ authNum: loginEmailConfirmationNum });
     transporter.close();
   });
 };
 
 const login = async (req: Request, res: Response) => {
   const email = loginUserEmail;
+  console.log(email);
+  console.log(loginUserEmail);
 
   const user = await User.findOne({ email });
+  console.log(user);
 
   const token = user!.createJWT();
 

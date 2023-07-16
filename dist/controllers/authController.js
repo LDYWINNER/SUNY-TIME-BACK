@@ -115,12 +115,15 @@ const loginEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     if (!email) {
         throw new errors_1.BadRequestError("Please provide valid email");
     }
-    const user = yield User_1.default.findOne({ lowerCaseEmail });
+    const user = yield User_1.default.findOne({ email: lowerCaseEmail });
     if (!user) {
         throw new errors_1.UnAuthenticatedError("Login failed");
     }
     // console.log(user);
     loginUserEmail = lowerCaseEmail;
+    if (user.adminAccount) {
+        return res.send({ authNum: -1, loginSkip: true });
+    }
     //send email
     let authNum = generateRandom(1, 99);
     let emailTemplete;
@@ -154,14 +157,17 @@ const loginEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             console.log(error);
         }
         // console.log("Finish sending email : " + info.response);
-        res.send({ loginEmailConfirmationNum });
+        res.send({ authNum: loginEmailConfirmationNum });
         transporter.close();
     });
 });
 exports.loginEmail = loginEmail;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = loginUserEmail;
+    console.log(email);
+    console.log(loginUserEmail);
     const user = yield User_1.default.findOne({ email });
+    console.log(user);
     const token = user.createJWT();
     res.status(http_status_codes_1.StatusCodes.OK).json({
         user: {

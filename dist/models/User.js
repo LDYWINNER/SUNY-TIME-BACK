@@ -28,8 +28,14 @@ const UserSchema = new mongoose_1.Schema({
         type: Number,
         required: true,
     },
+    adminAccount: {
+        type: Boolean,
+    },
 });
 UserSchema.methods.createJWT = function () {
+    if (this.adminAccount) {
+        jsonwebtoken_1.default.sign({ userId: this._id }, process.env.JWT_SECRET);
+    }
     return jsonwebtoken_1.default.sign({ userId: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME,
     });

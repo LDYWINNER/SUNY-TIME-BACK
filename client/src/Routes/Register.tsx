@@ -7,7 +7,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { emailConfirmationState, loginConfirmationState } from "../atoms";
+import {
+  emailConfirmationState,
+  globalCurrentState,
+  loginConfirmationState,
+} from "../atoms";
+import { addUserToLocalStorage } from "../utils";
 
 interface IForm {
   username: string;
@@ -34,6 +39,7 @@ function Register() {
   const [values, setValues] = useState(registerState);
   const setEmailConfirmationState = useSetRecoilState(emailConfirmationState);
   const setLoginConfirmationState = useSetRecoilState(loginConfirmationState);
+  const setGlobalCurrentState = useSetRecoilState(globalCurrentState);
   const {
     register,
     handleSubmit,
@@ -61,12 +67,44 @@ function Register() {
       //login user
       try {
         const { data } = await axios.post("/api/v1/auth/loginEmail", loginUser);
-        const { authNum } = data;
-        // console.log(authNum);
-        setLoginConfirmationState({
-          authNum,
-        });
-        navigate("/login-email");
+        const { authNum, loginSkip } = data;
+        // console.log(authNum, loginSkip);
+        if (loginSkip) {
+          //login user
+          try {
+            const { data } = await axios.post("/api/v1/auth/login");
+            const { user, token } = data;
+            setGlobalCurrentState((currentState) => {
+              return {
+                ...currentState,
+                token,
+                user,
+              };
+            });
+            //adding user to local storage
+            addUserToLocalStorage({ user, token });
+            localStorage.setItem("courseSubjSearchFilter", "AMS");
+            setValues({ ...values, formSuccess: true });
+            setTimeout(() => {
+              navigate("/");
+            }, 2500);
+          } catch (error: any) {
+            // console.log(error.response);
+            setValues({
+              ...values,
+              formSuccess: false,
+              errorMessage: error.response.data.msg,
+            });
+          }
+          setLoginConfirmationState({
+            authNum,
+          });
+        } else {
+          setLoginConfirmationState({
+            authNum,
+          });
+          navigate("/login-email");
+        }
       } catch (error: any) {
         // console.log(error.response);
         setValues({
