@@ -23,7 +23,7 @@ const logger = morgan("dev");
 if (process.env.NODE_ENV !== "production") {
   app.use(logger);
 }
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "../SUNY-TIME-FRONT/build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -38,7 +38,9 @@ app.use("/api/v1/course", authenticateUser, courseRouter);
 
 //using frontend routes from build folder
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  res.sendFile(
+    path.resolve(__dirname, "../SUNY-TIME-FRONT/build", "index.html")
+  );
 });
 
 app.use(notFoundMiddleware);
